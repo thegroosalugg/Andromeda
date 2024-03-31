@@ -5,9 +5,11 @@
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
+    "typeRoots": ["./types", "./node_modules/@types"], // configure TS to identify Faker
+    "esModuleInterop": true, // added by faker
 
     /* Bundler mode */
-    "moduleResolution": "bundler",
+    "moduleResolution": "Node", // changed from 'bunder' to remove faker warnings
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
