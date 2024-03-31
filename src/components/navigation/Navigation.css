@@ -14,14 +14,12 @@
 
 .nav a {
   text-decoration: none;
-  font-size: 2vw;
-  color: #EFEFEF;
-  text-shadow: 1px 1px 2px rgb(0, 0, 0);
+  font-size: 1.5vw;
   transition: 0.4s ease-in-out;
 }
 
-.nav a:hover {
-  color: #3587ad;
+.idle {
+  text-shadow: 1px 1px 2px rgb(0, 0, 0);
 }
 
 .active {
@@ -30,15 +28,23 @@
   padding: 0.9vh 1.5vw;
 }
 
-.ufo {
-  margin-left: 35%;
-  width: 6vw;
-  height: 4vw;
-  background: url('ufo-svgrepo-com.svg') center/cover no-repeat;
+.active, .idle:hover {
+  color: #3587ad;
 }
 
-.active:hover {
-  background: transparent;
+.idle, .active:hover {
+  color: #EFEFEF;
+}
+
+.active, .active:hover, .idle:hover {
+  text-shadow: 1px 1px 2px rgb(45, 44, 44);
+}
+
+.ufo {
+  margin-left: 30%;
+  width: 4vw;
+  height: 3vw;
+  background: url('ufo-svgrepo-com.svg') center/cover no-repeat;
 }
 
 .active-tab {
