@@ -1,15 +1,19 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 export default function NavButton({ path, name }: { path: string; name: string }) {
+  const { pathname } = useLocation();
+  const isActive = pathname === path;
+
   return (
     <li>
+      {isActive && <motion.div layoutId='tab-ufo' className='ufo' />}
       <NavLink
         to={path}
-        // className={({ isActive }) => (isActive ? 'active' : null)}               // implement you later
-        end // prevents root events path navigation from being perpetually active
-      >
+        >
         {name}
       </NavLink>
+      {isActive && <motion.div layoutId='tab-indicator' className='active-tab' />}
     </li>
   );
 }
