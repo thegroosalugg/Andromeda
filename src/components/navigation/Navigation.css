@@ -1,0 +1,26 @@
+.nav {
+  max-width: 60rem;
+  margin: auto;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.nav ul {
+  display: flex;
+  padding: 0;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav a {
+  text-decoration: none;
+  font-size: 2vw;
+  color: #EFEFEF;
+  text-shadow: 1px 1px 2px rgb(0, 0, 0);
+  transition: 0.3s ease-in-out;
+}
+
+.nav a:hover {
+  color: #3587ad;
+}
