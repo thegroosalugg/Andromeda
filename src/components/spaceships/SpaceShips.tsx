@@ -1,12 +1,5 @@
+import SpaceShip from '../../models/SpaceShip';
 import ShipItem from './ShipItem';
-
-interface SpaceShip {
-  id: string;
-  name: string;
-  image: string;
-  desc: string;
-  price: number;
-}
 
 export default function SpaceShips({ spaceships }: { spaceships: SpaceShip[] }) {
   return (

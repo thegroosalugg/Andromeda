@@ -1,3 +1,4 @@
+import SpaceShip from '../../models/SpaceShip';
 import ship1 from './spaceship_01.jpg';
 import ship2 from './spaceship_02.jpg';
 import ship3 from './spaceship_03.jpg';
@@ -12,88 +13,16 @@ import ship11 from './spaceship_11.jpg';
 import ship12 from './spaceship_12.jpg';
 
 export const spaceships = [
-  {
-    id: 'sh2i',
-    name: 'Infinite Speed',
-    image: ship1,
-    desc: 'Multi-lateral scalable software',
-    price: 15674,
-  },
-  {
-    id: '30fk',
-    name: 'Space Bullet',
-    image: ship2,
-    desc: 'Multi-tiered impactful model',
-    price: 19774,
-  },
-  {
-    id: 'jf2o',
-    name: "She's the Fastest",
-    image: ship3,
-    desc: 'Managed even-keeled support',
-    price: 14098,
-  },
-  {
-    id: '4jg2',
-    name: 'SuperNova SKR31',
-    image: ship4,
-    desc: 'User-friendly tangible support',
-    price: 15674,
-  },
-  {
-    id: 'gk30',
-    name: 'THE UN5T0PP4BL3',
-    image: ship5,
-    desc: 'Total dynamic moratorium',
-    price: 21301,
-  },
-  {
-    id: 'mg3l',
-    name: "Can't Possibly Lose",
-    image: ship6,
-    desc: 'Fully-configurable actuating local area network',
-    price: 19646,
-  },
-  {
-    id: 'kf4v',
-    name: 'Through the Black Hole',
-    image: ship7,
-    desc: 'Quality-focused intermediate neural-net',
-    price: 15097,
-  },
-  {
-    id: 'b3l4',
-    name: "Sun's Brother",
-    image: ship8,
-    desc: 'Fully-configurable secondary extranet',
-    price: 13369,
-  },
-  {
-    id: 'l2dd',
-    name: 'TIT4N No. 4',
-    image: ship9,
-    desc: 'Customizable foreground architecture',
-    price: 16024,
-  },
-  {
-    id: '0pvf',
-    name: 'Atol Protected',
-    image: ship10,
-    desc: 'Right-sized fresh-thinking middleware',
-    price: 17032,
-  },
-  {
-    id: '3fk5',
-    name: 'Galactic Viper 3-24N-R',
-    image: ship11,
-    desc: 'Cross-platform dynamic paradigm',
-    price: 18013,
-  },
-  {
-    id: '0f24',
-    name: 'Skyon Leader R2',
-    image: ship12,
-    desc: 'Reverse-engineered empowering migration',
-    price: 19024,
-  },
+  new SpaceShip('Infinite Speed', ship1, 'Multi-lateral scalable software', 15674),
+  new SpaceShip('Space Bullet', ship2, 'Multi-tiered impactful model', 19774),
+  new SpaceShip("She's the Fastest", ship3, 'Managed even-keeled support', 14098),
+  new SpaceShip('SuperNova SKR31', ship4, 'User-friendly tangible support', 15674),
+  new SpaceShip('THE UN5T0PP4BL3', ship5, 'Total dynamic moratorium', 21301),
+  new SpaceShip("Can't Possibly Lose", ship6, 'Fully-configurable actuating local area network', 19646),
+  new SpaceShip('Through the Black Hole', ship7, 'Quality-focused intermediate neural-net', 15097),
+  new SpaceShip("Sun's Brother", ship8, 'Fully-configurable secondary extranet', 13369),
+  new SpaceShip('TIT4N No. 4', ship9, 'Customizable foreground architecture', 16024),
+  new SpaceShip('Atol Protected', ship10, 'Right-sized fresh-thinking middleware', 17032),
+  new SpaceShip('Galactic Viper 3-24N-R', ship11, 'Cross-platform dynamic paradigm', 18013),
+  new SpaceShip('Skyon Leader R2', ship12, 'Reverse-engineered empowering migration', 19024),
 ];

@@ -1,11 +1,6 @@
-interface SpaceShip {
-  name: string;
-  image: string;
-  desc: string;
-  price: number;
-}
+import SpaceShip from "../../models/SpaceShip";
 
-const SpaceShip: React.FC<SpaceShip> = ({ name, image, desc, price }) => {
+const ShipItem: React.FC<SpaceShip> = ({ name, image, desc, price }) => {
   return (
     <li>
       <h2>{name}</h2>
@@ -16,4 +11,4 @@ const SpaceShip: React.FC<SpaceShip> = ({ name, image, desc, price }) => {
   );
 }
 
-export default SpaceShip;
+export default ShipItem;
