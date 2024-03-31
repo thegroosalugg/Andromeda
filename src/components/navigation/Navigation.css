@@ -1,0 +1,55 @@
+.nav {
+  margin: auto;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.nav ul {
+  display: flex;
+  padding: 0;
+  gap: 2vw;
+  list-style: none;
+}
+
+.nav a {
+  text-decoration: none;
+  font-size: 1.5vw;
+  transition: 0.4s ease-in-out;
+}
+
+.idle {
+  text-shadow: 1px 1px 2px rgb(0, 0, 0);
+}
+
+.active {
+  position: relative;
+  display: inline-block;
+  padding: 0.9vh 1.5vw;
+}
+
+.active, .idle:hover {
+  color: #3587ad;
+}
+
+.idle, .active:hover {
+  color: #EFEFEF;
+}
+
+.active, .active:hover, .idle:hover {
+  text-shadow: 1px 1px 2px rgb(45, 44, 44);
+}
+
+.ufo {
+  margin-left: 30%;
+  width: 4vw;
+  height: 3vw;
+  background: url('ufo-svgrepo-com.svg') center/cover no-repeat;
+}
+
+.active-tab {
+  margin-top: 0.5rem;
+  border: 0.3vh solid #3587ad;
+  border-radius: 8px;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}

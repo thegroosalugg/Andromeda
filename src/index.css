@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Trispace:wght@100..800&display=swap');
+
+body {
+  height: 100vh;
+  margin: 0;
+  background: linear-gradient(to right, #b4b7b1d5, #b9b7b2, #777571, #484645);
+  font-family: 'Trispace', sans-serif;
+  color: #EFEFEF;
+}
+
+/* hidethescrollbar */
+::-webkit-scrollbar {
+  width: 0px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* Hide the track */
+}
+
+::-webkit-scrollbar-thumb {
+  background: transparent; /* Hide the thumb */
+}
