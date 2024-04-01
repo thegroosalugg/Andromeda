@@ -1,6 +1,13 @@
+import '../components/spaceships/SpaceShips.css';
 import { spaceships } from '../assets/spaceships/spaceships';
-import SpaceShips from '../components/spaceships/SpaceShips';
+import List from '../components/List';
+import ShipItem from '../components/spaceships/ShipItem';
+import SpaceShip from '../models/SpaceShip';
 
 export default function SpaceShipsPage() {
-  return <SpaceShips spaceships={spaceships} />;
+  return (
+    <List className='spaceship' items={spaceships} keyFn={({ id }) => id}>
+      {(item: SpaceShip) => <ShipItem {...item} />}
+    </List>
+  );
 }
