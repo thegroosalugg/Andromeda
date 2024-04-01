@@ -19,7 +19,7 @@ const images = [ship1, ship2, ship3, ship4, ship5, ship6, ship7, ship8, ship9, s
 const generateSpaceShip = (image: string) => {
   const name = faker.animal.cat() + ' ' + faker.vehicle.model();
   const desc = faker.company.catchPhrase();
-  const price = +(1000 + Math.random() * 10000).toFixed(2);
+  const price = +(Math.random() * (2200 - 1200) + 1200).toFixed(2);
   return new SpaceShip(name, image, desc, price);
 };
 
