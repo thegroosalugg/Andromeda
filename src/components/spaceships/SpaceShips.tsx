@@ -1,7 +1,7 @@
-import './SpaceShips.css';
 import SpaceShip from '../../models/SpaceShip';
 import List from '../List';
 import ShipItem from './ShipItem';
+import css from './SpaceShips.module.css'
 
 export default function SpaceShips({ spaceships }: { spaceships: SpaceShip[] }) {
   // configure framer motion animate effects
@@ -19,7 +19,7 @@ export default function SpaceShips({ spaceships }: { spaceships: SpaceShip[] }) 
 
   return (
     <List
-      className='spaceship'
+      className={css.spaceship}
       items={spaceships}
       keyFn={({ id }) => id}
       ulVariants={ulVariants}

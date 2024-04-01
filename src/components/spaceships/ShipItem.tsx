@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import SpaceShip from '../../models/SpaceShip';
 import { motion } from 'framer-motion';
+import css from './ShipItem.module.css'
 
 const ShipItem: React.FC<SpaceShip> = ({ id, name, image, desc, price }) => {
   // could also navigate with Link, but this wraps the component a 3rd time and needs additional styling
@@ -14,8 +15,8 @@ const ShipItem: React.FC<SpaceShip> = ({ id, name, image, desc, price }) => {
     >
       <h4>{name}</h4>
       <img src={image} alt={name} />
-      <p className='ship-info'>{desc}</p>
-      <p className='price'>${price}</p>
+      <p className={css['ship-info']}>{desc}</p>
+      <p className={css.price}>${price}</p>
     </motion.article>
   );
 };
