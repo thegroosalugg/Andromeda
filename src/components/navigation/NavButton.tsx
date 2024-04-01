@@ -3,7 +3,11 @@ import { motion } from 'framer-motion';
 
 export default function NavButton({ path, name }: { path: string; name: string }) {
   const { pathname } = useLocation();
-  const isActive = pathname === path;
+  // this condition may need further tweaking depending on how many other dynamic paths there will be
+  const isActive = pathname === path || (pathname.startsWith(path) && path !== '/'); // keep an eye on this
+
+  path === '/' && console.clear(); // clear the console before first component renders
+  console.log('    [PATH]:', path, '\n', '\n', '[CURRENT]:', pathname, '\n', '\n', '[ACTIVE?]:', isActive);
 
   return (
     <li>

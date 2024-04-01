@@ -19,7 +19,7 @@ const router = createBrowserRouter([
       { path: 'explore', element: <ExplorePage /> },
     ],
   },
-]); 
+]);
 
 export default function App() {
   return <RouterProvider router={router} />;
