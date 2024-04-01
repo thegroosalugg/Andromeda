@@ -5,12 +5,13 @@ import StorePage from './pages/Store';
 import SpaceShipsPage from './pages/spaceships/SpaceShips';
 import ShipIDPage from './pages/spaceships/ShipID';
 import ExplorePage from './pages/Explore';
+import ErrorPage from './components/error/Error';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <RootLayout />,
-    // errorElement: <ErrorPage />, // TBA
+    errorElement: <ErrorPage />,
     children: [
       { index: true, element: <LandingPage /> },
       { path: 'store', element: <StorePage /> },
