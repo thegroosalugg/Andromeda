@@ -1,3 +1,8 @@
+import { spaceships } from '../assets/spaceships/spaceships';
+import SpaceShips from '../components/spaceships/SpaceShips';
+
 export default function SpaceShipsPage() {
-  return <h1>Ships</h1>
+  return (
+    <SpaceShips spaceships={spaceships} />
+  );
 }

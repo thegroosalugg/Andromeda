@@ -1,6 +1,6 @@
 .nav {
   margin: auto;
-  padding: 2rem;
+  padding: 2rem 0 0;
   display: flex;
   justify-content: center;
 }
