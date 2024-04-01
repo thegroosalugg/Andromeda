@@ -3,7 +3,7 @@
 body {
   min-height: 100vh;
   margin: 0;
-  background: url('wallpaper4.jpeg') center/cover no-repeat;
+  background: url('/wallpaper4.jpeg') center/cover no-repeat;
   font-family: 'Trispace', sans-serif;
 }
 
