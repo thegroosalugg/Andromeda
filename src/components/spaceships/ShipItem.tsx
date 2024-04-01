@@ -1,14 +1,14 @@
-import SpaceShip from "../../models/SpaceShip";
+import SpaceShip from '../../models/SpaceShip';
 
 const ShipItem: React.FC<SpaceShip> = ({ name, image, desc, price }) => {
   return (
     <li>
-      <h2>{name}</h2>
+      <h3>{name}</h3>
       <img src={image} alt={name} />
-      <p>{desc}</p>
-      <p>${price}</p>
+      <p className='ship-info'>{desc}</p>
+      <p className='price'>${price}</p>
     </li>
   );
-}
+};
 
 export default ShipItem;
