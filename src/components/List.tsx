@@ -5,27 +5,32 @@ interface ListProps<T> {
   keyFn: (item: T) => string | number;   // RENDER PROP: extract key and pass it back
   className: string;                     // all styling will be provided by the parent, this FC is not styled
   children: (item: T) => JSX.Element;    // RENDER PROP: need to pass extracted object to parent
+  ulVariants: { visible: object; hidden: object }; // configure framer motion
+  liVariants: { visible: object; hidden: object };
+  liTransition: object;
 }
 
-export default function List<T>({ items, keyFn, className, children }: ListProps<T>) {
+export default function List<T>({
+  items,
+  keyFn,
+  className,
+  children,
+  ulVariants,
+  liVariants,
+  liTransition,
+}: ListProps<T>) {
   return (
     <motion.ul
       className={className}
-      variants={{
-        visible: { opacity: 1 },
-        hidden:  { opacity: 0 },
-      }}
+      variants={ulVariants}
       initial='hidden'
       animate='visible'
     >
       {items.map((item, index) => (
         <motion.li
           key={keyFn(item)}
-          variants={{
-            visible: { opacity: 1, scale: 1 },
-            hidden:  { opacity: 0, scale: 1.2 },
-          }}
-          transition={{ type: 'tween', duration: 0.5, delay: index * 0.1 }}
+          variants={liVariants} // delay * index adds stagger, other transitions can be configured by parent
+          transition={{...liTransition, delay: index * 0.1}}
         >
           {children(item)}
         </motion.li>
