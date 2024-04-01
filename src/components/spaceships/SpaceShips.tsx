@@ -5,9 +5,8 @@ import { motion } from 'framer-motion';
 
 export default function SpaceShips({ spaceships }: { spaceships: SpaceShip[] }) {
   return (
-    <main className='spaceship'>
-      <h1>SPACESHIP CITY</h1>
       <motion.ul
+      className='spaceship'
         variants={{
           visible: { opacity: 1 },
           hidden: { opacity: 0 },
@@ -28,6 +27,5 @@ export default function SpaceShips({ spaceships }: { spaceships: SpaceShip[] }) 
           </motion.li>
         ))}
       </motion.ul>
-    </main>
   );
 }
