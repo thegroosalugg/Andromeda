@@ -21,18 +21,13 @@
   grid-gap: 2rem;
 }
 
-.spaceship li {
+.spaceship article {
   background-color: rgba(26, 143, 189, 0.274);
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
-
-.spaceship li:hover {
-  transform: translateY(-5px);
 }
 
 .spaceship img {
