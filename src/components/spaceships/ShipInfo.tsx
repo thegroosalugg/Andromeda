@@ -1,6 +1,14 @@
 import css from './ShipInfo.module.css';
 import SpaceShip from '../../models/SpaceShip';
 import { motion } from 'framer-motion';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faBolt,
+  faClock,
+  faMoneyBill1Wave,
+  faGaugeHigh,
+  faGlobe,
+} from '@fortawesome/free-solid-svg-icons';
 
 const ShipInfo: React.FC<SpaceShip> = ({
   name,
@@ -27,14 +35,28 @@ const ShipInfo: React.FC<SpaceShip> = ({
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <h4>From {make}</h4>
+        <h4>
+          <FontAwesomeIcon icon={faGlobe} /> {make}
+        </h4>
         <h2>{name}</h2>
         <article>{specs}</article>
         <div className={css.specs}>
-            <p>YEAR {year}</p>
+          <span>
+            <FontAwesomeIcon icon={faClock} />
+            <p>{year}</p>
+          </span>
+          <span>
+            <FontAwesomeIcon icon={faBolt} />
             <p>{fuel}</p>
-            <p>{speed}M GMP/H</p>
-            <p>RATE ${price}</p>
+          </span>
+          <span>
+            <FontAwesomeIcon icon={faGaugeHigh} />
+            <p>{speed}MPH</p>
+          </span>
+          <span>
+            <FontAwesomeIcon icon={faMoneyBill1Wave} />
+            <p>${price}</p>
+          </span>
         </div>
       </motion.div>
     </section>
