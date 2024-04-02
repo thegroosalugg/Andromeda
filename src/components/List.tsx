@@ -5,8 +5,9 @@ interface ListProps<T> {
   keyFn: (item: T) => string | number;   // RENDER PROP: extract key and pass it back
   className: string;                     // all styling will be provided by the parent, this FC is not styled
   children: (item: T) => JSX.Element;    // RENDER PROP: need to pass extracted object to parent
-  ulVariants: { visible: object; hidden: object }; // configure framer motion
-  liVariants: { visible: object; hidden: object };
+  // configure framer motion
+  ulVariants?: { visible: object; hidden: object }; // ulVariants optonal, as parent container may be invisible
+  liVariants:  { visible: object; hidden: object };
   liTransition: object;
 }
 
