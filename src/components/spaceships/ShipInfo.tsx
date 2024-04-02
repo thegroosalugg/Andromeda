@@ -3,9 +3,9 @@ import SpaceShip from '../../models/SpaceShip';
 
 const ShipInfo: React.FC<SpaceShip> = ({ name, image, desc, price }) => {
   return (
-    <section className={css['ship-info']}>
+    <section className={css.ship}>
       <img src={image} alt={name} />
-      <div>
+      <div className={css['ship-info']}>
         <h2>{name}</h2>
         <p>{desc}</p>
         <p>{price}</p>

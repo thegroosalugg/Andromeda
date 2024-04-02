@@ -1,0 +1,31 @@
+.ship {
+  margin: 5% auto;
+  width: 50rem;
+  display: flex;
+  border-radius: 5%;
+}
+
+.ship img {
+  flex: 2;
+  min-width: 0;
+  object-fit: cover;
+  opacity: 0.8;
+  border-radius: 5% 0 0 5%;
+}
+
+.ship-info {
+  flex: 1;
+  color: #d4d8de;
+  text-shadow: 1px 1px 2px #080808;
+  font-size: 0.8rem;
+  background-color: rgba(47, 49, 54, 0.7);
+  border-radius: 0 5% 5% 0;
+}
+
+.ship-info h2 {
+  text-align: center;
+}
+
+.ship-info p {
+  margin: 5% 10%;
+}
