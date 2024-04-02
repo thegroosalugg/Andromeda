@@ -22,6 +22,8 @@
   border-radius: 0 5% 5% 0;
   display: flex;
   flex-direction: column;
+  text-align: center;
+
 }
 
 .ship-info h4 {
@@ -35,12 +37,10 @@
 
 .ship-info h2 {
   margin: 0 0 2rem;
-  text-align: center;
 }
 
 .ship article {
   padding: 2rem;
-  text-align: center;
   background: rgb(255, 255, 255, 0.1);
 }
 
@@ -52,12 +52,11 @@
   font-size: smaller;
 }
 
-.specs span {
-  text-align: center;
+.icon-config {
   color: rgb(184, 154, 79);
 }
 
-.specs p {
+.icon-config p {
   margin: 0.5rem;
   color: #d4d8de;
 }

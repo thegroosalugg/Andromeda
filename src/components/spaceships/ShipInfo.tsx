@@ -2,13 +2,8 @@ import css from './ShipInfo.module.css';
 import SpaceShip from '../../models/SpaceShip';
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faBolt,
-  faClock,
-  faMoneyBill1Wave,
-  faGaugeHigh,
-  faGlobe,
-} from '@fortawesome/free-solid-svg-icons';
+import { faGlobe } from '@fortawesome/free-solid-svg-icons';
+import FontAwesome from '../UI/FontAwesome'; // custom functional component
 
 const ShipInfo: React.FC<SpaceShip> = ({
   name,
@@ -41,22 +36,10 @@ const ShipInfo: React.FC<SpaceShip> = ({
         <h2>{name}</h2>
         <article>{specs}</article>
         <div className={css.specs}>
-          <span>
-            <FontAwesomeIcon icon={faClock} />
-            <p>{year}</p>
-          </span>
-          <span>
-            <FontAwesomeIcon icon={faBolt} />
-            <p>{fuel}</p>
-          </span>
-          <span>
-            <FontAwesomeIcon icon={faGaugeHigh} />
-            <p>{speed}M MPH</p>
-          </span>
-          <span>
-            <FontAwesomeIcon icon={faMoneyBill1Wave} />
-            <p>${price}</p>
-          </span>
+          <FontAwesome className={css['icon-config']} icon={['fas', 'clock']} text={`${year} CE`} />
+          <FontAwesome className={css['icon-config']} icon={['fas', 'bolt']} text={fuel} />
+          <FontAwesome className={css['icon-config']} icon={['fas', 'gauge-high']} text={`${speed}m Mph`} />
+          <FontAwesome className={css['icon-config']} icon={['fas', 'money-bill-1-wave']} text={`$${price}`} />
         </div>
       </motion.div>
     </section>
