@@ -26,7 +26,7 @@ const generateSpaceShip = (image: string) => {
   const desc  = faker.company.catchPhrase();
   const price = rand(4000, 11000);
   const year  = rand(2200, 2300);
-  const speed = rand(100, 300);
+  const speed = rand(1000, 3000);
   const fuel  = faker.vehicle.fuel() + ' ' + faker.hacker.abbreviation();
   const specs = faker.commerce.productDescription()
   return new SpaceShip(name, make, image, desc, price, year, speed, fuel, specs);

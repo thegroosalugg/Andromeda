@@ -51,7 +51,7 @@ const ShipInfo: React.FC<SpaceShip> = ({
           </span>
           <span>
             <FontAwesomeIcon icon={faGaugeHigh} />
-            <p>{speed}MPH</p>
+            <p>{speed}M MPH</p>
           </span>
           <span>
             <FontAwesomeIcon icon={faMoneyBill1Wave} />
