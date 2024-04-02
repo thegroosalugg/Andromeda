@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 import FontAwesome from '../UI/FontAwesome'; // custom functional component
+import MotionDiv from '../UI/MotionDiv';
 
 const ShipInfo: React.FC<SpaceShip> = ({
   model,
@@ -24,10 +25,12 @@ const ShipInfo: React.FC<SpaceShip> = ({
         animate={{ x: 0 }}
         transition={{ duration: 0.5 }}
       />
-      <motion.div
+      <MotionDiv
         className={css['ship-info']}
-        initial={{ y: 200 }}
-        animate={{ y: 0 }}
+        variants={{
+          hidden: { y: 200 },
+          visible: { y: 0 },
+        }}
         transition={{ duration: 0.5 }}
       >
         <h4>
@@ -41,19 +44,14 @@ const ShipInfo: React.FC<SpaceShip> = ({
         >
           {info}
         </motion.article>
-        <motion.div
-          className={css.specs}
-          initial='hidden'
-          animate='visible'
-          transition={{ staggerChildren: 0.2 }}
-        >
-          {/* prettier-ignore */}
+        {/* prettier-ignore */}
+        <MotionDiv className={css.specs} transition={{ staggerChildren: 0.2 }}>
           <FontAwesome className={css['icon-config']} icon={['fas', 'bolt']}              text={fuel}              />
           <FontAwesome className={css['icon-config']} icon={['fas', 'gauge-high']}        text={`${speed}m Mph`}   />
           <FontAwesome className={css['icon-config']} icon={['fas', 'clock']}             text={`${year} (CE)`}    />
           <FontAwesome className={css['icon-config']} icon={['fas', 'money-bill-1-wave']} text={`$${price} daily`} />
-        </motion.div>
-      </motion.div>
+        </MotionDiv>
+      </MotionDiv>
     </section>
   );
 };
