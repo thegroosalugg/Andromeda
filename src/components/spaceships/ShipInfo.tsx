@@ -2,7 +2,16 @@ import css from './ShipInfo.module.css';
 import SpaceShip from '../../models/SpaceShip';
 import { motion } from 'framer-motion';
 
-const ShipInfo: React.FC<SpaceShip> = ({ name, image, desc, price }) => {
+const ShipInfo: React.FC<SpaceShip> = ({
+  name,
+  make,
+  image,
+  price,
+  year,
+  fuel,
+  speed,
+  specs,
+}) => {
   return (
     <section className={css.ship}>
       <motion.img
@@ -18,9 +27,15 @@ const ShipInfo: React.FC<SpaceShip> = ({ name, image, desc, price }) => {
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
       >
+        <h4>From {make}</h4>
         <h2>{name}</h2>
-        <p>{desc}</p>
-        <p>{price}</p>
+        <article>{specs}</article>
+        <div className={css.specs}>
+            <p>YEAR {year}</p>
+            <p>{fuel}</p>
+            <p>{speed}M GMP/H</p>
+            <p>RATE ${price}</p>
+        </div>
       </motion.div>
     </section>
   );

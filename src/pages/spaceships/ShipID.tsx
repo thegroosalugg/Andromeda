@@ -6,6 +6,8 @@ export default function ShipIDPage() {
   const { id } = useParams();
   const spaceship = spaceships.find(spaceship => spaceship.id === id)
 
+  console.log(spaceship)
+
   if (!spaceship) {
     throw new Error('No Ship Found')
   }

@@ -16,11 +16,20 @@ import faker from 'faker';
 
 const images = [ship1, ship2, ship3, ship4, ship5, ship6, ship7, ship8, ship9, ship10, ship11, ship12]
 
+const rand = (min: number, max: number) => {
+  return Math.floor(Math.random() * (max - min) + min);
+}
+
 const generateSpaceShip = (image: string) => {
-  const name = faker.animal.cat() + ' ' + faker.vehicle.model();
-  const desc = faker.company.catchPhrase();
-  const price = +(Math.random() * (2200 - 1200) + 1200).toFixed(2);
-  return new SpaceShip(name, image, desc, price);
+  const name  = faker.animal.cat() + ' ' + faker.vehicle.model();
+  const make  = faker.company.companyName() + ' ' + faker.company.companySuffix();
+  const desc  = faker.company.catchPhrase();
+  const price = rand(4000, 11000);
+  const year  = rand(2200, 2300);
+  const speed = rand(100, 300);
+  const fuel  = faker.vehicle.fuel() + ' ' + faker.hacker.abbreviation();
+  const specs = faker.commerce.productDescription()
+  return new SpaceShip(name, make, image, desc, price, year, speed, fuel, specs);
 };
 
 export const spaceships = images.map(image => generateSpaceShip(image));
