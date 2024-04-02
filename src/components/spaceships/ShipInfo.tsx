@@ -6,20 +6,20 @@ import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 import FontAwesome from '../UI/FontAwesome'; // custom functional component
 
 const ShipInfo: React.FC<SpaceShip> = ({
-  name,
-  make,
+  model,
+  maker,
   image,
-  price,
-  year,
+  info,
   fuel,
   speed,
-  specs,
+  year,
+  price,
 }) => {
   return (
     <section className={css.ship}>
       <motion.img
         src={image}
-        alt={name}
+        alt={model}
         initial={{ x: 200 }}
         animate={{ x: 0 }}
         transition={{ duration: 0.5 }}
@@ -31,16 +31,28 @@ const ShipInfo: React.FC<SpaceShip> = ({
         transition={{ duration: 0.5 }}
       >
         <h4>
-          <FontAwesomeIcon icon={faGlobe} /> {make}
+          <FontAwesomeIcon icon={faGlobe} /> {maker}
         </h4>
-        <h2>{name}</h2>
-        <article>{specs}</article>
-        <div className={css.specs}>
-          <FontAwesome className={css['icon-config']} icon={['fas', 'clock']} text={`${year} CE`} />
-          <FontAwesome className={css['icon-config']} icon={['fas', 'bolt']} text={fuel} />
-          <FontAwesome className={css['icon-config']} icon={['fas', 'gauge-high']} text={`${speed}m Mph`} />
-          <FontAwesome className={css['icon-config']} icon={['fas', 'money-bill-1-wave']} text={`$${price}`} />
-        </div>
+        <h2>{model}</h2>
+        <motion.article
+          initial={{ opacity: 0, scaleY: 0 }}
+          animate={{ opacity: 1, scaleY: 1 }}
+          transition={{ duration: 0.5, ease: 'linear', delay: 0.3 }}
+        >
+          {info}
+        </motion.article>
+        <motion.div
+          className={css.specs}
+          initial='hidden'
+          animate='visible'
+          transition={{ staggerChildren: 0.2 }}
+        >
+          {/* prettier-ignore */}
+          <FontAwesome className={css['icon-config']} icon={['fas', 'bolt']}              text={fuel}              />
+          <FontAwesome className={css['icon-config']} icon={['fas', 'gauge-high']}        text={`${speed}m Mph`}   />
+          <FontAwesome className={css['icon-config']} icon={['fas', 'clock']}             text={`${year} (CE)`}    />
+          <FontAwesome className={css['icon-config']} icon={['fas', 'money-bill-1-wave']} text={`$${price} daily`} />
+        </motion.div>
       </motion.div>
     </section>
   );

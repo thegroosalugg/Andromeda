@@ -1,35 +1,35 @@
 export default class SpaceShip {
   id:    string;
-  name:  string;
-  make:  string;
+  model: string;
+  maker: string;
   image: string;
   desc:  string;
-  price: number;
-  year:  number;
-  speed: number;
+  info:  string;
   fuel:  string;
-  specs: string;
+  speed: number;
+  year:  number;
+  price: number;
 
   constructor(
-    name:  string,
-    make:  string,
+    model: string,
+    maker: string,
     image: string,
     desc:  string,
-    price: number,
-    year:  number,
-    speed: number,
+    info:  string,
     fuel:  string,
-    specs: string
+    speed: number,
+    year:  number,
+    price: number,
   ) {
     this.id    = 'SP' + Math.floor(Math.random() * 100000);
-    this.name  = name;
-    this.make  = make;
+    this.model = model;
+    this.maker = maker;
     this.image = image;
     this.desc  = desc;
-    this.price = price;
-    this.year  = year;
-    this.speed = speed;
+    this.info  = info;
     this.fuel  = fuel;
-    this.specs = specs;
+    this.speed = speed;
+    this.year  = year;
+    this.price = price;
   }
 }
