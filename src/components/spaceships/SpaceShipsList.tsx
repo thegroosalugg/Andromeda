@@ -1,6 +1,7 @@
 import SpaceShip from '../../models/SpaceShip';
 import List from '../List';
 import ShipItem from './ShipItem';
+import css from './SpaceShipsList.module.css'
 
 interface ListProps {
   spaceships: SpaceShip[];
@@ -18,13 +19,13 @@ export default function SpaceShipsList({ spaceships, className }: ListProps) {
 
   return (
     <List
-      className={className}
+      className={css[className]}
       items={spaceships}
       keyFn={({ id }) => id}
       liVariants={liVariants}
       liTransition={liTransition}
     >
-      {(item) => <ShipItem {...item} />}
+      {(item) => <ShipItem className={className} {...item} />}
     </List>
   );
 }

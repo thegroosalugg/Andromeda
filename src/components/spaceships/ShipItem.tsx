@@ -3,14 +3,18 @@ import SpaceShip from '../../models/SpaceShip';
 import { motion } from 'framer-motion';
 import css from './ShipItem.module.css'
 
-const ShipItem: React.FC<SpaceShip> = ({ id, model, image, desc, price }) => {
+interface ShipItemProps extends SpaceShip {
+  className: string;
+}
+
+const ShipItem: React.FC<ShipItemProps> = ({ id, model, image, desc, price, className }) => {
   // could also navigate with Link, but this wraps the component a 3rd time and needs additional styling
   const navigate = useNavigate();
 
   return (
     <motion.article
-      className={css['ship-item']}
-      whileHover={{ scale: 1.1 }}
+    className={`${css['ship-item']} ${css[className]}`}
+    whileHover={{ scale: 1.1 }}
       transition={{ duration: 0.3 }}
       onClick={() => navigate(`/ships/${id}`)}
     >

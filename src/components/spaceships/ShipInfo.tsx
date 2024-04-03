@@ -29,10 +29,10 @@ const ShipInfo: React.FC<SpaceShip> = ({
         element='div'
         className={css['ship-info']}
         variants={{
-          hidden: { y: 200 },
-          visible: { y: 0 },
+          hidden: { y: 200, opacity: 0 },
+          visible: { y: 0, opacity: 1 },
         }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 1 }}
       >
         <h4>
           <FontAwesomeIcon icon={faGlobe} /> {maker}
@@ -41,8 +41,8 @@ const ShipInfo: React.FC<SpaceShip> = ({
         <MotionDiv
           element='article'
           variants={{
-            hidden: { opacity: 0, scaleY: 0 },
-            visible: { opacity: 1, scaleY: 1 },
+            hidden: { scaleY: 0, opacity: 0 },
+            visible: { scaleY: 1, opacity: 1 },
           }}
           transition={{ duration: 0.5, ease: 'linear', delay: 0.3 }}
         >

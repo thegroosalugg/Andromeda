@@ -1,10 +1,21 @@
-.ship-item {
+.ship-grid {
   background-color: rgba(26, 143, 189, 0.274);
+}
+
+.ships-row-list {
+  background-color: rgba(26, 143, 189, 0.274);
+}
+
+.ship-item {
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 100%;
+  max-width: 200px;
+  margin: 0 1rem;
+  text-align: center;
 }
 
 .ship-item h4 {
