@@ -1,49 +1,46 @@
+/* config when in grid */
 .ship-grid {
   background-color: rgba(26, 143, 189, 0.274);
 }
 
+/* config when in rows */
 .ship-rows {
-  background-color: rgba(31, 32, 33, 0.274);
+  background-color: rgba(0, 0, 0, 0.374);
+  min-width: 12rem;
 }
 
+.ship-rows .desc {
+  color: #99ad35;
+}
+
+/* global config */
 .ship-item {
-  width: 100%;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
-  /* max-width: 200px; */
-  /* margin: 0 1rem; */
   text-align: center;
   border-radius: 8px;
+  color: #EFEFEF;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.ship-item h4 {
-  padding: 0.5rem;
-  margin: auto;
-  color: #EFEFEF;
-  display: flex;
-  place-items: center;
-  /* height: 2rem; */
+.ship-item img {
+  height: auto;
+  width: 100%;
 }
 
-.ship-item img {
-  width: 100%;
-  max-height: 15rem;
-  object-fit: cover;
+.ship-item h6, .ship-item p {
+  line-height: 1.5;
+  height: auto;
+  overflow: visible;
+  max-height: 1em;
 }
 
 .ship-item p {
-  margin: 0;
+  font-size: x-small;
 }
 
-.ship-info {
+.desc {
   padding: 1rem;
-  font-size: 0.8rem;
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  /* height: 2rem; */
 }
 
 .price {

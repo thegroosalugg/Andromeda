@@ -5,10 +5,7 @@
   display: grid;
   grid-gap: 1rem;
   list-style: none;
-  text-align: center;
-  /* justify-content: center;
-  align-items: center; */
-  /* place-items: center; */
+  align-items: center;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
 }
@@ -18,12 +15,9 @@
   margin: 1rem auto;
   padding: 1rem 3%;
   display: flex;
-  gap: 2rem;
+  gap: 1rem;
   list-style: none;
-  /* justify-content: center; */
-  align-items: center;
-  /* place-items: center; */
   overflow-x: auto;
-  background: rgb(255, 255, 255, 0.1);
+  background-color: rgba(47, 49, 54, 0.7);
   border-radius: 5px;
 }

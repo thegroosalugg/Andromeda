@@ -18,9 +18,9 @@ const ShipItem: React.FC<ShipItemProps> = ({ id, model, image, desc, price, clas
       transition={{ duration: 0.3 }}
       onClick={() => navigate(`/ships/${id}`)}
     >
-      <h4>{model}</h4>
+      <h6>{model}</h6>
       <img src={image} alt={model} />
-      <p className={css['ship-info']}>{desc}</p>
+      <p className={css.desc}>{desc}</p>
       <p className={css.price}>${price}</p>
     </motion.article>
   );
