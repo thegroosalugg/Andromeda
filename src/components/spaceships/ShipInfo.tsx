@@ -26,6 +26,7 @@ const ShipInfo: React.FC<SpaceShip> = ({
         transition={{ duration: 0.5 }}
       />
       <MotionDiv
+        element='div'
         className={css['ship-info']}
         variants={{
           hidden: { y: 200 },
@@ -37,15 +38,18 @@ const ShipInfo: React.FC<SpaceShip> = ({
           <FontAwesomeIcon icon={faGlobe} /> {maker}
         </h4>
         <h2>{model}</h2>
-        <motion.article
-          initial={{ opacity: 0, scaleY: 0 }}
-          animate={{ opacity: 1, scaleY: 1 }}
+        <MotionDiv
+          element='article'
+          variants={{
+            hidden: { opacity: 0, scaleY: 0 },
+            visible: { opacity: 1, scaleY: 1 },
+          }}
           transition={{ duration: 0.5, ease: 'linear', delay: 0.3 }}
         >
           {info}
-        </motion.article>
+        </MotionDiv>
         {/* prettier-ignore */}
-        <MotionDiv className={css.specs} transition={{ staggerChildren: 0.2 }}>
+        <MotionDiv element='div' className={css.specs} transition={{ staggerChildren: 0.2 }}>
           <FontAwesome className={css['icon-config']} icon={['fas', 'bolt']}              text={fuel}              />
           <FontAwesome className={css['icon-config']} icon={['fas', 'gauge-high']}        text={`${speed}m Mph`}   />
           <FontAwesome className={css['icon-config']} icon={['fas', 'clock']}             text={`${year} (CE)`}    />
