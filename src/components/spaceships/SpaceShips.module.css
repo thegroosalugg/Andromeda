@@ -36,19 +36,3 @@
 .spaceship p {
   margin: 0;
 }
-
-.ship-info {
-  padding: 1rem;
-  font-size: 0.8rem;
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  height: 2rem;
-}
-
-.price {
-  font-weight: bold;
-  color: #ca7d1f;
-  text-align: end;
-  padding: 0 0.5rem 0.5rem 0;
-}

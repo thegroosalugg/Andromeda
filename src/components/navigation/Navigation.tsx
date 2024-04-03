@@ -1,9 +1,9 @@
-import './Navigation.css'
+import css from './Navigation.module.css'
 import NavButton from './NavButton';
 
 export default function Navigation() {
   return (
-      <nav className='nav'>
+      <nav className={css.nav}>
         <ul>
           <NavButton path='/'        name='Home'       />
           <NavButton path='/store'   name='SpaceStore' />
