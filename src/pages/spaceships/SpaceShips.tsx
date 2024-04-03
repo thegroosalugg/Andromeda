@@ -1,8 +1,6 @@
 import { spaceships } from '../../assets/spaceships/spaceships';
-import SpaceShips from '../../components/spaceships/SpaceShips';
+import SpaceShipsList from '../../components/spaceships/SpaceShipsList';
 
 export default function SpaceShipsPage() {
-  return (
-    <SpaceShips spaceships={spaceships} />
-  );
+  return  <SpaceShipsList className='ship-grid' spaceships={[...spaceships, ...spaceships]} />
 }

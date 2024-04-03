@@ -8,9 +8,9 @@ import { motion } from 'framer-motion';
 library.add(fab, fas);
 
 interface IconProps {
-  text: string | number;
+  text?: string | number;
   icon: IconProp; // Change icon type to IconProp
-  className: string;
+  className?: string;
 }
 
 export default function FontAwesome({ text, icon, className }: IconProps) {
@@ -19,13 +19,13 @@ export default function FontAwesome({ text, icon, className }: IconProps) {
     <motion.span
       className={className}
       variants={{
-        hidden: { opacity: 0, y: -50 },
-        visible: { opacity: 1, y: 0 },
+        hidden: { opacity: 0, translateY: -50 },
+        visible: { opacity: 1, translateY: 0 },
       }}
-      transition={{ type: 'linear', duration: 0.3 }}
+      transition={{ type: 'linear', duration: 0.5 }}
     >
       <FontAwesomeIcon icon={icon} />
-      <p>{text}</p>
+      {text && <p>{text}</p>}
     </motion.span>
   );
 }

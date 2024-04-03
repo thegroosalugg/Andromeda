@@ -1,9 +1,14 @@
 import SpaceShip from '../../models/SpaceShip';
 import List from '../List';
 import ShipItem from './ShipItem';
-import css from './SpaceShips.module.css'
+import css from './SpaceShipsList.module.css'
 
-export default function SpaceShips({ spaceships }: { spaceships: SpaceShip[] }) {
+interface ListProps {
+  spaceships: SpaceShip[];
+  className: string;
+}
+
+export default function SpaceShipsList({ spaceships, className }: ListProps) {
   // configure framer motion animate effects
   const liVariants = {
     visible: { opacity: 1, scale: 1 },
@@ -14,13 +19,13 @@ export default function SpaceShips({ spaceships }: { spaceships: SpaceShip[] }) 
 
   return (
     <List
-      className={css.spaceship}
+      className={css[className]}
       items={spaceships}
       keyFn={({ id }) => id}
       liVariants={liVariants}
       liTransition={liTransition}
     >
-      {(item) => <ShipItem {...item} />}
+      {(item) => <ShipItem className={className} {...item} />}
     </List>
   );
 }

@@ -1,15 +1,57 @@
-.ship-info {
-  padding: 1rem;
-  font-size: 0.8rem;
-  color: #ffffff;
+/* config when in grid */
+.ship-grid {
+  background-color: rgba(26, 143, 189, 0.274);
+}
+
+/* config when in rows */
+.ship-rows {
+  background-color: rgba(0, 0, 0, 0.374);
+  min-width: 12rem;
+}
+
+.ship-rows .desc {
+  color: #99ad35;
+}
+
+/* global config */
+.ship-item {
   display: flex;
-  align-items: center;
-  height: 2rem;
+  flex-direction: column;
+  text-align: center;
+  border-radius: 8px;
+  color: #EFEFEF;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.ship-item img {
+  height: auto;
+  width: 100%;
+}
+
+.ship-item h6, .ship-item p {
+  line-height: 1.5;
+  height: auto;
+  overflow: visible;
+  max-height: 1em;
+}
+
+.ship-item p {
+  font-size: x-small;
+}
+
+.desc {
+  padding: 1rem;
 }
 
 .price {
+  display: flex;
+  justify-content: end;
+  gap: 0.2em;
+  align-items: center;
   font-weight: bold;
   color: #ca7d1f;
-  text-align: end;
-  padding: 0 0.5rem 0.5rem 0;
+  padding: 0.5rem;
+}
+.price p {
+  margin-bottom: 1.5em;
 }
