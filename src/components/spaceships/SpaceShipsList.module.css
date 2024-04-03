@@ -12,12 +12,11 @@
 
 /* for scrollX layout */
 .ship-rows {
-  margin: 1rem auto;
+  margin: 1rem auto 0;
   padding: 1rem 3%;
   display: flex;
   gap: 1rem;
   list-style: none;
   overflow-x: auto;
   background-color: rgba(47, 49, 54, 0.7);
-  border-radius: 5px;
 }

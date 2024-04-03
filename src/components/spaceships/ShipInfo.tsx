@@ -51,9 +51,9 @@ const ShipInfo: React.FC<SpaceShip> = ({
         {/* prettier-ignore */}
         <MotionDiv element='div' className={css.specs} transition={{ staggerChildren: 0.2 }}>
           <FontAwesome className={css['icon-config']} icon={['fas', 'bolt']}              text={fuel}              />
-          <FontAwesome className={css['icon-config']} icon={['fas', 'gauge-high']}        text={`${speed}m Mph`}   />
-          <FontAwesome className={css['icon-config']} icon={['fas', 'clock']}             text={`${year} (CE)`}    />
-          <FontAwesome className={css['icon-config']} icon={['fas', 'money-bill-1-wave']} text={`$${price} daily`} />
+          <FontAwesome className={css['icon-config']} icon={['fas', 'gauge-high']}        text={speed + 'm Mph'}   />
+          <FontAwesome className={css['icon-config']} icon={['fas', 'clock']}             text={year  + ' (CE)'}    />
+          <FontAwesome className={css['icon-config']} icon={['fas', 'money-bill-1-wave']} text={price + ' daily'} />
         </MotionDiv>
       </MotionDiv>
     </section>

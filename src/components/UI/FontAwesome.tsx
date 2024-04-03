@@ -8,9 +8,9 @@ import { motion } from 'framer-motion';
 library.add(fab, fas);
 
 interface IconProps {
-  text: string | number;
+  text?: string | number;
   icon: IconProp; // Change icon type to IconProp
-  className: string;
+  className?: string;
 }
 
 export default function FontAwesome({ text, icon, className }: IconProps) {
@@ -25,7 +25,7 @@ export default function FontAwesome({ text, icon, className }: IconProps) {
       transition={{ type: 'linear', duration: 0.3 }}
     >
       <FontAwesomeIcon icon={icon} />
-      <p>{text}</p>
+      {text && <p>{text}</p>}
     </motion.span>
   );
 }

@@ -4,6 +4,7 @@ body {
   min-height: 100vh;
   background: url('/wallpaper4.jpeg') center/cover no-repeat;
   font-family: 'Trispace', sans-serif;
+  margin: 0;
 }
 
 main {
