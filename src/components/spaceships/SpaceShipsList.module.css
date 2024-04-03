@@ -1,9 +1,9 @@
 /* for grid layout */
 .ship-grid {
   margin: 0 auto;
-  padding: 0 20%;
+  padding: 0 15%;
   display: grid;
-  grid-gap: 1rem;
+  grid-gap: 1.5rem;
   list-style: none;
   align-items: center;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -12,8 +12,8 @@
 
 /* for scrollX layout */
 .ship-rows {
-  margin: 1rem auto 0;
-  padding: 1rem 3%;
+  margin: 2rem auto 0;
+  padding: 2rem 3% 1rem;
   display: flex;
   gap: 1rem;
   list-style: none;

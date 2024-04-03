@@ -57,3 +57,9 @@
   margin: 0.5rem;
   color: #d4d8de;
 }
+
+@media screen and (max-width: 900px) {
+  .ship, .ship img, .ship-info {
+    border-radius: 0;
+  }
+}
