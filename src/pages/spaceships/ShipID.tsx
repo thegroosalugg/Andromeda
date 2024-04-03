@@ -17,7 +17,7 @@ export default function ShipIDPage() {
     <>
     {/* key will retrigger animations for this component each time we click on a new ship */}
       <ShipInfo key={id} {...spaceship} />
-      <SpaceShipsList className='ships-row-list' spaceships={spaceships} />
+      <SpaceShipsList className='ship-rows' spaceships={spaceships} />
     </>
   );
 }

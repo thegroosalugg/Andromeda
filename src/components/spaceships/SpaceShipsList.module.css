@@ -1,33 +1,29 @@
 /* for grid layout */
 .ship-grid {
-  margin: 0 20%;
-  padding: 1% 0 5%;
+  margin: 0 auto;
+  padding: 0 20%;
   display: grid;
-  grid-gap: 2rem;
+  grid-gap: 1rem;
   list-style: none;
   text-align: center;
+  /* justify-content: center;
+  align-items: center; */
+  /* place-items: center; */
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
 }
 
 /* for scrollX layout */
-.ships-row-list {
-  margin: 0 auto 2rem;
-  padding: 1rem;
+.ship-rows {
+  margin: 1rem auto;
+  padding: 1rem 3%;
   display: flex;
-  gap: 1rem;
-  width: 60rem;
+  gap: 2rem;
   list-style: none;
-  justify-content: center;
-  /* align-items: center; */
+  /* justify-content: center; */
+  align-items: center;
   /* place-items: center; */
   overflow-x: auto;
   background: rgb(255, 255, 255, 0.1);
   border-radius: 5px;
-}
-
-@media screen and (min-width: 900px) {
-  .ships-row-list {
-    width: 90vw;
-  }
 }
