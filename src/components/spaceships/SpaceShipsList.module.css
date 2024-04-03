@@ -18,10 +18,16 @@
   gap: 1rem;
   width: 60rem;
   list-style: none;
-  /* justify-content: center; */
+  justify-content: center;
   /* align-items: center; */
-  place-items: center;
+  /* place-items: center; */
   overflow-x: auto;
   background: rgb(255, 255, 255, 0.1);
   border-radius: 5px;
+}
+
+@media screen and (min-width: 900px) {
+  .ships-row-list {
+    width: 90vw;
+  }
 }
