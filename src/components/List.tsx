@@ -7,8 +7,8 @@ interface ListProps<T> {
   children: (item: T) => JSX.Element;    // RENDER PROP: need to pass extracted object to parent
   // configure framer motion
   ulVariants?: { visible: object; hidden: object }; // ulVariants optonal, as parent container may be invisible
-  liVariants:  { visible: object; hidden: object };
-  liTransition: object;
+  liVariants?:  { visible: object; hidden: object };
+  liTransition?: object;
 }
 
 export default function List<T>({

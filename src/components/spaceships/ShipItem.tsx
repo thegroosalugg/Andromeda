@@ -9,6 +9,7 @@ const ShipItem: React.FC<SpaceShip> = ({ id, model, image, desc, price }) => {
 
   return (
     <motion.article
+      className={css['ship-item']}
       whileHover={{ scale: 1.1 }}
       transition={{ duration: 0.3 }}
       onClick={() => navigate(`/ships/${id}`)}
