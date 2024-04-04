@@ -16,7 +16,7 @@ export default function SpaceShipsPage() {
       />
       <SpaceShipsList
         className='ship-grid'
-        spaceships={[...spaceships, ...spaceships]}
+        spaceships={spaceships}
       />
     </>
   );

@@ -6,9 +6,9 @@ export default function Navigation() {
       <nav className={css.nav}>
         <ul>
           <NavButton path='/'        name='Home'       />
-          <NavButton path='/store'   name='SpaceStore' />
-          <NavButton path='/ships'   name='SpaceShips' />
-          <NavButton path='/explore' name='OuterSpace' />
+          <NavButton path='/store'   name='Store' />
+          <NavButton path='/ships'   name='Ships' />
+          <NavButton path='/explore' name='Explore' />
         </ul>
       </nav>
   );
