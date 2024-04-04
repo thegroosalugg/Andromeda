@@ -19,13 +19,14 @@ const SlideShow: React.FC<ShowProps> = ({
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImage((prevIndex) => (prevIndex + 1) % array.length);
-    }, 8000);
+    }, 5000);
 
     return () => clearInterval(interval);
   }, [array.length]);
 
   return (
     <motion.img
+      key={currentImage}
       src={array[currentImage].image}
       alt={array[currentImage].image}
       className={className}

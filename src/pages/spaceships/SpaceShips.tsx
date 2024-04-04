@@ -7,8 +7,8 @@ export default function SpaceShipsPage() {
     <>
       <SlideShow
         array={spaceships}
-        className=''
-        variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
+        className='slideshow'
+        variants={{ hidden: { x: 200 }, visible: { x: 0 } }}
       />
       <SpaceShipsList
         className='ship-grid'
