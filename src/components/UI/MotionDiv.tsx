@@ -9,23 +9,22 @@ type Motion = typeof motion & {
 
 // possible elements limited to this scope. Any not in this list will default to 'div'
 const validHTMLTags = new Set([
-  'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'ul', 'ol', 'li', 'span', 'div', 'article', 'input', 'form', 'label', 'textarea'
+  'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'ul', 'ol', 'li', 'span', 'div', 'article', 'input', 'form', 'label', 'textarea', 'section'
 ]);
 
 interface DivProps {
   element: keyof JSX.IntrinsicElements;
   className?: string;
   variants?: {
-    hidden: object;
-    visible: object;
+    hidden?: object;
+    visible?: object;
+    exit?: object;
   };
   transition?: object;
   children: React.ReactNode;
 }
 
-// do not use this as a child of another motion component. Do not wrap this FC with itself
-// do not use this to wrap another FC, which imports this again in its tree
-// if this wraps children that also require animation, import 'framer-motion' and use 'motion.' on children.
+// not suitabe as a child if parent has staggerChildren
 const MotionDiv: React.FC<DivProps> = ({
   element,
   className,
@@ -42,6 +41,7 @@ const MotionDiv: React.FC<DivProps> = ({
       variants={variants}
       initial='hidden'
       animate='visible'
+      exit='exit'
       transition={transition}
     >
       {children}

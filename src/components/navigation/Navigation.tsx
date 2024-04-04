@@ -5,10 +5,10 @@ export default function Navigation() {
   return (
       <nav className={css.nav}>
         <ul>
-          <NavButton path='/'        name='Home'       />
-          <NavButton path='/store'   name='Store' />
-          <NavButton path='/ships'   name='Ships' />
-          <NavButton path='/explore' name='Explore' />
+          <NavButton path='/'        name='H0M3'       />
+          <NavButton path='/store'   name='ST0RE' />
+          <NavButton path='/ships'   name='SH1P5' />
+          <NavButton path='/explore' name='EXPL0R3' />
         </ul>
       </nav>
   );

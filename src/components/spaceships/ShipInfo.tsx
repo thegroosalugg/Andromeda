@@ -19,10 +19,11 @@ const ShipInfo: React.FC<SpaceShip> = ({
 }) => {
   return (
     <AnimatePresence mode='wait'>
-      <motion.section
+      <MotionDiv
+        element='section'
         key={id}
         className={css.ship}
-        exit={{ scaleY: 0, x: -200 }}
+        variants={{ exit: { scaleY: 0, x: -200 } }}
         transition={{ duration: 0.5, ease: [0.43, 0.13, 0.23, 0.96] }}
       >
         <motion.img
@@ -63,7 +64,7 @@ const ShipInfo: React.FC<SpaceShip> = ({
           <FontAwesome className={css['icon-config']} icon={['fas', 'money-bill-1-wave']} text={price + ' daily'} />
         </MotionDiv>
         </MotionDiv>
-      </motion.section>
+      </MotionDiv>
     </AnimatePresence>
   );
 };
