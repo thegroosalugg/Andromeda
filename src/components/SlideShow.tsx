@@ -1,20 +1,21 @@
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import css from './SlideShow.module.css'
 
 interface ShowProps {
-  array: { image: string }[];
-  className: string;
-  variants?: { hidden: object; visible: object };
+  array: { image: string; id: string }[];
+  variants?: { hidden: object; visible: object; exit: object };
   transition?: object;
 }
 
 const SlideShow: React.FC<ShowProps> = ({
   array,
-  className,
   variants,
   transition,
 }) => {
   const [currentImage, setCurrentImage] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -25,16 +26,20 @@ const SlideShow: React.FC<ShowProps> = ({
   }, [array.length]);
 
   return (
-    <motion.img
-      key={currentImage}
-      src={array[currentImage].image}
-      alt={array[currentImage].image}
-      className={className}
-      variants={variants}
-      transition={transition}
-      initial='hidden'
-      animate='visible'
-    />
+    <AnimatePresence mode='wait'>
+      <motion.img
+        key={currentImage}
+        src={array[currentImage].image}
+        alt={array[currentImage].image}
+        className={css.slideshow}
+        variants={variants}
+        transition={transition}
+        initial='hidden'
+        animate='visible'
+        exit='exit'
+        onClick={() => navigate(`/ships/${array[currentImage].id}`)}
+      />
+    </AnimatePresence>
   );
 };
 
