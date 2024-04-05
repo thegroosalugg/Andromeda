@@ -1,6 +1,8 @@
 /* for grid layout */
 .ship-grid {
-  padding: 0 15%;
+  padding-left: 5%; /* configure for responsiveness */
+  padding-right: 5%;
+  margin: 0 auto; /* configure for responsiveness */
   display: grid;
   grid-gap: 1.5rem;
   list-style: none;
