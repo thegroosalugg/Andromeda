@@ -62,6 +62,15 @@ const SlideShow: React.FC<ShowProps> = ({ array, variants, transition }) => {
             <strong>{array[currentImage].info}</strong>
           </p>
           <div>
+            {Object.entries(array[currentImage].performance).map(
+              ([key, value], index) => (
+                <p key={index}>
+                  {key}: {value}
+                </p>
+              )
+            )}
+          </div>
+          <div>
             {[...Array(5)].map((_, index) => {
               const rating = index + 1;
               return (
