@@ -11,8 +11,10 @@
   width: 100vw;
   display: flex;
   justify-content: space-evenly;
+  gap: 1rem;
   list-style: none;
   padding: 0 10%; /* configure me if you add more NavButtons */
+  margin-top: 2rem;
 }
 
 .nav a {
@@ -42,7 +44,6 @@
 }
 
 .ufo {
-  margin-left: 10%;
   width: 3rem;
   height: 3rem;
   background: url('/ufo-svgrepo-com.svg') center/cover no-repeat;

@@ -2,7 +2,6 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import css from './Navigation.module.css';
 
-
 export default function NavButton({ path, name }: { path: string; name: string }) {
   const { pathname } = useLocation();
   const isActive = pathname === path || (pathname.startsWith(path) && path !== '/');
@@ -12,30 +11,29 @@ export default function NavButton({ path, name }: { path: string; name: string }
 
   const chance = Math.floor(Math.random() * 4) + 1
   const rotate = chance === 1 ? 720 : 0
-  const  scale = chance === 1 ?  [1, 1.5, 2, 1.5, 1.2] : 1.2
+  const  scale = chance === 1 ? [1, 1.5, 2, 1.5, 1.2] : 1.2
 
   return (
     <li>
-      <AnimatePresence mode='wait'>
+      <AnimatePresence>
         {isActive && (
           <motion.div
+            key='tab-ufo'
             layoutId='tab-ufo'
             className={css.ufo}
             initial={{ opacity: 0, scale: 0.8, rotate }}
             animate={{ opacity: 1, scale, rotate }}
-            exit={{ opacity: 0, scale: 0.8 }}
             transition={{ type: 'backInOut', duration: 0.8 }}
           />
         )}
         <motion.p
-          initial={{ y: !isActive ? 40 : -40 }}
-          animate={{ y: isActive ? 0 : 30 }}
-          transition={{ type: 'easeInOut', duration: 1 }}
+          key={path}
+          layout
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ type: 'easeIn', duration: 0.5 }}
         >
-          <NavLink
-            className={({ isActive }) => (isActive ? css.active : css.idle)}
-            to={path} // 'active' class applies automatically without prop. Prop added to set 'idle'
-          >
+          <NavLink className={isActive ? css.active : css.idle} to={path}>
             {name}
           </NavLink>
         </motion.p>
@@ -46,3 +44,7 @@ export default function NavButton({ path, name }: { path: string; name: string }
     </li>
   );
 }
+
+// the jury is still out whether AnimatePresense is needed here. We are not using any exit animations when the UFO
+// leaves the DOM. However removing it also removes the delay between the NavLinks moving back to their place.
+// For now, it stays until more of the app is developed, This component cost me a whole day due to warnings and off key behaviour
