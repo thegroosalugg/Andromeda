@@ -21,15 +21,16 @@ const rand = (min: number, max: number) => {
 }
 
 const generateSpaceShip = (image: string) => {
-  const model = faker.animal.cat() + ' ' + faker.vehicle.model();
-  const maker = faker.company.companyName() + ' ' + faker.company.companySuffix();
-  const desc  = faker.company.catchPhrase();
-  const info  = faker.commerce.productDescription()
-  const fuel  = faker.vehicle.fuel() + ' ' + faker.hacker.abbreviation();
-  const speed = rand(1000, 3000);
-  const year  = rand(2200, 2300);
-  const price = rand(4000, 11000);
-  return new SpaceShip(model, maker, image, desc, info, fuel, speed, year, price );
+  const model  = faker.animal.cat() + ' ' + faker.vehicle.model();
+  const maker  = faker.company.companyName() + ' ' + faker.company.companySuffix();
+  const desc   = faker.company.catchPhrase();
+  const info   = faker.commerce.productDescription()
+  const fuel   = faker.vehicle.fuel() + ' ' + faker.hacker.abbreviation();
+  const speed  = rand(1000, 3000);
+  const year   = rand(2200, 2300);
+  const price  = rand(4000, 11000);
+  const rating = rand(3, 5)
+  return new SpaceShip(model, maker, image, desc, info, fuel, speed, year, price, rating );
 };
 
 export const spaceships = images.map(image => generateSpaceShip(image));

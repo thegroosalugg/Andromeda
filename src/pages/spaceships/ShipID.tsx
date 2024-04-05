@@ -12,6 +12,6 @@ export default function ShipIDPage() {
     throw new Error('No Ship Found');
   }
 
-  return <ShipInfo key={id} {...spaceship} />;
+  return <ShipInfo {...spaceship} />;
   // key will retrigger animations for this component each time we click on a new ship
 }

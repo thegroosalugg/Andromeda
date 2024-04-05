@@ -1,7 +1,8 @@
 /* for grid layout */
 .ship-grid {
-  margin: 0 auto;
-  padding: 0 15%;
+  padding-left: 5%; /* configure for responsiveness */
+  padding-right: 5%;
+  margin: 0 auto; /* configure for responsiveness */
   display: grid;
   grid-gap: 1.5rem;
   list-style: none;
@@ -12,7 +13,7 @@
 
 /* for scrollX layout */
 .ship-rows {
-  margin: 2rem auto 0;
+  margin: 2rem 0 0;
   padding: 2rem 3% 1rem;
   display: flex;
   gap: 1rem;
