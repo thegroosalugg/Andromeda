@@ -43,6 +43,16 @@
   );
 }
 
-.article p {
+.article .info {
+  margin: 2rem 0;
   flex-grow: 1;
+}
+
+.progress {
+  font-size: x-small;
+  margin-bottom: 1rem;
+}
+
+.progress p {
+  margin-bottom: 0;
 }

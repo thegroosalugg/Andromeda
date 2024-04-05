@@ -42,34 +42,18 @@ const SlideShow: React.FC<ShowProps> = ({ array, variants, transition }) => {
         </AnimatePresence>
       </div>
       <AnimatePresence mode='wait'>
-        <motion.article
-          // element='article'
-          layout
+        <MotionDiv
+          element='article'
           className={css.article}
           key={currentImage}
-          // variants={{
-          //   hidden: { opacity: 0, scaleX: 0, y: -100 },
-          //   visible: { opacity: 1, scaleX: 1, y: 0 },
-          //   exit: { opacity: 0, scaleX: 0 },
-          // }}
-          initial={{ opacity: 0, x: 80 }}
-          animate={{ opacity: [0, 0, 0.6, 0.8, 1], x: 0 }}
-          exit={{ opacity: 0, y: 100 }}
+          variants={{
+            hidden: { opacity: 0, x: 80 },
+            visible: { opacity: [0, 0, 0.6, 0.8, 1], x: 0 },
+            exit: { opacity: 0, y: 100 },
+          }}
           transition={{ type: 'easeInOut', duration: 1 }}
         >
           <h2>{array[currentImage].model}</h2>
-          <p>
-            <strong>{array[currentImage].info}</strong>
-          </p>
-          <div>
-            {Object.entries(array[currentImage].performance).map(
-              ([key, value], index) => (
-                <p key={index}>
-                  {key}: {value}
-                </p>
-              )
-            )}
-          </div>
           <div>
             {[...Array(5)].map((_, index) => {
               const rating = index + 1;
@@ -84,7 +68,28 @@ const SlideShow: React.FC<ShowProps> = ({ array, variants, transition }) => {
               );
             })}
           </div>
-        </motion.article>
+          <p className={css.info}>
+            <strong>{array[currentImage].info}</strong>
+          </p>
+          <div className={css.progress}>
+            {Object.entries(array[currentImage].performance).map(
+              ([key, value]) => (
+                <div key={key}>
+                  <p>{key}</p>
+                  {[...Array(10)].map((_, index) => {
+                    const rating = index + 1;
+                    return (
+                      <FontAwesomeIcon
+                        key={index}
+                        icon={[rating <= value ? 'fas' : 'far', 'circle']}
+                      />
+                    );
+                  })}
+                </div>
+              )
+            )}
+          </div>
+        </MotionDiv>
       </AnimatePresence>
     </div>
   );
