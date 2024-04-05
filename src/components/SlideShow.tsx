@@ -2,8 +2,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import css from './SlideShow.module.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import MotionDiv from './UI/MotionDiv';
+import { FontAwesomeBar } from './UI/FontAwesomeBar';
 
 interface ShowProps {
   array: { image: string; id: string }[];
@@ -25,6 +25,7 @@ const SlideShow: React.FC<ShowProps> = ({ array, variants, transition }) => {
 
   return (
     <div className={css['slides-container']}>
+
       <div className={css['picture-frame']}>
         <AnimatePresence mode='wait'>
           <motion.img
@@ -41,6 +42,7 @@ const SlideShow: React.FC<ShowProps> = ({ array, variants, transition }) => {
           />
         </AnimatePresence>
       </div>
+
       <AnimatePresence mode='wait'>
         <MotionDiv
           element='article'
@@ -54,37 +56,25 @@ const SlideShow: React.FC<ShowProps> = ({ array, variants, transition }) => {
           transition={{ type: 'easeInOut', duration: 1 }}
         >
           <h2>{array[currentImage].model}</h2>
+
           <div>
-            {[...Array(5)].map((_, index) => {
-              const rating = index + 1;
-              return (
-                <FontAwesomeIcon
-                  key={index}
-                  icon={[
-                    rating <= array[currentImage].rating ? 'fas' : 'far',
-                    'star',
-                  ]}
-                />
-              );
-            })}
+            <FontAwesomeBar
+              icon='star'
+              size={5}
+              amount={array[currentImage].rating}
+            />
           </div>
+
           <p className={css.info}>
             <strong>{array[currentImage].info}</strong>
           </p>
+
           <div className={css.progress}>
             {Object.entries(array[currentImage].performance).map(
               ([key, value]) => (
                 <div key={key}>
                   <p>{key}</p>
-                  {[...Array(10)].map((_, index) => {
-                    const rating = index + 1;
-                    return (
-                      <FontAwesomeIcon
-                        key={index}
-                        icon={[rating <= value ? 'fas' : 'far', 'circle']}
-                      />
-                    );
-                  })}
+                  <FontAwesomeBar icon='circle' size={10} amount={value as number} />
                 </div>
               )
             )}
