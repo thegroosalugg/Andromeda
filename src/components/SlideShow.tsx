@@ -24,13 +24,12 @@ const SlideShow: React.FC<ShowProps> = ({ array }) => {
   return (
     <div className={css['slides-container']}>
 
-      <div className={css['picture-frame']}>
+      <div className={css['slideshow']}>
         <AnimatePresence mode='wait'>
           <motion.img
             key={index}
             src={array[index].image}
             alt={array[index].model}
-            className={css['slideshow']}
             initial={{ rotate: 0, opacity: 0, x: -200, scaleY: 0 }}
             animate={{ rotate: 0, opacity: 1, x: 0, scaleY: 1 }}
             exit={{ scaleY: 0, y: -50, rotate: -45 }}

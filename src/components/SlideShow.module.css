@@ -12,15 +12,14 @@
   box-shadow: 15px 30px 60px hwb(0 0% 100%);
 }
 
-.picture-frame {
+.slideshow {
   max-width: 640px;
   padding: 4%;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  place-items: center;
 }
 
-.slideshow {
+.slideshow img {
   max-width: inherit;
   cursor: pointer;
   border-radius: 10px;
