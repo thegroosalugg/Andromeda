@@ -14,7 +14,7 @@ interface IconProps {
   className?: string;
 }
 
-export default function FontAwesome({ text, icon, className }: IconProps) {
+export default function FontMotion({ text, icon, className }: IconProps) {
   return (
     // No default styles applied. Add your own by assigning a class to the container or the descendant <p> element
     <motion.span

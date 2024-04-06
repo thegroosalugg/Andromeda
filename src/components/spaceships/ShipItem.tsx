@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import SpaceShip from '../../models/SpaceShip';
 import { motion } from 'framer-motion';
 import css from './ShipItem.module.css';
-import FontAwesome from '../UI/FontAwesome';
+import FontMotion from '../UI/FontMotion';
 
 interface ShipItemProps extends SpaceShip {
   className: string;
@@ -30,11 +30,11 @@ const ShipItem: React.FC<ShipItemProps> = ({
       <img src={image} alt={model} />
       <p className={css.desc}>{desc}</p>
       <div className={css.price}>
-        <FontAwesome icon={['fab', 'cc-visa']} />
-        <FontAwesome icon={['fab', 'cc-mastercard']} />
-        <FontAwesome icon={['fab', 'cc-paypal']} />
-        <FontAwesome icon={['fab', 'cc-amazon-pay']} />
-        <FontAwesome icon={['fab', 'cc-apple-pay']} />
+        <FontMotion icon={['fab', 'cc-visa']} />
+        <FontMotion icon={['fab', 'cc-mastercard']} />
+        <FontMotion icon={['fab', 'cc-paypal']} />
+        <FontMotion icon={['fab', 'cc-amazon-pay']} />
+        <FontMotion icon={['fab', 'cc-apple-pay']} />
         <p>${price}</p>
       </div>
     </motion.article>
