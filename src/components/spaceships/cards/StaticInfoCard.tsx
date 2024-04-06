@@ -1,10 +1,12 @@
 import SpaceShip from '../../../models/SpaceShip';
-import FontMotion from '../../UI/FontMotion'; // custom functional component
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import MotionDiv from '../../UI/MotionDiv';
 import css from './StaticInfoCard.module.css';
+import ShipIconRow from './ShipIconRow';
 
-const StaticInfoCard: React.FC<SpaceShip> = ({ maker, model, info, fuel, speed, year, price }) => {
+const StaticInfoCard: React.FC<SpaceShip> = (spaceship) => {
+  const { maker, model, info } = spaceship;
+
   return (
     <MotionDiv
       element='div'
@@ -29,13 +31,7 @@ const StaticInfoCard: React.FC<SpaceShip> = ({ maker, model, info, fuel, speed, 
       >
         {info}
       </MotionDiv>
-      {/* prettier-ignore */}
-      <MotionDiv element='div' className={css.specs} transition={{ staggerChildren: 0.2 }}>
-        <FontMotion className={css['icon-config']} icon={['fas', 'bolt']}              text={fuel}             />
-        <FontMotion className={css['icon-config']} icon={['fas', 'gauge-high']}        text={speed + 'm Mph'}  />
-        <FontMotion className={css['icon-config']} icon={['fas', 'clock']}             text={year  + ' (CE)'}  />
-        <FontMotion className={css['icon-config']} icon={['fas', 'money-bill-1-wave']} text={price + ' daily'} />
-      </MotionDiv>
+      <ShipIconRow {...spaceship} />
     </MotionDiv>
   );
 };

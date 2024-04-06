@@ -11,14 +11,12 @@ library.add(fab, fas, far);
 interface IconProps {
   text?: string | number;
   icon: IconProp; // Change icon type to IconProp
-  className?: string;
 }
 
-export default function FontMotion({ text, icon, className }: IconProps) {
+export default function FontMotion({ text, icon }: IconProps) {
   return (
     // No default styles applied. Add your own by assigning a class to the container or the descendant <p> element
     <motion.span
-      className={className}
       variants={{
         hidden: { opacity: 0, translateY: 100, scale: 0 },
         visible: { opacity: 1, translateY: 0, scale: 1 },
