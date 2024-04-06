@@ -1,0 +1,30 @@
+.article {
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.8rem;
+  text-align: center;
+  color: #343030;
+  text-shadow: 1px 1px 2px #908888;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0.7),
+    rgba(141, 138, 138, 0.7),
+    rgba(169, 169, 169, 0.7)
+  );
+}
+
+.article .info {
+  margin: 2rem 0;
+  flex-grow: 1;
+}
+
+.progress {
+  font-size: x-small;
+  margin-bottom: 1rem;
+  min-width: 100px;
+}
+
+.progress p {
+  margin-bottom: 0;
+}
