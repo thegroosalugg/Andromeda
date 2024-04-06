@@ -9,7 +9,7 @@ type Motion = typeof motion & {
 
 // possible elements limited to this scope. Any not in this list will default to 'div'
 const validHTMLTags = new Set([
-  'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'ul', 'ol', 'li', 'span', 'article', 'input', 'form', 'label', 'textarea', 'section'
+  'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'ul', 'ol', 'li', 'span', 'article', 'input', 'form', 'label', 'textarea', 'header', 'section'
 ]);
 
 interface DivProps {
@@ -22,6 +22,7 @@ interface DivProps {
   };
   transition?: object;
   children: React.ReactNode;
+  layout?: boolean;
 }
 
 // not suitabe as a child if parent has staggerChildren
@@ -31,6 +32,7 @@ const MotionDiv: React.FC<DivProps> = ({
   variants,
   transition,
   children,
+  layout
 }: DivProps) => {
   const m = motion as Motion; // TS type assertion to treat 'motion' object as type declared with 'type Motion'
   const Element = m[validHTMLTags.has(element) ? element : 'div'];
@@ -43,6 +45,7 @@ const MotionDiv: React.FC<DivProps> = ({
       animate='visible'
       exit='exit'
       transition={transition}
+      layout={layout}
     >
       {children}
     </Element>

@@ -2,6 +2,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import Navigation from "../components/navigation/Navigation";
 import SpaceShipsList from "../components/spaceships/list/SpaceShipsList"; // outsource later
 import { spaceships } from "../assets/spaceships/spaceships" // outsource later
+import Header from "../components/header/Header";
 
 export default function RootLayout() {
   const location = useLocation();
@@ -9,6 +10,7 @@ export default function RootLayout() {
   return (
     <>
       <Navigation />
+      <Header />
       <main>
         <Outlet />
       </main>
