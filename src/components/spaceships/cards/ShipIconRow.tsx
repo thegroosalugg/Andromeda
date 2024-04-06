@@ -6,7 +6,6 @@ import css from './ShipIconRow.module.css';
 const ShipIconRow: React.FC<SpaceShip> = ({ fuel, speed, year, price }) => {
   return (
     <MotionDiv
-      element='div'
       className={css.specs}
       transition={{ staggerChildren: 0.2 }}
     >

@@ -15,7 +15,7 @@ interface IconProps {
 
 export default function FontMotion({ text, icon }: IconProps) {
   return (
-    // No default styles applied. Add your own by assigning a class to the container or the descendant <p> element
+    // No default styling. Select parent class or descendant <p> element then add your own style
     <motion.span
       variants={{
         hidden: { opacity: 0, translateY: 100, scale: 0 },

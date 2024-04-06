@@ -9,7 +9,6 @@ const StaticInfoCard: React.FC<SpaceShip> = (spaceship) => {
 
   return (
     <MotionDiv
-      element='div'
       className={css['ship-info']}
       variants={{
         hidden: { y: 200, opacity: 0 },
