@@ -1,7 +1,16 @@
 .header {
   text-align: center;
-  color: rgb(219, 228, 234);
+  color: rgb(234, 229, 219);
   text-shadow: 2px 4px 4px rgb(21, 21, 21);
-  background-color: hsla(0, 11%, 60%, 0.311);
-  padding: 5rem 2rem;
+  background: linear-gradient(
+    to right,
+    rgba(186, 212, 229, 0.5),
+    rgba(158, 192, 217, 0.5),
+    rgba(130, 173, 204, 0.6),
+    rgba(102, 155, 191, 0.5),
+    rgba(74, 136, 179, 0.5),
+    rgba(46, 118, 166, 0.5),
+    rgba(18, 100, 153, 0.5)
+  );
+  padding: 2rem;
 }
