@@ -9,11 +9,11 @@ type Motion = typeof motion & {
 
 // possible elements limited to this scope. Any not in this list will default to 'div'
 const validHTMLTags = new Set([
-  'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'ul', 'ol', 'li', 'span', 'div', 'article', 'input', 'form', 'label', 'textarea', 'section'
+  'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'ul', 'ol', 'li', 'span', 'article', 'input', 'form', 'label', 'textarea', 'section'
 ]);
 
 interface DivProps {
-  element: keyof JSX.IntrinsicElements;
+  element?: keyof JSX.IntrinsicElements;
   className?: string;
   variants?: {
     hidden?: object;
@@ -26,7 +26,7 @@ interface DivProps {
 
 // not suitabe as a child if parent has staggerChildren
 const MotionDiv: React.FC<DivProps> = ({
-  element,
+  element='div',
   className,
   variants,
   transition,

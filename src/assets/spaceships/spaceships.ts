@@ -14,23 +14,42 @@ import ship12 from './spaceship_12.jpg';
 
 import faker from 'faker';
 
+// prettier-ignore
 const images = [ship1, ship2, ship3, ship4, ship5, ship6, ship7, ship8, ship9, ship10, ship11, ship12]
 
 const rand = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min) + min);
-}
+};
 
 const generateSpaceShip = (image: string) => {
   const model  = faker.animal.cat() + ' ' + faker.vehicle.model();
   const maker  = faker.company.companyName() + ' ' + faker.company.companySuffix();
   const desc   = faker.company.catchPhrase();
-  const info   = faker.commerce.productDescription()
+  const info   = faker.commerce.productDescription();
   const fuel   = faker.vehicle.fuel() + ' ' + faker.hacker.abbreviation();
   const speed  = rand(1000, 3000);
   const year   = rand(2200, 2300);
   const price  = rand(4000, 11000);
-  const rating = rand(3, 5)
-  return new SpaceShip(model, maker, image, desc, info, fuel, speed, year, price, rating );
+  const rating = rand(3, 5);
+  const performance = {
+    speed:      rand(6, 10),
+    handling:   rand(6, 10),
+    efficiency: rand(6, 10),
+    range:      rand(6, 10),
+  };
+  return new SpaceShip(
+    model,
+    maker,
+    image,
+    desc,
+    info,
+    fuel,
+    speed,
+    year,
+    price,
+    rating,
+    performance
+  );
 };
 
-export const spaceships = images.map(image => generateSpaceShip(image));
+export const spaceships = images.map((image) => generateSpaceShip(image));

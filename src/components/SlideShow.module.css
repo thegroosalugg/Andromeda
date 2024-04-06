@@ -12,37 +12,16 @@
   box-shadow: 15px 30px 60px hwb(0 0% 100%);
 }
 
-.picture-frame {
+.slideshow {
   max-width: 640px;
   padding: 4%;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  place-items: center;
 }
 
-.slideshow {
+.slideshow img {
   max-width: inherit;
   cursor: pointer;
   border-radius: 10px;
   box-shadow: 20px 40px 80px hwb(0 0% 100%);
-}
-
-.article {
-  padding: 2rem 1rem;
-  display: flex;
-  flex-direction: column;
-  font-size: 0.8rem;
-  text-align: center;
-  color: #343030;
-  text-shadow: 1px 1px 2px #908888;
-  background: linear-gradient(
-    to bottom right,
-    rgba(255, 255, 255, 0.7),
-    rgba(141, 138, 138, 0.7),
-    rgba(169, 169, 169, 0.7)
-  );
-}
-
-.article p {
-  flex-grow: 1;
 }

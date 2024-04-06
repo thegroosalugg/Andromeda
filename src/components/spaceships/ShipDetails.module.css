@@ -1,0 +1,19 @@
+.ship {
+  margin: 5% auto;
+  max-width: 960px;
+  display: flex;
+  border-radius: 5%;
+  overflow: auto;
+}
+
+.ship img {
+  max-width: 640px;
+  opacity: 0.8;
+  border-radius: 5% 0 0 5%;
+}
+
+@media screen and (max-width: 900px) {
+  .ship, .ship img {
+    border-radius: 0;
+  }
+}
