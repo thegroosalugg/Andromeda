@@ -1,6 +1,6 @@
 import { Outlet, useLocation } from "react-router-dom";
 import Navigation from "../components/navigation/Navigation";
-import SpaceShipsList from "../components/spaceships/SpaceShipsList"; // outsource later
+import SpaceShipsList from "../components/spaceships/list/SpaceShipsList"; // outsource later
 import { spaceships } from "../assets/spaceships/spaceships" // outsource later
 
 export default function RootLayout() {

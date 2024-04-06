@@ -1,6 +1,6 @@
 import { spaceships } from '../../assets/spaceships/spaceships';
 import SlideShow from '../../components/SlideShow';
-import SpaceShipsList from '../../components/spaceships/SpaceShipsList';
+import SpaceShipsList from '../../components/spaceships/list/SpaceShipsList';
 
 export default function SpaceShipsPage() {
   return (
