@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Trispace:wght@100..800&display=swap');
 
 body {
-  /* box-sizing: border-box; */
   background: url('/wallpaper4.jpeg') center/cover no-repeat;
   font-family: 'Trispace', sans-serif;
   margin: 0;
