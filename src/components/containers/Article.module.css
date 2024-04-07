@@ -4,7 +4,7 @@
   flex: 1;
   max-height: 540px;
   padding: 0 2rem;
-  margin: 2rem auto;
+  margin: 1rem auto;
   text-align: center;
   text-shadow: 2px 4px 4px rgb(21, 21, 21);
   color: rgb(240, 248, 255);
@@ -28,4 +28,12 @@
 
 .content p {
   overflow: auto;
+}
+
+/* tested on Chrome, FireFox & Edge. 1159.5px is precise breaking point between
+content wrap and media query kicking in. May change later */
+@media screen and (max-width: 1159.5px) {
+  .content {
+    border-radius: 0;
+  }
 }
