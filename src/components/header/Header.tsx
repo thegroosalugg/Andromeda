@@ -6,9 +6,9 @@ export default function Header() {
   const { pathname } = useLocation();
 
   const text = {
-    '/': 'Welcome to Andromeda',
-    '/store': 'Fashion out of this World',
-    '/ships': 'Beyond Earth: Unveiling our Spaceships',
+           '/': 'Welcome to Andromeda',
+      '/store': 'Fashion out of this World',
+      '/ships': 'Beyond Earth: Unveiling our Spaceships',
     '/explore': 'Explore the Galaxy',
   }[pathname];
 
