@@ -1,4 +1,5 @@
 import { spaceships } from '../../assets/spaceships/spaceships';
+import Banner from '../../components/Banner';
 import Article from '../../components/containers/Article';
 import Section from '../../components/containers/Section';
 import SlideShow from '../../components/SlideShow';
@@ -11,6 +12,7 @@ export default function SpaceShipsPage() {
         <Article />
         <SlideShow array={spaceships} />
       </Section>
+      <Banner />
       <SpaceShipsList className='ship-grid' spaceships={spaceships} />
     </>
   );

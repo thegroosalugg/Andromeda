@@ -1,0 +1,17 @@
+.banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(66, 70, 73, 0.867);
+  width: 75vw;
+  height: 70px;
+  clip-path: polygon(0% 0%, 100% 0%, calc(100% - 70px) 100%, 0% 100%);
+}
+
+.banner span {
+  font-size: 1em;
+  color: #ffffff;
+  text-shadow: 2px 4px 4px rgb(66, 62, 62);
+  margin-left: auto;
+  margin-right: 20%;
+}
