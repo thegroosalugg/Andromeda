@@ -21,6 +21,7 @@ interface DivProps {
     exit?: object;
   };
   transition?: object;
+  style?: object;
   children: React.ReactNode;
   layout?: boolean;
 }
@@ -31,6 +32,7 @@ const MotionDiv: React.FC<DivProps> = ({
   className,
   variants,
   transition,
+  style,
   children,
   layout
 }: DivProps) => {
@@ -45,6 +47,7 @@ const MotionDiv: React.FC<DivProps> = ({
       animate='visible'
       exit='exit'
       transition={transition}
+      style={style}
       layout={layout}
     >
       {children}
