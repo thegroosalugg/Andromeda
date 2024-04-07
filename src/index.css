@@ -1,12 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Trispace:wght@100..800&display=swap');
 
-/* deal with you later */
-/* *,
-*::before,
-*::after {
-  box-sizing: border-box;
-} */
-
 body {
   background: url('/wallpaper4.jpeg') center/cover no-repeat;
   font-family: 'Trispace', sans-serif;
