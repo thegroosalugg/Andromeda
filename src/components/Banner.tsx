@@ -1,20 +1,26 @@
-import css from './Banner.module.css';
+import { useScroll, useTransform } from 'framer-motion';
 import MotionDiv from './UI/MotionDiv';
+import css from './Banner.module.css';
 
 const Banner: React.FC = () => {
+  const { scrollY } = useScroll();
+  const xBanner = useTransform(
+    scrollY,
+    [0, 300, 350, 450, 500, 550],
+    ['-100vw', '-75vw', '-50vw', '-25vw', '-12vw', 0]
+  );
+  const yText = useTransform(
+    scrollY,
+    [0, 500, 600, 700],
+    ['-100%', '-50%', '-25%', '0%']
+  );
+  const yOpacity = useTransform(scrollY, [0, 500, 600, 700], [0, 0, 0.7, 1]);
+
   return (
-    <MotionDiv
-      className={css.banner}
-      variants={{ hidden: { x: '-100vw' }, visible: { x: 0 } }}
-      transition={{ type: 'easeIn', duration: 2 }}
-    >
+    <MotionDiv className={css.banner} style={{ x: xBanner }}>
       <MotionDiv
         element='span'
-        variants={{
-          hidden: { opacity: 0, translateY: '-50%' },
-          visible: { opacity: 1, translateY: '0%' },
-        }}
-        transition={{ type: 'easeIn', duration: 1, delay: 2 }}
+        style={{ opacity: yOpacity, translateY: yText }}
       >
         CHECK OUT THE FLEET
       </MotionDiv>
