@@ -21,9 +21,13 @@ const SlideShow: React.FC<ShowProps> = ({ array }) => {
     return () => clearInterval(interval);
   }, [array.length]);
 
+  const handleClick = () => {
+    window.scrollTo(0, 125); // Scroll to the top of the page before navigating
+    navigate(`/ships/${array[index].id}`);
+  };
+
   return (
     <div className={css['slides-container']}>
-
       <div className={css['slideshow']}>
         <AnimatePresence mode='wait'>
           <motion.img
@@ -34,7 +38,7 @@ const SlideShow: React.FC<ShowProps> = ({ array }) => {
             animate={{ rotate: 0, opacity: 1, x: 0, scaleY: 1 }}
             exit={{ scaleY: 0, y: -50, rotate: -45 }}
             transition={{ duration: 1, ease: [0.43, 0.13, 0.23, 0.96] }}
-            onClick={() => navigate(`/ships/${array[index].id}`)}
+            onClick={handleClick}
           />
         </AnimatePresence>
       </div>
@@ -42,7 +46,6 @@ const SlideShow: React.FC<ShowProps> = ({ array }) => {
       <AnimatePresence mode='wait'>
         <SlidesInfoCard key={index} {...array[index]} />
       </AnimatePresence>
-
     </div>
   );
 };

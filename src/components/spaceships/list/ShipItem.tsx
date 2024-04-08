@@ -19,12 +19,17 @@ const ShipItem: React.FC<ShipItemProps> = ({
   // could also navigate with Link, but this wraps the component a 3rd time and needs additional styling
   const navigate = useNavigate();
 
+  const handleClick = () => {
+    window.scrollTo(0, 125); // Scroll to the top of the page before navigating
+    navigate(`/ships/${id}`);
+  };
+
   return (
     <motion.article
       className={`${css['ship-item']} ${css[className]}`}
       whileHover={{ scale: 1.1 }}
       transition={{ duration: 0.3 }}
-      onClick={() => navigate(`/ships/${id}`)}
+      onClick={handleClick}
     >
       <h6>{model}</h6>
       <img src={image} alt={model} />
