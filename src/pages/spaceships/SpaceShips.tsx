@@ -1,8 +1,8 @@
 import { spaceships } from '../../assets/spaceships/spaceships';
-import Banner from '../../components/Banner';
+import Banner from '../../components/banner/Banner';
 import Article from '../../components/containers/Article';
 import Section from '../../components/containers/Section';
-import SlideShow from '../../components/SlideShow';
+import SlideShow from '../../components/slideshow/SlideShow';
 import SpaceShipsList from '../../components/spaceships/list/SpaceShipsList';
 
 export default function SpaceShipsPage() {

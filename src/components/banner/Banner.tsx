@@ -1,5 +1,5 @@
 import { useScroll, useTransform } from 'framer-motion';
-import MotionDiv from './UI/MotionDiv';
+import MotionDiv from '../UI/MotionDiv';
 import css from './Banner.module.css';
 
 const Banner: React.FC = () => {
