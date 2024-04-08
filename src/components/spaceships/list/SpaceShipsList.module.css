@@ -2,7 +2,7 @@
 .ship-grid {
   padding-left: 5%; /* configure for responsiveness */
   padding-right: 5%;
-  margin: 2rem auto 0; /* configure for responsiveness */
+  margin: 2rem auto; /* configure for responsiveness */
   display: grid;
   grid-gap: 1.5rem;
   list-style: none;
