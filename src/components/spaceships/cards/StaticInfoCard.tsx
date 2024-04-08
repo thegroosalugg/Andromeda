@@ -2,10 +2,10 @@ import SpaceShip from '../../../models/SpaceShip';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import MotionDiv from '../../UI/MotionDiv';
 import css from './StaticInfoCard.module.css';
-import ShipIconRow from './ShipIconRow';
+import IconRow from '../../UI/IconRow';
 
 const StaticInfoCard: React.FC<SpaceShip> = (spaceship) => {
-  const { maker, model, info } = spaceship;
+  const { maker, model, info, fuel, speed, year, price } = spaceship;
 
   return (
     <MotionDiv
@@ -30,7 +30,16 @@ const StaticInfoCard: React.FC<SpaceShip> = (spaceship) => {
       >
         {info}
       </MotionDiv>
-      <ShipIconRow {...spaceship} />
+      <IconRow
+        className={css.icons}
+        icons={[
+          ['fas', 'bolt'],
+          ['fas', 'gauge-high'],
+          ['fas', 'clock'],
+          ['fas', 'money-bill-1-wave'],
+        ]}
+        texts={[fuel, speed + 'm Mph', year + ' (CE)', price + ' daily']}
+      />
     </MotionDiv>
   );
 };
