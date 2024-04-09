@@ -5,15 +5,19 @@ import css from './ShipBanner.module.css';
 const ShipBanner: React.FC = () => {
   const { scrollY } = useScroll();
   // const screenWidth = window.innerWidth;
-  // let range = [0, 300, 350, 450, 500, 550];
+
+  const takeOff = 1200; // starting range
+  let i = 1; // multiplier
+  const range = [takeOff, takeOff + 50 * i++, takeOff + 50 * i++, takeOff + 50 * i++, takeOff + 50 * i++]; // adds an extra 50 to each prev val
+  console.log(range)
 
   // if (screenWidth <= 1180) {
-  //   range = [0, 700, 800, 900, 1000, 1100]
+  //   range = [0, 1100, 1150, 1200, 1250]
   // }
 
   const x = useTransform(
     scrollY,
-    [0, 1000, 1100, 1200, 1300],
+    [...range],
     ['100vw', '75vw', '50vw', '25vw', '12vw']
   );
                          // chemtrail size
