@@ -1,3 +1,7 @@
+.overflow {
+  overflow-x: hidden;
+}
+
 .banner {
   display: flex;
 }

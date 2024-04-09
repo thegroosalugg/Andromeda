@@ -5,21 +5,22 @@ import rangeArray from '../../util/rangeArray';
 
 const ShipBanner: React.FC = () => {
   const { scrollY } = useScroll();
-  // const screenWidth = window.innerWidth;
+  const screenWidth = window.innerWidth;
 
-  const range = rangeArray(5, 1150, 25)
-  console.log(range)
+  let range = rangeArray(5, 1150, 25); // scroll range on 2560px screen (max)
 
-  // if (screenWidth <= 1180) {
-  //   range = [0, 1100, 1150, 1200, 1250]
-  // }
+  if (screenWidth <= 1180) {
+    range = rangeArray(5, 5300, 25); // scroll range on 320px screen (min)
+  }
+
+  console.log('width', screenWidth, '\n', 'range', range);
 
   const x = useTransform(
     scrollY,
     [...range],
     ['100vw', '75vw', '50vw', '25vw', '12vw']
   );
-                         // chemtrail size
+  // chemtrail size
   const smoke = Array.from({ length: 20 }).map((_, index) => (
     <div
       key={index}
@@ -33,10 +34,12 @@ const ShipBanner: React.FC = () => {
   ));
 
   return (
-    <motion.div className={css.banner} style={{ x }}>
-      <img src={shipPNG} alt='spaceship' />
-      {smoke}
-    </motion.div>
+    <div className={css.overflow}>
+      <motion.div className={css.banner} style={{ x }}>
+        <img src={shipPNG} alt='spaceship' />
+        {smoke}
+      </motion.div>
+    </div>
   );
 };
 

@@ -10,7 +10,6 @@ body {
 }
 
 main {
-  overflow: auto;
   flex-grow: 1;
 }
 
