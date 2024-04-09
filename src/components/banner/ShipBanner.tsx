@@ -14,16 +14,26 @@ const ShipBanner: React.FC = () => {
   const x = useTransform(
     scrollY,
     [0, 1000, 1100, 1200, 1300],
-    ['100vw', '75vw', '50vw', '25vw', '12vw' ]
+    ['100vw', '75vw', '50vw', '25vw', '12vw']
   );
+                         // chemtrail size
+  const smoke = Array.from({ length: 20 }).map((_, index) => (
+    <div
+      key={index}
+      className={css.smoke}
+      style={{
+        left: `${Math.random() * 100}px`,
+        top: `${Math.random() * 50}px`,
+        animationDelay: `${Math.random() * 2}s`,
+      }}
+    />
+  ));
 
   return (
-      <motion.img
-        src={shipPNG}
-        alt='spaceship'
-        className={css.banner}
-        style={{ x }}
-      />
+    <motion.div className={css.banner} style={{ x }}>
+      <img src={shipPNG} alt='spaceship' />
+      {smoke}
+    </motion.div>
   );
 };
 
