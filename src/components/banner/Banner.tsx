@@ -1,23 +1,24 @@
 import { useScroll, useTransform } from 'framer-motion';
 import MotionDiv from '../UI/MotionDiv';
 import css from './Banner.module.css';
+import rangeArray from '../../util/rangeArray';
 
 const Banner: React.FC = () => {
   const { scrollY } = useScroll();
   const screenWidth = window.innerWidth;
-  let bannerRange = [0, 300, 350, 450, 500, 550];
-  let textRange = [0, 500, 600, 700];
+  let bannerRange = rangeArray(5, 300, 50) // 5 length. 300 initial value. +50 increment per element in length.
+  let textRange = rangeArray(4, 450, 50)
 
   // increase scroll range if content is wrapped
   if (screenWidth <= 1180) {
-    bannerRange = [0, 700, 800, 900, 1000, 1100]
-    textRange = [0, 900, 1000, 1100]
+    bannerRange = rangeArray(5, 950, 50)
+    textRange = rangeArray(4, 1050, 50)
   }
 
   const xBanner = useTransform(
     scrollY,
     [...bannerRange],
-    ['-100vw', '-75vw', '-50vw', '-25vw', '-12vw', 0]
+    ['-100vw', '-75vw', '-50vw', '-25vw', 0]
   );
   const yText = useTransform(
     scrollY,

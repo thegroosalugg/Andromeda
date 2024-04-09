@@ -1,14 +1,13 @@
 import { useScroll, useTransform, motion } from 'framer-motion';
 import shipPNG from '../../assets/banner/spaceship-transparent-01.png';
 import css from './ShipBanner.module.css';
+import rangeArray from '../../util/rangeArray';
 
 const ShipBanner: React.FC = () => {
   const { scrollY } = useScroll();
   // const screenWidth = window.innerWidth;
 
-  const takeOff = 1200; // starting range
-  let i = 1; // multiplier
-  const range = [takeOff, takeOff + 50 * i++, takeOff + 50 * i++, takeOff + 50 * i++, takeOff + 50 * i++]; // adds an extra 50 to each prev val
+  const range = rangeArray(5, 1150, 25)
   console.log(range)
 
   // if (screenWidth <= 1180) {
