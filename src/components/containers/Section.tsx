@@ -1,27 +1,20 @@
 import { useScroll, useTransform, motion } from 'framer-motion';
 import css from './Section.module.css';
 import rangeArray from '../../util/rangeArray';
+import useScreen from '../../hooks/useScreen';
 
 export default function Section({ children }: { children: React.ReactNode }) {
   const { scrollY } = useScroll();
-  const screenWidth = window.innerWidth;
+  const { width } = useScreen();
 
-  let range = rangeArray(4, 550, 50)
-  const transformVals = [1, 0.8, 0.5, 0];
+  const pixels = width > 1024 ? 500 : 850;
+  const range = rangeArray(4, pixels, 50);
 
-  // increase scroll range if content is wrapped
-  if (screenWidth <= 1180) {
-    range = rangeArray(4, 800, 50);
-  }
-
-  const opacity = useTransform(scrollY, [...range], [...transformVals]);
+  const opacity = useTransform(scrollY, [...range], [1, 0.8, 0.5, 0]);
   const y = useTransform(scrollY, [...range], ['0%', '-25%', '-50%', '-100%']);
 
   return (
-    <motion.section
-      className={css.section}
-      style={{ opacity, y }}
-    >
+    <motion.section className={css.section} style={{ opacity, y }}>
       {children}
     </motion.section>
   );
