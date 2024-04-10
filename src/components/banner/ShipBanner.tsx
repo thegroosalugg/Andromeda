@@ -1,23 +1,8 @@
-import { useScroll, useTransform, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import shipPNG from '../../assets/banner/spaceship-transparent-01.png';
 import css from './ShipBanner.module.css';
-import rangeArray from '../../util/rangeArray';
-import useScreen from '../../hooks/useScreen';
 
 const ShipBanner: React.FC = () => {
-  const { scrollY } = useScroll();
-  const { width, height } = useScreen();
-
-  const range = rangeArray(5, width >= 1100 ? 1300 : 1450, 25);
-
-  console.log('width', width, 'height', height, '\n', 'range', range);
-
-  const x = useTransform(
-    scrollY,
-    [...range],
-    ['100vw', '75vw', '50vw', '25vw', '12vw']
-  );
-
   // chemtrail size
   const smoke = Array.from({ length: 20 }).map((_, index) => (
     <div
@@ -33,7 +18,13 @@ const ShipBanner: React.FC = () => {
 
   return (
     <div className={css.overflow}>
-      <motion.div className={css.banner} style={{ x }}>
+      <motion.div
+        className={css.banner}
+        initial={{ x: '100%' }}
+        whileInView={{ x: '12vw' }}
+        transition={{ type: 'easeIn', duration: 1.5 }}
+        viewport={{ once: true }}
+      >
         <img src={shipPNG} alt='spaceship' />
         {smoke}
       </motion.div>
