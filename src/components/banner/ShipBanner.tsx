@@ -1,29 +1,16 @@
 import { useScroll, useTransform, motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
 import shipPNG from '../../assets/banner/spaceship-transparent-01.png';
 import css from './ShipBanner.module.css';
 import rangeArray from '../../util/rangeArray';
+import useScreen from '../../hooks/useScreen';
 
 const ShipBanner: React.FC = () => {
   const { scrollY } = useScroll();
-  const [screen, setScreen] = useState({ width: window.innerWidth, height: window.innerHeight });
+  const { width, height } = useScreen();
 
-  useEffect(() => {
-    const handleResize = () => {
-      console.clear() // clear the console
-      setScreen({ width: window.innerWidth, height: window.innerHeight });
-    };
+  const range = rangeArray(5, width >= 1100 ? 1300 : 1450, 25);
 
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
-  const range = rangeArray(5, screen.width >= 1100 ? 1300 : 1450, 25);
-
-  console.log('screen', screen, '\n', 'range', range);
+  console.log('width', width, 'height', height, '\n', 'range', range);
 
   const x = useTransform(
     scrollY,
