@@ -1,41 +1,32 @@
-import MotionDiv from '../UI/MotionDiv';
+import { motion } from 'framer-motion';
 import css from './Article.module.css';
 
 const string = 'No TV and no beer make Homer something something. ';
 
 export default function Article() {
   return (
-    <MotionDiv
-      element='article'
+    <motion.article
       className={css.content}
-      variants={{
-        hidden: { height: 0 },
-        visible: { height: 'auto' },
-      }}
+      initial={{ height: 0 }}
+      animate={{ height: 'auto' }}
       transition={{ type: 'easeIn', duration: 1 }}
     >
       <h3>
-        <MotionDiv
-          element='span'
-          variants={{
-            hidden: { opacity: 0 },
-            visible: { opacity: 1 },
-          }}
+        <motion.span
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ type: 'linear', duration: 1, delay: 0.8 }}
         >
           FLY THE COUP
-        </MotionDiv>
+        </motion.span>
       </h3>
-      <MotionDiv
-        element='p'
-        variants={{
-          hidden: { opacity: 0 },
-          visible: { opacity: 1 },
-        }}
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
         transition={{ type: 'linear', duration: 1 }}
       >
         {string.repeat(100)}
-      </MotionDiv>
-    </MotionDiv>
+      </motion.p>
+    </motion.article>
   );
 }

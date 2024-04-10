@@ -1,5 +1,4 @@
-import { useScroll, useTransform } from 'framer-motion';
-import MotionDiv from '../UI/MotionDiv';
+import { useScroll, useTransform, motion } from 'framer-motion';
 import css from './Section.module.css';
 import rangeArray from '../../util/rangeArray';
 
@@ -19,12 +18,11 @@ export default function Section({ children }: { children: React.ReactNode }) {
   const y = useTransform(scrollY, [...range], ['0%', '-25%', '-50%', '-100%']);
 
   return (
-    <MotionDiv
-      element='section'
+    <motion.section
       className={css.section}
       style={{ opacity, y }}
     >
       {children}
-    </MotionDiv>
+    </motion.section>
   );
 }
