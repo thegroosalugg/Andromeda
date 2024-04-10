@@ -21,11 +21,7 @@ const ShipBanner: React.FC = () => {
     };
   }, []);
 
-  // if (height <= 1180) {
-  //   multiplier = 5
-  // }
-
-  const range = rangeArray(5, 1500, 25);
+  const range = rangeArray(5, screen.width >= 1100 ? 1300 : 1450, 25);
 
   console.log('screen', screen, '\n', 'range', range);
 
@@ -34,6 +30,7 @@ const ShipBanner: React.FC = () => {
     [...range],
     ['100vw', '75vw', '50vw', '25vw', '12vw']
   );
+
   // chemtrail size
   const smoke = Array.from({ length: 20 }).map((_, index) => (
     <div
@@ -58,39 +55,3 @@ const ShipBanner: React.FC = () => {
 };
 
 export default ShipBanner;
-
-
-// Logs
-
-// RESPONSIVE VIEW
-// screen {width: 320, height: 387}
-//  range (5) [1500, 1525, 1550, 1575, 1600]
-
-// screen {width: 375, height: 387}
-//  range (5) [1500, 1525, 1550, 1575, 1600]
-
-// screen {width: 426, height: 387}
-//  range (5) [1500, 1525, 1550, 1575, 1600]
-
-// screen {width: 768, height: 387}
-//  range (5) [1500, 1525, 1550, 1575, 1600]
-
-// screen {width: 1024, height: 387}
-//  range (5) [1500, 1525, 1550, 1575, 1600]
-
-// screen {width: 1440, height: 387}
-//  range (5) [1100, 1125, 1150, 1175, 1200]
-
-// screen {width: 2560, height: 704}
-//  range (5) [1100, 1125, 1150, 1175, 1200]
-
-// DESKTOP VIEW
-// screen {width: 1536, height: 695}
-//  range (5) [1100, 1125, 1150, 1175, 1200]
-
-// screen {width: 1024, height: 463}
-//  range (5) [1500, 1525, 1550, 1575, 1600]
-
-// screen {width: 877, height: 397}
-//  range (5) [1500, 1525, 1550, 1575, 1600]
-
