@@ -1,24 +1,33 @@
 import { useScroll, useTransform, motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 import shipPNG from '../../assets/banner/spaceship-transparent-01.png';
 import css from './ShipBanner.module.css';
 import rangeArray from '../../util/rangeArray';
 
 const ShipBanner: React.FC = () => {
   const { scrollY } = useScroll();
-  const screenWidth = window.innerWidth;
+  const [screen, setScreen] = useState({ width: window.innerWidth, height: window.innerHeight });
 
-  let range = rangeArray(5, 1150, 25); // scroll range on 2560px screen (max)
-  // let range = rangeArray(5, 1550, 25); // 1440 px
+  useEffect(() => {
+    const handleResize = () => {
+      console.clear() // clear the console
+      setScreen({ width: window.innerWidth, height: window.innerHeight });
+    };
 
-  if (screenWidth <= 1180) {
-    // range = rangeArray(5, 5300, 25); // scroll range on 320px screen (min)
-    // range = rangeArray(5, 5600, 25); // 376 px
-    // range = rangeArray(5, 5900, 25); // 425 px
-    // range = rangeArray(5, 2400, 25); // 768 px
-    range = rangeArray(5, 2000, 25); // 1024px
-  }
+    window.addEventListener('resize', handleResize);
 
-  console.log('width', screenWidth, '\n', 'range', range);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  // if (height <= 1180) {
+  //   multiplier = 5
+  // }
+
+  const range = rangeArray(5, 1500, 25);
+
+  console.log('screen', screen, '\n', 'range', range);
 
   const x = useTransform(
     scrollY,
@@ -49,3 +58,39 @@ const ShipBanner: React.FC = () => {
 };
 
 export default ShipBanner;
+
+
+// Logs
+
+// RESPONSIVE VIEW
+// screen {width: 320, height: 387}
+//  range (5) [1500, 1525, 1550, 1575, 1600]
+
+// screen {width: 375, height: 387}
+//  range (5) [1500, 1525, 1550, 1575, 1600]
+
+// screen {width: 426, height: 387}
+//  range (5) [1500, 1525, 1550, 1575, 1600]
+
+// screen {width: 768, height: 387}
+//  range (5) [1500, 1525, 1550, 1575, 1600]
+
+// screen {width: 1024, height: 387}
+//  range (5) [1500, 1525, 1550, 1575, 1600]
+
+// screen {width: 1440, height: 387}
+//  range (5) [1100, 1125, 1150, 1175, 1200]
+
+// screen {width: 2560, height: 704}
+//  range (5) [1100, 1125, 1150, 1175, 1200]
+
+// DESKTOP VIEW
+// screen {width: 1536, height: 695}
+//  range (5) [1100, 1125, 1150, 1175, 1200]
+
+// screen {width: 1024, height: 463}
+//  range (5) [1500, 1525, 1550, 1575, 1600]
+
+// screen {width: 877, height: 397}
+//  range (5) [1500, 1525, 1550, 1575, 1600]
+
