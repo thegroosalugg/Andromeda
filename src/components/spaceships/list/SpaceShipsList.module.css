@@ -1,14 +1,17 @@
 /* for grid layout */
 .ship-grid {
-  padding-left: 5%; /* configure for responsiveness */
-  padding-right: 5%;
-  margin: 2rem auto; /* configure for responsiveness */
+  padding: 1rem 5% 1rem 5%; /* configure for responsiveness */
+  margin: 2rem 5% 2rem 5%; /* configure for responsiveness */
   display: grid;
   grid-gap: 1.5rem;
   list-style: none;
   align-items: center;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  overflow-y: auto;
+  max-height: 100vh;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+  border-top: 1px solid hsla(0, 0%, 80%, 0.36);
+  border-bottom: 1px solid hsla(0, 0%, 80%, 0.36);
 }
 
 /* for scrollX layout */

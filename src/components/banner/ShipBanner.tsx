@@ -8,9 +8,14 @@ const ShipBanner: React.FC = () => {
   const screenWidth = window.innerWidth;
 
   let range = rangeArray(5, 1150, 25); // scroll range on 2560px screen (max)
+  // let range = rangeArray(5, 1550, 25); // 1440 px
 
   if (screenWidth <= 1180) {
-    range = rangeArray(5, 5300, 25); // scroll range on 320px screen (min)
+    // range = rangeArray(5, 5300, 25); // scroll range on 320px screen (min)
+    // range = rangeArray(5, 5600, 25); // 376 px
+    // range = rangeArray(5, 5900, 25); // 425 px
+    // range = rangeArray(5, 2400, 25); // 768 px
+    range = rangeArray(5, 2000, 25); // 1024px
   }
 
   console.log('width', screenWidth, '\n', 'range', range);
