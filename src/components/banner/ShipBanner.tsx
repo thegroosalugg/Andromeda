@@ -1,8 +1,11 @@
 import { motion } from 'framer-motion';
-import shipPNG from '../../assets/banner/spaceship-transparent-01.png';
+import ship1 from '../../assets/banner/spaceship-transparent-01.png';
+import ship2 from '../../assets/banner/spaceship-transparent-02.png';
 import css from './ShipBanner.module.css';
 
-const ShipBanner: React.FC = () => {
+const ShipBanner: React.FC<{ reverse?: boolean }> = ({ reverse }) => {
+  const x = reverse ? '-' : '';
+
   // chemtrail size
   const smoke = Array.from({ length: 20 }).map((_, index) => (
     <div
@@ -20,13 +23,14 @@ const ShipBanner: React.FC = () => {
     <div className={css.overflow}>
       <motion.div
         className={css.banner}
-        initial={{ x: '100%' }}
-        whileInView={{ x: '12vw' }}
+        initial={{ x: `${x}100%` }}
+        whileInView={{ x: reverse ? '50vw' : '12vw' }}
         transition={{ type: 'easeIn', duration: 1.5 }}
         viewport={{ once: true }}
       >
-        <img src={shipPNG} alt='spaceship' />
-        {smoke}
+        {reverse && smoke}
+        <img src={reverse ? ship2 : ship1} alt='spaceship' />
+        {!reverse && smoke}
       </motion.div>
     </div>
   );
