@@ -11,11 +11,29 @@ import ship9 from './spaceship_09.jpg';
 import ship10 from './spaceship_10.jpg';
 import ship11 from './spaceship_11.jpg';
 import ship12 from './spaceship_12.jpg';
+import ship13 from './spaceship_13.jpg';
+import ship14 from './spaceship_14.jpg';
+import ship15 from './spaceship_15.jpg';
+import ship16 from './spaceship_16.jpg';
+import ship17 from './spaceship_17.jpg';
+import ship18 from './spaceship_18.jpg';
+import ship19 from './spaceship_19.jpg';
+import ship20 from './spaceship_20.jpg';
+import ship21 from './spaceship_21.jpg';
+import ship22 from './spaceship_22.jpg';
+import ship23 from './spaceship_23.jpg';
+import ship24 from './spaceship_24.jpg';
+import ship25 from './spaceship_25.jpg';
+import ship26 from './spaceship_26.jpg';
 
 import faker from 'faker';
 
 // prettier-ignore
-const images = [ship1, ship2, ship3, ship4, ship5, ship6, ship7, ship8, ship9, ship10, ship11, ship12]
+const images = [
+  ship1, ship2, ship3, ship4, ship5, ship6, ship7, ship8, ship9, ship10,
+  ship11, ship12, ship13, ship14, ship15, ship16, ship17, ship18, ship19,
+  ship20, ship21, ship22, ship23, ship24, ship25, ship26
+];
 
 const rand = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min) + min);
