@@ -25,7 +25,9 @@ export default function List<T>({
       className={className}
       variants={ulVariants}
       initial='hidden'
-      animate='visible'
+      whileInView='visible'
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
     >
       {items.map((item, index) => (
         <motion.li
