@@ -17,6 +17,8 @@ export default function SpaceShipsPage() {
       <SpaceShipsList className='ship-grid' spaceships={spaceships} />
       <ShipBanner />
       <ShipBanner reverse />
+      <ShipBanner />
+      <ShipBanner reverse />
     </>
   );
 }

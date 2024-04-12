@@ -4,8 +4,12 @@ My current project demonstrating React & TypeScript
 
 Spaceships jpgs by Freepik.com
 Ufo vector svg by https://www.svgrepo.com/svg/171812/ufo
-spaceship png by https://www.moddb.com/games/lazer-20/images/spaceship-5
-spaceship png by https://www.hiclipart.com/free-transparent-background-png-clipart-bvmdu
+spaceship pngs: [
+  https://www.cleanpng.com/png-spacecraft-spaceshiptwo-rocket-clip-art-spaceship-117116/
+  https://www.cleanpng.com/png-galaga-spaceship-s80-spaceship-free-spacecraft-des-616643/
+  https://www.cleanpng.com/png-spacecraft-clip-art-spaceship-png-file-117118/
+  https://www.hiclipart.com/free-transparent-background-png-clipart-bvmdu
+  ]
 
 
 --------------------------------------default nonsense below-----------------------------------------------
