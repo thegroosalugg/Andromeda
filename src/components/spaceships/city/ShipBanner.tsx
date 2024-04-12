@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import ship1 from '../../assets/banner/ship-01.png';
-import ship2 from '../../assets/banner/ship-02.png';
-import ship3 from '../../assets/banner/ship-03.png';
-import ship4 from '../../assets/banner/ship-04.png';
-import jetson from '../../assets/banner/jetson.png';
-import rand from '../../util/rand';
+import ship1 from '../../../assets/banner/ship-01.png';
+import ship2 from '../../../assets/banner/ship-02.png';
+import ship3 from '../../../assets/banner/ship-03.png';
+import ship4 from '../../../assets/banner/ship-04.png';
+import jetson from '../../../assets/banner/jetson.png';
+import rand from '../../../util/rand';
 
 const ShipBanner: React.FC = () => {
   const ships = [ship1, ship2, ship3, ship4];
