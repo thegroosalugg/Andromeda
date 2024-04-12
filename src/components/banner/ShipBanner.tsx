@@ -3,7 +3,6 @@ import ship1 from '../../assets/banner/ship-01.png';
 import ship2 from '../../assets/banner/ship-02.png';
 import ship3 from '../../assets/banner/ship-03.png';
 import ship4 from '../../assets/banner/ship-04.png';
-import css from './ShipBanner.module.css';
 import rand from '../../util/rand';
 
 const ShipBanner: React.FC = () => {
@@ -17,15 +16,13 @@ const ShipBanner: React.FC = () => {
   const scale = rand(1, 4) === 1 ? [1, 1.5, 1, 0.7, 1] : 1;
 
   return (
-    <div className={css.banner}>
       <motion.img
         src={ships[rand(0, 3)]}
         alt='spaceship'
         initial={{ x: enter, scaleX: direction }}
         whileInView={{ x: exit, rotateX, scale }}
-        transition={{ type: 'easeIn', duration, repeat: Infinity }}
+        transition={{ type: 'easeIn', duration }}
       />
-    </div>
   );
 };
 
