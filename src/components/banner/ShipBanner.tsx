@@ -19,34 +19,25 @@ const ShipBanner: React.FC = () => {
     return () => clearInterval(interval);
   }, [duration]);
 
-  let [enter, exit, direction]: [string, string | string[], number] =
-    rand(1, 2) === 1 ? ['-100%', '100vw', 1] : ['100vw', '-100%', -1];
+  const [enter, direction] = rand(1, 2) === 1 ? ['-100%', 1] : ['100vw', -1];
+  let exit: string | string[] = direction === 1 ? '100vw' : '-100%';
+  let ship = ships[rand(0, 3)];
 
   const rotateX = rand(1, 5) === 1 ? [0, 0, 360, 0, 0] : 0;
   const scale = rand(1, 4) === 1 ? [1, 1.5, 1, 0.7, 1] : 1;
   const y = rand(1, 5) === 1 ? [0, 0, 20, 0, 0] : [0, 0, -20, 0, 0];
 
-  if (rand(1, 1) === 1) {
-    [enter, exit, direction] =
-      rand(1, 2) === 1
-        ? ['-100%', ['-100%', '50vw', '50vw', '50vw', '100vw'], 1]
-        : ['100vw', ['100vw', '50vw', '50vw', '0vw', '-100%'], -1];
-
-    return (
-      <motion.img
-        src={jetson}
-        alt='jetson'
-        key={duration}
-        initial={{ x: enter, scaleX: direction, y: 0 }}
-        animate={{ x: exit, rotateX, scale, y: [0, 0, 30, 0, 0] }}
-        transition={{ type: 'easeIn', duration, delay: 0.1 }}
-      />
-    );
+  if (rand(1, 10) === 1) {
+    ship = jetson;
+    exit =
+      direction === 1
+        ? ['-100%', '50vw', '50vw', '50vw', '100vw']
+        : ['100vw', '50vw', '50vw', '0vw', '-100%'];
   }
 
   return (
     <motion.img
-      src={ships[rand(0, 3)]}
+      src={ship}
       alt='spaceship'
       key={duration}
       initial={{ x: enter, scaleX: direction }}
