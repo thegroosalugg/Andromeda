@@ -9,6 +9,7 @@ spaceship pngs: [
   https://www.cleanpng.com/png-galaga-spaceship-s80-spaceship-free-spacecraft-des-616643/
   https://www.cleanpng.com/png-spacecraft-clip-art-spaceship-png-file-117118/
   https://www.hiclipart.com/free-transparent-background-png-clipart-bvmdu
+  https://www.cleanpng.com/png-george-jetson-judy-jetson-hanna-barbera-television-2010756/
   ]
 
 
