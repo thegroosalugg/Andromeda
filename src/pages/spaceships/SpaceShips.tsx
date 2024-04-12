@@ -1,6 +1,6 @@
 import { spaceships } from '../../assets/spaceships/spaceships';
 import Banner from '../../components/banner/Banner';
-import ShipBanner from '../../components/banner/ShipBanner';
+import ShipCity from '../../components/banner/ShipCity';
 import Article from '../../components/containers/Article';
 import Section from '../../components/containers/Section';
 import SlideShow from '../../components/slideshow/SlideShow';
@@ -14,10 +14,7 @@ export default function SpaceShipsPage() {
         <SlideShow array={spaceships} />
       </Section>
       <Banner />
-      <ShipBanner />
-      <ShipBanner />
-      <ShipBanner />
-      <ShipBanner />
+      <ShipCity />
     </>
   );
 }
