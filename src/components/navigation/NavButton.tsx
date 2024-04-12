@@ -1,6 +1,7 @@
 import { NavLink, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import css from './Navigation.module.css';
+import rand from '../../util/rand';
 
 export default function NavButton({ path, name }: { path: string; name: string }) {
   const { pathname } = useLocation();
@@ -9,9 +10,8 @@ export default function NavButton({ path, name }: { path: string; name: string }
   path === '/' && console.clear(); // clear the console before first component renders
   // console.log('    [PATH]:', path, '\n', '\n', '[CURRENT]:', pathname, '\n', '\n', '[ACTIVE?]:', isActive);
 
-  const chance = Math.floor(Math.random() * 4) + 1
-  const rotate = chance === 1 ? 720 : 0
-  const  scale = chance === 1 ? [1, 1.5, 2, 1.5, 1.2] : 1.2
+  const rotate = rand(1, 4) === 1 ? 720 : 0
+  const  scale = rand(1, 4) === 1 ? [1, 1.5, 2, 1.5, 1.2] : 1.2
 
   return (
     <li>
