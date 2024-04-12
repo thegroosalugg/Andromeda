@@ -14,6 +14,7 @@ export default function SpaceShipsPage() {
         <SlideShow array={spaceships} />
       </Section>
       <Banner />
+      <SpaceShipsList className='ship-grid' spaceships={spaceships} />
       <ShipCity />
     </>
   );
