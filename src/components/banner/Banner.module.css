@@ -1,3 +1,9 @@
+.reverse {
+  overflow: hidden;
+  display: flex;
+  place-content: end;
+}
+
 .banner {
   display: flex;
   align-items: center;

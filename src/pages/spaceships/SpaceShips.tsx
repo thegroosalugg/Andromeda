@@ -13,8 +13,9 @@ export default function SpaceShipsPage() {
         <Article />
         <SlideShow array={spaceships} />
       </Section>
-      <Banner />
+      <Banner>Check Out The Fleet</Banner>
       <SpaceShipsList className='ship-grid' spaceships={spaceships} />
+      <Banner reverse>Going Somewhere?</Banner>
       <ShipCity />
     </>
   );
