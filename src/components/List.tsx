@@ -6,7 +6,6 @@ interface ListProps<T> {
   className: string;                     // all styling will be provided by the parent, this FC is not styled
   children: (item: T) => JSX.Element;    // RENDER PROP: need to pass extracted object to parent
   // configure framer motion
-  ulVariants?: { visible: object; hidden: object }; // ulVariants optonal, as parent container may be invisible
   liVariants?:  { visible: object; hidden: object };
   liTransition?: object;
 }
@@ -16,14 +15,12 @@ export default function List<T>({
   keyFn,
   className,
   children,
-  ulVariants,
   liVariants,
   liTransition,
 }: ListProps<T>) {
   return (
     <motion.ul
       className={className}
-      variants={ulVariants}
       initial='hidden'
       whileInView='visible'
       viewport={{ once: true }}

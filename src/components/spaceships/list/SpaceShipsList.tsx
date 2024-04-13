@@ -22,7 +22,6 @@ export default function SpaceShipsList({ spaceships, className }: ListProps) {
         className={css[className]}
         items={spaceships}
         keyFn={({ id }) => id}
-        ulVariants={variants}
         liVariants={variants}
         liTransition={liTransition}
       >
