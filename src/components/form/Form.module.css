@@ -1,0 +1,13 @@
+.form {
+  background-color: rgba(47, 49, 54, 0.7);
+  display: flex;
+  place-content: center;
+  max-width: fit-content;
+  margin: 1rem auto;
+  border-radius: 10px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
