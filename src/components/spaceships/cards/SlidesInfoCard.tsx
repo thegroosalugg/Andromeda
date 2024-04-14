@@ -1,18 +1,17 @@
 import SpaceShip from '../../../models/SpaceShip';
 import { FontAwesomeBar } from '../../UI/FontAwesomeBar';
-import MotionDiv from '../../UI/MotionDiv';
-import css from './SlidesInfoCard.module.css'
+import { motion } from 'framer-motion';
+import css from './SlidesInfoCard.module.css';
 
-const SlidesInfoCard: React.FC<SpaceShip> = ({ model, rating, info, performance }) => {
+const SlidesInfoCard: React.FC<SpaceShip> = (spaceship) => {
+  const { model, rating, info, performance } = spaceship
+
   return (
-    <MotionDiv
-      element='article'
+    <motion.article
       className={css.article}
-      variants={{
-        hidden: { opacity: 0, x: 80 },
-        visible: { opacity: [0, 0, 0.6, 0.8, 1], x: 0 },
-        exit: { opacity: 0, y: 100 },
-      }}
+      initial={{ opacity: 0, x: 80 }}
+      animate={{ opacity: [0, 0, 0.6, 0.8, 1], x: 0 }}
+      exit={{ opacity: 0, y: 100 }}
       transition={{ type: 'easeInOut', duration: 1 }}
     >
       <h2>{model}</h2>
@@ -33,7 +32,7 @@ const SlidesInfoCard: React.FC<SpaceShip> = ({ model, rating, info, performance 
           </div>
         ))}
       </div>
-    </MotionDiv>
+    </motion.article>
   );
 };
 

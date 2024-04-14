@@ -46,13 +46,14 @@
 
 .price {
   display: flex;
-  justify-content: end;
-  gap: 0.2em;
-  align-items: center;
   font-weight: bold;
   color: #ca7d1f;
-  padding: 0.5rem;
+  justify-content: end;
+  margin-right: 0.5rem;
 }
-.price p {
-  margin-bottom: 1.5em;
+
+.icons {
+  display: flex;
+  gap: 0.2em;
+  padding: 0.5rem 0.2rem;
 }

@@ -1,5 +1,22 @@
 # React + TypeScript + Vite
 
+My current project demonstrating React & TypeScript
+
+Spaceships jpgs by Freepik.com
+Ufo vector svg by https://www.svgrepo.com/svg/171812/ufo
+spaceship pngs: [
+  https://www.cleanpng.com/png-spacecraft-spaceshiptwo-rocket-clip-art-spaceship-117116/
+  https://www.cleanpng.com/png-galaga-spaceship-s80-spaceship-free-spacecraft-des-616643/
+  https://www.cleanpng.com/png-spacecraft-clip-art-spaceship-png-file-117118/
+  https://www.hiclipart.com/free-transparent-background-png-clipart-bvmdu
+  https://www.cleanpng.com/png-george-jetson-judy-jetson-hanna-barbera-television-2010756/
+  https://www.cleanpng.com/png-realistic-style-ufo-spaceship-flying-saucer-ufo-ex-7928617/
+  https://www.cleanpng.com/png-light-luminous-efficacy-luminous-flux-ufo-ufo-beam-82671/
+  ]
+
+
+--------------------------------------default nonsense below-----------------------------------------------
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:

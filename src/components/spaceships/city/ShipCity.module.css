@@ -1,0 +1,12 @@
+.city {
+  min-height: 500px;
+  margin: 2rem 0 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow-x: hidden;
+}
+
+.city img {
+  width: 120px;
+}

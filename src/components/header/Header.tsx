@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom';
-import MotionDiv from '../UI/MotionDiv';
+import { motion } from 'framer-motion';
 import css from './Header.module.css';
 
 export default function Header() {
@@ -13,25 +13,23 @@ export default function Header() {
   }[pathname];
 
   return (
-    <MotionDiv
-      element='header'
+    <motion.header
       className={css.header}
-      variants={{
-        hidden: { x: -500, scaleY: 0, height: 0 },
-        visible: { x: 0, scaleY: text ? [0, 0, 0, 0.5, 1] : 0, height: text ? 'auto' : 0 }
+      initial={{ x: -500, scaleY: 0, height: 0 }}
+      animate={{
+        x: 0,
+        scaleY: text ? [0, 0, 0, 0.5, 1] : 0,
+        height: text ? 'auto' : 0,
       }}
       transition={{ type: 'easeIn', duration: 0.8 }}
     >
-      <MotionDiv
+      <motion.h1
         key={pathname}
-        element='h1'
-        variants={{
-          hidden: { scaleY: 0 },
-          visible: { scaleY: [0, 0, 0, 0.5, 1] },
-        }}
+        initial={{ scaleY: 0 }}
+        animate={{ scaleY: [0, 0, 0, 0.5, 1] }}
       >
         {text && text.toUpperCase()}
-      </MotionDiv>
-    </MotionDiv>
+      </motion.h1>
+    </motion.header>
   );
 }
