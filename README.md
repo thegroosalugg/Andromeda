@@ -11,6 +11,7 @@ spaceship pngs: [
   https://www.hiclipart.com/free-transparent-background-png-clipart-bvmdu
   https://www.cleanpng.com/png-george-jetson-judy-jetson-hanna-barbera-television-2010756/
   https://www.cleanpng.com/png-realistic-style-ufo-spaceship-flying-saucer-ufo-ex-7928617/
+  https://www.cleanpng.com/png-light-luminous-efficacy-luminous-flux-ufo-ufo-beam-82671/
   ]
 
 

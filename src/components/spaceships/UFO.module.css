@@ -1,5 +1,10 @@
 .ufo {
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  margin-top: 2rem;
+}
+
+.ufo img {
   width: 300px;
-  margin: auto;
-  display: block;
 }

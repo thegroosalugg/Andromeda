@@ -5,6 +5,7 @@ import Article from '../../components/containers/Article';
 import Section from '../../components/containers/Section';
 import SlideShow from '../../components/slideshow/SlideShow';
 import SpaceShipsList from '../../components/spaceships/list/SpaceShipsList';
+import UFO from '../../components/spaceships/UFO';
 
 export default function SpaceShipsPage() {
   return (
@@ -17,6 +18,7 @@ export default function SpaceShipsPage() {
       <SpaceShipsList className='ship-grid' spaceships={spaceships} />
       <Banner reverse>Going Somewhere?</Banner>
       <ShipCity />
+      <UFO />
     </>
   );
 }
