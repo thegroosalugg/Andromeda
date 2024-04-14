@@ -24,7 +24,6 @@ export default function List<T>({
       initial='hidden'
       whileInView='visible'
       viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
     >
       {items.map((item, index) => (
         <motion.li
