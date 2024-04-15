@@ -10,11 +10,10 @@ const Banner: React.FC<BannerProps> = ({ reverse, children }: BannerProps) => {
   const scaleX = reverse ? -1 : 1;
 
   return (
-    <div className={reverse ? css.reverse : ''}>
       <motion.div
         className={css.banner}
         initial={{ x: reverse ? '100%' : '-100%', scaleX }}
-        whileInView={{ x: 0 }}
+        whileInView={{ x: reverse? '35%' : 0 }}
         transition={{ type: 'easeIn', duration: 1 }}
         viewport={{ once: true }}
       >
@@ -27,7 +26,6 @@ const Banner: React.FC<BannerProps> = ({ reverse, children }: BannerProps) => {
           {children}
         </motion.span>
       </motion.div>
-    </div>
   );
 };
 
