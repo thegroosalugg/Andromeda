@@ -1,11 +1,13 @@
 import { useParams } from 'react-router-dom';
-import { spaceships } from '../../assets/spaceships/spaceships';
 import ShipDetails from '../../components/spaceships/ShipDetails';
 import Form from '../../components/form/Form';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/types';
 
 export default function ShipIDPage() {
   const { id } = useParams();
-  const spaceship = spaceships.find((spaceship) => spaceship.id === id);
+  const { ships } = useSelector((state: RootState) => state.ships)
+  const spaceship = ships.find((spaceship) => spaceship.id === id);
 
   console.log(spaceship);
 
