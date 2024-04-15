@@ -1,10 +1,12 @@
 import { Outlet, useLocation } from "react-router-dom";
 import Navigation from "../components/navigation/Navigation";
 import SpaceShipsList from "../components/spaceships/list/SpaceShipsList"; // outsource later
-import { spaceships } from "../assets/spaceships/spaceships" // outsource later
 import Header from "../components/header/Header";
+import { useSelector } from 'react-redux';
+import { RootState } from '../store/types';
 
 export default function RootLayout() {
+  const { ships } = useSelector((state: RootState) => state.ships)
   const location = useLocation();
 
   return (
@@ -14,7 +16,7 @@ export default function RootLayout() {
       <main>
         <Outlet />
       </main>
-      {location.pathname.startsWith('/ships') && <SpaceShipsList className='ship-rows' spaceships={spaceships} />}
+      {location.pathname.startsWith('/ships') && <SpaceShipsList className='ship-rows' spaceships={ships} />}
     </>
   );
 }

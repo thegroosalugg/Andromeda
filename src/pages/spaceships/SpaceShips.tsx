@@ -1,4 +1,3 @@
-import { spaceships } from '../../assets/spaceships/spaceships';
 import Banner from '../../components/banner/Banner';
 import ShipCity from '../../components/spaceships/city/ShipCity';
 import Article from '../../components/containers/Article';
@@ -6,16 +5,20 @@ import Section from '../../components/containers/Section';
 import SlideShow from '../../components/slideshow/SlideShow';
 import SpaceShipsList from '../../components/spaceships/list/SpaceShipsList';
 import UFO from '../../components/spaceships/UFO';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/types';
 
 export default function SpaceShipsPage() {
+  const { ships } = useSelector((state: RootState) => state.ships)
+
   return (
     <>
       <Section>
         <Article />
-        <SlideShow array={spaceships} />
+        <SlideShow array={ships} />
       </Section>
       <Banner>Check Out The Fleet</Banner>
-      <SpaceShipsList className='ship-grid' spaceships={spaceships} />
+      <SpaceShipsList className='ship-grid' spaceships={ships} />
       <Banner reverse>Going Somewhere?</Banner>
       <ShipCity />
       <UFO />
