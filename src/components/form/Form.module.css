@@ -1,13 +1,24 @@
 .form {
   background-color: rgba(47, 49, 54, 0.7);
   display: flex;
+  flex-wrap: wrap;
   place-content: center;
   max-width: fit-content;
   margin: 1rem auto;
+  padding: 0.5rem;
   border-radius: 10px;
 }
 
 .column {
   display: flex;
   flex-direction: column;
+}
+
+.form button {
+  color: rgb(235, 222, 222);
+  background-color: transparent;
+  text-shadow: 1px 2px 2px rgb(23, 23, 23);
+  border-radius: 10px;
+  padding: 0.5rem;
+  border: none;
 }

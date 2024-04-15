@@ -18,6 +18,7 @@ const DateInput: React.FC<DateProps> = ({ id, label }) => {
       selected={startDate}
       onChange={(date: Date) => setStartDate(date)}
       placeholderText={label}
+      required
     />
   );
 };

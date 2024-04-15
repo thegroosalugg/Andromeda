@@ -21,13 +21,13 @@ const ShipBanner: React.FC = () => {
 
   // % = slower entrance/exit. vw = greater delay on entrance, faster animation, faster exit.
   // must always use 100vw when animating from the right. Can use -100%/-100vw from the left.
-  const [enter, direction] = rand(1, 2) === 1 ? ['-100%', 1] : ['100vw', -1];
-  let exit: string | string[] = direction === 1 ? '100vw' : '-100%';
+  const [enter, direction]    = rand(1, 2) === 1 ? ['-100%', 1] : ['100vw', -1];
+  let exit: string | string[] =  direction === 1 ?   '100vw'    : '-100%';
   let ship = ships[rand(0, 3)];
 
-  const rotateX = rand(1, 5) === 1 ? [0, 0, 360, 0, 0] : 0;
-  const scale = rand(1, 4) === 1 ? [1, 1.5, 1, 0.7, 1] : 1;
-  const y = rand(1, 5) === 1 ? [0, 0, 20, 0, 0] : [0, 0, -20, 0, 0];
+  const rotateX = rand(1, 5) === 1 ? [0, 0, 360, 0, 0]    : 0;
+  const   scale = rand(1, 4) === 1 ? [1, 1.5, 1, 0.7, 1]  : 1;
+  const       y = rand(1, 4) === 1 ? [0, -10, 10, -10, 0] : 0;
 
   if (rand(1, 15) === 1) {
     ship = jetson;

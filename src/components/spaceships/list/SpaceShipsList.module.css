@@ -16,7 +16,7 @@
 
 /* for scrollX layout */
 .ship-rows {
-  margin: 2rem 0 0;
+  margin: 0;
   padding: 1rem;
   display: flex;
   gap: 1rem;
