@@ -1,17 +1,23 @@
 .form {
   background-color: rgba(47, 49, 54, 0.7);
   display: flex;
-  flex-wrap: wrap;
-  place-content: center;
+  flex-direction: column;
   max-width: fit-content;
   margin: 1rem auto;
   padding: 0.5rem;
   border-radius: 10px;
 }
 
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  place-content: center;
+}
+
 .column {
   display: flex;
   flex-direction: column;
+  place-items: center;
 }
 
 .form button {
