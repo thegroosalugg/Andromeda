@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 import { uiActions } from '../store/uiSlice';
 import { RootState } from '../store/types';
 import Modal from '../components/modal/Modal';
+import ShipCity from '../components/spaceships/city/ShipCity';
+import UFO from '../components/spaceships/UFO';
 
 export default function LandingPage() {
   const dispatch = useDispatch();
@@ -16,6 +18,8 @@ export default function LandingPage() {
     <>
       <button onClick={openModal}>CLICK</button>
       {modal && <Modal>HELLO</Modal>}
+      <ShipCity />
+      <UFO />
     </>
   );
 }
