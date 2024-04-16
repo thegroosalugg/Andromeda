@@ -1,15 +1,18 @@
 import { createPortal } from 'react-dom';
+import { useDispatch } from 'react-redux';
+import { uiActions } from '../../store/uiSlice';
 import css from './Modal.module.css';
 
-interface ModalProps {
-  children: React.ReactNode;
-  onClose: () => void;
-}
+const Modal = ({ children }: { children: React.ReactNode }) => {
+  const dispatch = useDispatch();
 
-const Modal: React.FC<ModalProps> = ({ children, onClose }) => {
+  function closeModal() {
+    dispatch(uiActions.toggle())
+  }
+
   return createPortal(
     <>
-      <div className={css.backdrop} onClick={onClose} />
+      <div className={css.backdrop} onClick={closeModal} />
       <dialog open className={css.modal}>
         {children}
       </dialog>

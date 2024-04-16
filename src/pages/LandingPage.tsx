@@ -1,19 +1,21 @@
-import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { uiActions } from '../store/uiSlice';
+import { RootState } from '../store/types';
 import Modal from '../components/modal/Modal';
 
 export default function LandingPage() {
-  const [state, setState] = useState<boolean>(false);
+  const dispatch = useDispatch();
+  const { modal } = useSelector((state: RootState) => state.ui);
 
-  function toggle() {
-    setState((prev) => !prev);
+  function openModal() {
+    dispatch(uiActions.toggle())
   }
 
   return (
     <>
-      <button onClick={toggle}>CLICK</button>
-     {state && <Modal onClose={toggle}>
-        HELLO
-      </Modal>}
+      <button onClick={openModal}>CLICK</button>
+      {modal && <Modal>HELLO</Modal>}
     </>
   );
 }
