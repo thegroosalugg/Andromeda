@@ -1,4 +1,5 @@
 import { useDispatch } from 'react-redux';
+import { AnimatePresence } from 'framer-motion';
 import { useSelector } from 'react-redux';
 import { uiActions } from '../store/uiSlice';
 import { RootState } from '../store/types';
@@ -11,15 +12,15 @@ export default function LandingPage() {
   const { modal } = useSelector((state: RootState) => state.ui);
 
   function openModal() {
-    dispatch(uiActions.toggle())
+    dispatch(uiActions.toggle());
   }
 
   return (
     <>
       <button onClick={openModal}>CLICK</button>
-      {modal && <Modal>HELLO</Modal>}
       <ShipCity />
       <UFO />
+      <AnimatePresence>{modal && <Modal>HELLO</Modal>}</AnimatePresence>
     </>
   );
 }
