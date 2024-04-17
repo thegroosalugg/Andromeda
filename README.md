@@ -2,9 +2,9 @@
 
 My current project demonstrating React & TypeScript
 
-Spaceships jpgs by Freepik.com
-Ufo vector svg by https://www.svgrepo.com/svg/171812/ufo
-spaceship pngs: [
+Spaceships jpgs = Freepik.com
+UFO Vector  svg = https://www.svgrepo.com/svg/171812/ufo
+Spaceships pngs = [
   https://www.cleanpng.com/png-spacecraft-spaceshiptwo-rocket-clip-art-spaceship-117116/
   https://www.cleanpng.com/png-galaga-spaceship-s80-spaceship-free-spacecraft-des-616643/
   https://www.cleanpng.com/png-spacecraft-clip-art-spaceship-png-file-117118/
@@ -13,6 +13,7 @@ spaceship pngs: [
   https://www.cleanpng.com/png-realistic-style-ufo-spaceship-flying-saucer-ufo-ex-7928617/
   https://www.cleanpng.com/png-light-luminous-efficacy-luminous-flux-ufo-ufo-beam-82671/
   ]
+Grass png = https://www.rawpixel.com/image/6266879/png-plant-public-domain
 
 
 --------------------------------------default nonsense below-----------------------------------------------
