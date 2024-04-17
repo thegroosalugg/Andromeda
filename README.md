@@ -13,6 +13,11 @@ Spaceships pngs = [
   https://www.cleanpng.com/png-realistic-style-ufo-spaceship-flying-saucer-ufo-ex-7928617/
   https://www.cleanpng.com/png-light-luminous-efficacy-luminous-flux-ufo-ufo-beam-82671/
   ]
+Monster pngs = [
+  https://silhouettesfree.com/download-silhouette/monster-silhouette-2/
+  https://silhouettesfree.com/download-silhouette/zombie-silhouette-21/
+]
+
 Grass png = https://www.rawpixel.com/image/6266879/png-plant-public-domain
 
 
