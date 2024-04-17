@@ -28,7 +28,7 @@ export default function Header() {
         initial={{ scaleY: 0 }}
         animate={{ scaleY: [0, 0, 0, 0.5, 1] }}
       >
-        {text && text.toUpperCase()}
+        {text && text}
       </motion.h1>
     </motion.header>
   );
