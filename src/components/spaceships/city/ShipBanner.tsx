@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import ship1 from '../../../assets/banner/ship-01.png';
 import ship2 from '../../../assets/banner/ship-02.png';
@@ -6,18 +5,11 @@ import ship3 from '../../../assets/banner/ship-03.png';
 import ship4 from '../../../assets/banner/ship-04.png';
 import jetson from '../../../assets/banner/jetson.png';
 import rand from '../../../util/rand';
+import useRepeatAnimation from '../../../hooks/useRepeatAnimation';
 
 const ShipBanner: React.FC = () => {
   const ships = [ship1, ship2, ship3, ship4];
-  const [duration, setDuration] = useState(rand(4, 7));
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setDuration(rand(4, 7));
-    }, duration * 1000);
-
-    return () => clearInterval(interval);
-  }, [duration]);
+  const duration = useRepeatAnimation(4, 7);
 
   // % = slower entrance/exit. vw = greater delay on entrance, faster animation, faster exit.
   // must always use 100vw when animating from the right. Can use -100%/-100vw from the left.

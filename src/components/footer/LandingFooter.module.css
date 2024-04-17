@@ -8,6 +8,7 @@
 .monster {
   width: 125px;
   margin: 0 auto -300px;
+  z-index: -1;
 }
 
 .grass {
