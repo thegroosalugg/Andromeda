@@ -29,23 +29,21 @@
   width: 100%;
 }
 
-.ship-item h6, .ship-item p {
-  line-height: 1.5;
-  height: auto;
-  overflow: visible;
+.ship-item h6 {
   max-height: 1em;
-}
-
-.ship-item p {
-  font-size: x-small;
+  padding: 0.5rem;
+  margin: 1rem;
 }
 
 .desc {
-  padding: 1rem;
+  padding: 0 1rem;
+  height: 2em;
+  font-size: x-small;
 }
 
 .price {
   display: flex;
+  font-size: x-small;
   font-weight: bold;
   color: #ca7d1f;
   justify-content: end;
@@ -56,4 +54,8 @@
   display: flex;
   gap: 0.2em;
   padding: 0.5rem 0.2rem;
+}
+
+.price span {
+  margin: auto 0;
 }

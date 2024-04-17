@@ -39,7 +39,7 @@ const ShipItem: React.FC<ShipItemProps> = (spaceship) => {
             ['fab', 'cc-apple-pay'],
           ]}
         />
-        <p>${price}</p>
+        <span>${price}</span>
       </div>
     </motion.article>
   );
