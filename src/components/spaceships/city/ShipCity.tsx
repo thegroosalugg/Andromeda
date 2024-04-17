@@ -8,6 +8,7 @@ export default function ShipCity() {
       <ShipBanner />
       <ShipBanner />
       <ShipBanner />
+      <ShipBanner />
     </div>
   );
 }
