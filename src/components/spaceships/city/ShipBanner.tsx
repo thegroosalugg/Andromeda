@@ -9,7 +9,10 @@ import useRepeatAnimation from '../../../hooks/useRepeatAnimation';
 
 const ShipBanner: React.FC = () => {
   const ships = [ship1, ship2, ship3, ship4];
-  const duration = useRepeatAnimation(4, 7);
+  const duration = useRepeatAnimation({
+    initialState: rand(4, 7),
+    stateUpdateFn: () => rand(4, 7),
+  });
 
   // % = slower entrance/exit. vw = greater delay on entrance, faster animation, faster exit.
   // must always use 100vw when animating from the right. Can use -100%/-100vw from the left.

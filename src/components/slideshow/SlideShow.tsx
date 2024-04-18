@@ -1,25 +1,21 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import css from './SlideShow.module.css';
 import SpaceShip from '../../models/SpaceShip';
 import SlidesInfoCard from '../spaceships/cards/SlidesInfoCard';
+import useRepeatAnimation from '../../hooks/useRepeatAnimation';
 
 interface ShowProps {
   array: SpaceShip[];
 }
 
 const SlideShow: React.FC<ShowProps> = ({ array }) => {
-  const [index, setIndex] = useState(0);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prevIndex) => (prevIndex + 1) % array.length);
-    }, 8000);
-
-    return () => clearInterval(interval);
-  }, [array.length]);
+  const index = useRepeatAnimation({
+    initialState: 0,
+    stateUpdateFn: (prevIndex) => (prevIndex + 1) % array.length,
+    fixedInterval: 8,
+  });
 
   const handleClick = () => {
     window.scrollTo(0, 125); // Scroll to the top of the page before navigating

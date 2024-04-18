@@ -1,18 +1,24 @@
 import { useEffect, useState } from 'react';
-import rand from '../util/rand';
 
-const useRepeatAnimation = (min: number, max: number) => {
-  const [duration, setDuration] = useState(rand(min, max));
+interface HookProps {
+  initialState: number;
+  stateUpdateFn: (prevState: number) => number;
+  fixedInterval?: number;
+}
+
+const useRepeatAnimation = ({ initialState, stateUpdateFn, fixedInterval }: HookProps) => {
+  const [animateValue, setAnimateValue] = useState(initialState);
+  const duration = fixedInterval ? fixedInterval : animateValue;
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setDuration(rand(min, max));
+      setAnimateValue(stateUpdateFn);
     }, duration * 1000);
 
     return () => clearInterval(interval);
-  }, [duration, min, max]);
+  }, [animateValue, stateUpdateFn, duration]);
 
-  return duration;
+  return animateValue;
 };
 
 export default useRepeatAnimation;
