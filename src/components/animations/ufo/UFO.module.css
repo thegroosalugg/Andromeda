@@ -3,7 +3,7 @@
   flex-direction: column;
   place-items: center;
   margin-top: 2rem;
-  margin-bottom: -200px;
+  margin-bottom: -300px;
   position: relative;
   z-index: 2;
 }

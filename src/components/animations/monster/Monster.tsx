@@ -10,7 +10,7 @@ export default function Monster() {
   const x = `${rand(-70, 70)}vw`;
   const y = Array(rand(1, 5)).fill(rand(0, 5) * 10); // creates an array with 1-5 elements, with values of either 0/10/20/30/40/50
   const scaleX = rand(1, 2) === 1 ? 1 : -1;
-  const skewY = rand(1, 4) === 1 ? [0, 0, rand(-45, 45), 0, 0] : 0
+  const skewY = rand(1, 4) === 1 ? [0, 0, -25, 25, 0, 0] : 0
 
   return (
     <motion.img
