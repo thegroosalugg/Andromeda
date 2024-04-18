@@ -1,12 +1,12 @@
 import css from './LandingFooter.module.css';
 import UFO from '../animations/ufo/UFO';
-import Monster from '../animations/monster/Monster';
+import MonsterValley from '../animations/monster/MonsterValley';
 
 export default function LandingFooter() {
   return (
     <footer className={css.footer}>
       <UFO />
-      <Monster />
+      <MonsterValley />
       <div className={css.grass} />
     </footer>
   );

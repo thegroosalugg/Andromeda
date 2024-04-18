@@ -4,6 +4,8 @@
   place-items: center;
   margin-top: 2rem;
   margin-bottom: -200px;
+  position: relative;
+  z-index: 2;
 }
 
 .ufo img {
