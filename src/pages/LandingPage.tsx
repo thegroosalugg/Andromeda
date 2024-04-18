@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { uiActions } from '../store/uiSlice';
 import { RootState } from '../store/types';
 import Modal from '../components/modal/Modal';
-import ShipCity from '../components/spaceships/city/ShipCity';
+import ShipCity from '../components/animations/ship/ShipCity';
 
 export default function LandingPage() {
   const dispatch = useDispatch();

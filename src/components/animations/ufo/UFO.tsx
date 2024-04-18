@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
-import ufo from '../../assets/banner/UFO.png';
-import beam from '../../assets/banner/beam.png';
+import ufo from '../../../assets/ufo/UFO.png'
+import beam from '../../../assets/ufo/beam.png';
 import css from './UFO.module.css';
 
 export default function UFO() {

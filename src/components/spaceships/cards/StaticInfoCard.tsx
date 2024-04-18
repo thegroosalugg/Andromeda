@@ -2,7 +2,7 @@ import SpaceShip from '../../../models/SpaceShip';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { motion } from 'framer-motion';
 import css from './StaticInfoCard.module.css';
-import IconRow from '../../UI/IconRow';
+import IconRow from '../../fontawesome/IconRow';
 
 const StaticInfoCard: React.FC<SpaceShip> = (spaceship) => {
   const { maker, model, info, fuel, speed, year, price } = spaceship;
