@@ -1,6 +1,6 @@
 import css from './LandingFooter.module.css';
-import UFO from '../animations/ufo/UFO';
-import MonsterValley from '../animations/monster/MonsterValley';
+import UFO from '../ufo/UFO';
+import MonsterValley from '../monster/MonsterValley';
 
 export default function LandingFooter() {
   return (

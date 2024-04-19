@@ -1,8 +1,8 @@
 import Banner from '../../components/banner/Banner';
-import Article from '../../components/containers/Article';
+import Article from '../../pageContent/spaceships/article/Article';
 import Section from '../../components/containers/Section';
-import SlideShow from '../../components/slideshow/SlideShow';
-import SpaceShipsList from '../../components/spaceships/list/SpaceShipsList';
+import SlideShow from '../../pageContent/spaceships/slideshow/SlideShow';
+import SpaceShipsList from '../../pageContent/spaceships/list/SpaceShipsList';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/types';
 

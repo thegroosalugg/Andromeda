@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import ShipDetails from '../../components/spaceships/ShipDetails';
+import ShipDetails from '../../pageContent/spaceships/details/ShipDetails';
 import Form from '../../components/form/Form';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/types';

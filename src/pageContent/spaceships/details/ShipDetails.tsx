@@ -1,7 +1,7 @@
 import css from './ShipDetails.module.css';
-import SpaceShip from '../../models/SpaceShip';
+import SpaceShip from '../../../models/SpaceShip';
 import { AnimatePresence, motion } from 'framer-motion';
-import StaticInfoCard from './cards/StaticInfoCard';
+import StaticInfoCard from './StaticInfoCard';
 
 const ShipDetails: React.FC<SpaceShip> = (spaceship) => {
   const { id, image, model } = spaceship;

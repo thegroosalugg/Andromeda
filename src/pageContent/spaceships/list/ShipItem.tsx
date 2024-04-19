@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import SpaceShip from '../../../models/SpaceShip';
 import { motion } from 'framer-motion';
 import css from './ShipItem.module.css';
-import IconRow from '../../fontawesome/IconRow';
+import IconRow from '../../../components/fontawesome/IconRow';
 
 interface ShipItemProps extends SpaceShip {
   className: string;

@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { RootState } from '../../store/types';
-import SpaceShipsList from '../../components/spaceships/list/SpaceShipsList';
-import LandingFooter from './LandingFooter';
+import LandingFooter from '../../pageContent/landingPage/footer/LandingFooter';
+import SpaceShipsList from '../../pageContent/spaceships/list/SpaceShipsList';
 
 export default function Footer() {
   const { ships } = useSelector((state: RootState) => state.ships);

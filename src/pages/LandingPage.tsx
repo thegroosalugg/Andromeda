@@ -1,4 +1,4 @@
-import ShipCity from '../components/animations/ship/ShipCity';
+import ShipCity from '../pageContent/landingPage/ship/ShipCity';
 
 export default function LandingPage() {
   return <ShipCity />;
