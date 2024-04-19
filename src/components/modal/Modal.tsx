@@ -1,7 +1,7 @@
 import { createPortal } from 'react-dom';
 import { motion } from 'framer-motion';
 import { useDispatch } from 'react-redux';
-import { uiActions } from '../../store/uiSlice';
+import { uiActions } from '@/store/uiSlice';
 import css from './Modal.module.css';
 
 const Modal = ({ children }: { children: React.ReactNode }) => {

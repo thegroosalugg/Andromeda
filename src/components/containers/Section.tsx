@@ -1,7 +1,7 @@
 import { useScroll, useTransform, motion } from 'framer-motion';
 import css from './Section.module.css';
-import rangeArray from '../../util/rangeArray';
-import useScreen from '../../hooks/useScreen';
+import rangeArray from '@/util/rangeArray';
+import useScreen from '@/hooks/useScreen';
 
 export default function Section({ children }: { children: React.ReactNode }) {
   const { scrollY } = useScroll();

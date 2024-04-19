@@ -1,4 +1,4 @@
-import ShipCity from '../pageContent/landingPage/ship/ShipCity';
+import ShipCity from '@/pageContent/landingPage/ship/ShipCity';
 
 export default function LandingPage() {
   return <ShipCity />;

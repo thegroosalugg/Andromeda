@@ -1,5 +1,5 @@
-import SpaceShip from '../../../models/SpaceShip';
-import { FontAwesomeBar } from '../../../components/fontawesome/FontAwesomeBar';
+import SpaceShip from '@/models/SpaceShip';
+import { FontAwesomeBar } from '@/components/fontawesome/FontAwesomeBar';
 import { motion } from 'framer-motion';
 import css from './SlidesInfoCard.module.css';
 

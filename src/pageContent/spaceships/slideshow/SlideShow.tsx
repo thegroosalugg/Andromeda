@@ -1,9 +1,9 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import css from './SlideShow.module.css';
-import SpaceShip from '../../../models/SpaceShip';
+import SpaceShip from '@/models/SpaceShip';
 import SlidesInfoCard from './SlidesInfoCard';
-import useRepeatAnimation from '../../../hooks/useRepeatAnimation';
+import useRepeatAnimation from '@/hooks/useRepeatAnimation';
 
 interface ShowProps {
   array: SpaceShip[];

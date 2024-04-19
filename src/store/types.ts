@@ -1,4 +1,4 @@
-import SpaceShip from '../models/SpaceShip';
+import SpaceShip from '@/models/SpaceShip';
 
 interface ShipsState {
   ships: SpaceShip[];

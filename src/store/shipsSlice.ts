@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { spaceships } from '../data/spaceships';
+import { spaceships } from '@/data/spaceships';
 
 const shipData = () => {
   const localData = localStorage.getItem('spaceships');

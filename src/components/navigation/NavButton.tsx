@@ -1,7 +1,7 @@
 import { NavLink, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import css from './Navigation.module.css';
-import rand from '../../util/rand';
+import rand from '@/util/rand';
 
 export default function NavButton({ path, name }: { path: string; name: string }) {
   const { pathname } = useLocation();

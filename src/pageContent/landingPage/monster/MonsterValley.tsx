@@ -2,9 +2,9 @@ import { motion } from 'framer-motion';
 import { useDispatch } from 'react-redux';
 import { AnimatePresence } from 'framer-motion';
 import { useSelector } from 'react-redux';
-import { uiActions } from '../../../store/uiSlice';
-import { RootState } from '../../../store/types';
-import Modal from '../../../components/modal/Modal';
+import { uiActions } from '@/store/uiSlice';
+import { RootState } from '@/store/types';
+import Modal from '@/components/modal/Modal';
 import Monster from './Monster';
 import css from './MonsterValley.module.css';
 

@@ -1,5 +1,5 @@
-import SpaceShip from '../../../models/SpaceShip';
-import List from '../../../components/list/List';
+import SpaceShip from '@/models/SpaceShip';
+import List from '@/components/list/List';
 import ShipItem from './ShipItem';
 import css from './SpaceShipsList.module.css';
 

@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
-import useRepeatAnimation from '../../../hooks/useRepeatAnimation';
-import rand from '../../../util/rand';
-import monster1 from '../../../assets/monsters/monster1.png';
-import monster2 from '../../../assets/monsters/monster2.png';
+import useRepeatAnimation from '@/hooks/useRepeatAnimation';
+import rand from '@/util/rand';
+import monster1 from '@/assets/monsters/monster1.png';
+import monster2 from '@/assets/monsters/monster2.png';
 
 export default function Monster() {
   const duration = useRepeatAnimation({ initialState: 5, stateUpdateFn: () => rand(4, 7) });

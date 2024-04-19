@@ -1,10 +1,10 @@
-import Banner from '../../components/banner/Banner';
-import Article from '../../pageContent/spaceships/article/Article';
-import Section from '../../components/containers/Section';
-import SlideShow from '../../pageContent/spaceships/slideshow/SlideShow';
-import SpaceShipsList from '../../pageContent/spaceships/list/SpaceShipsList';
+import Banner from '@/components/banner/Banner';
+import Article from '@/pageContent/spaceships/article/Article';
+import Section from '@/components/containers/Section';
+import SlideShow from '@/pageContent/spaceships/slideshow/SlideShow';
+import SpaceShipsList from '@/pageContent/spaceships/list/SpaceShipsList';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../store/types';
+import { RootState } from '@/store/types';
 
 export default function SpaceShipsPage() {
   const { ships } = useSelector((state: RootState) => state.ships)

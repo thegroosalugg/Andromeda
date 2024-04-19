@@ -1,5 +1,5 @@
 import css from './ShipDetails.module.css';
-import SpaceShip from '../../../models/SpaceShip';
+import SpaceShip from '@/models/SpaceShip';
 import { AnimatePresence, motion } from 'framer-motion';
 import StaticInfoCard from './StaticInfoCard';
 

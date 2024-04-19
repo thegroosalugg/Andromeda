@@ -1,11 +1,11 @@
 import { motion } from 'framer-motion';
-import ship1 from '../../../assets/flyingships/ship-01.png';
-import ship2 from '../../../assets/flyingships/ship-02.png';
-import ship3 from '../../../assets/flyingships/ship-03.png';
-import ship4 from '../../../assets/flyingships/ship-04.png';
-import jetson from '../../../assets/flyingships/jetson.png';
-import rand from '../../../util/rand';
-import useRepeatAnimation from '../../../hooks/useRepeatAnimation';
+import ship1 from '@/assets/flyingships/ship-01.png';
+import ship2 from '@/assets/flyingships/ship-02.png';
+import ship3 from '@/assets/flyingships/ship-03.png';
+import ship4 from '@/assets/flyingships/ship-04.png';
+import jetson from '@/assets/flyingships/jetson.png';
+import rand from '@/util/rand';
+import useRepeatAnimation from '@/hooks/useRepeatAnimation';
 
 const FlyingShip: React.FC = () => {
   const ships = [ship1, ship2, ship3, ship4];
