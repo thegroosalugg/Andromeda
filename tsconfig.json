@@ -9,7 +9,7 @@
     "esModuleInterop": true, // added by faker
 
     /* Bundler mode */
-    "moduleResolution": "Node", // changed from 'bunder' to remove faker warnings
+    "moduleResolution": "Node", // changed from 'bundler' to remove faker warnings
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -20,7 +20,13 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+
+    "baseUrl": "src", // Set the base directory for resolving absolute paths
+    "paths": {
+      "@/*": ["*"]
+    },
+    
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
