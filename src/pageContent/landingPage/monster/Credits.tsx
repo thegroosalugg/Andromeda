@@ -25,12 +25,12 @@ export default function Credits() {
   };
 
   return (
-    <List
-      items={images}
-      className={css.credits}
-      keyFn={({ link }) => link}
-    >
-      {({ img, link }) => <img src={img} alt='logo' onClick={() => openLink(link)} />}
+    <List items={images} className={css.credits} keyFn={({ link }) => link}>
+      {({ img, link }) => (
+        <div className={css.frame}>
+          <img src={img} alt='logo' onClick={() => openLink(link)} />
+        </div>
+      )}
     </List>
   );
 }
