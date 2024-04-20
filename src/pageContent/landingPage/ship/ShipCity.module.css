@@ -1,0 +1,10 @@
+.city {
+  min-height: 625px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.city img {
+  width: 120px;
+}
