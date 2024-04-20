@@ -7,7 +7,7 @@ import jetson from '@/assets/flyingships/jetson.png';
 import rand from '@/util/rand';
 import useRepeatAnimation from '@/hooks/useRepeatAnimation';
 
-const FlyingShip: React.FC = () => {
+const FlyingShip = () => {
   const ships = [ship1, ship2, ship3, ship4];
   const duration = useRepeatAnimation({
     initialState: rand(4, 7),

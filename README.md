@@ -10,7 +10,7 @@ Spaceships pngs = [
   https://www.cleanpng.com/png-spacecraft-spaceshiptwo-rocket-clip-art-spaceship-117116/
   https://www.cleanpng.com/png-galaga-spaceship-s80-spaceship-free-spacecraft-des-616643/
   https://www.cleanpng.com/png-spacecraft-clip-art-spaceship-png-file-117118/
-  https://www.hiclipart.com/free-transparent-background-png-clipart-bvmdu
+  https://www.pngwing.com/en/free-png-punzq
   https://www.cleanpng.com/png-george-jetson-judy-jetson-hanna-barbera-television-2010756/
   https://www.cleanpng.com/png-realistic-style-ufo-spaceship-flying-saucer-ufo-ex-7928617/
   https://www.cleanpng.com/png-light-luminous-efficacy-luminous-flux-ufo-ufo-beam-82671/
