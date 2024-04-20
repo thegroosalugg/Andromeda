@@ -3,18 +3,28 @@ import Card from './Card';
 import css from './Cards.module.css';
 
 export default function Cards() {
-  return (
+  const CardPair = () => (
     <motion.div
-      className={css.cards}
-      variants={{ hidden: { opacity: 0}, visible: {opacity: 1}}}
+      className={css.pair}
       initial='hidden'
       whileInView='visible'
-      transition={{ duration: 1, staggerChildren: 0.3}}
+      transition={{ staggerChildren: 0.3 }}
       viewport={{ once: true }}
     >
       <Card />
       <Card reverse />
-      <Card />
+    </motion.div>
+  );
+
+  return (
+    <motion.div
+      className={css.cards}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+    >
+      <CardPair />
+      <CardPair />
     </motion.div>
   );
 }
