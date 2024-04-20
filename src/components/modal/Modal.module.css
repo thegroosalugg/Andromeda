@@ -1,7 +1,10 @@
 .modal {
   z-index: 10;
   position: fixed;
-  top: 30%;
+  top: 10%;
+  bottom: 10%;
+  max-height: 100vh;
+  overflow: auto;
   border: none;
   background: transparent;
 }
