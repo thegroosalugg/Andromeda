@@ -1,18 +1,20 @@
-import SpaceShip from '@/models/SpaceShip';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store/types';
 import List from '@/components/list/List';
 import ShipItem from './ShipItem';
 import css from './SpaceShipsList.module.css';
 
 interface ListProps {
-  spaceships: SpaceShip[];
   className: string;
 }
 
-export default function SpaceShipsList({ spaceships, className }: ListProps) {
+export default function SpaceShipsList({ className }: ListProps) {
+  const { ships } = useSelector((state: RootState) => state.ships)
+
   return (
     <List
       className={css[className]}
-      items={spaceships}
+      items={ships}
       keyFn={({ id }) => id}
     >
       {(item) => <ShipItem className={className} {...item} />}
