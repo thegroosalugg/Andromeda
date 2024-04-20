@@ -1,0 +1,9 @@
+.cards {
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  margin: 1rem auto 0;
+  gap: 1rem;
+  background: black;
+  padding: 2rem 0;
+}
