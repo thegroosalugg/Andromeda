@@ -2,13 +2,8 @@
   z-index: 10;
   position: fixed;
   top: 30%;
-  width: 30rem;
-  max-width: 80%;
-  display: flex;
-  justify-content: center;
   border: none;
-  border-radius: 10px;
-  background: url('/wallpaper2.jpg') center/cover no-repeat;
+  background: transparent;
 }
 
 .backdrop {
