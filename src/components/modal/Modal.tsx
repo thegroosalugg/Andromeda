@@ -18,7 +18,12 @@ const Modal = ({ children }: { children: React.ReactNode }) => {
     <AnimatePresence>
       {modal && (
         <>
-          <div className={css.backdrop} onClick={closeModal} />
+          <motion.div
+            className={css.backdrop}
+            onClick={closeModal}
+            whileHover={{ backgroundColor: 'rgba(10, 10, 10, 0.55)' }}
+            transition={{ duration: 0.5, type: 'ease' }}
+          />
           <motion.dialog
             open
             className={css.modal}
