@@ -8,18 +8,6 @@
   border-radius: 10px;
 }
 
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  place-content: center;
-}
-
-.column {
-  display: flex;
-  flex-direction: column;
-  place-items: center;
-}
-
 .form button {
   color: rgb(235, 222, 222);
   background-color: transparent;
