@@ -5,7 +5,7 @@
   justify-content: center;
   margin: 2rem 0 0;
   gap: 0;
-  background: black;
+  background: url('/planet.jpg') center/cover no-repeat;
   padding: 2rem 0;
 }
 
