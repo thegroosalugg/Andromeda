@@ -18,7 +18,7 @@ export default function FontMotion({ text, icon }: IconProps) {
     // No default styling. Select parent class or descendant <p> element then add your own style
     <motion.span
       variants={{
-        hidden: { opacity: 0, translateY: 100, scale: 0 },
+        hidden: { opacity: 0, translateY: '-100px', scale: 0 },
         visible: { opacity: 1, translateY: 0, scale: 1 },
       }}
       transition={{ type: 'linear', duration: 0.5 }}

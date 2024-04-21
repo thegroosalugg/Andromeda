@@ -10,9 +10,9 @@ const StaticInfoCard: React.FC<SpaceShip> = (spaceship) => {
   return (
     <motion.div
       className={css['ship-info']}
-      initial={{ y: 200, opacity: 0 }}
+      initial={{ y: '-100px', opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 1 }}
+      transition={{ duration: 1, delay: 0.5 }}
     >
       <h4>
         <FontAwesomeIcon icon={['fas', 'globe']} /> {maker}
