@@ -9,7 +9,7 @@ export default function Form() {
   return (
     <motion.form
       className={css.form}
-      transition={{ staggerChildren: 0.2 }}
+      transition={{ staggerChildren: 0.1 }}
       initial='hidden'
       whileInView='visible'
       viewport={{ once: true }}
