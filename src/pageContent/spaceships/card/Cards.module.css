@@ -7,17 +7,18 @@
   gap: 0;
   background: linear-gradient(
     to bottom,
-    hsla(90, 4%, 71%, 0),
-    hsla(45, 5%, 71%, 0.1),
-    hsla(45, 5%, 71%, 0.2),
-    hsla(43, 3%, 45%, 0.3),
-    hsla(43, 3%, 45%, 0.4),
-    hsla(43, 3%, 45%, 0.5),
-    hsla(20, 2%, 28%, 0.6),
-    hsla(223, 7%, 20%, 0.7),
-    hsla(223, 7%, 20%, 0.7),
-    hsla(223, 7%, 20%, 0.7)
+    rgba(25, 57, 94, 0.6),
+    rgba(25, 57, 94, 0.9)
+  ),
+  repeating-linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 0.7),
+    rgba(255, 255, 255, 0.7) 2px,
+    rgba(200, 200, 200, 0.9) 2px,
+    rgba(200, 200, 200, 0.9) 4px
   );
+
+
   padding: 2rem 0;
 }
 
