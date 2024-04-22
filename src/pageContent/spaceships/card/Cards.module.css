@@ -5,7 +5,19 @@
   justify-content: center;
   margin: 2rem 0 0;
   gap: 0;
-  background: url('/planet.jpg') center/cover no-repeat;
+  background: linear-gradient(
+    to bottom,
+    hsla(90, 4%, 71%, 0),
+    hsla(45, 5%, 71%, 0.1),
+    hsla(45, 5%, 71%, 0.2),
+    hsla(43, 3%, 45%, 0.3),
+    hsla(43, 3%, 45%, 0.4),
+    hsla(43, 3%, 45%, 0.5),
+    hsla(20, 2%, 28%, 0.6),
+    hsla(223, 7%, 20%, 0.7),
+    hsla(223, 7%, 20%, 0.7),
+    hsla(223, 7%, 20%, 0.7)
+  );
   padding: 2rem 0;
 }
 

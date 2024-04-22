@@ -14,6 +14,7 @@ main {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  max-height: 100%; /* ensures main doesn't outgrow the body creating overflow */
   overflow: hidden;
 }
 

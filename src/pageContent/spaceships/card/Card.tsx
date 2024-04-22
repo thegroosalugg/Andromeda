@@ -10,7 +10,6 @@ export default function Card({ reverse }: { reverse?: boolean }) {
       variants={{ hidden: { x, opacity: 0 }, visible: { x: 0, opacity: 1 } }}
       transition={{ duration: 1, type: 'tween' }}
     >
-      <p>TEXT</p>
     </motion.div>
   );
 }
