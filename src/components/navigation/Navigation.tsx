@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 
 export default function Navigation() {
   const { pathname } = useLocation();
-  const background = pathname === '/ships' ? ['#224f7300', '#224f7362', '#224e7380'] : '#224f7300';
+  const background = pathname === '/ships' ? '#232728f9' : '#7d7d7d00';
 
   return (
     <>
