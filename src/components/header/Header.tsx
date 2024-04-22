@@ -4,7 +4,7 @@ import css from './Header.module.css';
 
 export default function Header() {
   const { pathname } = useLocation();
-  const background = pathname === '/ships' ? 'linear-gradient(to bottom, rgba(34, 78, 115, 0.5), rgba(30, 72, 109, 0.6))' : ''
+  const background = pathname === '/ships' ? ['#224f7300', '#224f7362', '#224e7380'] : '#224f7300'
 
   const text = {
            '/': 'Welcome to Andromeda',
@@ -21,9 +21,9 @@ export default function Header() {
         x: 0,
         scaleY: text ? [0, 0, 0, 0.5, 1] : 0,
         height: text ? 'auto' : 0,
+        background
       }}
-      transition={{ type: 'easeIn', duration: 0.8 }}
-      style={{ background }}
+      transition={{ ease: 'easeInOut', duration: 0.8 }}
 
     >
       <motion.h1

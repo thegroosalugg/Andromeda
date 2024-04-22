@@ -6,7 +6,7 @@ import { useLocation } from 'react-router-dom';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const { pathname } = useLocation();
-  const background = pathname === '/ships' ? 'linear-gradient(to bottom, rgba(30, 72, 109, 0.6), rgba(25, 57, 94, 0.9))' : ''
+  const background = pathname === '/ships' ?  ['#224f7300', '#224e7380'] : '#224f7300';
 
   return (
     <>
@@ -16,10 +16,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <motion.main
           key={pathname}
           initial={{ opacity: 0, y: '-100px' }}
-          animate={{ opacity: 1, y: 0  }}
+          animate={{ opacity: 1, y: 0, background }}
           exit={{ opacity: 0, y: '100px' }}
           transition={{ type: 'spring', ease: 'linear', stiffness: 100, duration: 0.5 }}
-          style={{ background }}
           >
           {children}
         </motion.main>
