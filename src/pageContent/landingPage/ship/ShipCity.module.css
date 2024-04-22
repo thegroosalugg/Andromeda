@@ -1,8 +1,9 @@
 .city {
-  min-height: 625px;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
 }
 
 .city img {

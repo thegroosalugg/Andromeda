@@ -3,14 +3,11 @@ import css from './Input.module.css';
 
 interface InputProps {
   label: string;
-     id: string;
+  id: string;
   type?: string;
-      x: number;
-      y: number;
-  delay: number;
 }
 
-const Input: React.FC<InputProps> = ({ id, label, type = 'text', x, y, delay, ...props }) => {
+const Input: React.FC<InputProps> = ({ id, label, type = 'text', ...props }) => {
   return (
     <motion.input
       className={css.input}
@@ -20,10 +17,8 @@ const Input: React.FC<InputProps> = ({ id, label, type = 'text', x, y, delay, ..
       placeholder={label}
       {...props}
       required
-      initial={{ opacity: 0, y, x }}
-      whileInView={{ opacity: 1, y: 0, x: 0 }}
-      viewport={{ once: true }}
-      transition={{ type: 'easeIn', duration: 0.5, delay }}
+      variants={{ hidden: { opacity: 0, scale: 0.5 }, visible: { opacity: 1, scale: 1 } }}
+      transition={{ type: 'easeIn', duration: 0.5 }}
     />
   );
 };

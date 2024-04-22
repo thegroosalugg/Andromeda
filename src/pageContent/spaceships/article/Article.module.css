@@ -3,7 +3,7 @@
   flex-direction: column;
   flex: 1;
   max-height: 450px;
-  max-width: 960px;
+  width: 400px;
   margin: 1rem auto;
   text-align: center;
   text-shadow: 2px 4px 4px rgb(21, 21, 21);

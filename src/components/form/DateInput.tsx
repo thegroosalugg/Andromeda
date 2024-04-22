@@ -6,21 +6,16 @@ import css from './Input.module.css';
 
 interface DateProps {
   label: string;
-     id: string;
-      x: number;
-      y: number;
-  delay: number;
+  id: string;
 }
 
-const DateInput: React.FC<DateProps> = ({ id, label, x, y, delay }) => {
+const DateInput: React.FC<DateProps> = ({ id, label }) => {
   const [startDate, setStartDate] = useState<Date | null>(null);
 
   return (
     <motion.div
-      initial={{ opacity: 0, y, x }}
-      whileInView={{ opacity: 1, y: 0, x: 0 }}
-      viewport={{ once: true }}
-      transition={{ type: 'easeIn', duration: 0.5, delay }}
+      variants={{ hidden: { opacity: 0, scale: 0.5 }, visible: { opacity: 1, scale: 1 } }}
+      transition={{ type: 'easeIn', duration: 0.5 }}
     >
       <DatePicker
         className={css.input}

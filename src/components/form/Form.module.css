@@ -1,23 +1,27 @@
+.overlay {
+  background: linear-gradient(
+    to bottom,
+    hsla(90, 4%, 71%, 0),
+    hsla(45, 5%, 71%, 0.1),
+    hsla(43, 3%, 45%, 0.3),
+    hsla(20, 2%, 28%, 0.6),
+    hsla(223, 7%, 20%, 0.7)
+  );
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .form {
-  background-color: rgba(47, 49, 54, 0.7);
-  display: flex;
-  flex-direction: column;
-  max-width: fit-content;
-  margin: 1rem auto;
-  padding: 0.5rem;
-  border-radius: 10px;
-}
-
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  place-content: center;
-}
-
-.column {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 0.2rem;
   place-items: center;
+  width: 40rem;
+  max-width: 100vw;
+  margin: 1rem auto auto;
 }
 
 .form button {

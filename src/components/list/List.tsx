@@ -22,7 +22,7 @@ export default function List<T>({ items, keyFn, className, children }: ListProps
             visible: { opacity: 1, scale: 1 },
             hidden: { opacity: 0, scale: 1.2 },
           }} // delay * index adds stagger, other transitions can be configured by parent
-          transition={{ type: 'tween', duration: 0.5, delay: index * 0.2 }}
+          transition={{ type: 'tween', duration: 0.5, delay: index * 0.1 }}
         >
           {children(item)}
         </motion.li>
