@@ -1,11 +1,10 @@
 import css from './Navigation.module.css';
 import NavButton from './NavButton';
 import { motion } from 'framer-motion';
-import { useLocation } from 'react-router-dom';
+import useUIConfig from '@/hooks/useUIConfig';
 
 export default function Navigation() {
-  const { pathname } = useLocation();
-  const background = pathname === '/ships' ? '#232728f9' : '#7d7d7d00';
+  const { background } = useUIConfig();
 
   return (
     <>

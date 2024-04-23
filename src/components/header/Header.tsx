@@ -1,17 +1,9 @@
-import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import css from './Header.module.css';
+import useUIConfig from '@/hooks/useUIConfig';
 
 export default function Header() {
-  const { pathname } = useLocation();
-  const background = pathname === '/ships' ?  '#232728f9' : '#7d7d7d00'
-
-  const text = {
-           '/': 'Welcome to Andromeda',
-      '/store': 'Fashion out of this World',
-      '/ships': 'Beyond Earth: Unveiling our Spaceships',
-    '/explore': 'Explore the Galaxy',
-  }[pathname];
+  const { pathname, background, text } = useUIConfig();
 
   return (
     <motion.header
@@ -21,16 +13,12 @@ export default function Header() {
         x: 0,
         scaleY: text ? [0, 0, 0, 0.5, 1] : 0,
         height: text ? 'auto' : 0,
-        background, borderBottom: '2px solid white'
+        background,
+        borderBottom: '2px solid white',
       }}
       transition={{ ease: 'easeInOut', duration: 0.8 }}
-
     >
-      <motion.h1
-        key={pathname}
-        initial={{ scaleY: 0 }}
-        animate={{ scaleY: [0, 0, 0, 0.5, 1] }}
-      >
+      <motion.h1 key={pathname} initial={{ scaleY: 0 }} animate={{ scaleY: [0, 0, 0, 0.5, 1] }}>
         {text && text}
       </motion.h1>
     </motion.header>

@@ -2,11 +2,10 @@ import Navigation from '@/components/navigation/Navigation';
 import Header from '@/components/header/Header';
 import Footer from '@/components/footer/Footer';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useLocation } from 'react-router-dom';
+import useUIConfig from '@/hooks/useUIConfig';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const { pathname } = useLocation();
-  const background = pathname === '/ships' ?  '#232728f9' : '#7d7d7d00';
+  const { pathname, background } = useUIConfig();
 
   return (
     <>
