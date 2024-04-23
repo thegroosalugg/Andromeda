@@ -10,13 +10,16 @@
 }
 
 .input::placeholder {
-  color: rgba(255, 255, 255, 0.803);
+  color: #ffffffcd;
   text-shadow: 1px 2px 2px rgb(23, 23, 23);
   font-size: smaller;
 }
 
 /* override browser autofill colors */
-input:-webkit-autofill, input:-webkit-autofill:focus {
-  -webkit-box-shadow: 0 0 0 50px rgba(23, 23, 23, 0.64) inset;
-  -webkit-text-fill-color: rgb(235, 222, 222);
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: #ffffffcd;
 }
