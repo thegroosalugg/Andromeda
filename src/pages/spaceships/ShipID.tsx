@@ -10,8 +10,6 @@ export default function ShipIDPage() {
   const { ships } = useSelector((state: RootState) => state.ships);
   const spaceship = ships.find((spaceship) => spaceship.id === id);
 
-  console.log(spaceship);
-
   if (!spaceship) {
     return <ErrorPage />
   }

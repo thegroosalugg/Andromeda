@@ -20,6 +20,7 @@ const DateInput: React.FC<DateProps> = ({ id, label }) => {
       <DatePicker
         className={css.input}
         id={id}
+        name={id}
         selected={startDate}
         onChange={(date: Date) => setStartDate(date)}
         placeholderText={label}
