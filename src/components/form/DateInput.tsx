@@ -12,6 +12,10 @@ interface DateProps {
 const DateInput: React.FC<DateProps> = ({ id, label }) => {
   const [startDate, setStartDate] = useState<Date | null>(null);
 
+  const today = new Date();
+  const maxDate = new Date(today);
+  maxDate.setDate(maxDate.getDate() + 30);
+
   return (
     <motion.div
       variants={{ hidden: { opacity: 0, scale: 0.5 }, visible: { opacity: 1, scale: 1 } }}
@@ -24,6 +28,9 @@ const DateInput: React.FC<DateProps> = ({ id, label }) => {
         selected={startDate}
         onChange={(date: Date) => setStartDate(date)}
         placeholderText={label}
+        dateFormat="dd MMMM yyyy"
+        minDate={new Date()}
+        maxDate={maxDate}
         required
       />
     </motion.div>
