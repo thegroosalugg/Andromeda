@@ -7,9 +7,6 @@ export default function NavButton({ path, name }: { path: string; name: string }
   const { pathname } = useLocation();
   const isActive = pathname === path || (pathname.startsWith(path) && path !== '/');
 
-  path === '/' && console.clear(); // clear the console before first component renders
-  // console.log('    [PATH]:', path, '\n', '\n', '[CURRENT]:', pathname, '\n', '\n', '[ACTIVE?]:', isActive);
-
   const rotate = rand(1, 4) === 1 ? 720 : 0
   const  scale = rand(1, 4) === 1 ? [1, 1.5, 2, 1.5, 1.2] : 1.2
 
@@ -45,6 +42,3 @@ export default function NavButton({ path, name }: { path: string; name: string }
   );
 }
 
-// the jury is still out whether AnimatePresense is needed here. We are not using any exit animations when the UFO
-// leaves the DOM. However removing it also removes the delay between the NavLinks moving back to their place.
-// For now, it stays until more of the app is developed, This component cost me a whole day due to warnings and off key behaviour

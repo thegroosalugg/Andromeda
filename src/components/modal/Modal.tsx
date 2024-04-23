@@ -1,22 +1,22 @@
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useDispatch } from 'react-redux';
-import { uiActions } from '@/store/uiSlice';
+import { modalActions } from '@/store/modalSlice';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/types';
 import css from './Modal.module.css';
 
 const Modal = ({ children }: { children: React.ReactNode }) => {
   const dispatch = useDispatch();
-  const { modal } = useSelector((state: RootState) => state.ui);
+  const { isOpen } = useSelector((state: RootState) => state.modal);
 
   function closeModal() {
-    dispatch(uiActions.toggle());
+    dispatch(modalActions.toggle());
   }
 
   return createPortal(
     <AnimatePresence>
-      {modal && (
+      {isOpen && (
         <>
           <motion.div
             className={css.backdrop}

@@ -14,7 +14,7 @@ const ShipItem: React.FC<ShipItemProps> = (spaceship) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    window.scrollTo(0, 125); // Scroll to the top of the page before navigating
+    window.scrollTo(0, 0); // Scroll to the top of the page before navigating
     navigate(`/ships/${id}`);
   };
 
