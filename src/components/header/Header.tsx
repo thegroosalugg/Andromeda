@@ -21,7 +21,7 @@ export default function Header() {
         x: 0,
         scaleY: text ? [0, 0, 0, 0.5, 1] : 0,
         height: text ? 'auto' : 0,
-        background
+        background, borderBottom: '2px solid white'
       }}
       transition={{ ease: 'easeInOut', duration: 0.8 }}
 
