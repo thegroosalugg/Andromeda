@@ -7,25 +7,25 @@ interface BannerProps {
 }
 
 const Banner: React.FC<BannerProps> = ({ reverse, children }: BannerProps) => {
-  const scaleX = reverse ? -1 : 1;
+  const [scaleX, xInitial, xInView] = reverse ? [-1, '99vw', '35%'] : [1, '-99%', 0];
 
   return (
-      <motion.div
-        className={css.banner}
-        initial={{ x: reverse ? '100%' : '-100%', scaleX }}
-        whileInView={{ x: reverse? '35%' : 0 }}
-        transition={{ type: 'easeIn', duration: 1 }}
+    <motion.div
+      className={css.banner}
+      initial={{ x: xInitial, scaleX, opacity: 0 }}
+      whileInView={{ x: xInView, opacity: 1 }}
+      transition={{ type: 'easeIn', duration: 1 }}
+      viewport={{ once: true }}
+    >
+      <motion.span
+        initial={{ scaleX, y: '-100%', opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ type: 'easeIn', duration: 1, delay: 0.5 }}
         viewport={{ once: true }}
       >
-        <motion.span
-          initial={{ scaleX, y: '-100%', opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          transition={{ type: 'easeIn', duration: 1, delay: 0.5 }}
-          viewport={{ once: true }}
-        >
-          {children}
-        </motion.span>
-      </motion.div>
+        {children}
+      </motion.span>
+    </motion.div>
   );
 };
 
