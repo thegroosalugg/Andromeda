@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import Input from './Input';
 import css from './Form.module.css';
 import DateInput from './DateInput';
+import validateForm from '@/util/validateForm';
 // import { useNavigate } from 'react-router-dom';
 
 export default function Form() {
@@ -12,7 +13,10 @@ export default function Form() {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const data = Object.fromEntries(formData);
-    console.log('find me in /components/form', data);
+    console.clear(); console.log('find me in /components/form', data);
+
+    const errors = validateForm(data)
+    console.log(errors)
     // navigate('/ships');
   }
 
@@ -32,7 +36,7 @@ export default function Form() {
         <Input label='PHONE' id='tel' type='tel' />
         <DateInput label='FROM' id='datefrom' />
         <DateInput label='TILL' id='datetill' />
-        <Input label='PLANET' id='planet' type='select' />
+        <Input label='DESTINATION' id='dest' />
         <motion.button variants={variants} whileHover={{ scale: 1.2, color: '#FFA500' }}>
           PROCEED
         </motion.button>
