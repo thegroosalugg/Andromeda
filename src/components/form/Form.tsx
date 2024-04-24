@@ -1,24 +1,32 @@
 import { motion } from 'framer-motion';
+import { useState } from 'react';
 import Input from './Input';
 import css from './Form.module.css';
 import DateInput from './DateInput';
-import { useFormValidation } from '@/hooks/useFormValidation';
+import { validateForm } from '@/util/validateForm';
 // import { useNavigate } from 'react-router-dom';
 
 export default function Form() {
   // const navigate = useNavigate();
   const variants = { hidden: { opacity: 0, scale: 0.5 }, visible: { opacity: 1, scale: 1 } };
-  const { errors, validate } = useFormValidation();
+  const [errors, setErrors] = useState({});
 
   function submitHandler(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const data = Object.fromEntries(formData);
-    validate(data);
-    // navigate('/ships');
-  }
+    const newErrors = validateForm(data);
+    setErrors(newErrors);
 
-  console.clear(); console.log('find me in /components/form', errors); // log & clear
+    console.clear();
+    if (Object.keys(newErrors).length !== 0) {
+      console.log('HAS ERRORS!', newErrors);
+      return;
+    } else {
+      console.log('VALIDATED', data);
+      // navigate('/ships');
+    }
+  }
 
   return (
     <div className={css.overlay}>
