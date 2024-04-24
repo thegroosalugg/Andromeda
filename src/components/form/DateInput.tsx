@@ -4,12 +4,16 @@ import { motion } from 'framer-motion';
 import 'react-datepicker/dist/react-datepicker.css';
 import css from './Input.module.css';
 
-interface DateProps {
-  label: string;
-  id: string;
+interface Errors {
+  [key: string]: string;
 }
 
-const DateInput: React.FC<DateProps> = ({ id, label }) => {
+interface DateProps {
+  id: string;
+  errors: Errors;
+}
+
+const DateInput: React.FC<DateProps> = ({ id, errors }) => {
   const [startDate, setStartDate] = useState<Date | null>(null);
 
   const today = new Date();
@@ -28,7 +32,7 @@ const DateInput: React.FC<DateProps> = ({ id, label }) => {
         name={id}
         selected={startDate}
         onChange={(date: Date) => setStartDate(date)}
-        placeholderText={label}
+        placeholderText={errors[id] ? errors[id] : id.toUpperCase()}
         dateFormat="dd MMMM yyyy"
         minDate={new Date()}
         maxDate={maxDate}
