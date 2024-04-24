@@ -2,8 +2,7 @@ import { motion } from 'framer-motion';
 import Input from './Input';
 import css from './Form.module.css';
 import DateInput from './DateInput';
-import validateForm from '@/util/validateForm';
-import { useState } from 'react';
+import { useFormValidation } from '@/hooks/useFormValidation';
 // import { useNavigate } from 'react-router-dom';
 
 const labels = {
@@ -19,17 +18,16 @@ const labels = {
 export default function Form() {
   // const navigate = useNavigate();
   const variants = { hidden: { opacity: 0, scale: 0.5 }, visible: { opacity: 1, scale: 1 } };
-  const [errors, setErrors] = useState({});
+  const { errors, validate } = useFormValidation();
 
   function submitHandler(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const data = Object.fromEntries(formData);
 
-    const formErrors = validateForm(data);
-    setErrors(formErrors);
+    validate(data);
 
-    console.clear(); console.log('find me in /components/form', data, errors);
+    console.clear(); console.log('find me in /components/form', data, errors); // log & clear
     // navigate('/ships');
   }
 

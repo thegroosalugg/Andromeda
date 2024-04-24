@@ -17,6 +17,8 @@ const Input: React.FC<InputProps> = ({ id, label, type = 'text', ...props }) => 
       placeholder={label}
       {...props}
       variants={{ hidden: { opacity: 0, scale: 0.5 }, visible: { opacity: 1, scale: 1 } }}
+      whileFocus={{ scale: 1.1 }}
+      whileHover={{ scale: 1.1 }}
       transition={{ type: 'easeIn', duration: 0.5 }}
     />
   );
