@@ -31,7 +31,6 @@ const DateInput: React.FC<DateProps> = ({ id, label }) => {
         dateFormat="dd MMMM yyyy"
         minDate={new Date()}
         maxDate={maxDate}
-        required
       />
     </motion.div>
   );

@@ -32,11 +32,11 @@ export default function Form() {
       >
         <Input label='FIRST NAME' id='name' />
         <Input label='LAST NAME' id='surname' />
-        <Input label='EMAIL' id='email' type='email' />
-        <Input label='PHONE' id='tel' type='tel' />
-        <DateInput label='FROM' id='datefrom' />
-        <DateInput label='TILL' id='datetill' />
-        <Input label='DESTINATION' id='dest' />
+        <Input label='EMAIL' id='email' />
+        <Input label='PHONE' id='phone' />
+        <DateInput label='FROM' id='from' />
+        <DateInput label='TILL' id='till' />
+        <Input label='DESTINATION' id='destination' />
         <motion.button variants={variants} whileHover={{ scale: 1.2, color: '#FFA500' }}>
           PROCEED
         </motion.button>
