@@ -20,6 +20,13 @@ export default function Form() {
 
     console.clear();
     if (Object.keys(newErrors).length !== 0) {
+       // removes user input incorrect. Placeholder displayes error
+      Object.keys(newErrors).forEach((key) => {
+        const input = document.getElementById(key) as HTMLInputElement | null;
+        if (input) {
+          input.value = '';
+        }
+      });
       console.log('HAS ERRORS!', newErrors);
       return;
     } else {

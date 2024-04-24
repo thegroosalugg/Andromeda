@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import { motion } from 'framer-motion';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -19,6 +19,12 @@ const DateInput: React.FC<DateProps> = ({ id, errors }) => {
   const today = new Date();
   const maxDate = new Date(today);
   maxDate.setDate(maxDate.getDate() + 30);
+
+  useEffect(() => {
+    if (errors[id]) {
+      setStartDate(null); // removes dates if user input is wrong. Placeholder displayes error
+    }
+  }, [errors, id]);
 
   return (
     <motion.div
