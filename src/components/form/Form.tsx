@@ -3,20 +3,33 @@ import Input from './Input';
 import css from './Form.module.css';
 import DateInput from './DateInput';
 import validateForm from '@/util/validateForm';
+import { useState } from 'react';
 // import { useNavigate } from 'react-router-dom';
+
+const labels = {
+  name: 'FIRST NAME',
+  surname: 'LAST NAME',
+  email: 'EMAIL',
+  phone: 'PHONE',
+  from: 'FROM',
+  till: 'TILL',
+  destination: 'DESTINATION',
+};
 
 export default function Form() {
   // const navigate = useNavigate();
   const variants = { hidden: { opacity: 0, scale: 0.5 }, visible: { opacity: 1, scale: 1 } };
+  const [errors, setErrors] = useState({});
 
   function submitHandler(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const data = Object.fromEntries(formData);
-    console.clear(); console.log('find me in /components/form', data);
 
-    const errors = validateForm(data)
-    console.log(errors)
+    const formErrors = validateForm(data);
+    setErrors(formErrors);
+
+    console.clear(); console.log('find me in /components/form', data, errors);
     // navigate('/ships');
   }
 
@@ -30,13 +43,13 @@ export default function Form() {
         whileInView='visible'
         viewport={{ once: true }}
       >
-        <Input label='FIRST NAME' id='name' />
-        <Input label='LAST NAME' id='surname' />
-        <Input label='EMAIL' id='email' />
-        <Input label='PHONE' id='phone' />
-        <DateInput label='FROM' id='from' />
-        <DateInput label='TILL' id='till' />
-        <Input label='DESTINATION' id='destination' />
+        <Input label={errors.name || labels.name} id='name' />
+        <Input label={errors.surname || labels.surname} id='surname' />
+        <Input label={errors.email || labels.email} id='email' />
+        <Input label={errors.phone || labels.phone} id='phone' />
+        <DateInput label={errors.from || labels.from} id='from' />
+        <DateInput label={errors.till || labels.till} id='till' />
+        <Input label={errors.destination || labels.destination} id='destination' />
         <motion.button variants={variants} whileHover={{ scale: 1.2, color: '#FFA500' }}>
           PROCEED
         </motion.button>

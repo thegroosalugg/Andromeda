@@ -16,11 +16,11 @@ const validateForm = (data: FormData) => {
   Object.keys(data).forEach((key) => {
     const field = key as keyof FormData;
     if (!data[field]?.trim()) {
-      errors[field] = `${[key]} empty`;
+      errors[field] = `${[key]} empty`.toUpperCase();
     } else if (key === 'email' && !emailExp.test(data[key]!)) {
-      errors[key] = 'Invalid email';
+      errors[key] = 'EMAIL INVALID';
     } else if (key === 'phone' && !telExp.test(data[key]!)) {
-      errors[key] = 'Invalid phone';
+      errors[key] = 'PHONE INVALID';
     }
   });
 
