@@ -21,7 +21,7 @@ export function validateForm(data: FormData) {
 
     } else if (field === 'from' || field === 'till') {
       if (data.from && data.till && data.from > data.till) {
-        errors.till = errors.from = 'No TimeTravelling';
+        errors.till = errors.from = 'NO TIME TRAVELLING';
       }
 
     } else if (!data[field]?.trim()) {

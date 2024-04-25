@@ -18,6 +18,10 @@ const DateInput: React.FC<DateProps> = ({ id, errors, onUpdate }) => {
   const [startDate, setStartDate] = useState<Date | null>(null);
   console.log('Rendering', id)
 
+  const delay =  0.1 * (Object.keys(errors).indexOf(id) + 1);
+  const backgroundColor = errors[id] ? '#e137195d' : '#f0f8ff21'
+  const x = errors[id] ? [0, 10, 0, 10, 0] : 0
+
   const today = new Date();
   const maxDate = new Date(today);
   maxDate.setDate(maxDate.getDate() + 30);
@@ -36,14 +40,17 @@ const DateInput: React.FC<DateProps> = ({ id, errors, onUpdate }) => {
 
   return (
     <motion.div
+      className={css.datepicker}
       variants={{ hidden: { opacity: 0, scale: 0.5 }, visible: { opacity: 1, scale: 1 } }}
+      animate={{
+        backgroundColor,
+        x, transition: { type: 'easeIn', delay }
+      }}
       transition={{ type: 'easeIn', duration: 0.5 }}
       whileHover={{ scale: 1.1 }}
     >
       <DatePicker
         className={css.input}
-        id={id}
-        name={id}
         selected={startDate}
         onChange={changeHandler}
         placeholderText={errors[id] ? errors[id] : id.toUpperCase()}

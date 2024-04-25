@@ -1,12 +1,16 @@
 .input {
   color: rgb(235, 222, 222);
-  background-color: rgba(240, 248, 255, 0.13);
+  background-color: transparent;
   text-shadow: 1px 2px 2px rgb(23, 23, 23);
   border-radius: 10px;
   height: 1.5rem;
   text-align: center;
   border: none;
   outline: none;
+}
+
+.datepicker {
+  border-radius: 10px;
 }
 
 .input::placeholder {
