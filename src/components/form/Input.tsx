@@ -14,12 +14,12 @@ interface InputProps {
 
 const Input: React.FC<InputProps> = ({ id, errors, onUpdate, ...props }) => {
   const [value, setValue] = useState('');
+  const [x, setX] = useState([0]);
 
-  const delay =  0.1 * (Object.keys(errors).indexOf(id) + 1);
-  const backgroundColor = errors[id] ? '#e137195d' : '#f0f8ff21'
-  const x = errors[id] ? [0, 10, 0, 10, 0] : 0
+  const delay = 0.1 * (Object.keys(errors).indexOf(id) + 1);
+  const backgroundColor = errors[id] ? '#e137195d' : '#f0f8ff21';
 
-  console.log('Rendering', id)
+  console.log('Rendering', id);
 
   function changeHandler(event: React.ChangeEvent<HTMLInputElement>) {
     const userInput = event.currentTarget.value;
@@ -31,13 +31,16 @@ const Input: React.FC<InputProps> = ({ id, errors, onUpdate, ...props }) => {
     if (errors[id]) {
       setValue('');
       onUpdate(id, '');
+      setX([0 + Math.random() / 1000, 10, 0, 10, 0]); // ensures input shakes on every invalid submit, even when errors haven't changed
+    } else {
+      setX([0]);
     }
   }, [errors, id, onUpdate]);
 
   return (
     <motion.input
       // autocomplete data does not re-trigger onChange state updates, so some animations won't play until user types. So off it goes instead.
-      autoComplete="go-away" // removed name/id as I control all data. This prop also needs to be set to disable autocomplete
+      autoComplete='go-away' // removed name/id as I control all data. This prop also needs to be set to disable autocomplete
       className={css.input}
       placeholder={errors[id] ? errors[id] : id.toUpperCase()}
       onChange={changeHandler}

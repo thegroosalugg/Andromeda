@@ -16,11 +16,12 @@ interface DateProps {
 
 const DateInput: React.FC<DateProps> = ({ id, errors, onUpdate }) => {
   const [startDate, setStartDate] = useState<Date | null>(null);
+  const [x, setX] = useState([0]);
+
   console.log('Rendering', id)
 
   const delay =  0.1 * (Object.keys(errors).indexOf(id) + 1);
   const backgroundColor = errors[id] ? '#e137195d' : '#f0f8ff21'
-  const x = errors[id] ? [0, 10, 0, 10, 0] : 0
 
   const today = new Date();
   const maxDate = new Date(today);
@@ -30,6 +31,9 @@ const DateInput: React.FC<DateProps> = ({ id, errors, onUpdate }) => {
     if (errors[id]) {
       setStartDate(null); // removes dates if user input is wrong. Placeholder displayes error
       onUpdate(id, null);
+      setX([0 + Math.random() / 1000, 10, 0, 10, 0]);
+    } else {
+      setX([0]);
     }
   }, [errors, id, onUpdate]);
 
