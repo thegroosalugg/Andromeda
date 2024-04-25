@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import css from './Input.module.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 
 interface Errors {
   [key: string]: string;
@@ -46,4 +46,5 @@ const Input: React.FC<InputProps> = ({ id, errors, onUpdate, ...props }) => {
   );
 };
 
-export default Input;
+const MemoizedInput = memo(Input);
+export default MemoizedInput;

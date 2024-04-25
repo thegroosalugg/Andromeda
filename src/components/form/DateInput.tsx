@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 import DatePicker from 'react-datepicker';
 import { motion } from 'framer-motion';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -16,6 +16,7 @@ interface DateProps {
 
 const DateInput: React.FC<DateProps> = ({ id, errors, onUpdate }) => {
   const [startDate, setStartDate] = useState<Date | null>(null);
+  console.log('Rendering', id)
 
   const today = new Date();
   const maxDate = new Date(today);
@@ -54,4 +55,5 @@ const DateInput: React.FC<DateProps> = ({ id, errors, onUpdate }) => {
   );
 };
 
-export default DateInput;
+const MemoizedDateInput = memo(DateInput);
+export default MemoizedDateInput;
