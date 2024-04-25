@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import Input from './Input';
 import css from './Form.module.css';
 import DateInput from './DateInput';
@@ -10,23 +10,27 @@ export default function Form() {
   // const navigate = useNavigate();
   const variants = { hidden: { opacity: 0, scale: 0.5 }, visible: { opacity: 1, scale: 1 } };
   const [errors, setErrors] = useState({});
+  const [data, setData] = useState({
+    name: '',
+    surname: '',
+    email: '',
+    phone: '',
+    from: '',
+    till: '',
+    destination: '',
+  });
+
+  const updateHandler = useCallback((id: string, value: string | Date | null) => {
+    setData((prevData) => ({ ...prevData, [id]: value }));
+  }, []);
 
   function submitHandler(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    const data = Object.fromEntries(formData);
     const newErrors = validateForm(data);
     setErrors(newErrors);
 
     console.clear();
     if (Object.keys(newErrors).length !== 0) {
-       // removes user input incorrect. Placeholder displayes error
-      Object.keys(newErrors).forEach((key) => {
-        const input = document.getElementById(key) as HTMLInputElement | null;
-        if (input) {
-          input.value = '';
-        }
-      });
       console.log('HAS ERRORS!', newErrors);
       return;
     } else {
@@ -45,13 +49,13 @@ export default function Form() {
         whileInView='visible'
         viewport={{ once: true }}
       >
-        <Input id='name' errors={errors} />
-        <Input id='surname' errors={errors} />
-        <Input id='email' errors={errors} />
-        <Input id='phone' errors={errors} />
-        <DateInput id='from' errors={errors} />
-        <DateInput id='till' errors={errors} />
-        <Input id='destination' errors={errors} />
+        <Input id='name' errors={errors} onUpdate={updateHandler} />
+        <Input id='surname' errors={errors} onUpdate={updateHandler} />
+        <Input id='email' errors={errors} onUpdate={updateHandler} />
+        <Input id='phone' errors={errors} onUpdate={updateHandler} />
+        <DateInput id='from' errors={errors} onUpdate={updateHandler} />
+        <DateInput id='till' errors={errors} onUpdate={updateHandler} />
+        <Input id='destination' errors={errors} onUpdate={updateHandler} />
         <motion.button variants={variants} whileHover={{ scale: 1.2, color: '#FFA500' }}>
           PROCEED
         </motion.button>

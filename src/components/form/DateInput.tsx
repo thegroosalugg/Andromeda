@@ -11,9 +11,10 @@ interface Errors {
 interface DateProps {
   id: string;
   errors: Errors;
+  onUpdate: (id: string, value: Date | null) => void;
 }
 
-const DateInput: React.FC<DateProps> = ({ id, errors }) => {
+const DateInput: React.FC<DateProps> = ({ id, errors, onUpdate }) => {
   const [startDate, setStartDate] = useState<Date | null>(null);
 
   const today = new Date();
@@ -23,8 +24,14 @@ const DateInput: React.FC<DateProps> = ({ id, errors }) => {
   useEffect(() => {
     if (errors[id]) {
       setStartDate(null); // removes dates if user input is wrong. Placeholder displayes error
+      onUpdate(id, null);
     }
-  }, [errors, id]);
+  }, [errors, id, onUpdate]);
+
+  function changeHandler(date: Date | null) {
+    setStartDate(date);
+    onUpdate(id, date);
+  }
 
   return (
     <motion.div
@@ -37,9 +44,9 @@ const DateInput: React.FC<DateProps> = ({ id, errors }) => {
         id={id}
         name={id}
         selected={startDate}
-        onChange={(date: Date) => setStartDate(date)}
+        onChange={changeHandler}
         placeholderText={errors[id] ? errors[id] : id.toUpperCase()}
-        dateFormat="dd MMMM yyyy"
+        dateFormat='dd MMMM yyyy'
         minDate={new Date()}
         maxDate={maxDate}
       />
