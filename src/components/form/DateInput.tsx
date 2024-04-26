@@ -1,8 +1,9 @@
-import { useState, useEffect, memo } from 'react';
+import { memo } from 'react';
 import DatePicker from 'react-datepicker';
 import { motion } from 'framer-motion';
 import 'react-datepicker/dist/react-datepicker.css';
 import css from './Input.module.css';
+import useErrorAnimation from '@/hooks/useErrorAnimation';
 
 interface Errors {
   [key: string]: string;
@@ -11,34 +12,20 @@ interface Errors {
 interface DateProps {
   id: string;
   errors: Errors;
-  onUpdate: (id: string, value: Date | null) => void;
+  onUpdate: (id: string, value: string | Date | null) => void
 }
 
 const DateInput: React.FC<DateProps> = ({ id, errors, onUpdate }) => {
-  const [startDate, setStartDate] = useState<Date | null>(null);
-  const [x, setX] = useState([0]);
 
-  console.log('Rendering', id)
-
-  const delay =  0.1 * (Object.keys(errors).indexOf(id) + 1);
-  const backgroundColor = errors[id] ? '#e137195d' : '#f0f8ff21'
+  console.log('Rendering', id);
+  const { value, setValue, x, delay, backgroundColor } = useErrorAnimation(id, errors, onUpdate, null);
 
   const today = new Date();
   const maxDate = new Date(today);
   maxDate.setDate(maxDate.getDate() + 30);
 
-  useEffect(() => {
-    if (errors[id]) {
-      setStartDate(null); // removes dates if user input is wrong. Placeholder displayes error
-      onUpdate(id, null);
-      setX([0 + Math.random() / 1000, 10, 0, 10, 0]);
-    } else {
-      setX([0]);
-    }
-  }, [errors, id, onUpdate]);
-
   function changeHandler(date: Date | null) {
-    setStartDate(date);
+    setValue(date);
     onUpdate(id, date);
   }
 
@@ -48,14 +35,15 @@ const DateInput: React.FC<DateProps> = ({ id, errors, onUpdate }) => {
       variants={{ hidden: { opacity: 0, scale: 0.5 }, visible: { opacity: 1, scale: 1 } }}
       animate={{
         backgroundColor,
-        x, transition: { type: 'easeIn', delay }
+        x,
+        transition: { type: 'easeIn', delay },
       }}
       transition={{ type: 'easeIn', duration: 0.5 }}
       whileHover={{ scale: 1.1 }}
     >
       <DatePicker
         className={css.input}
-        selected={startDate}
+        selected={value as Date | null}
         onChange={changeHandler}
         placeholderText={errors[id] ? errors[id] : id.toUpperCase()}
         dateFormat='dd MMMM yyyy'

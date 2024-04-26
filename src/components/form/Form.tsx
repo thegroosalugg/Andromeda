@@ -10,13 +10,13 @@ export default function Form() {
   // const navigate = useNavigate();
   const variants = { hidden: { opacity: 0, scale: 0.5 }, visible: { opacity: 1, scale: 1 } };
   const [errors, setErrors] = useState({});
-  const [data, setData] = useState({
-    name: '',
-    surname: '',
-    email: '',
-    phone: '',
-    from: '',
-    till: '',
+  const [  data,   setData] = useState({
+    name:        '',
+    surname:     '',
+    email:       '',
+    phone:       '',
+    from:        '',
+    till:        '',
     destination: '',
   });
 
@@ -49,13 +49,13 @@ export default function Form() {
         whileInView='visible'
         viewport={{ once: true }}
       >
-        <Input id='name' errors={errors} onUpdate={updateHandler} />
-        <Input id='surname' errors={errors} onUpdate={updateHandler} />
-        <Input id='email' errors={errors} onUpdate={updateHandler} />
-        <Input id='phone' errors={errors} onUpdate={updateHandler} />
-        <DateInput id='from' errors={errors} onUpdate={updateHandler} />
-        <DateInput id='till' errors={errors} onUpdate={updateHandler} />
-        <Input id='destination' errors={errors} onUpdate={updateHandler} />
+        <Input     errors={errors} onUpdate={updateHandler} id='name' />
+        <Input     errors={errors} onUpdate={updateHandler} id='surname' />
+        <Input     errors={errors} onUpdate={updateHandler} id='email' />
+        <Input     errors={errors} onUpdate={updateHandler} id='phone' />
+        <DateInput errors={errors} onUpdate={updateHandler} id='from' />
+        <DateInput errors={errors} onUpdate={updateHandler} id='till' />
+        <Input     errors={errors} onUpdate={updateHandler} id='destination' />
         <motion.button variants={variants} whileHover={{ scale: 1.2, color: '#FFA500' }}>
           PROCEED
         </motion.button>

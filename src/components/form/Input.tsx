@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import css from './Input.module.css';
-import { useState, useEffect, memo } from 'react';
+import { memo } from 'react';
+import useErrorAnimation from '@/hooks/useErrorAnimation';
 
 interface Errors {
   [key: string]: string;
@@ -9,15 +10,11 @@ interface Errors {
 interface InputProps {
   id: string;
   errors: Errors;
-  onUpdate: (id: string, value: string) => void;
+  onUpdate: (id: string, value: string ) => void;
 }
 
 const Input: React.FC<InputProps> = ({ id, errors, onUpdate, ...props }) => {
-  const [value, setValue] = useState('');
-  const [x, setX] = useState([0]);
-
-  const delay = 0.1 * (Object.keys(errors).indexOf(id) + 1);
-  const backgroundColor = errors[id] ? '#e137195d' : '#f0f8ff21';
+  const { value, setValue, x, delay, backgroundColor } = useErrorAnimation(id, errors, onUpdate, '');
 
   console.log('Rendering', id);
 
@@ -27,16 +24,6 @@ const Input: React.FC<InputProps> = ({ id, errors, onUpdate, ...props }) => {
     onUpdate(id, userInput);
   }
 
-  useEffect(() => {
-    if (errors[id]) {
-      setValue('');
-      onUpdate(id, '');
-      setX([0 + Math.random() / 1000, 10, 0, 10, 0]); // ensures input shakes on every invalid submit, even when errors haven't changed
-    } else {
-      setX([0]);
-    }
-  }, [errors, id, onUpdate]);
-
   return (
     <motion.input
       // autocomplete data does not re-trigger onChange state updates, so some animations won't play until user types. So off it goes instead.
@@ -45,12 +32,13 @@ const Input: React.FC<InputProps> = ({ id, errors, onUpdate, ...props }) => {
       placeholder={errors[id] ? errors[id] : id.toUpperCase()}
       onChange={changeHandler}
       onInput={changeHandler}
-      value={value}
+      value={value as string | undefined}
       {...props}
       variants={{ hidden: { opacity: 0, scale: 0.5 }, visible: { opacity: 1, scale: 1 } }}
       animate={{
         backgroundColor,
-        x, transition: { type: 'easeIn', delay }
+        x,
+        transition: { type: 'easeIn', delay },
       }}
       whileFocus={{ scale: 1.1 }}
       whileHover={{ scale: 1.1 }}
