@@ -14,7 +14,7 @@ type Booking = Date | string;
 interface DateProps {
   id: string;
   errors: Errors;
-  onUpdate: (id: string, value: string | Date | null) => void;
+  onUpdate: (id: string, value: Booking ) => void;
   from: Booking
   till: Booking;
 }
@@ -32,16 +32,16 @@ function dateRange(startDate: Booking, endDate: Booking) {
 }
 
 const DateInput: React.FC<DateProps> = ({ id, errors, onUpdate, from, till }) => {
-  const { value, setValue, x, delay, backgroundColor } = useErrorAnimation(id, errors, onUpdate, null);
+  const { value, setValue, x, delay, backgroundColor } = useErrorAnimation(id, errors, onUpdate);
 
   const today = new Date();
   const maxDate = new Date(today);
   maxDate.setDate(maxDate.getDate() + 30);
   const bookedDates = dateRange(from, till)
 
-  function changeHandler(date: Date | null) {
-    setValue(date);
-    onUpdate(id, date);
+  function changeHandler(date: Booking | null ) {
+    setValue(date as Booking);
+    onUpdate(id, date as Booking);
   }
 
   return (
@@ -58,7 +58,7 @@ const DateInput: React.FC<DateProps> = ({ id, errors, onUpdate, from, till }) =>
     >
       <DatePicker
         className={css.input}
-        selected={value as Date | null}
+        selected={value as Date }
         onChange={changeHandler}
         placeholderText={errors[id] ? errors[id] : id.toUpperCase()}
         dateFormat='dd MMMM yyyy'
