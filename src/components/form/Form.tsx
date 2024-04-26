@@ -4,13 +4,16 @@ import Input from './Input';
 import css from './Form.module.css';
 import DateInput from './DateInput';
 import { validateForm } from '@/util/validateForm';
+import { useParams } from 'react-router-dom';
 // import { useNavigate } from 'react-router-dom';
 
 export default function Form() {
   // const navigate = useNavigate();
+  const { id } = useParams();
   const variants = { hidden: { opacity: 0, scale: 0.5 }, visible: { opacity: 1, scale: 1 } };
   const [errors, setErrors] = useState({});
   const [  data,   setData] = useState({
+    id:          id,
     name:        '',
     surname:     '',
     email:       '',
@@ -53,8 +56,8 @@ export default function Form() {
         <Input     errors={errors} onUpdate={updateHandler} id='surname' />
         <Input     errors={errors} onUpdate={updateHandler} id='email' />
         <Input     errors={errors} onUpdate={updateHandler} id='phone' />
-        <DateInput errors={errors} onUpdate={updateHandler} id='from' />
-        <DateInput errors={errors} onUpdate={updateHandler} id='till' />
+        <DateInput errors={errors} onUpdate={updateHandler} id='from' from={data.from} till={data.till} />
+        <DateInput errors={errors} onUpdate={updateHandler} id='till' from={data.from} till={data.till} />
         <Input     errors={errors} onUpdate={updateHandler} id='destination' />
         <motion.button variants={variants} whileHover={{ scale: 1.2, color: '#FFA500' }}>
           PROCEED

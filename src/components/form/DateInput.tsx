@@ -9,20 +9,35 @@ interface Errors {
   [key: string]: string;
 }
 
+type Booking = Date | string;
+
 interface DateProps {
   id: string;
   errors: Errors;
-  onUpdate: (id: string, value: string | Date | null) => void
+  onUpdate: (id: string, value: string | Date | null) => void;
+  from: Booking
+  till: Booking;
 }
 
-const DateInput: React.FC<DateProps> = ({ id, errors, onUpdate }) => {
+function dateRange(startDate: Booking, endDate: Booking) {
+  const dates = [];
+  const date = new Date(startDate);
 
-  console.log('Rendering', id);
+  while (date <= endDate) {
+    dates.push(new Date(date));
+    date.setDate(date.getDate() + 1);
+  }
+
+  return dates;
+}
+
+const DateInput: React.FC<DateProps> = ({ id, errors, onUpdate, from, till }) => {
   const { value, setValue, x, delay, backgroundColor } = useErrorAnimation(id, errors, onUpdate, null);
 
   const today = new Date();
   const maxDate = new Date(today);
   maxDate.setDate(maxDate.getDate() + 30);
+  const bookedDates = dateRange(from, till)
 
   function changeHandler(date: Date | null) {
     setValue(date);
@@ -49,6 +64,7 @@ const DateInput: React.FC<DateProps> = ({ id, errors, onUpdate }) => {
         dateFormat='dd MMMM yyyy'
         minDate={new Date()}
         maxDate={maxDate}
+        excludeDates={bookedDates}
       />
     </motion.div>
   );
