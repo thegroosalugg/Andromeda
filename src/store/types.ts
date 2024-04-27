@@ -1,6 +1,6 @@
 import SpaceShip from '@/models/SpaceShip';
+import User from '@/models/User';
 
-// should match states in each slice
 interface ShipsState {
   ships: SpaceShip[];
 }
@@ -9,8 +9,13 @@ interface ModalState {
   isOpen: boolean;
 }
 
-// should match redux reducers declared in configureStore
+interface UserState {
+  users: User[];
+  user: User | null;
+}
+
 export interface RootState {
   ships: ShipsState;
   modal: ModalState;
+  user: UserState;
 }

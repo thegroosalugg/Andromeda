@@ -13,7 +13,7 @@ const initialState = { ships: shipData() };
 const shipsSlice = createSlice({
   name: 'ships',
   initialState,
-  reducers: {}, // will be used for managing favourites and bookings later
+  reducers: {},
 });
 
 export default shipsSlice.reducer;
