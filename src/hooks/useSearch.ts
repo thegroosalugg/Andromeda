@@ -5,18 +5,19 @@ import { RootState } from "@/store/types";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
-interface Search {
+interface StateSlices  {
   ships: SpaceShip[];
   users: User[];
 }
 
-export default function useSearch<T extends keyof Search>(
+export default function useSearch<T extends keyof StateSlices >(
   id: string,
   reducer: keyof RootState,
-  slice: T
-): Search[T][number] | null {
+  sliceKey: T
+): { item: StateSlices[T][number] | null; id: string | undefined} {
   const params = useParams();
-  const state = useSelector((state: RootState) => state[reducer]);
+  const stateSlice = useSelector((state: RootState) => state[reducer]);
+  const item = (stateSlice as StateSlices)[sliceKey].find((item: Model) => item.id === params[id]) || null;
 
-  return (state as Search)[slice].find((item: Model) => item.id === params[id]) || null;
+  return { item, id: params[id] };
 }

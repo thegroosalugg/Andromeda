@@ -49,7 +49,7 @@ export default function Form() {
     }
   }
 
-  console.clear(); console.log(users) // log & clear
+  console.log(users) // log & clear
 
   return (
     <div className={css.overlay}>
