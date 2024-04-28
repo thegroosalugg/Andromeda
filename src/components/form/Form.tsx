@@ -28,7 +28,7 @@ export default function Form() {
     destination: '',
   });
 
-  const updateHandler = useCallback((id: string, value: string | Date | null) => {
+  const updateHandler = useCallback((id: string, value: string) => {
     setData((prevData) => ({ ...prevData, [id]: value }));
   }, []);
 
@@ -41,14 +41,10 @@ export default function Form() {
 
     if (Object.keys(newErrors).length === 0) {
       const { name, surname, email, phone, id, from, till, destination} = data
-      const datefrom = from.toLocaleDateString("en-GB")
-      const datetill = till.toLocaleDateString("en-GB")
       const newUser = new User(name, surname, email, phone);
-      const booking = new Booking(id, datefrom, datetill, destination);
-      console.log('NewUser', newUser, typeof till, typeof from)
-      console.log('Date Type from data', typeof till, typeof from)
-      console.log('Date converted to string?', typeof datefrom, typeof datetill)
-      console.log('Convert back To Date', new Date(datefrom), typeof new Date(datefrom))
+      const booking = new Booking(id, from, till, destination);
+
+      console.log('NewUser', newUser)
 
       newUser.addBooking(booking);
       dispatch(userActions.addUser(newUser))

@@ -9,7 +9,7 @@ export default function useErrorAnimation(
   errors: Errors,
   onUpdate: (id: string, value: string ) => void,
 ) {
-  const [value, setValue] = useState<Date | string>('');
+  const [value, setValue] = useState('');
   const [x, setX] = useState([0]);
 
   const delay = 0.1 * (Object.keys(errors).indexOf(id) + 1);

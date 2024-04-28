@@ -29,7 +29,7 @@ const Input: React.FC<InputProps> = ({ id, errors, onUpdate, ...props }) => {
       className={css.input}
       placeholder={errors[id] ? errors[id] : id.toUpperCase()}
       onChange={changeHandler}
-      value={value as string}
+      value={value}
       {...props}
       variants={{ hidden: { opacity: 0, scale: 0.5 }, visible: { opacity: 1, scale: 1 } }}
       animate={{
