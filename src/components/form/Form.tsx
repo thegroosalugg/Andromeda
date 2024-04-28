@@ -16,7 +16,7 @@ export default function Form() {
   // const navigate = useNavigate();
   const { shipId } = useParams();
   const dispatch = useDispatch();
-  const users = useSelector((state: RootState) => state.users.users);
+  const { users } = useSelector((state: RootState) => state.users);
   const [errors, setErrors] = useState({});
   const [  data,   setData] = useState({
     id:     shipId!,
@@ -44,7 +44,7 @@ export default function Form() {
       const user = new User(name, surname, email, phone);
       const booking = new Booking(id, from, till, destination);
 
-      dispatch(userActions.addUser(JSON.parse(JSON.stringify(user)))); // serialise class instances
+      dispatch(userActions.addUser(JSON.parse(JSON.stringify(user)))); // serialize class instances
       dispatch(userActions.addBooking({ userId: user.id, booking: JSON.parse(JSON.stringify(booking)) }));
     }
   }
