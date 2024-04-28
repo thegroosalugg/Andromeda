@@ -4,6 +4,10 @@ import { motion } from 'framer-motion';
 import 'react-datepicker/dist/react-datepicker.css';
 import css from './Input.module.css';
 import useErrorAnimation from '@/hooks/useErrorAnimation';
+import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store/types';
+import Booking from '@/models/Booking';
 
 interface Errors {
   [key: string]: string;
@@ -13,8 +17,6 @@ interface DateProps {
   id: string;
   errors: Errors;
   onUpdate: (id: string, value: string) => void;
-  from: string;
-  till: string;
 }
 
 function dateRange(from: string, till: string) {
@@ -30,13 +32,26 @@ function dateRange(from: string, till: string) {
   return dates;
 }
 
-const DateInput: React.FC<DateProps> = ({ id, errors, onUpdate, from, till }) => {
+const DateInput: React.FC<DateProps> = ({ id, errors, onUpdate }) => {
   const { value, updateFormData, x, delay, backgroundColor } = useErrorAnimation(id, errors, onUpdate);
+  const { shipId } = useParams();
+  console.log(shipId)
+
+  const users = useSelector((state: RootState) => state.users.users);
+
+  const bookedDates: Date[] = [];
+  users.forEach((user) => {
+    user.bookings.forEach((booking: Booking) => {
+      if (booking.id === shipId) {
+        const dates = dateRange(booking.from, booking.till);
+        bookedDates.push(...dates);
+      }
+    });
+  });
 
   const today = new Date();
   const maxDate = new Date(today);
   maxDate.setDate(maxDate.getDate() + 30);
-  const bookedDates = dateRange(from, till);
 
   function changeHandler(date: Date) {
     updateFormData(date.toISOString());

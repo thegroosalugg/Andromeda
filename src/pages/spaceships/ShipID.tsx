@@ -6,9 +6,9 @@ import { RootState } from '@/store/types';
 import ErrorPage from '@/components/error/Error';
 
 export default function ShipIDPage() {
-  const { id } = useParams();
+  const { shipId } = useParams();
   const { ships } = useSelector((state: RootState) => state.ships);
-  const spaceship = ships.find((spaceship) => spaceship.id === id);
+  const spaceship = ships.find((spaceship) => spaceship.id === shipId);
 
   if (!spaceship) {
     return <ErrorPage />

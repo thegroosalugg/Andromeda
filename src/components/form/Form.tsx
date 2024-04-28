@@ -7,18 +7,18 @@ import { validateForm } from '@/util/validateForm';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { userActions } from '@/store/userSlice';
-import User from '@/models/User';
-import Booking from '@/models/Booking';
+// import User from '@/models/User';
+// import Booking from '@/models/Booking';
 // import { useNavigate } from 'react-router-dom';
 
 export default function Form() {
   // const navigate = useNavigate();
-  const { id } = useParams();
+  const { shipId } = useParams();
   const dispatch = useDispatch();
   const variants = { hidden: { opacity: 0, scale: 0.5 }, visible: { opacity: 1, scale: 1 } };
   const [errors, setErrors] = useState({});
   const [  data,   setData] = useState({
-    id:          id,
+    id:      shipId,
     name:        '',
     surname:     '',
     email:       '',
@@ -40,14 +40,16 @@ export default function Form() {
     console.clear();
 
     if (Object.keys(newErrors).length === 0) {
-      const { name, surname, email, phone, id, from, till, destination} = data
-      const newUser = new User(name, surname, email, phone);
-      const booking = new Booking(id, from, till, destination);
+      const { name, surname, email, phone, id, from, till, destination } = data;
+      // const user = new User(name, surname, email, phone);
+      // const booking = new Booking(id, from, till, destination);
+      const user = { id: Math.random() * 1000, name, surname, email, phone, bookings: [] };
+      const booking = { id, from, till, destination };
 
-      console.log('NewUser', newUser)
+      console.log('user', user);
 
-      newUser.addBooking(booking);
-      dispatch(userActions.addUser(newUser))
+      dispatch(userActions.addUser(user));
+      dispatch(userActions.addBooking({ userId: user.id, booking }));
     }
   }
 
@@ -65,8 +67,8 @@ export default function Form() {
         <Input     errors={errors} onUpdate={updateHandler} id='surname' />
         <Input     errors={errors} onUpdate={updateHandler} id='email' />
         <Input     errors={errors} onUpdate={updateHandler} id='phone' />
-        <DateInput errors={errors} onUpdate={updateHandler} id='from' from={data.from} till={data.till} />
-        <DateInput errors={errors} onUpdate={updateHandler} id='till' from={data.from} till={data.till} />
+        <DateInput errors={errors} onUpdate={updateHandler} id='from' />
+        <DateInput errors={errors} onUpdate={updateHandler} id='till' />
         <Input     errors={errors} onUpdate={updateHandler} id='destination' />
         <motion.button variants={variants} whileHover={{ scale: 1.2, color: '#FFA500' }}>
           PROCEED

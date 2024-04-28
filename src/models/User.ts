@@ -16,8 +16,4 @@ export default class User {
     this.phone = phone;
     this.bookings = [];
   }
-
-  addBooking(booking: Booking) {
-    this.bookings.push(booking);
-  }
 }

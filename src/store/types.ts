@@ -17,5 +17,5 @@ interface UserState {
 export interface RootState {
   ships: ShipsState;
   modal: ModalState;
-  user: UserState;
+  users: UserState;
 }
