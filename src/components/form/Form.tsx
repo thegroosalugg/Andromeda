@@ -16,7 +16,7 @@ export default function Form() {
   const {
     slugId: shipId,
     stateSlice: { users },
-  } = useSearch({ slugId: 'shipId', reducer: 'users', sliceKey: 'users' });
+  } = useSearch({ slugId: 'shipId', reducer: 'users' });
   const dispatch = useDispatch();
   const [errors, setErrors] = useState({});
   const [  data,   setData] = useState({

@@ -13,7 +13,7 @@ interface StateSlices {
 interface SearchParams<T extends keyof StateSlices> {
   slugId: string;
   reducer: T;
-  sliceKey: T;
+  sliceKey?: T;
 }
 
 export default function useSearch<T extends keyof StateSlices>({
@@ -27,8 +27,10 @@ export default function useSearch<T extends keyof StateSlices>({
 } {
   const params = useParams();
   const stateSlice = useSelector((state: RootState) => state[reducer]);
-  const item =
-    (stateSlice as StateSlices)[sliceKey].find((item: Model) => item.id === params[slugId]) || null;
+  let item = null;
+  if (sliceKey) {
+    item = (stateSlice as StateSlices)[sliceKey].find((item: Model) => item.id === params[slugId]) || null;
+  }
 
   return { item, slugId: params[slugId], stateSlice };
 }

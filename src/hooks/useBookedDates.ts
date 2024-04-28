@@ -18,7 +18,7 @@ const useBookedDates = () => {
   const {
     slugId: shipId,
     stateSlice: { users },
-  } = useSearch({ slugId: 'shipId', reducer: 'users', sliceKey: 'users' });
+  } = useSearch({ slugId: 'shipId', reducer: 'users' });
 
   const bookedDates: Date[] = [];
   users.forEach((user) => {
