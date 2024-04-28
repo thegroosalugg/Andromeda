@@ -1,4 +1,4 @@
-import User from "@/models/User";
+import User from '@/models/User';
 
 interface FormData {
   name?: string;
@@ -22,28 +22,31 @@ export function validateForm(data: FormData, users: User[], shipId: string) {
       errors[field] = `${[key]} empty`.toUpperCase();
 
     } else if (field === 'from' || field === 'till') {
-      if (data.from && data.till && new Date(data.from) > new Date(data.till)) {
-        errors.till = errors.from = 'NO TIME TRAVELLING';
-      } else {
-        const currentFrom = new Date(data.from!);
-        const currentTill = new Date(data.till!);
+      if (data.from && data.till) {
+        const currentFrom = new Date(data.from);
+        const currentTill = new Date(data.till);
 
-        users.forEach((user) => {
-          user.bookings.forEach((booking) => {
-            if (booking.id === shipId) {
-              const bookedFrom = new Date(booking.from);
-              const bookedTill = new Date(booking.till);
+        if (currentFrom > currentTill) {
+          errors.till = errors.from = 'NO TIME TRAVELLING';
+          
+        } else {
+          users.forEach((user) => {
+            user.bookings.forEach((booking) => {
+              if (booking.id === shipId) {
+                const bookedFrom = new Date(booking.from);
+                const bookedTill = new Date(booking.till);
 
-              if (
-                (currentFrom >= bookedFrom && currentFrom <= bookedTill) ||
-                (currentTill >= bookedFrom && currentTill <= bookedTill) ||
-                (currentFrom <= bookedFrom && currentTill >= bookedTill)
-              ) {
-                errors.from = errors.till = 'DATES UNAVAILABLE';
+                if (
+                  (currentFrom >= bookedFrom && currentFrom <= bookedTill) ||
+                  (currentTill >= bookedFrom && currentTill <= bookedTill) ||
+                  (currentFrom <= bookedFrom && currentTill >= bookedTill)
+                ) {
+                  errors.from = errors.till = 'DATES UNAVAILABLE';
+                }
               }
-            }
+            });
           });
-        });
+        }
       }
 
     } else if (key === 'email' && !emailExp.test(data[key]!)) {
