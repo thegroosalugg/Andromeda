@@ -4,6 +4,7 @@ import StorePage from './pages/Store';
 import SpaceShipsPage from './pages/spaceships/SpaceShips';
 import ShipIDPage from './pages/spaceships/ShipID';
 import ExplorePage from './pages/Explore';
+import UserPage from './pages/UserPage';
 import ErrorPage from './components/error/Error';
 
 import { useRoutes } from 'react-router-dom';
@@ -15,6 +16,7 @@ export default function App() {
     { path: 'ships', element: <SpaceShipsPage /> },
     { path: 'ships/:shipId', element: <ShipIDPage /> },
     { path: 'explore', element: <ExplorePage /> },
+    { path: 'user/:userId', element: <UserPage /> },
     { path: '*', element: <ErrorPage /> },
   ]);
 

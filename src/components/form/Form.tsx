@@ -49,17 +49,15 @@ export default function Form() {
       if (!user) {
         const newUser = new User(name, surname, email, phone);
         dispatch(userActions.addUser(JSON.parse(JSON.stringify(newUser)))); // serialize class instances
-        userId = newUser.id
-        dispatch(userActions.setUser({userId}));
+        userId = newUser.id;
+        dispatch(userActions.setUser({ userId }));
       } else {
-        userId = user.id
+        userId = user.id;
       }
 
       const booking = new Booking(id, from, till, destination);
 
-      dispatch(
-        userActions.addBooking({ userId, booking: JSON.parse(JSON.stringify(booking)) })
-      );
+      dispatch(userActions.addBooking({ userId, booking: JSON.parse(JSON.stringify(booking)) }));
     }
   }
 

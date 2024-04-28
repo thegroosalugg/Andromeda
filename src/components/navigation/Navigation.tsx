@@ -20,6 +20,7 @@ export default function Navigation() {
           <NavButton path='/store' name='ST0RE' />
           <NavButton path='/ships' name='SH1P5' />
           <NavButton path='/explore' name='EXPL0R3' />
+          <NavButton path='/user/' name='P0RTAL' />
         </ul>
       </motion.nav>
     </>
