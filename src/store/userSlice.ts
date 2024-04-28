@@ -12,8 +12,9 @@ const userSlice = createSlice({
     addUser: (state, action: PayloadAction<User>) => {
       state.users.push(action.payload);
     },
-    setUser: (state, action: PayloadAction<User>) => {
-      state.user = action.payload;
+    setUser: (state, action: PayloadAction<{ userId: number }>) => {
+      const user = state.users.find((user: User) => user.id === action.payload.userId);
+      state.user = user || null;
     },
     logout: (state) => {
       state.user = null;
@@ -22,6 +23,7 @@ const userSlice = createSlice({
       const user = state.users.find((user: User) => user.id === action.payload.userId);
       if (user) {
         user.bookings.push(action.payload.booking);
+        state.user = user
       }
     },
   },
