@@ -1,7 +1,5 @@
-import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/store/types';
 import Booking from '@/models/Booking';
+import useSearch from './useSearch';
 
 function dateRange(from: string, till: string) {
   const dates = [];
@@ -17,8 +15,10 @@ function dateRange(from: string, till: string) {
 }
 
 const useBookedDates = () => {
-  const { shipId } = useParams();
-  const { users } = useSelector((state: RootState) => state.users);
+  const {
+    slugId: shipId,
+    stateSlice: { users },
+  } = useSearch({ slugId: 'shipId', reducer: 'users', sliceKey: 'users' });
 
   const bookedDates: Date[] = [];
   users.forEach((user) => {

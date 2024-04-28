@@ -14,7 +14,6 @@ import useSearch from '@/hooks/useSearch';
 export default function Form() {
   // const navigate = useNavigate();
   const {
-    item,
     slugId: shipId,
     stateSlice: { users },
   } = useSearch({ slugId: 'shipId', reducer: 'users', sliceKey: 'users' });
@@ -51,7 +50,7 @@ export default function Form() {
     }
   }
 
-  console.log('USER STATE', item, 'FORM USERS', users); // log & clear
+  console.log('FORM USERS', users); // log & clear
 
   return (
     <div className={css.overlay}>
