@@ -12,8 +12,8 @@ interface Errors {
 interface DateProps {
   id: string;
   errors: Errors;
-  onUpdate: (id: string, value: string ) => void;
-  from: string
+  onUpdate: (id: string, value: string) => void;
+  from: string;
   till: string;
 }
 
@@ -31,17 +31,15 @@ function dateRange(from: string, till: string) {
 }
 
 const DateInput: React.FC<DateProps> = ({ id, errors, onUpdate, from, till }) => {
-  const { value, setValue, x, delay, backgroundColor } = useErrorAnimation(id, errors, onUpdate);
+  const { value, updateFormData, x, delay, backgroundColor } = useErrorAnimation(id, errors, onUpdate);
 
   const today = new Date();
   const maxDate = new Date(today);
   maxDate.setDate(maxDate.getDate() + 30);
-  const bookedDates = dateRange(from, till)
+  const bookedDates = dateRange(from, till);
 
-  function changeHandler(date: Date ) {
-    const stringDate = date.toISOString()
-    setValue(stringDate);
-    onUpdate(id, stringDate);
+  function changeHandler(date: Date) {
+    updateFormData(date.toISOString());
   }
 
   return (

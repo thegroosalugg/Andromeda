@@ -14,12 +14,10 @@ interface InputProps {
 }
 
 const Input: React.FC<InputProps> = ({ id, errors, onUpdate, ...props }) => {
-  const { value, setValue, x, delay, backgroundColor } = useErrorAnimation(id, errors, onUpdate);
+  const { value, updateFormData, x, delay, backgroundColor } = useErrorAnimation(id, errors, onUpdate);
 
   function changeHandler(event: React.ChangeEvent<HTMLInputElement>) {
-    const userInput = event.currentTarget.value;
-    setValue(userInput);
-    onUpdate(id, userInput);
+    updateFormData(event.currentTarget.value);
   }
 
   return (

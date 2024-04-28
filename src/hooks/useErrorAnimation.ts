@@ -25,5 +25,10 @@ export default function useErrorAnimation(
     }
   }, [errors, id, onUpdate]);
 
-  return { value, setValue, x, delay, backgroundColor };
+  const updateFormData = (input: string) => {
+    setValue(input);
+    onUpdate(id, input);
+  };
+
+  return { value, updateFormData, x, delay, backgroundColor };
 }
