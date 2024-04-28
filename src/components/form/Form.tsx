@@ -8,14 +8,13 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '@/store/userSlice';
 import { RootState } from '@/store/types';
-// import User from '@/models/User';
-// import Booking from '@/models/Booking';
+import User from '@/models/User';
+import Booking from '@/models/Booking';
 // import { useNavigate } from 'react-router-dom';
 
 export default function Form() {
   // const navigate = useNavigate();
   const { shipId } = useParams();
-  console.log(shipId)
   const dispatch = useDispatch();
   const users = useSelector((state: RootState) => state.users.users);
   const [errors, setErrors] = useState({});
@@ -40,17 +39,13 @@ export default function Form() {
     const newErrors = validateForm(data, users, shipId!);
     setErrors(newErrors);
 
-    console.clear();
-
     if (Object.keys(newErrors).length === 0) {
       const { name, surname, email, phone, id, from, till, destination } = data;
-      // const user = new User(name, surname, email, phone);
-      // const booking = new Booking(id, from, till, destination);
-      const user = { id: Math.random() * 1000, name, surname, email, phone, bookings: [] };
-      const booking = { id, from, till, destination };
+      const user = new User(name, surname, email, phone);
+      const booking = new Booking(id, from, till, destination);
 
-      dispatch(userActions.addUser(user));
-      dispatch(userActions.addBooking({ userId: user.id, booking }));
+      dispatch(userActions.addUser(JSON.parse(JSON.stringify(user)))); // serialise class instances
+      dispatch(userActions.addBooking({ userId: user.id, booking: JSON.parse(JSON.stringify(booking)) }));
     }
   }
 

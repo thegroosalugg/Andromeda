@@ -1,14 +1,10 @@
-import { useParams } from 'react-router-dom';
 import ShipDetails from '@/pageContent/spaceships/details/ShipDetails';
 import Form from '@/components/form/Form';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/store/types';
 import ErrorPage from '@/components/error/Error';
+import useSearch from '@/hooks/useSearch';
 
 export default function ShipIDPage() {
-  const { shipId } = useParams();
-  const { ships } = useSelector((state: RootState) => state.ships);
-  const spaceship = ships.find((spaceship) => spaceship.id === shipId);
+  const spaceship = useSearch('shipId', 'ships', 'ships')
 
   if (!spaceship) {
     return <ErrorPage />
