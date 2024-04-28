@@ -4,19 +4,21 @@ import Input from './Input';
 import css from './Form.module.css';
 import DateInput from './DateInput';
 import { validateForm } from '@/util/validateForm';
-import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { userActions } from '@/store/userSlice';
-import { RootState } from '@/store/types';
 import User from '@/models/User';
 import Booking from '@/models/Booking';
+import useSearch from '@/hooks/useSearch';
 // import { useNavigate } from 'react-router-dom';
 
 export default function Form() {
   // const navigate = useNavigate();
-  const { shipId } = useParams();
+  const {
+    item,
+    slugId: shipId,
+    stateSlice: { users },
+  } = useSearch({ slugId: 'shipId', reducer: 'users', sliceKey: 'users' });
   const dispatch = useDispatch();
-  const { users } = useSelector((state: RootState) => state.users);
   const [errors, setErrors] = useState({});
   const [  data,   setData] = useState({
     id:     shipId!,
@@ -49,7 +51,7 @@ export default function Form() {
     }
   }
 
-  console.log(users) // log & clear
+  console.log('USER STATE', item, 'FORM USERS', users); // log & clear
 
   return (
     <div className={css.overlay}>

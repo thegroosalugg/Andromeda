@@ -10,19 +10,25 @@ interface StateSlices {
   users: User[];
 }
 
-export default function useSearch<T extends keyof StateSlices>(
-  id: string,
-  reducer: T,
-  sliceKey: T
-): {
+interface SearchParams<T extends keyof StateSlices> {
+  slugId: string;
+  reducer: T;
+  sliceKey: T;
+}
+
+export default function useSearch<T extends keyof StateSlices>({
+  slugId,
+  reducer,
+  sliceKey
+}: SearchParams<T>): {
   item: StateSlices[T][number] | null;
-  id: string | undefined;
+  slugId: string | undefined;
   stateSlice: RootState[T];
 } {
   const params = useParams();
   const stateSlice = useSelector((state: RootState) => state[reducer]);
   const item =
-    (stateSlice as StateSlices)[sliceKey].find((item: Model) => item.id === params[id]) || null;
+    (stateSlice as StateSlices)[sliceKey].find((item: Model) => item.id === params[slugId]) || null;
 
-  return { item, id: params[id], stateSlice };
+  return { item, slugId: params[slugId], stateSlice };
 }
