@@ -5,8 +5,9 @@ import css from './Form.module.css';
 import DateInput from './DateInput';
 import { validateForm } from '@/util/validateForm';
 import { useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '@/store/userSlice';
+import { RootState } from '@/store/types';
 // import User from '@/models/User';
 // import Booking from '@/models/Booking';
 // import { useNavigate } from 'react-router-dom';
@@ -14,11 +15,12 @@ import { userActions } from '@/store/userSlice';
 export default function Form() {
   // const navigate = useNavigate();
   const { shipId } = useParams();
+  console.log(shipId)
   const dispatch = useDispatch();
-  const variants = { hidden: { opacity: 0, scale: 0.5 }, visible: { opacity: 1, scale: 1 } };
+  const users = useSelector((state: RootState) => state.users.users);
   const [errors, setErrors] = useState({});
   const [  data,   setData] = useState({
-    id:      shipId,
+    id:     shipId!,
     name:        '',
     surname:     '',
     email:       '',
@@ -27,6 +29,7 @@ export default function Form() {
     till:        '',
     destination: '',
   });
+  const variants = { hidden: { opacity: 0, scale: 0.5 }, visible: { opacity: 1, scale: 1 } };
 
   const updateHandler = useCallback((id: string, value: string) => {
     setData((prevData) => ({ ...prevData, [id]: value }));
@@ -34,7 +37,7 @@ export default function Form() {
 
   function submitHandler(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const newErrors = validateForm(data);
+    const newErrors = validateForm(data, users, shipId!);
     setErrors(newErrors);
 
     console.clear();
@@ -45,8 +48,6 @@ export default function Form() {
       // const booking = new Booking(id, from, till, destination);
       const user = { id: Math.random() * 1000, name, surname, email, phone, bookings: [] };
       const booking = { id, from, till, destination };
-
-      console.log('user', user);
 
       dispatch(userActions.addUser(user));
       dispatch(userActions.addBooking({ userId: user.id, booking }));
