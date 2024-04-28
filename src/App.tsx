@@ -13,7 +13,7 @@ export default function App() {
     { path: '/', element: <LandingPage /> },
     { path: 'store', element: <StorePage /> },
     { path: 'ships', element: <SpaceShipsPage /> },
-    { path: 'ships/:id', element: <ShipIDPage /> },
+    { path: 'ships/:shipId', element: <ShipIDPage /> },
     { path: 'explore', element: <ExplorePage /> },
     { path: '*', element: <ErrorPage /> },
   ]);

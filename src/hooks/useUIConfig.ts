@@ -16,7 +16,7 @@ const useUIConfig = () => {
   const { pathname } = useLocation();
   const configuredPath = { ...config.default, ...config[pathname] }; // add all default values then overwrite any uniques
 
-  console.clear(); console.log('find me in /hooks', configuredPath); // log & clear
+  console.clear(); // log & clear
 
   return { pathname, ...configuredPath };
 };

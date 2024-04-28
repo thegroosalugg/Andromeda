@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import 'react-datepicker/dist/react-datepicker.css';
 import css from './Input.module.css';
 import useErrorAnimation from '@/hooks/useErrorAnimation';
+import useBookedDates from '@/hooks/useBookedDates';
 
 interface Errors {
   [key: string]: string;
@@ -12,21 +13,18 @@ interface Errors {
 interface DateProps {
   id: string;
   errors: Errors;
-  onUpdate: (id: string, value: string | Date | null) => void
+  onUpdate: (id: string, value: string) => void;
 }
 
 const DateInput: React.FC<DateProps> = ({ id, errors, onUpdate }) => {
-
-  console.log('Rendering', id);
-  const { value, setValue, x, delay, backgroundColor } = useErrorAnimation(id, errors, onUpdate, null);
+  const { value, updateFormData, x, delay, backgroundColor } = useErrorAnimation(id, errors, onUpdate);
+  const bookedDates = useBookedDates();
 
   const today = new Date();
-  const maxDate = new Date(today);
-  maxDate.setDate(maxDate.getDate() + 30);
+  const maxDate = new Date(today.setDate(today.getDate() + 30));
 
-  function changeHandler(date: Date | null) {
-    setValue(date);
-    onUpdate(id, date);
+  function changeHandler(date: Date) {
+    updateFormData(date.toISOString());
   }
 
   return (
@@ -43,12 +41,13 @@ const DateInput: React.FC<DateProps> = ({ id, errors, onUpdate }) => {
     >
       <DatePicker
         className={css.input}
-        selected={value as Date | null}
+        selected={value ? new Date(value) : null}
         onChange={changeHandler}
         placeholderText={errors[id] ? errors[id] : id.toUpperCase()}
         dateFormat='dd MMMM yyyy'
         minDate={new Date()}
         maxDate={maxDate}
+        excludeDates={bookedDates}
       />
     </motion.div>
   );

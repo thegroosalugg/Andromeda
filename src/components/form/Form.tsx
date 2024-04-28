@@ -4,13 +4,24 @@ import Input from './Input';
 import css from './Form.module.css';
 import DateInput from './DateInput';
 import { validateForm } from '@/util/validateForm';
+import { useDispatch } from 'react-redux';
+import { userActions } from '@/store/userSlice';
+import User from '@/models/User';
+import Booking from '@/models/Booking';
+import useSearch from '@/hooks/useSearch';
 // import { useNavigate } from 'react-router-dom';
 
 export default function Form() {
   // const navigate = useNavigate();
-  const variants = { hidden: { opacity: 0, scale: 0.5 }, visible: { opacity: 1, scale: 1 } };
+  const {
+    item,
+    slugId: shipId,
+    stateSlice: { users },
+  } = useSearch({ slugId: 'shipId', reducer: 'users', sliceKey: 'users' });
+  const dispatch = useDispatch();
   const [errors, setErrors] = useState({});
   const [  data,   setData] = useState({
+    id:     shipId!,
     name:        '',
     surname:     '',
     email:       '',
@@ -19,25 +30,28 @@ export default function Form() {
     till:        '',
     destination: '',
   });
+  const variants = { hidden: { opacity: 0, scale: 0.5 }, visible: { opacity: 1, scale: 1 } };
 
-  const updateHandler = useCallback((id: string, value: string | Date | null) => {
+  const updateHandler = useCallback((id: string, value: string) => {
     setData((prevData) => ({ ...prevData, [id]: value }));
   }, []);
 
   function submitHandler(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const newErrors = validateForm(data);
+    const newErrors = validateForm(data, users, shipId!);
     setErrors(newErrors);
 
-    console.clear();
-    if (Object.keys(newErrors).length !== 0) {
-      console.log('HAS ERRORS!', newErrors);
-      return;
-    } else {
-      console.log('VALIDATED', data);
-      // navigate('/ships');
+    if (Object.keys(newErrors).length === 0) {
+      const { name, surname, email, phone, id, from, till, destination } = data;
+      const user = new User(name, surname, email, phone);
+      const booking = new Booking(id, from, till, destination);
+
+      dispatch(userActions.addUser(JSON.parse(JSON.stringify(user)))); // serialize class instances
+      dispatch(userActions.addBooking({ userId: user.id, booking: JSON.parse(JSON.stringify(booking)) }));
     }
   }
+
+  console.log('USER STATE', item, 'FORM USERS', users); // log & clear
 
   return (
     <div className={css.overlay}>

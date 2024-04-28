@@ -8,9 +8,8 @@ export default function useErrorAnimation(
   id: string,
   errors: Errors,
   onUpdate: (id: string, value: string ) => void,
-  initialState: string | Date | null
 ) {
-  const [value, setValue] = useState(initialState);
+  const [value, setValue] = useState('');
   const [x, setX] = useState([0]);
 
   const delay = 0.1 * (Object.keys(errors).indexOf(id) + 1);
@@ -26,5 +25,10 @@ export default function useErrorAnimation(
     }
   }, [errors, id, onUpdate]);
 
-  return { value, setValue, x, delay, backgroundColor };
+  const updateFormData = (input: string) => {
+    setValue(input);
+    onUpdate(id, input);
+  };
+
+  return { value, updateFormData, x, delay, backgroundColor };
 }
