@@ -4,9 +4,7 @@ import ErrorPage from '@/components/error/Error';
 import useSearch from '@/hooks/useSearch';
 
 export default function ShipIDPage() {
-  const { item: spaceship, id: shipId } = useSearch('shipId', 'ships', 'ships')
-
-  console.log(spaceship, shipId)
+  const { item: spaceship } = useSearch('shipId', 'ships', 'ships')
 
   if (!spaceship) {
     return <ErrorPage />
