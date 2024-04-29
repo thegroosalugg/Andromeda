@@ -16,4 +16,8 @@ export default class User {
     this.phone = phone;
     this.bookings = [];
   }
+
+  toObject() {
+    return { ...this };
+  }
 }

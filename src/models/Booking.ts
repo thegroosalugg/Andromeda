@@ -12,4 +12,8 @@ export default class Booking {
     this.till = till;
     this.destination = destination;
   }
+
+  toObject() {
+    return { ...this };
+  }
 }
