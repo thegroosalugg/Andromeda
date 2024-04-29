@@ -21,10 +21,10 @@ export default function Form() {
   const [errors, setErrors] = useState({});
   const [  data,   setData] = useState({
     id:     shipId!,
-    name:        '',
-    surname:     '',
-    email:       '',
-    phone:       '',
+    name:        user?.name    || '',
+    surname:     user?.surname || '',
+    email:       user?.email   || '',
+    phone:       user?.phone   || '',
     from:        '',
     till:        '',
     destination: '',
@@ -33,20 +33,23 @@ export default function Form() {
 
   const updateHandler = useCallback((id: string, value: string) => {
     setData((prevData) => ({ ...prevData, [id]: value }));
+    console.clear(); // log & clear
   }, []);
 
   function submitHandler(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    console.clear(); // log & clear
     const newErrors = validateForm(data, users, shipId!);
     setErrors(newErrors);
-
-    console.clear(); // log & clear
+    console.log('ERRORS', newErrors) // log & clear
 
     if (Object.keys(newErrors).length === 0) {
       const { name, surname, email, phone, id, from, till, destination } = data;
       let userId;
+      console.log('submitting...') // log & clear
 
       if (!user) {
+        console.log('new user...') // log & clear
         const newUser = new User(name, surname, email, phone);
         dispatch(userActions.addUser(JSON.parse(JSON.stringify(newUser)))); // serialize class instances
         userId = newUser.id;
@@ -56,13 +59,12 @@ export default function Form() {
 
       const booking = new Booking(id, from, till, destination);
 
+      console.log('booking...') // log & clear
       dispatch(userActions.addBooking({ userId, booking: JSON.parse(JSON.stringify(booking)) }));
     }
   }
 
-  // localStorage.setItem('users', JSON.stringify(users));
-  // localStorage.setItem('user', JSON.stringify(user));
-  console.log('CURRENT USER', user, '\n', 'FORM USERS', users); // log & clear
+  console.log('FORM/USER', user, '\n', 'FORM/USERS', users); // log & clear
 
   return (
     <div className={css.overlay}>
