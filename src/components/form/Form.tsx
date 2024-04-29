@@ -20,7 +20,7 @@ export default function Form() {
   const dispatch = useDispatch();
   const [errors, setErrors] = useState({});
   const [  data,   setData] = useState({
-    id:     shipId!,
+    shipId,
     name:        user?.name    || '',
     surname:     user?.surname || '',
     email:       user?.email   || '',
@@ -44,7 +44,7 @@ export default function Form() {
     console.log('ERRORS', newErrors) // log & clear
 
     if (Object.keys(newErrors).length === 0) {
-      const { name, surname, email, phone, id, from, till, destination } = data;
+      const { name, surname, email, phone, shipId, from, till, destination } = data;
       let userId;
       console.log('submitting...') // log & clear
 
@@ -57,7 +57,7 @@ export default function Form() {
         userId = user.id;
       }
 
-      const booking = new Booking(id, from, till, destination);
+      const booking = new Booking(shipId!, from, till, destination);
 
       console.log('booking...') // log & clear
       dispatch(userActions.addBooking({ userId, booking: JSON.parse(JSON.stringify(booking)) }));

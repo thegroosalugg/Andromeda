@@ -9,7 +9,7 @@ export default function UserPortal(user: User) {
       <h2>{user.phone}</h2>
       <ul>
         {user.bookings.map((booking) => (
-          <li key={booking.id}>{booking.id}</li>
+          <li key={booking.id}>{booking.shipId}</li>
         ))}
       </ul>
     </>

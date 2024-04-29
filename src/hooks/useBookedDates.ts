@@ -23,7 +23,7 @@ const useBookedDates = () => {
   const bookedDates: Date[] = [];
   users.forEach((user) => {
     user.bookings.forEach((booking: Booking) => {
-      if (booking.id === shipId) {
+      if (booking.shipId === shipId) {
         const dates = dateRange(booking.from, booking.till);
         bookedDates.push(...dates);
       }

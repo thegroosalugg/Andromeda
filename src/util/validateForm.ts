@@ -28,11 +28,11 @@ export function validateForm(data: FormData, users: User[], shipId: string) {
 
         if (currentFrom > currentTill) {
           errors.till = errors.from = 'NO TIME TRAVELLING';
-          
+
         } else {
           users.forEach((user) => {
             user.bookings.forEach((booking) => {
-              if (booking.id === shipId) {
+              if (booking.shipId === shipId) {
                 const bookedFrom = new Date(booking.from);
                 const bookedTill = new Date(booking.till);
 
