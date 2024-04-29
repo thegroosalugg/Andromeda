@@ -9,7 +9,7 @@ export default function UserPage() {
   if (user) {
     page = <UserPortal {...user} />
   } else {
-    <h1>NO USER FOUND</h1>
+    page = <h1>NO USER FOUND</h1>
   }
 
   return page

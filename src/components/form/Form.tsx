@@ -50,7 +50,6 @@ export default function Form() {
         const newUser = new User(name, surname, email, phone);
         dispatch(userActions.addUser(JSON.parse(JSON.stringify(newUser)))); // serialize class instances
         userId = newUser.id;
-        dispatch(userActions.setUser({ userId }));
       } else {
         userId = user.id;
       }
@@ -61,6 +60,8 @@ export default function Form() {
     }
   }
 
+  // localStorage.setItem('users', JSON.stringify(users));
+  // localStorage.setItem('user', JSON.stringify(user));
   console.log('CURRENT USER', user, '\n', 'FORM USERS', users); // log & clear
 
   return (
