@@ -20,49 +20,50 @@ export default function Form() {
   const dispatch = useDispatch();
   const [errors, setErrors] = useState({});
   const [  data,   setData] = useState({
-    id:     shipId!,
-    name:        '',
-    surname:     '',
-    email:       '',
-    phone:       '',
-    from:        '',
-    till:        '',
-    destination: '',
+    shipId,
+    name:    user?.name    || '',
+    surname: user?.surname || '',
+    email:   user?.email   || '',
+    phone:   user?.phone   || '',
+    from:                     '',
+    till:                     '',
+    destination:              '',
   });
   const variants = { hidden: { opacity: 0, scale: 0.5 }, visible: { opacity: 1, scale: 1 } };
 
   const updateHandler = useCallback((id: string, value: string) => {
     setData((prevData) => ({ ...prevData, [id]: value }));
+    console.clear(); // log & clear
   }, []);
 
   function submitHandler(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    console.clear(); // log & clear
     const newErrors = validateForm(data, users, shipId!);
     setErrors(newErrors);
-
-    console.clear(); // log & clear
+    console.log('ERRORS', newErrors) // log & clear
 
     if (Object.keys(newErrors).length === 0) {
-      const { name, surname, email, phone, id, from, till, destination } = data;
+      const { name, surname, email, phone, shipId, from, till, destination } = data;
       let userId;
+      console.log('submitting...') // log & clear
 
       if (!user) {
-        const newUser = new User(name, surname, email, phone);
-        dispatch(userActions.addUser(JSON.parse(JSON.stringify(newUser)))); // serialize class instances
+        console.log('new user...') // log & clear
+        const newUser = (new User(name, surname, email, phone)).toObject(); // serialize class instances
+        dispatch(userActions.addUser(newUser));
         userId = newUser.id;
       } else {
         userId = user.id;
       }
 
-      const booking = new Booking(id, from, till, destination);
-
-      dispatch(userActions.addBooking({ userId, booking: JSON.parse(JSON.stringify(booking)) }));
+      const booking = (new Booking(shipId!, from, till, destination)).toObject();
+      console.log('booking...') // log & clear
+      dispatch(userActions.addBooking({ userId, booking }));
     }
   }
 
-  // localStorage.setItem('users', JSON.stringify(users));
-  // localStorage.setItem('user', JSON.stringify(user));
-  console.log('CURRENT USER', user, '\n', 'FORM USERS', users); // log & clear
+  console.log('FORM/USER', user, '\n', 'FORM/USERS', users); // log & clear
 
   return (
     <div className={css.overlay}>

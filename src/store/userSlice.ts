@@ -3,10 +3,6 @@ import User from '@/models/User';
 import Booking from '@/models/Booking';
 import { RootState } from './types';
 
-// const users = JSON.parse(localStorage.getItem('users') || '[]');
-// const  user = JSON.parse(localStorage.getItem('user')  || 'null');
-
-// const initialState: RootState['users'] = { users, user };
 const initialState: RootState['users'] = { users: [], user: null };
 
 const userSlice = createSlice({
