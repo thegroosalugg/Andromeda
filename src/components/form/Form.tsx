@@ -14,10 +14,9 @@ import useSearch from '@/hooks/useSearch';
 export default function Form() {
   // const navigate = useNavigate();
   const {
-    item,
     slugId: shipId,
-    stateSlice: { users },
-  } = useSearch({ slugId: 'shipId', reducer: 'users', sliceKey: 'users' });
+    stateSlice: { users, user },
+  } = useSearch({ slugId: 'shipId', reducer: 'users' });
   const dispatch = useDispatch();
   const [errors, setErrors] = useState({});
   const [  data,   setData] = useState({
@@ -41,17 +40,29 @@ export default function Form() {
     const newErrors = validateForm(data, users, shipId!);
     setErrors(newErrors);
 
+    console.clear(); // log & clear
+
     if (Object.keys(newErrors).length === 0) {
       const { name, surname, email, phone, id, from, till, destination } = data;
-      const user = new User(name, surname, email, phone);
+      let userId;
+
+      if (!user) {
+        const newUser = new User(name, surname, email, phone);
+        dispatch(userActions.addUser(JSON.parse(JSON.stringify(newUser)))); // serialize class instances
+        userId = newUser.id;
+      } else {
+        userId = user.id;
+      }
+
       const booking = new Booking(id, from, till, destination);
 
-      dispatch(userActions.addUser(JSON.parse(JSON.stringify(user)))); // serialize class instances
-      dispatch(userActions.addBooking({ userId: user.id, booking: JSON.parse(JSON.stringify(booking)) }));
+      dispatch(userActions.addBooking({ userId, booking: JSON.parse(JSON.stringify(booking)) }));
     }
   }
 
-  console.log('USER STATE', item, 'FORM USERS', users); // log & clear
+  // localStorage.setItem('users', JSON.stringify(users));
+  // localStorage.setItem('user', JSON.stringify(user));
+  console.log('CURRENT USER', user, '\n', 'FORM USERS', users); // log & clear
 
   return (
     <div className={css.overlay}>
@@ -63,10 +74,14 @@ export default function Form() {
         whileInView='visible'
         viewport={{ once: true }}
       >
-        <Input     errors={errors} onUpdate={updateHandler} id='name' />
-        <Input     errors={errors} onUpdate={updateHandler} id='surname' />
-        <Input     errors={errors} onUpdate={updateHandler} id='email' />
-        <Input     errors={errors} onUpdate={updateHandler} id='phone' />
+        {!user && (
+          <>
+            <Input errors={errors} onUpdate={updateHandler} id='name' />
+            <Input errors={errors} onUpdate={updateHandler} id='surname' />
+            <Input errors={errors} onUpdate={updateHandler} id='email' />
+            <Input errors={errors} onUpdate={updateHandler} id='phone' />
+          </>
+        )}
         <DateInput errors={errors} onUpdate={updateHandler} id='from' />
         <DateInput errors={errors} onUpdate={updateHandler} id='till' />
         <Input     errors={errors} onUpdate={updateHandler} id='destination' />

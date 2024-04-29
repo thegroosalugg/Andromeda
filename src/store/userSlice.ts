@@ -3,6 +3,10 @@ import User from '@/models/User';
 import Booking from '@/models/Booking';
 import { RootState } from './types';
 
+// const users = JSON.parse(localStorage.getItem('users') || '[]');
+// const  user = JSON.parse(localStorage.getItem('user')  || 'null');
+
+// const initialState: RootState['users'] = { users, user };
 const initialState: RootState['users'] = { users: [], user: null };
 
 const userSlice = createSlice({
@@ -11,9 +15,11 @@ const userSlice = createSlice({
   reducers: {
     addUser: (state, action: PayloadAction<User>) => {
       state.users.push(action.payload);
-    },
-    setUser: (state, action: PayloadAction<User>) => {
       state.user = action.payload;
+    },
+    setUser: (state, action: PayloadAction<{ userId: number }>) => {
+      const user = state.users.find((user: User) => user.id === action.payload.userId);
+      state.user = user || null;
     },
     logout: (state) => {
       state.user = null;
@@ -22,6 +28,7 @@ const userSlice = createSlice({
       const user = state.users.find((user: User) => user.id === action.payload.userId);
       if (user) {
         user.bookings.push(action.payload.booking);
+        state.user = user;
       }
     },
   },

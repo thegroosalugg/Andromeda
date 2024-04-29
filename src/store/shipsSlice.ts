@@ -2,8 +2,9 @@ import { createSlice } from '@reduxjs/toolkit';
 import { spaceships } from '@/data/spaceships';
 
 const shipData = () => {
-  const ships = JSON.parse(localStorage.getItem('spaceships') || JSON.stringify(spaceships)); // serialize data
-  localStorage.setItem('spaceships', JSON.stringify(ships));
+  // const ships = JSON.parse(localStorage.getItem('spaceships') || JSON.stringify(spaceships)); // serialize data
+  // localStorage.setItem('spaceships', JSON.stringify(ships));
+  const ships = JSON.parse(JSON.stringify(spaceships))
   return ships;
 };
 

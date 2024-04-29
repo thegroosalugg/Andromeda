@@ -5,6 +5,7 @@ import useSearch from '@/hooks/useSearch';
 
 export default function ShipIDPage() {
   const { item: spaceship }  = useSearch({ slugId: 'shipId', reducer: 'ships', sliceKey: 'ships' });
+
   if (!spaceship) {
     return <ErrorPage />
   }
