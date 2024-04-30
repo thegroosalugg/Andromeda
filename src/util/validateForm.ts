@@ -11,9 +11,25 @@ interface FormData {
   dropoff?: string;
 }
 
-export function validateForm(data: FormData, users: User[], shipId: string) {
+export function validateCredentials(
+  field: keyof FormData,
+  data: FormData,
+  users: User[]
+): string | undefined {
   const emailExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const phoneExp = /^\d+$/;
+
+  const value = data[field];
+  const regex = field === 'email' ? emailExp : phoneExp;
+
+  if (!regex.test(value!)) {
+    return `${field.toUpperCase()} INVALID`;
+  } else if (users.some((user) => user[field as 'email' | 'phone'] === value)) {
+    return `${field.toUpperCase()} EXISTS`;
+  }
+}
+
+export function validateForm(data: FormData, users: User[], shipId: string) {
   const errors: Partial<FormData> = {};
 
   Object.keys(data).forEach((key) => {
@@ -21,7 +37,6 @@ export function validateForm(data: FormData, users: User[], shipId: string) {
 
     if (!data[field]?.trim()) {
       errors[field] = `${[key]} empty`.toUpperCase();
-
     } else if (field === 'from' || field === 'till') {
       if (data.from && data.till) {
         const currentFrom = new Date(data.from);
@@ -29,7 +44,6 @@ export function validateForm(data: FormData, users: User[], shipId: string) {
 
         if (currentFrom > currentTill) {
           errors.till = errors.from = 'NO TIME TRAVELLING';
-
         } else {
           users.forEach((user) => {
             user.bookings.forEach((booking) => {
@@ -49,12 +63,8 @@ export function validateForm(data: FormData, users: User[], shipId: string) {
           });
         }
       }
-
-    } else if (key === 'email' && !emailExp.test(data[key]!)) {
-      errors[key] = 'EMAIL INVALID';
-
-    } else if (key === 'phone' && !phoneExp.test(data[key]!)) {
-      errors[key] = 'PHONE INVALID';
+    } else if (field === 'email' || field === 'phone') {
+      errors[field] = validateCredentials(field, data, users);
     }
   });
 

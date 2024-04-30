@@ -69,6 +69,7 @@ export default function Form() {
   return (
     <div className={css.overlay}>
       <motion.form
+        layout
         onSubmit={submitHandler}
         className={css.form}
         transition={{ staggerChildren: 0.1 }}

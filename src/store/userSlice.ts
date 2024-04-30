@@ -13,9 +13,11 @@ const userSlice = createSlice({
       state.users.push(action.payload);
       state.user = action.payload;
     },
-    setUser: (state, action: PayloadAction<{ userId: number }>) => {
-      const user = state.users.find((user: User) => user.id === action.payload.userId);
-      state.user = user || null;
+    setUser: (state, action: PayloadAction<{ email: string }>) => {
+      const user = state.users.find((user: User) => user.email === action.payload.email);
+      if (user) {
+        state.user = user;
+      }
     },
     logout: (state) => {
       state.user = null;
