@@ -7,7 +7,8 @@ interface FormData {
   phone?: string;
   from?: string;
   till?: string;
-  destination?: string;
+  pickup?: string;
+  dropoff?: string;
 }
 
 export function validateForm(data: FormData, users: User[], shipId: string) {

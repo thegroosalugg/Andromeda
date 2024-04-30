@@ -3,14 +3,16 @@ export default class Booking {
   shipId: string;
   from: string;
   till:  string;
-  destination: string;
+  pickup: string;
+  dropoff: string;
 
-  constructor(shipId: string, from: string, till: string, destination: string) {
+  constructor(shipId: string, from: string, till: string, pickup: string, dropoff: string) {
     this.id = Math.floor(Math.random() * 100000)
     this.shipId = shipId;
     this.from = from;
     this.till = till;
-    this.destination = destination;
+    this.pickup = pickup;
+    this.dropoff = dropoff;
   }
 
   toObject() {
