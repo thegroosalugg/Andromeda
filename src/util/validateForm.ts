@@ -11,31 +11,55 @@ interface FormData {
   dropoff?: string;
 }
 
-export function validateCredentials(
-  field: keyof FormData,
-  data: FormData,
-  users: User[]
-): string | undefined {
+function validateEmptyFields(data: FormData) {
+  const errors: Partial<FormData> = {};
+
+  Object.keys(data).forEach((key) => {
+    const field = key as keyof FormData;
+    if (!data[field]?.trim()) {
+      errors[field] = `${field.toUpperCase()} EMPTY`;
+    }
+  });
+
+  return errors;
+}
+
+export function validateUser(data: FormData, users: User[]) {
+  const errors = validateEmptyFields(data);
   const emailExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const phoneExp = /^\d+$/;
 
-  const value = data[field];
-  const regex = field === 'email' ? emailExp : phoneExp;
+  const validateField = (field: 'email' | 'phone') => {
+    const value = data[field];
+    const regex = field === 'email' ? emailExp : phoneExp;
 
-  if (!regex.test(value!)) {
-    return `${field} INVALID`.toUpperCase();
-  } else if (users.some((user) => user[field as 'email' | 'phone'] === value)) {
-    return `${field} EXISTS`.toUpperCase();
+    if (!regex.test(value!)) {
+      errors[field] = `${field.toUpperCase()} INVALID`;
+    } else if (users.some((user) => user[field] === value)) {
+      errors[field] = `${field.toUpperCase()} EXISTS`;
+    }
+  };
+
+  if (data.email) {
+    validateField('email');
   }
+
+  if (data.phone) {
+    validateField('phone');
+  }
+
+  return errors;
 }
 
-export function validateDates(data: FormData, users: User[], shipId: string) {
+export function validateBooking(data: FormData, users: User[], shipId: string) {
+  const errors = validateEmptyFields(data);
+
   if (data.from && data.till) {
     const currentFrom = new Date(data.from);
     const currentTill = new Date(data.till);
 
     if (currentFrom > currentTill) {
-      return 'NO TIME TRAVELLING';
+      errors.from = errors.till = 'NO TIME TRAVELLING';
     } else {
       for (const user of users) {
         for (const booking of user.bookings) {
@@ -48,34 +72,13 @@ export function validateDates(data: FormData, users: User[], shipId: string) {
               (currentTill >= bookedFrom && currentTill <= bookedTill) ||
               (currentFrom <= bookedFrom && currentTill >= bookedTill)
             ) {
-              return 'DATES UNAVAILABLE';
+              errors.from = errors.till = 'DATES UNAVAILABLE';
             }
           }
         }
       }
     }
   }
-}
-
-export function validateForm(data: FormData, users: User[], shipId: string) {
-  const errors: Partial<FormData> = {};
-
-  Object.keys(data).forEach((key) => {
-    const field = key as keyof FormData;
-    if (!data[field]?.trim()) {
-      errors[field] = `${[key]} empty`.toUpperCase();
-    } else if (field === 'from' || field === 'till') {
-      const dateError = validateDates(data, users, shipId);
-      if (dateError) {
-        errors[field] = dateError;
-      }
-    } else if (field === 'email' || field === 'phone') {
-      const credentialError = validateCredentials(field, data, users);
-      if (credentialError) {
-        errors[field] = credentialError;
-      }
-    }
-  });
 
   return errors;
 }

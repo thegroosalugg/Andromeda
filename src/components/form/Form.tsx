@@ -3,7 +3,7 @@ import { useCallback, useState } from 'react';
 import Input from './Input';
 import css from './Form.module.css';
 import DateInput from './DateInput';
-import { validateForm } from '@/util/validateForm';
+import { validateUser, validateBooking } from '@/util/validateForm';
 import { useDispatch } from 'react-redux';
 import { userActions } from '@/store/userSlice';
 import User from '@/models/User';
@@ -19,18 +19,13 @@ export default function Form() {
     stateSlice: { users, user },
   } = useSearch({ slugId: 'shipId', reducer: 'users' });
   const dispatch = useDispatch();
+
   const [errors, setErrors] = useState({});
   const [  data,   setData] = useState({
-    shipId,
-    name:    user?.name    || '',
-    surname: user?.surname || '',
-    email:   user?.email   || '',
-    phone:   user?.phone   || '',
-    from:                     '',
-    till:                     '',
-    pickup:                   '',
-    dropoff:                  '',
+            name: '', surname: '',  email: '',  phone: '',
+    shipId, from: '',    till: '', pickup: '', dropoff: '',
   });
+
   const variants = { hidden: { opacity: 0, scale: 0.5 }, visible: { opacity: 1, scale: 1 } };
 
   const updateHandler = useCallback((id: string, value: string) => {
@@ -40,31 +35,24 @@ export default function Form() {
   function submitHandler(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     console.clear(); // log & clear
-    const newErrors = validateForm(data, users, shipId!);
+    const { name, surname, email, phone, shipId, from, till, pickup, dropoff } = data;
+    const userErrors = !user ? validateUser({ name, surname, email, phone }, users) : {};
+    const bookingErrors = validateBooking({ from, till, pickup, dropoff }, users, shipId!);
+
+    const newErrors = { ...userErrors, ...bookingErrors };
+    console.log('ERRORS!', newErrors); // log & clear
     setErrors(newErrors);
-    console.log('ERRORS', newErrors) // log & clear
 
     if (Object.keys(newErrors).length === 0) {
-      const { name, surname, email, phone, shipId, from, till, pickup, dropoff } = data;
-      let userId;
-      console.log('submitting...') // log & clear
+      const newUser = user ? user : new User(name, surname, email, phone).toObject();
+      const booking = new Booking(shipId!, from, till, pickup, dropoff).toObject();
 
-      if (!user) {
-        console.log('new user...') // log & clear
-        const newUser = (new User(name, surname, email, phone)).toObject(); // serialize class instances
-        dispatch(userActions.addUser(newUser));
-        userId = newUser.id;
-      } else {
-        userId = user.id;
-      }
-
-      const booking = (new Booking(shipId!, from, till, pickup, dropoff)).toObject();
-      console.log('booking...') // log & clear
-      dispatch(userActions.addBooking({ userId, booking }));
+      !user && dispatch(userActions.addUser(newUser));
+      dispatch(userActions.addBooking({ user: newUser, booking }));
     }
   }
 
-  console.log('FORM/USER', user, '\n', 'FORM/USERS', users); // log & clear
+  console.log('FORM/DATA', data, '\n \n', 'FORM/USER', user, '\n \n', 'FORM/USERS', users); // log & clear
 
   return (
     <div className={css.overlay}>
@@ -87,7 +75,7 @@ export default function Form() {
         )}
         <DateInput errors={errors} onUpdate={updateHandler} id='from' />
         <DateInput errors={errors} onUpdate={updateHandler} id='till' />
-        <Select id='pickup' errors={errors} onUpdate={updateHandler} />
+        <Select id='pickup'  errors={errors} onUpdate={updateHandler} />
         <Select id='dropoff' errors={errors} onUpdate={updateHandler} />
         <motion.button variants={variants} whileHover={{ scale: 1.2, color: '#FFA500' }}>
           PROCEED

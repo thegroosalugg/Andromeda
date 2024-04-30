@@ -22,8 +22,8 @@ const userSlice = createSlice({
     logout: (state) => {
       state.user = null;
     },
-    addBooking: (state, action: PayloadAction<{ userId: number; booking: Booking }>) => {
-      const user = state.users.find((user: User) => user.id === action.payload.userId);
+    addBooking: (state, action: PayloadAction<{ user: User; booking: Booking }>) => {
+      const user = state.users.find((user: User) => user.id === action.payload.user.id);
       if (user) {
         user.bookings.push(action.payload.booking);
         state.user = user;
