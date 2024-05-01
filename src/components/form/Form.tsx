@@ -5,7 +5,7 @@ import css from './Form.module.css';
 import DateInput from './DateInput';
 import { validateUser, validateBooking, FormData } from '@/util/validateForm';
 import { useDispatch } from 'react-redux';
-import { userActions } from '@/store/userSlice';
+import { addBooking, addUser } from '@/store/userSlice';
 import User from '@/models/User';
 import Booking from '@/models/Booking';
 import useSearch from '@/hooks/useSearch';
@@ -23,11 +23,11 @@ export default function Form({withBooking}: {withBooking?: boolean}) {
   const [errors, setErrors] = useState({});
   const [  data,   setData] = useState({});
 
-  const variants = { hidden: { opacity: 0, scale: 0.5 }, visible: { opacity: 1, scale: 1 } };
-
   const updateHandler = useCallback((id: string, value: string) => {
     setData((prevData) => ({ ...prevData, [id]: value }));
   }, []);
+
+  const variants = { hidden: { opacity: 0, scale: 0.5 }, visible: { opacity: 1, scale: 1 } };
 
   function submitHandler(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -44,8 +44,8 @@ export default function Form({withBooking}: {withBooking?: boolean}) {
       const currentUser = user ? user : new User(name!, surname!, email!, phone!).toObject!();
       const booking = withBooking && new Booking(shipId!, from!, till!, pickup!, dropoff!).toObject();
 
-      !user && dispatch(userActions.addUser(currentUser));
-      booking && dispatch(userActions.addBooking({ currentUser, booking }));
+      !user && dispatch(addUser(currentUser));
+      booking && dispatch(addBooking({ currentUser, booking }));
     }
   }
 

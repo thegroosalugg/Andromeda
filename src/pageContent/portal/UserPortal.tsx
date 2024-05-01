@@ -1,17 +1,13 @@
 import User from '@/models/User';
-import { userActions } from '@/store/userSlice';
+import { logout } from '@/store/userSlice';
 import { useDispatch } from 'react-redux';
 
 export default function UserPortal(user: User) {
   const dispatch = useDispatch();
 
-  function logout() {
-    dispatch(userActions.logout());
-  }
-
-  return (
+   return (
     <>
-      <button onClick={logout}>LOGOUT</button>
+      <button onClick={() => dispatch(logout())}>LOGOUT</button>
       <h2>{user.name}</h2>
       <h2>{user.surname}</h2>
       <h2>{user.email}</h2>
