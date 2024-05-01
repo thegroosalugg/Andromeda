@@ -17,7 +17,7 @@ export default class User {
     this.bookings = [];
   }
 
-  toObject() {
+  toObject?() {
     return { ...this };
   }
 }

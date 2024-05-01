@@ -44,11 +44,11 @@ export default function Form() {
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      const newUser = user ? user : new User(name, surname, email, phone).toObject();
+      const currentUser = user ? user : new User(name, surname, email, phone).toObject!();
       const booking = new Booking(shipId!, from, till, pickup, dropoff).toObject();
 
-      !user && dispatch(userActions.addUser(newUser));
-      dispatch(userActions.addBooking({ user: newUser, booking }));
+      !user && dispatch(userActions.addUser(currentUser));
+      dispatch(userActions.addBooking({ currentUser, booking }));
     }
   }
 

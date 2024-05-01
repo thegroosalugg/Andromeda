@@ -35,7 +35,7 @@ export function validateUser(data: FormData, users: User[]) {
 
     if (!regex.test(value!)) {
       errors[field] = `${field.toUpperCase()} INVALID`;
-    } else if (users.some((user) => user[field] === value)) {
+    } else if (users.some((user) => user[field].toLowerCase() === value!.toLowerCase())) {
       errors[field] = `${field.toUpperCase()} EXISTS`;
     }
   };
