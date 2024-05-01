@@ -1,5 +1,6 @@
 import useErrorAnimation from '@/hooks/useErrorAnimation';
 import { motion } from 'framer-motion';
+import { memo } from 'react';
 import css from './Input.module.css';
 
 interface Errors {
@@ -52,4 +53,5 @@ function Select({ id, errors, onUpdate }: SelectProps) {
   );
 }
 
-export default Select;
+const MemoizedSelect = memo(Select);
+export default MemoizedSelect;
