@@ -2,5 +2,9 @@
   text-align: center;
   color: rgb(234, 229, 219);
   text-shadow: 2px 4px 4px rgb(21, 21, 21);
-  padding: 1rem;
+  padding: 0 0 1rem;
+}
+
+.header h1 {
+  margin: 0;
 }

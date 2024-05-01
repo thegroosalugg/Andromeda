@@ -34,13 +34,13 @@ export default function Form() {
 
   function submitHandler(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    console.clear(); // log & clear
+    console.clear(); // *LOG & CLEAR*
     const { name, surname, email, phone, shipId, from, till, pickup, dropoff } = data;
     const userErrors = !user ? validateUser({ name, surname, email, phone }, users) : {};
     const bookingErrors = validateBooking({ from, till, pickup, dropoff }, users, shipId!);
 
     const newErrors = { ...userErrors, ...bookingErrors };
-    console.log('ERRORS!', newErrors); // log & clear
+    console.log('ERRORS!', newErrors); // *LOG & CLEAR*
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
@@ -52,7 +52,7 @@ export default function Form() {
     }
   }
 
-  console.log('FORM/DATA', data, '\n \n', 'FORM/USER', user, '\n \n', 'FORM/USERS', users); // log & clear
+  console.log('FORM/DATA', data, '\n \n', 'FORM/USER', user, '\n \n', 'FORM/USERS', users); // *LOG & CLEAR*
 
   return (
     <div className={css.overlay}>

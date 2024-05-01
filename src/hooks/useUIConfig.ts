@@ -7,14 +7,16 @@ interface Config {
 const config: Config = {
      default: { text: '', background: '#00000000', },
          '/': { text: 'Welcome to Andromeda' },
-    '/store': { text: 'Fashion out of this World' },
-    '/ships': { text: 'Beyond Earth: Unveiling our Spaceships', background: '#232728f9' },
-  '/explore': { text: 'Explore the Galaxy' },
+    '/store': { text: 'Out of this World Fashion' },
+    '/ships': { text: 'Omega Collection', background: '#232728f9' },
+  '/explore': { text: 'Exploring the Galaxy' },
+     '/user': { text: 'Space Portal', background: '#274046F9' }
 };
 
 const useUIConfig = () => {
   const { pathname } = useLocation();
-  const configuredPath = { ...config.default, ...config[pathname] }; // add all default values then overwrite any uniques
+  const key = pathname.startsWith('/user') ? '/user' : pathname
+  const configuredPath = { ...config.default, ...config[key] }; // add all default values then overwrite any uniques
   return { pathname, ...configuredPath };
 };
 
