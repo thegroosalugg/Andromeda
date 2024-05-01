@@ -10,7 +10,7 @@ import Booking from '@/models/Booking';
 import useSearch from '@/hooks/useSearch';
 import Select from './Select';
 import { RootState } from '@/store/types';
-import { setErrors } from '@/store/formSlice';
+import { setErrors, clearForm } from '@/store/formSlice';
 // import { useNavigate } from 'react-router-dom';
 
 export default function Form({ withBooking }: { withBooking?: boolean }) {
@@ -39,6 +39,7 @@ export default function Form({ withBooking }: { withBooking?: boolean }) {
 
       !user && dispatch(addUser(currentUser));
       booking && dispatch(addBooking({ currentUser, booking }));
+      dispatch(clearForm())
     }
   }
 

@@ -2,19 +2,24 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from './types';
 import { FormData } from '@/models/FormData';
 
-const initialState: RootState['form'] = {
-  data: {
-    name: '',
+function emptyForm(): FormData {
+  return {
+       name: '',
     surname: '',
-    email: '',
-    phone: '',
-    from: '',
-    till: '',
-    pickup: '',
+      email: '',
+      phone: '',
+       from: '',
+       till: '',
+     pickup: '',
     dropoff: '',
-  },
+  };
+}
+
+const initialState: RootState['form'] = {
+  data: emptyForm(),
   errors: {},
 };
+
 
 const formSlice = createSlice({
   name: 'form',
@@ -24,11 +29,14 @@ const formSlice = createSlice({
       const { id, value } = action.payload;
       state.data[id] = value;
     },
+    clearForm(state) {
+      state.data = emptyForm();
+    },
     setErrors(state, action) {
       state.errors = action.payload;
     },
   },
 });
 
-export const { updateData, setErrors } = formSlice.actions;
+export const { updateData, clearForm, setErrors } = formSlice.actions;
 export default formSlice.reducer;

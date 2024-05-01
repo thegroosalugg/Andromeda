@@ -12,7 +12,7 @@ const planets = ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uran
 function Select({ id }: { id: keyof FormData }) {
   const { x, delay, backgroundColor } = useErrorAnimation(id);
   const dispatch = useDispatch();
-  const { errors } = useSelector((state: RootState) => state.form)
+  const { data, errors } = useSelector((state: RootState) => state.form)
 
   function changeHandler(event: React.ChangeEvent<HTMLSelectElement>) {
     dispatch(updateData({id, value: event.currentTarget.value}))
@@ -21,8 +21,8 @@ function Select({ id }: { id: keyof FormData }) {
   return (
     <motion.select
       className={`${css.input} ${css.select}`}
-      defaultValue=''
       onChange={changeHandler}
+      value={data[id]}
       variants={{ hidden: { opacity: 0, scale: 0.5 }, visible: { opacity: 1, scale: 1 } }}
       animate={{
         backgroundColor,
