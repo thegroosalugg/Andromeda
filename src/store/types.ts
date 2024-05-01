@@ -1,5 +1,6 @@
 import SpaceShip from '@/models/SpaceShip';
 import User from '@/models/User';
+import { FormData } from '@/models/FormData'
 
 interface ShipsState {
   ships: SpaceShip[];
@@ -14,8 +15,14 @@ interface UserState {
   user: User | null;
 }
 
+interface FormState {
+  data: FormData;
+  errors: FormData;
+}
+
 export interface RootState {
   ships: ShipsState;
   modal: ModalState;
   users: UserState;
+  form: FormState;
 }

@@ -3,7 +3,8 @@ import { useCallback, useState } from 'react';
 import Input from './Input';
 import css from './Form.module.css';
 import DateInput from './DateInput';
-import { validateUser, validateBooking, FormData } from '@/util/validateForm';
+import { validateUser, validateBooking } from '@/util/validateForm';
+import { FormData } from '@/models/FormData'
 import { useDispatch } from 'react-redux';
 import { addBooking, addUser } from '@/store/userSlice';
 import User from '@/models/User';
