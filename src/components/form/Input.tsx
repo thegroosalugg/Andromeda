@@ -2,22 +2,18 @@ import { motion } from 'framer-motion';
 import css from './Input.module.css';
 import { memo } from 'react';
 import useErrorAnimation from '@/hooks/useErrorAnimation';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateData } from '@/store/formSlice';
+import { FormData } from '@/models/FormData';
+import { RootState } from '@/store/types';
 
-interface Errors {
-  [key: string]: string;
-}
-
-interface InputProps {
-  id: string;
-  errors: Errors;
-  onUpdate: (id: string, value: string ) => void;
-}
-
-const Input: React.FC<InputProps> = ({ id, errors, onUpdate, ...props }) => {
-  const { value, updateFormData, x, delay, backgroundColor } = useErrorAnimation(id, errors, onUpdate);
+const Input = ({ id, ...props }: { id: keyof FormData }) => {
+  const { x, delay, backgroundColor } = useErrorAnimation(id);
+  const dispatch = useDispatch();
+  const { data, errors } = useSelector((state: RootState) => state.form)
 
   function changeHandler(event: React.ChangeEvent<HTMLInputElement>) {
-    updateFormData(event.currentTarget.value);
+    dispatch(updateData({id, value: event.currentTarget.value}))
   }
 
   return (
@@ -27,7 +23,7 @@ const Input: React.FC<InputProps> = ({ id, errors, onUpdate, ...props }) => {
       className={css.input}
       placeholder={errors[id] ? errors[id] : id.toUpperCase()}
       onChange={changeHandler}
-      value={value}
+      value={data[id]}
       {...props}
       variants={{ hidden: { opacity: 0, scale: 0.5 }, visible: { opacity: 1, scale: 1 } }}
       animate={{

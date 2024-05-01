@@ -1,45 +1,37 @@
 import { motion } from 'framer-motion';
-import { useCallback, useState } from 'react';
 import Input from './Input';
 import css from './Form.module.css';
 import DateInput from './DateInput';
 import { validateUser, validateBooking } from '@/util/validateForm';
-import { FormData } from '@/models/FormData'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addBooking, addUser } from '@/store/userSlice';
 import User from '@/models/User';
 import Booking from '@/models/Booking';
 import useSearch from '@/hooks/useSearch';
 import Select from './Select';
+import { RootState } from '@/store/types';
+import { setErrors } from '@/store/formSlice';
 // import { useNavigate } from 'react-router-dom';
 
-export default function Form({withBooking}: {withBooking?: boolean}) {
+export default function Form({ withBooking }: { withBooking?: boolean }) {
   // const navigate = useNavigate();
   const {
     slugId: shipId,
     stateSlice: { users, user },
   } = useSearch({ slugId: 'shipId', reducer: 'users' });
   const dispatch = useDispatch();
-
-  const [errors, setErrors] = useState({});
-  const [  data,   setData] = useState({});
-
-  const updateHandler = useCallback((id: string, value: string) => {
-    setData((prevData) => ({ ...prevData, [id]: value }));
-  }, []);
-
+  const { data, errors } = useSelector((state: RootState) => state.form);
   const variants = { hidden: { opacity: 0, scale: 0.5 }, visible: { opacity: 1, scale: 1 } };
 
   function submitHandler(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     console.clear(); // *LOG & CLEAR*
-    const { name, surname, email, phone, from, till, pickup, dropoff } = data as FormData;
+    const { name, surname, email, phone, from, till, pickup, dropoff } = data;
     const userErrors = !user ? validateUser({ name, surname, email, phone }, users) : {};
     const bookingErrors = withBooking ? validateBooking({ from, till, pickup, dropoff }, users, shipId!) : {};
 
     const newErrors = { ...userErrors, ...bookingErrors };
-    console.log('ERRORS!', newErrors); // *LOG & CLEAR*
-    setErrors(newErrors);
+    dispatch(setErrors(newErrors));
 
     if (Object.keys(newErrors).length === 0) {
       const currentUser = user ? user : new User(name!, surname!, email!, phone!).toObject!();
@@ -50,7 +42,8 @@ export default function Form({withBooking}: {withBooking?: boolean}) {
     }
   }
 
-  console.log('FORM/DATA', data, '\n \n', 'FORM/USER', user, '\n \n', 'FORM/USERS', users); // *LOG & CLEAR*
+  // prettier-ignore
+  console.log('FORM/DATA', data, '\n \n', 'ERRORS!', errors, '\n \n', 'LOGGED IN AS', user, '\n \n', 'DATABASE', users); // *LOG & CLEAR*
 
   return (
     <div className={css.overlay}>
@@ -65,18 +58,18 @@ export default function Form({withBooking}: {withBooking?: boolean}) {
       >
         {!user && (
           <>
-            <Input errors={errors} onUpdate={updateHandler} id='name' />
-            <Input errors={errors} onUpdate={updateHandler} id='surname' />
-            <Input errors={errors} onUpdate={updateHandler} id='email' />
-            <Input errors={errors} onUpdate={updateHandler} id='phone' />
+            <Input id='name' />
+            <Input id='surname' />
+            <Input id='email' />
+            <Input id='phone' />
           </>
         )}
         {withBooking && (
           <>
-            <DateInput errors={errors} onUpdate={updateHandler} id='from' />
-            <DateInput errors={errors} onUpdate={updateHandler} id='till' />
-            <Select id='pickup'  errors={errors} onUpdate={updateHandler} />
-            <Select id='dropoff' errors={errors} onUpdate={updateHandler} />
+            <DateInput id='from' />
+            <DateInput id='till' />
+            <Select id='pickup' />
+            <Select id='dropoff' />
           </>
         )}
         <motion.button variants={variants} whileHover={{ scale: 1.2, color: '#FFA500' }}>

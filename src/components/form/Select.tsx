@@ -2,28 +2,20 @@ import useErrorAnimation from '@/hooks/useErrorAnimation';
 import { motion } from 'framer-motion';
 import { memo } from 'react';
 import css from './Input.module.css';
-
-interface Errors {
-  [key: string]: string;
-}
-
-interface SelectProps {
-  id: string;
-  errors: Errors;
-  onUpdate: (id: string, value: string) => void;
-}
+import { useDispatch, useSelector } from 'react-redux';
+import { updateData } from '@/store/formSlice';
+import { FormData } from '@/models/FormData';
+import { RootState } from '@/store/types';
 
 const planets = ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune'];
 
-function Select({ id, errors, onUpdate }: SelectProps) {
-  const { updateFormData, x, delay, backgroundColor } = useErrorAnimation(
-    id,
-    errors,
-    onUpdate
-  );
+function Select({ id }: { id: keyof FormData }) {
+  const { x, delay, backgroundColor } = useErrorAnimation(id);
+  const dispatch = useDispatch();
+  const { errors } = useSelector((state: RootState) => state.form)
 
   function changeHandler(event: React.ChangeEvent<HTMLSelectElement>) {
-    updateFormData(event.currentTarget.value);
+    dispatch(updateData({id, value: event.currentTarget.value}))
   }
 
   return (
