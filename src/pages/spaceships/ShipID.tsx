@@ -13,7 +13,7 @@ export default function ShipIDPage() {
   return (
     <>
       <ShipDetails {...spaceship} />
-      <Form />
+      <Form withBooking />
     </>
   );
 }

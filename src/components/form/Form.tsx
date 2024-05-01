@@ -12,7 +12,7 @@ import useSearch from '@/hooks/useSearch';
 import Select from './Select';
 // import { useNavigate } from 'react-router-dom';
 
-export default function Form() {
+export default function Form({withBooking}: {withBooking?: boolean}) {
   // const navigate = useNavigate();
   const {
     slugId: shipId,
@@ -34,7 +34,7 @@ export default function Form() {
     console.clear(); // *LOG & CLEAR*
     const { name, surname, email, phone, from, till, pickup, dropoff } = data as FormData;
     const userErrors = !user ? validateUser({ name, surname, email, phone }, users) : {};
-    const bookingErrors = validateBooking({ from, till, pickup, dropoff }, users, shipId!);
+    const bookingErrors = withBooking ? validateBooking({ from, till, pickup, dropoff }, users, shipId!) : {};
 
     const newErrors = { ...userErrors, ...bookingErrors };
     console.log('ERRORS!', newErrors); // *LOG & CLEAR*
@@ -42,10 +42,10 @@ export default function Form() {
 
     if (Object.keys(newErrors).length === 0) {
       const currentUser = user ? user : new User(name!, surname!, email!, phone!).toObject!();
-      const booking = new Booking(shipId!, from!, till!, pickup!, dropoff!).toObject();
+      const booking = withBooking && new Booking(shipId!, from!, till!, pickup!, dropoff!).toObject();
 
       !user && dispatch(userActions.addUser(currentUser));
-      dispatch(userActions.addBooking({ currentUser, booking }));
+      booking && dispatch(userActions.addBooking({ currentUser, booking }));
     }
   }
 
@@ -70,10 +70,14 @@ export default function Form() {
             <Input errors={errors} onUpdate={updateHandler} id='phone' />
           </>
         )}
-        <DateInput errors={errors} onUpdate={updateHandler} id='from' />
-        <DateInput errors={errors} onUpdate={updateHandler} id='till' />
-        <Select id='pickup'  errors={errors} onUpdate={updateHandler} />
-        <Select id='dropoff' errors={errors} onUpdate={updateHandler} />
+        {withBooking && (
+          <>
+            <DateInput errors={errors} onUpdate={updateHandler} id='from' />
+            <DateInput errors={errors} onUpdate={updateHandler} id='till' />
+            <Select id='pickup'  errors={errors} onUpdate={updateHandler} />
+            <Select id='dropoff' errors={errors} onUpdate={updateHandler} />
+          </>
+        )}
         <motion.button variants={variants} whileHover={{ scale: 1.2, color: '#FFA500' }}>
           PROCEED
         </motion.button>

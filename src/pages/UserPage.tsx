@@ -1,3 +1,4 @@
+import Form from "@/components/form/Form";
 import useSearch from "@/hooks/useSearch";
 import UserPortal from "@/pageContent/portal/UserPortal";
 
@@ -9,7 +10,7 @@ export default function UserPage() {
   if (user) {
     page = <UserPortal {...user} />
   } else {
-    page = <h1>NO USER FOUND</h1>
+    page = <Form />
   }
 
   return page
