@@ -20,7 +20,6 @@ const initialState: RootState['form'] = {
   errors: {},
 };
 
-
 const formSlice = createSlice({
   name: 'form',
   initialState,
@@ -29,11 +28,12 @@ const formSlice = createSlice({
       const { id, value } = action.payload;
       state.data[id] = value;
     },
-    clearForm(state) {
-      state.data = emptyForm();
-    },
     setErrors(state, action) {
       state.errors = action.payload;
+    },
+    clearForm(state) {
+      state.data = emptyForm();
+      state.errors = {};
     },
   },
 });

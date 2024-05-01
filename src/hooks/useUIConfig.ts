@@ -1,3 +1,6 @@
+import { clearForm } from '@/store/formSlice';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
 interface Config {
@@ -17,6 +20,12 @@ const useUIConfig = () => {
   const { pathname } = useLocation();
   const key = pathname.startsWith('/user') ? '/user' : pathname
   const configuredPath = { ...config.default, ...config[key] }; // add all default values then overwrite any uniques
+
+  const dispatch = useDispatch(); // this block is unrelated to this hook. It needs to be placed in a high level component...
+  useEffect(() => { // ...so that it executes before any path components. Redux form data state requires programmatic resetting
+    dispatch(clearForm());
+  }, [dispatch, pathname]);
+
   return { pathname, ...configuredPath };
 };
 
