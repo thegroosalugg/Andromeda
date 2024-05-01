@@ -1,6 +1,7 @@
-import Form from "@/components/form/Form";
-import useSearch from "@/hooks/useSearch";
-import UserPortal from "@/pageContent/portal/UserPortal";
+import Form from '@/components/form/Form';
+import useSearch from '@/hooks/useSearch';
+import SignUpLogo from '@/pageContent/portal/SignUpLogo';
+import UserPortal from '@/pageContent/portal/UserPortal';
 
 export default function UserPage() {
   const { stateSlice: { user } } = useSearch({ slugId: 'userId', reducer: 'users' });
@@ -8,10 +9,15 @@ export default function UserPage() {
   let page;
 
   if (user) {
-    page = <UserPortal {...user} />
+    page = <UserPortal {...user} />;
   } else {
-    page = <Form />
+    page = (
+      <>
+        <SignUpLogo />
+        <Form />
+      </>
+    );
   }
 
-  return page
+  return page;
 }

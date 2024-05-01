@@ -5,9 +5,9 @@ import useScreen from '@/hooks/useScreen';
 
 export default function Section({ children }: { children: React.ReactNode }) {
   const { scrollY } = useScroll();
-  const { width } = useScreen();
+  const { width, height } = useScreen();
 
-  const pixels = width > 1024 ? 500 : 900;
+  const pixels = width > 1024 ? 500 : height;
   const range = rangeArray(4, pixels, 50);
 
   const opacity = useTransform(scrollY, [...range], [1, 0.8, 0.5, 0]);
