@@ -1,13 +1,13 @@
 import User from '@/models/User';
 
-interface FormData {
-  name?: string;
+export interface FormData {
+     name?: string;
   surname?: string;
-  email?: string;
-  phone?: string;
-  from?: string;
-  till?: string;
-  pickup?: string;
+    email?: string;
+    phone?: string;
+     from?: string;
+     till?: string;
+   pickup?: string;
   dropoff?: string;
 }
 

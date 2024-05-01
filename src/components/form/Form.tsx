@@ -3,7 +3,7 @@ import { useCallback, useState } from 'react';
 import Input from './Input';
 import css from './Form.module.css';
 import DateInput from './DateInput';
-import { validateUser, validateBooking } from '@/util/validateForm';
+import { validateUser, validateBooking, FormData } from '@/util/validateForm';
 import { useDispatch } from 'react-redux';
 import { userActions } from '@/store/userSlice';
 import User from '@/models/User';
@@ -21,10 +21,7 @@ export default function Form() {
   const dispatch = useDispatch();
 
   const [errors, setErrors] = useState({});
-  const [  data,   setData] = useState({
-            name: '', surname: '',  email: '',  phone: '',
-    shipId, from: '',    till: '', pickup: '', dropoff: '',
-  });
+  const [  data,   setData] = useState({});
 
   const variants = { hidden: { opacity: 0, scale: 0.5 }, visible: { opacity: 1, scale: 1 } };
 
@@ -35,7 +32,7 @@ export default function Form() {
   function submitHandler(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     console.clear(); // *LOG & CLEAR*
-    const { name, surname, email, phone, shipId, from, till, pickup, dropoff } = data;
+    const { name, surname, email, phone, from, till, pickup, dropoff } = data as FormData;
     const userErrors = !user ? validateUser({ name, surname, email, phone }, users) : {};
     const bookingErrors = validateBooking({ from, till, pickup, dropoff }, users, shipId!);
 
@@ -44,8 +41,8 @@ export default function Form() {
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      const currentUser = user ? user : new User(name, surname, email, phone).toObject!();
-      const booking = new Booking(shipId!, from, till, pickup, dropoff).toObject();
+      const currentUser = user ? user : new User(name!, surname!, email!, phone!).toObject!();
+      const booking = new Booking(shipId!, from!, till!, pickup!, dropoff!).toObject();
 
       !user && dispatch(userActions.addUser(currentUser));
       dispatch(userActions.addBooking({ currentUser, booking }));
