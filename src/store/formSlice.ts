@@ -2,21 +2,17 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from './types';
 import { FormData } from '@/models/FormData';
 
-function emptyForm(): FormData {
-  return {
-       name: '',
-    surname: '',
-      email: '',
-      phone: '',
-       from: '',
-       till: '',
-     pickup: '',
-    dropoff: '',
-  };
-}
-
 const initialState: RootState['form'] = {
-  data: emptyForm(),
+  data: {
+    name: '',
+ surname: '',
+   email: '',
+   phone: '',
+    from: '',
+    till: '',
+  pickup: '',
+ dropoff: '',
+},
   errors: {},
 };
 
@@ -32,8 +28,7 @@ const formSlice = createSlice({
       state.errors = action.payload;
     },
     clearForm(state) {
-      state.data = emptyForm();
-      state.errors = {};
+      Object.assign(state, initialState);
     },
   },
 });
