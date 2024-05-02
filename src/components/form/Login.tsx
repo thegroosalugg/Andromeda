@@ -5,6 +5,7 @@ import css from './Login.module.css';
 import { validateLogin } from '@/util/validateForm';
 import { setErrors } from '@/store/formSlice';
 import { RootState } from '@/store/types';
+import { setUser } from '@/store/userSlice';
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -13,9 +14,10 @@ export default function Login() {
   const { login } = data;
 
   function submitHandler() {
-    const validated = validateLogin(login, users);
-    dispatch(setErrors(validated));
-    console.log('VALIDATED', validated)
+    const isValid = validateLogin(login, users);
+    dispatch(setErrors(isValid));
+    console.log('VALIDATED', isValid)
+    Object.keys(isValid).length === 0 && dispatch(setUser({ email: login! }))
   }
 
   return (

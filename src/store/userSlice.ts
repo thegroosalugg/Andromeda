@@ -14,7 +14,7 @@ const userSlice = createSlice({
       state.user = action.payload;
     },
     setUser: (state, action: PayloadAction<{ email: string }>) => {
-      const user = state.users.find((user: User) => user.email === action.payload.email);
+      const user = state.users.find((user: User) => user.email.toLowerCase() === action.payload.email.toLowerCase());
       if (user) {
         state.user = user;
       }
