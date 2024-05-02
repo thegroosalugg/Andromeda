@@ -1,5 +1,5 @@
 import User from '@/models/User';
-import { FormData } from '@/models/FormData'
+import { FormData } from '@/models/FormData';
 
 function validateEmptyFields(data: FormData) {
   const errors: Partial<FormData> = {};
@@ -68,6 +68,20 @@ export function validateBooking(data: FormData, users: User[], shipId: string) {
         }
       }
     }
+  }
+
+  return errors;
+}
+
+export function validateLogin(login: string | undefined, users: User[]) {
+  const errors: Partial<FormData> = {};
+
+  if (!login?.trim()) {
+    errors.login = 'LOGIN EMPTY';
+  } else if (users.length === 0 || users.some((user) => user.email.toLowerCase() !== login!.toLowerCase())) {
+    errors.login = 'WRONG EMAIL';
+  } else {
+    errors.login = 'VALIDATED'
   }
 
   return errors;
