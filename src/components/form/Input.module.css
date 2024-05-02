@@ -9,6 +9,11 @@
   outline: none;
 }
 
+.login {
+  border-radius: 10px 0 0 10px;
+  font-family: 'Orbitron', sans-serif;
+}
+
 .datepicker {
   border-radius: 10px;
 }

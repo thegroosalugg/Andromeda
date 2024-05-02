@@ -7,20 +7,21 @@ import { updateData } from '@/store/formSlice';
 import { FormData } from '@/models/FormData';
 import { RootState } from '@/store/types';
 
-const Input = ({ id, ...props }: { id: keyof FormData }) => {
+const Input = ({ id, login, ...props }: { id: keyof FormData; login?: boolean }) => {
   const { x, delay, backgroundColor } = useErrorAnimation(id);
   const dispatch = useDispatch();
-  const { data, errors } = useSelector((state: RootState) => state.form)
+  const { data, errors } = useSelector((state: RootState) => state.form);
+  const scale = login ? 1 : 1.1;
 
   function changeHandler(event: React.ChangeEvent<HTMLInputElement>) {
-    dispatch(updateData({id, value: event.currentTarget.value}))
+    dispatch(updateData({ id, value: event.currentTarget.value }));
   }
 
   return (
     <motion.input
       // autocomplete data does not re-trigger onChange state updates, so some animations won't play until user types. So off it goes instead.
       autoComplete='go-away' // removed name/id as I control all data. This prop also needs to be set to disable autocomplete
-      className={css.input}
+      className={`${css.input} ${login ? css.login : ''}`}
       placeholder={errors[id] ? errors[id] : id.toUpperCase()}
       onChange={changeHandler}
       value={data[id]}
@@ -31,8 +32,8 @@ const Input = ({ id, ...props }: { id: keyof FormData }) => {
         x,
         transition: { type: 'easeIn', delay },
       }}
-      whileFocus={{ scale: 1.1 }}
-      whileHover={{ scale: 1.1 }}
+      whileFocus={{ scale }}
+      whileHover={{ scale }}
       transition={{ type: 'easeIn', duration: 0.5 }}
     />
   );

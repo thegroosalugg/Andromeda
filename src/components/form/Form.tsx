@@ -5,13 +5,13 @@ import Booking from '@/models/Booking';
 import Input from './Input';
 import Select from './Select';
 import Dates from './Dates';
+import Login from './Login';
 import useSearch from '@/hooks/useSearch';
 import { validateUser, validateBooking } from '@/util/validateForm';
 import { addBooking, addUser } from '@/store/userSlice';
 import { setErrors, clearForm } from '@/store/formSlice';
 import { RootState } from '@/store/types';
 import css from './Form.module.css';
-import Login from './Login';
 // import { useNavigate } from 'react-router-dom';
 
 export default function Form({ withBooking }: { withBooking?: boolean }) {
@@ -78,7 +78,7 @@ export default function Form({ withBooking }: { withBooking?: boolean }) {
           PROCEED
         </motion.button>
       </motion.form>
-      <Login />
+      {!user && <Login />}
     </div>
   );
 }

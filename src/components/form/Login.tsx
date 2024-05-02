@@ -1,14 +1,15 @@
+import { motion } from 'framer-motion';
 import Input from './Input';
-import css from './Login.module.css'
+import css from './Login.module.css';
 
 export default function Login() {
   return (
-    <div className={css.login}>
+    <motion.div className={css.login} whileHover={{ scale: 1.2 }}>
       <p>Already have an account?</p>
       <div className={css.row}>
-        <Input id='login' />
-        <button>Login</button>
+        <Input id='login' login />
+        <motion.button whileHover={{ color: '#FFA500' }}>GO</motion.button>
       </div>
-    </div>
+    </motion.div>
   );
 }
