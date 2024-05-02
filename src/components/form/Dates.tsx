@@ -10,7 +10,7 @@ import { updateData } from '@/store/formSlice';
 import { FormData } from '@/models/FormData';
 import { RootState } from '@/store/types';
 
-const DateInput = ({ id }: {id: keyof FormData }) => {
+const Dates = ({ id }: {id: keyof FormData }) => {
   const { x, delay, backgroundColor } = useErrorAnimation(id);
   const bookedDates = useBookedDates();
   const dispatch = useDispatch();
@@ -49,5 +49,5 @@ const DateInput = ({ id }: {id: keyof FormData }) => {
   );
 };
 
-const MemoizedDateInput = memo(DateInput);
-export default MemoizedDateInput;
+const MemoizedDates = memo(Dates);
+export default MemoizedDates;
