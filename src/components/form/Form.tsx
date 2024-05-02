@@ -11,11 +11,11 @@ import { validateUser, validateBooking } from '@/util/validateForm';
 import { addBooking, addUser } from '@/store/userSlice';
 import { setErrors, clearForm } from '@/store/formSlice';
 import { RootState } from '@/store/types';
+import { useNavigate } from 'react-router-dom';
 import css from './Form.module.css';
-// import { useNavigate } from 'react-router-dom';
 
 export default function Form({ withBooking }: { withBooking?: boolean }) {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const {
     slugId: shipId,
     stateSlice: { users, user },
@@ -41,6 +41,8 @@ export default function Form({ withBooking }: { withBooking?: boolean }) {
       !user && dispatch(addUser(currentUser));
       booking && dispatch(addBooking({ currentUser, booking }));
       dispatch(clearForm())
+      window.scrollTo(0, 125);
+      navigate(`/user/${currentUser.id}`)
     }
   }
 

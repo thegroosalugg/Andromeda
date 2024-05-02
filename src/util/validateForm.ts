@@ -78,7 +78,7 @@ export function validateLogin(login: string | undefined, users: User[]) {
 
   if (!login?.trim()) {
     errors.login = 'LOGIN EMPTY';
-  } else if (users.length === 0 || users.some((user) => user.email.toLowerCase() !== login!.toLowerCase())) {
+  } else if (!users.some((user) => user.email.toLowerCase() === login!.toLowerCase())) {
     errors.login = 'WRONG EMAIL';
   }
 
