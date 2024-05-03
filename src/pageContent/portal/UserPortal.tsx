@@ -2,6 +2,7 @@ import User from '@/models/User';
 import { logout } from '@/store/userSlice';
 import { useDispatch } from 'react-redux';
 import css from './UserPortal.module.css';
+import List from '@/components/list/List';
 
 export default function UserPortal(user: User) {
   const { name, surname, email, phone, bookings } = user;
@@ -10,17 +11,12 @@ export default function UserPortal(user: User) {
   return (
     <>
       <section className={css.portal}>
-        <div className={css.details}>
-          <h2>{name}</h2>
-          <h2>{surname}</h2>
-          <h2>{email}</h2>
-          <h2>{phone}</h2>
-        </div>
-        <ul>
-          {bookings.map((booking) => (
-            <li key={booking.id}>{booking.shipId}</li>
-          ))}
-        </ul>
+        <List className={css.user} items={[ name, surname, email, phone ]} keyFn={key => key}>
+          {key => <p>{key}</p>}
+        </List>
+        <List className={css.bookings} items={bookings} keyFn={({ id }) => id}>
+          {booking => <p>{booking.shipId}</p>}
+        </List>
       </section>
       <button onClick={() => dispatch(logout())}>LOGOUT</button>
     </>

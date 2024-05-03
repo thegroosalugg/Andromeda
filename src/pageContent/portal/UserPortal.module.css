@@ -1,15 +1,21 @@
 .portal {
   display: flex;
   color: #ffffff;
-  justify-content: space-evenly;
+  justify-content: center;
+  gap: 2rem;
   flex-wrap: wrap;
   margin-top: 3rem;
+  max-width: 100vw;
 }
 
-.portal ul {
-  overflow: auto;
-  height: 200px;;
+.user, .bookings {
   list-style: none;
-  display: list-item;
   padding: 0;
+  overflow-y: auto;
+}
+
+.user {
+}
+
+.bookings {
 }
