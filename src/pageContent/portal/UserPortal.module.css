@@ -1,0 +1,15 @@
+.portal {
+  display: flex;
+  color: #ffffff;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin-top: 3rem;
+}
+
+.portal ul {
+  overflow: auto;
+  height: 200px;;
+  list-style: none;
+  display: list-item;
+  padding: 0;
+}
