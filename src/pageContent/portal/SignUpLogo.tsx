@@ -6,8 +6,8 @@ export default function SignUpLogo() {
       src='/logo.jpg'
       alt='signup'
       style={{ width: '300px', borderRadius: '50%', margin: '5rem auto 1rem' }}
-      initial={{ opacity: 0, scaleX: 0 }}
-      animate={{ opacity: [0, 0, 0.5, 1], scaleX: 1, transition: { type: 'spring' } }}
+      initial={{ opacity: 0, y: -100 }}
+      animate={{ opacity: 1, y: 0, scaleX: 1, transition: { type: 'spring' } }}
       whileHover={{
         scale: [1, 1.1, 1],
         filter: [

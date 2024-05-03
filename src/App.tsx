@@ -16,7 +16,7 @@ export default function App() {
     { path: 'ships', element: <SpaceShipsPage /> },
     { path: 'ships/:shipId', element: <ShipIDPage /> },
     { path: 'explore', element: <ExplorePage /> },
-    { path: 'user/:userId', element: <UserPage /> },
+    { path: 'user', element: <UserPage /> },
     { path: '*', element: <ErrorPage /> },
   ]);
 

@@ -42,7 +42,7 @@ export default function Form({ withBooking }: { withBooking?: boolean }) {
       booking && dispatch(addBooking({ currentUser, booking }));
       dispatch(clearForm())
       window.scrollTo(0, 125);
-      navigate(`/user/${currentUser.id}`)
+      navigate('/user')
     }
   }
 
