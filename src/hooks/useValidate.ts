@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { addBooking, addUser } from '@/store/userSlice';
+import { addBooking, addUser, updateUser } from '@/store/userSlice';
 import { setErrors, clearForm } from '@/store/formSlice';
 import { RootState } from '@/store/types';
 import useSearch from './useSearch';
@@ -8,7 +8,12 @@ import User from '@/models/User';
 import Booking from '@/models/Booking';
 import { validateBooking, validateUser } from '@/util/validateForm';
 
-const useValidate = (withBooking: boolean | undefined) => {
+interface ValidateOptions {
+  withBooking?: boolean;
+  updateId?: string | number;
+}
+
+const useValidate = ({ withBooking, updateId }: ValidateOptions = {}) => {
   const {
     slugId: shipId,
     stateSlice: { users, user },
@@ -19,12 +24,16 @@ const useValidate = (withBooking: boolean | undefined) => {
   const navigate = useNavigate();
 
   return () => {
+    const editedData = updateId
+      ? Object.fromEntries(Object.entries(data).filter((entry) => entry[1]))
+      : {};
+    const updateErrors = updateId ? validateUser(editedData, users) : {};
     const userErrors = !user ? validateUser({ name, surname, email, phone }, users) : {};
     const bookingErrors = withBooking
       ? validateBooking({ from, till, pickup, dropoff }, users, shipId!)
       : {};
 
-    const newErrors = { ...userErrors, ...bookingErrors };
+    const newErrors = { ...userErrors, ...bookingErrors, ...updateErrors };
     dispatch(setErrors(newErrors));
 
     if (Object.keys(newErrors).length === 0) {
@@ -34,9 +43,13 @@ const useValidate = (withBooking: boolean | undefined) => {
 
       !user && dispatch(addUser(currentUser));
       booking && dispatch(addBooking({ currentUser, booking }));
+      updateId && dispatch(updateUser(editedData as User));
       dispatch(clearForm());
-      window.scrollTo(0, 125);
-      navigate('/user');
+
+      if (!updateId) {
+        window.scrollTo(0, 125);
+        navigate('/user');
+      }
     }
 
     console.clear(); // *LOG & CLEAR*

@@ -11,7 +11,7 @@ import useValidate from '@/hooks/useValidate';
 export default function Form({ withBooking }: { withBooking?: boolean }) {
   const { user } = useSelector((state: RootState) => state.users);
   const variants = { hidden: { opacity: 0, scale: 0.5 }, visible: { opacity: 1, scale: 1 } };
-  const validate = useValidate(withBooking);
+  const validate = useValidate({ withBooking });
 
   function submitHandler(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
