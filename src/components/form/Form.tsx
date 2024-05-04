@@ -1,53 +1,22 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
-import User from '@/models/User';
-import Booking from '@/models/Booking';
 import Input from './Input';
 import Select from './Select';
 import Dates from './Dates';
 import Login from './Login';
-import useSearch from '@/hooks/useSearch';
-import { validateUser, validateBooking } from '@/util/validateForm';
-import { addBooking, addUser } from '@/store/userSlice';
-import { setErrors, clearForm } from '@/store/formSlice';
 import { RootState } from '@/store/types';
-import { useNavigate } from 'react-router-dom';
 import css from './Form.module.css';
+import useValidate from '@/hooks/useValidate';
 
 export default function Form({ withBooking }: { withBooking?: boolean }) {
-  const navigate = useNavigate();
-  const {
-    slugId: shipId,
-    stateSlice: { users, user },
-  } = useSearch({ slugId: 'shipId', reducer: 'users' });
-  const dispatch = useDispatch();
-  const { data, errors } = useSelector((state: RootState) => state.form);
+  const { user } = useSelector((state: RootState) => state.users);
   const variants = { hidden: { opacity: 0, scale: 0.5 }, visible: { opacity: 1, scale: 1 } };
+  const validate = useValidate(withBooking);
 
   function submitHandler(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    console.clear(); // *LOG & CLEAR*
-    const { name, surname, email, phone, from, till, pickup, dropoff } = data;
-    const userErrors = !user ? validateUser({ name, surname, email, phone }, users) : {};
-    const bookingErrors = withBooking ? validateBooking({ from, till, pickup, dropoff }, users, shipId!) : {};
-
-    const newErrors = { ...userErrors, ...bookingErrors };
-    dispatch(setErrors(newErrors));
-
-    if (Object.keys(newErrors).length === 0) {
-      const currentUser = user ? user : new User(name!, surname!, email!, phone!).toObject!();
-      const booking = withBooking && new Booking(shipId!, from!, till!, pickup!, dropoff!).toObject();
-
-      !user && dispatch(addUser(currentUser));
-      booking && dispatch(addBooking({ currentUser, booking }));
-      dispatch(clearForm())
-      window.scrollTo(0, 125);
-      navigate('/user')
-    }
+    validate();
   }
-
-  // prettier-ignore
-  console.log('FORM/DATA', data, '\n \n', 'ERRORS!', errors, '\n \n', 'LOGGED IN AS', user, '\n \n', 'DATABASE', users); // *LOG & CLEAR*
 
   return (
     <div className={css.overlay}>
