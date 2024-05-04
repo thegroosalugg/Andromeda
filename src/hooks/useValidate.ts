@@ -1,25 +1,26 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { addBooking, addUser, updateUser } from '@/store/userSlice';
+import { addBooking, addUser, setUser, updateUser } from '@/store/userSlice';
 import { setErrors, clearForm } from '@/store/formSlice';
 import { RootState } from '@/store/types';
 import useSearch from './useSearch';
 import User from '@/models/User';
 import Booking from '@/models/Booking';
-import { validateBooking, validateUser } from '@/util/validateForm';
+import { validateBooking, validateLogin, validateUser } from '@/util/validateForm';
 
 interface ValidateOptions {
   withBooking?: boolean;
   updateId?: string | number;
+  loggingIn?: boolean;
 }
 
-const useValidate = ({ withBooking, updateId }: ValidateOptions = {}) => {
+const useValidate = ({ withBooking, updateId, loggingIn }: ValidateOptions = {}) => {
   const {
     slugId: shipId,
     stateSlice: { users, user },
   } = useSearch({ slugId: 'shipId', reducer: 'users' });
   const { data } = useSelector((state: RootState) => state.form);
-  const { name, surname, email, phone, from, till, pickup, dropoff } = data;
+  const { name, surname, email, phone, from, till, pickup, dropoff, login } = data;
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -28,12 +29,13 @@ const useValidate = ({ withBooking, updateId }: ValidateOptions = {}) => {
       ? Object.fromEntries(Object.entries(data).filter((entry) => entry[1]))
       : {};
     const updateErrors = updateId ? validateUser(editedData, users) : {};
-    const userErrors = !user ? validateUser({ name, surname, email, phone }, users) : {};
+    const userErrors = !user && !loggingIn ? validateUser({ name, surname, email, phone }, users) : {};
     const bookingErrors = withBooking
       ? validateBooking({ from, till, pickup, dropoff }, users, shipId!)
       : {};
+    const loginErrs = loggingIn ? validateLogin(login, users) : {};
 
-    const newErrors = { ...userErrors, ...bookingErrors, ...updateErrors };
+    const newErrors = { ...userErrors, ...bookingErrors, ...updateErrors, ...loginErrs };
     dispatch(setErrors(newErrors));
 
     if (Object.keys(newErrors).length === 0) {
@@ -41,9 +43,10 @@ const useValidate = ({ withBooking, updateId }: ValidateOptions = {}) => {
       const booking =
         withBooking && new Booking(shipId!, from!, till!, pickup!, dropoff!).toObject();
 
-      !user && dispatch(addUser(currentUser));
+      !user && !loggingIn && dispatch(addUser(currentUser));
       booking && dispatch(addBooking({ currentUser, booking }));
       updateId && dispatch(updateUser(editedData as User));
+      loggingIn && dispatch(setUser({ email: login! }));
       dispatch(clearForm());
 
       if (!updateId) {
