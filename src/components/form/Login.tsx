@@ -18,6 +18,7 @@ export default function Login() {
     dispatch(setErrors(isValid));
 
     if (Object.keys(isValid).length === 0) {
+      window.scrollTo(0, 125);
       dispatch(setUser({ email: login! }));
       dispatch(clearForm());
     }

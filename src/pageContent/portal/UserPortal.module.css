@@ -8,13 +8,19 @@
   max-width: 100vw;
 }
 
-.user, .bookings {
+.portal ul {
   list-style: none;
   padding: 0;
   overflow-y: auto;
 }
 
 .user {
+}
+
+.user p {
+  display: flex;
+  justify-content: space-between;
+  gap: 3rem;
 }
 
 .bookings {
