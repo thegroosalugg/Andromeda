@@ -3,6 +3,8 @@ import { logout } from '@/store/userSlice';
 import { useDispatch } from 'react-redux';
 import css from './UserPortal.module.css';
 import List from '@/components/list/List';
+import Input from '@/components/form/Input';
+import { FormData } from '@/models/FormData';
 
 export default function UserPortal(user: User) {
   const { id, bookings, ...userDetails } = user;
@@ -15,7 +17,8 @@ export default function UserPortal(user: User) {
         <List className={css.user} items={Object.entries(userDetails)} keyFn={([key]) => key + id}>
           {([key, value]) => (
             <p>
-              <strong>{key}</strong><span>{value}</span>
+              <span>{key}</span>
+              <Input id={key as keyof FormData} savedData={value} />
             </p>
           )}
         </List>

@@ -7,7 +7,16 @@ import { updateData } from '@/store/formSlice';
 import { FormData } from '@/models/FormData';
 import { RootState } from '@/store/types';
 
-const Input = ({ id, login, ...props }: { id: keyof FormData; login?: boolean }) => {
+const Input = ({
+  id,
+  login,
+  savedData,
+  ...props
+}: {
+  id: keyof FormData;
+  login?: boolean;
+  savedData?: string; // Enables displaying saved User Data instead of label (existing vs new user usability)
+}) => {
   const { x, delay, backgroundColor } = useErrorAnimation(id);
   const dispatch = useDispatch();
   const { data, errors } = useSelector((state: RootState) => state.form);
@@ -22,7 +31,7 @@ const Input = ({ id, login, ...props }: { id: keyof FormData; login?: boolean })
       // autocomplete data does not re-trigger onChange state updates, so some animations won't play until user types. So off it goes instead.
       autoComplete='go-away' // removed name/id as I control all data. This prop also needs to be set to disable autocomplete
       className={`${css.input} ${login ? css.login : ''}`}
-      placeholder={errors[id] ? errors[id] : id.toUpperCase()}
+      placeholder={errors[id] ? errors[id] : (savedData ? savedData : id.toUpperCase())}
       onChange={changeHandler}
       value={data[id]}
       {...props}

@@ -19,9 +19,11 @@
 
 .user p {
   display: flex;
-  justify-content: space-between;
-  gap: 3rem;
+  justify-content: end;
+  gap: 2rem;
+  margin: 0.5rem;
 }
 
 .bookings {
+  height: 150px;
 }
