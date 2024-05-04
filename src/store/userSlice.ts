@@ -19,6 +19,11 @@ const userSlice = createSlice({
         state.user = user;
       }
     },
+    updateUser(state, action: PayloadAction<User>) {
+      const updatedUser = { ...state.user, ...action.payload };
+      state.user = updatedUser;
+      state.users = state.users.map(user => user.id === updatedUser.id ? updatedUser : user);
+    },
     logout: (state) => {
       state.user = null;
     },
@@ -32,5 +37,5 @@ const userSlice = createSlice({
   },
 });
 
-export const { addUser, setUser, logout, addBooking } = userSlice.actions;
+export const { addUser, setUser, updateUser, logout, addBooking } = userSlice.actions;
 export default userSlice.reducer;

@@ -1,5 +1,5 @@
 import User from '@/models/User';
-import { logout } from '@/store/userSlice';
+import { logout, updateUser } from '@/store/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import css from './UserPortal.module.css';
 import List from '@/components/list/List';
@@ -7,7 +7,7 @@ import Input from '@/components/form/Input';
 import { FormData } from '@/models/FormData';
 import { validateUser } from '@/util/validateForm';
 import { RootState } from '@/store/types';
-import { setErrors } from '@/store/formSlice';
+import { clearForm, setErrors } from '@/store/formSlice';
 
 export default function UserPortal(user: User) {
   const { id, bookings, ...userDetails } = user;
@@ -16,25 +16,25 @@ export default function UserPortal(user: User) {
   const dispatch = useDispatch();
 
   function updateHandler() {
-    const editedData = Object.fromEntries(
-      Object.entries(data).filter(entry => entry[1])
-    );
+    const editedData = Object.fromEntries(Object.entries(data).filter((entry) => entry[1]));
 
     const errors = validateUser(editedData, users);
+    dispatch(setErrors(errors));
+    console.log('USER PORTAL ERRORS', errors);
 
-    if (errors) {
-      dispatch(setErrors(errors));
-      console.log('USER PORTAL ERRORS', errors)
+    if (Object.keys(errors).length === 0) {
+      editedData.id = id;
+      dispatch(updateUser(editedData as User));
+      dispatch(clearForm());
     }
   }
 
-  console.log('USER PORTAL FORMDATA', data)
+  console.log('USER PORTAL FORMDATA', data);
 
   return (
     <>
       <section className={css.portal}>
-        {/* id is not needed anywhere, I just wanted to remove it from the list. So I concatenated it to the key to get rid of the warnings */}
-        <List className={css.user} items={Object.entries(userDetails)} keyFn={([key]) => key + id}>
+        <List className={css.user} items={Object.entries(userDetails)} keyFn={([key]) => key}>
           {([key, value]) => (
             <p>
               <span>{key}</span>
