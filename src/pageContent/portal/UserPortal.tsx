@@ -8,11 +8,18 @@ import { FormData } from '@/models/FormData';
 import useValidate from '@/hooks/useValidate';
 import BookedItem from './BookedItem';
 import { motion } from 'framer-motion';
+import { clearForm } from '@/store/formSlice';
 
 export default function UserPortal(user: User) {
   const { id, bookings, ...userDetails } = user;
   const validate = useValidate({ updateId: id });
   const dispatch = useDispatch();
+
+  function handleLogout() {
+    window.scrollTo(0, 125)
+    dispatch(logout())
+    dispatch(clearForm())
+  }
 
   return (
     <motion.section
@@ -37,7 +44,7 @@ export default function UserPortal(user: User) {
           {(booking) => <BookedItem {...booking} />}
         </List>
       </section>
-      <button className={css.logout} onClick={() => dispatch(logout())}>
+      <button className={css.logout} onClick={handleLogout}>
         LOGOUT
       </button>
     </motion.section>
