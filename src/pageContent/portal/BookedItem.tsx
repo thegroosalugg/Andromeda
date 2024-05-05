@@ -11,32 +11,33 @@ const BookedItem = (booking: Booking) => {
     sliceKey: 'ships',
   });
 
+  const Col = ({ color, label, text }: { color: string; label: string; text: string }) => {
+    return (
+      <div className={css.col}>
+        <p style={{ color }}>{label}</p>
+        <p>{text}</p>
+      </div>
+    );
+  };
+
+  const Row = ({children}: {children: React.ReactNode}) => {
+    return <div className={css.row}>{children}</div>;
+  };
+
   return (
     <article className={css.booking}>
       <img src={ship!.image} alt='ship' />
       <div className={css.details}>
         <h6>{ship!.maker}</h6>
         <h5>{ship!.model}</h5>
-        <div className={css.row}>
-          <div className={css.col}>
-            <p style={{ color: '#bb6412d0'}}>start</p>
-            <p>{formatDate(from)}</p>
-          </div>
-          <div className={css.col}>
-            <p style={{ color: '#bb11a1bf'}}>end</p>
-            <p>{formatDate(till)}</p>
-          </div>
-        </div>
-        <div className={css.row}>
-          <div className={css.col}>
-            <p style={{ color: '#bb6412d0'}}>PickUp</p>
-            <p>{pickup}</p>
-          </div>
-          <div className={css.col}>
-            <p style={{ color: '#bb11a1bf'}}>DropOff</p>
-            <p>{dropoff}</p>
-          </div>
-        </div>
+        <Row>
+          <Col label='start' color='#bb6412d0' text={formatDate(from)} />
+          <Col label='end' color='#bb11a1bf' text={formatDate(till)} />
+        </Row>
+        <Row>
+          <Col label='PickUp' color='#bb6412d0' text={pickup} />
+          <Col label='DropOff' color='#bb11a1bf' text={dropoff} />
+        </Row>
       </div>
     </article>
   );
