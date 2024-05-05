@@ -7,6 +7,7 @@ import useSearch from './useSearch';
 import User from '@/models/User';
 import Booking from '@/models/Booking';
 import { validateBooking, validateLogin, validateUser } from '@/util/validateForm';
+import { captainsLog } from '@/util/captainsLog';
 
 interface ValidateOptions {
   withBooking?: boolean;
@@ -35,6 +36,17 @@ const useValidate = ({ withBooking, updateId, loggingIn }: ValidateOptions = {})
       : {};
     const loginErrs = loggingIn ? validateLogin(login, users) : {};
 
+    captainsLog(
+      { updateId },
+      { loggingIn },
+      { user },
+      { users },
+      { updateErrors },
+      { userErrors },
+      { bookingErrors },
+      { loginErrs }
+    );
+
     const newErrors = { ...userErrors, ...bookingErrors, ...updateErrors, ...loginErrs };
     dispatch(setErrors(newErrors));
 
@@ -54,10 +66,6 @@ const useValidate = ({ withBooking, updateId, loggingIn }: ValidateOptions = {})
         navigate('/user');
       }
     }
-
-    console.clear(); // *LOG & CLEAR*
-    // prettier-ignore
-    console.log('FORM/DATA', data, '\n \n', 'ERRORS!', newErrors, '\n \n', 'LOGGED IN AS', user, '\n \n', 'DATABASE', users);
   };
 };
 
