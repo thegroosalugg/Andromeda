@@ -18,7 +18,6 @@ export default function UserPortal(user: User) {
     <motion.section
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      exit={{ y: 100, opacity: 0 }}
       transition={{ duration: 0.6, type: 'easeInOut' }}
     >
       <section className={css.portal}>
