@@ -7,6 +7,7 @@ import Input from '@/components/form/Input';
 import { FormData } from '@/models/FormData';
 import useValidate from '@/hooks/useValidate';
 import BookedItem from './BookedItem';
+import { motion } from 'framer-motion';
 
 export default function UserPortal(user: User) {
   const { id, bookings, ...userDetails } = user;
@@ -14,7 +15,12 @@ export default function UserPortal(user: User) {
   const dispatch = useDispatch();
 
   return (
-    <>
+    <motion.section
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      exit={{ y: 100, opacity: 0 }}
+      transition={{ duration: 0.6, type: 'easeInOut' }}
+    >
       <section className={css.portal}>
         <div className={css.col}>
           <h2>Details</h2>
@@ -32,7 +38,9 @@ export default function UserPortal(user: User) {
           {(booking) => <BookedItem {...booking} />}
         </List>
       </section>
-      <button className={css.logout} onClick={() => dispatch(logout())}>LOGOUT</button>
-    </>
+      <button className={css.logout} onClick={() => dispatch(logout())}>
+        LOGOUT
+      </button>
+    </motion.section>
   );
 }

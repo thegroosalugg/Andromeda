@@ -69,6 +69,7 @@
 .logout {
   margin: 5rem auto;
   font-size: 3rem;
+  display: block;
 }
 
 .logout:hover {
