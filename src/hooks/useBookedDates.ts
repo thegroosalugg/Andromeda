@@ -16,9 +16,9 @@ function dateRange(from: string, till: string) {
 
 const useBookedDates = () => {
   const {
-    slugId: shipId,
+    foundId: shipId,
     stateSlice: { users },
-  } = useSearch({ slugId: 'shipId', reducer: 'users' });
+  } = useSearch({ search: { id: 'shipId', withParams: true }, reducer: 'users' });
 
   const bookedDates: Date[] = [];
   users.forEach((user) => {

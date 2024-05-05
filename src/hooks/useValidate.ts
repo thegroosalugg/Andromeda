@@ -17,9 +17,9 @@ interface ValidateOptions {
 
 const useValidate = ({ withBooking, updateId, loggingIn }: ValidateOptions = {}) => {
   const {
-    slugId: shipId,
+    foundId: shipId,
     stateSlice: { users, user },
-  } = useSearch({ slugId: 'shipId', reducer: 'users' });
+  } = useSearch({ search: { id: 'shipId', withParams: true }, reducer: 'users' });
   const { data } = useSelector((state: RootState) => state.form);
   const { name, surname, email, phone, from, till, pickup, dropoff, login } = data;
   const dispatch = useDispatch();
@@ -45,7 +45,7 @@ const useValidate = ({ withBooking, updateId, loggingIn }: ValidateOptions = {})
         dispatch(addUser(currentUser));
       }
 
-      const booking = withBooking && new Booking(shipId!, from!, till!, pickup!, dropoff!).toObject();
+      const booking = withBooking && new Booking(shipId!, from!, till!, pickup!, dropoff!).toObject!();
 
       booking && currentUser && dispatch(addBooking({ currentUser, booking }));
       updateId && dispatch(updateUser(editedData as User));

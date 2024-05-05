@@ -15,7 +15,7 @@ export default class Booking {
     this.dropoff = dropoff;
   }
 
-  toObject() {
+  toObject?() {
     return { ...this };
   }
 }

@@ -6,6 +6,7 @@ import List from '@/components/list/List';
 import Input from '@/components/form/Input';
 import { FormData } from '@/models/FormData';
 import useValidate from '@/hooks/useValidate';
+import BookedItem from './BookedItem';
 
 export default function UserPortal(user: User) {
   const { id, bookings, ...userDetails } = user;
@@ -24,7 +25,7 @@ export default function UserPortal(user: User) {
           )}
         </List>
         <List className={css.bookings} items={bookings} keyFn={({ id }) => id}>
-          {(booking) => <p>{booking.shipId}</p>}
+          {(booking) => <BookedItem {...booking} />}
         </List>
       </section>
       <button onClick={validate}>SAVE</button>
