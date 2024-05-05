@@ -1,11 +1,8 @@
 .booking {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
   border-radius: 10px;
-  background: linear-gradient(to right, #2c3e50, #5486a898);
+  place-content: center;
 }
 
 .booking p, .booking h5, .booking h6 {
@@ -16,24 +13,29 @@
   color: #c6a872;
 }
 
-.booking img {
+.booking img, .details {
   width: 11.5rem;
   height: 6.5rem;
+}
+
+.booking img {
   border-radius: 10px 0 0 10px;
 }
 
 .details {
-  padding: 0.3rem;
+  padding: 0.6rem;
+  background: linear-gradient(to right, #2c3e50, #5486a898);
+  text-align: center;
+  box-sizing: border-box;
+  border-radius: 0 10px 10px 0;
 }
 
 .row {
-  width: 10rem;
   display: flex;
   gap: 1rem;
   margin: 0.3rem 0;
   justify-content: space-around;
   align-items: center;
-  text-align: center;
   font-family: 'Orbitron', sans-serif;
   text-shadow: 0.5px 0.5px 1px #3e3a3a;
   font-size: 0.6rem;
@@ -42,4 +44,14 @@
 .col {
   display: flex;
   flex-direction: column;
+}
+
+@media (max-width: 370px) {
+  .booking img {
+    border-radius: 10px 10px 0 0;
+  }
+  .details {
+    border-radius: 0 0 10px 10px;
+  }
+
 }

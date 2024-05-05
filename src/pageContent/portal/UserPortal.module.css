@@ -23,7 +23,7 @@
 }
 
 .bookings {
-  height: 130px;
+  height: 200px;
   display: flex;
   flex-direction: column;
   gap: 1rem;
