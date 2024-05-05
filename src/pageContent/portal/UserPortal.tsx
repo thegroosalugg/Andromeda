@@ -16,20 +16,23 @@ export default function UserPortal(user: User) {
   return (
     <>
       <section className={css.portal}>
-        <List className={css.user} items={Object.entries(userDetails)} keyFn={([key]) => key}>
-          {([key, value]) => (
-            <p>
-              <span>{key}</span>
-              <Input id={key as keyof FormData} savedData={value} />
-            </p>
-          )}
-        </List>
+        <div className={css.col}>
+          <h2>Details</h2>
+          <List className={css.user} items={Object.entries(userDetails)} keyFn={([key]) => key}>
+            {([key, value]) => (
+              <p>
+                <span>{key}</span>
+                <Input id={key as keyof FormData} savedData={value} />
+              </p>
+            )}
+          </List>
+          <button onClick={validate}>SAVE</button>
+        </div>
         <List className={css.bookings} items={bookings} keyFn={({ id }) => id}>
           {(booking) => <BookedItem {...booking} />}
         </List>
       </section>
-      <button onClick={validate}>SAVE</button>
-      <button onClick={() => dispatch(logout())}>LOGOUT</button>
+      <button className={css.logout} onClick={() => dispatch(logout())}>LOGOUT</button>
     </>
   );
 }
