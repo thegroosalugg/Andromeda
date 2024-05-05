@@ -8,6 +8,10 @@ export function captainsLog(...args: unknown[]) {
     output += `${title.padEnd(20)} ${JSON.stringify(data, null, 2)}\n\n`;
   }
 
-  console.clear();
   console.log(output);
+}
+
+export function clearAndLog(...args: unknown[]) {
+  console.clear();
+  captainsLog(...args);
 }

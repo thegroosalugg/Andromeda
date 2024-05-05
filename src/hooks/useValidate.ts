@@ -7,7 +7,7 @@ import useSearch from './useSearch';
 import User from '@/models/User';
 import Booking from '@/models/Booking';
 import { validateBooking, validateLogin, validateUser } from '@/util/validateForm';
-import { captainsLog } from '@/util/captainsLog';
+import { clearAndLog } from '@/util/captainsLog';
 
 interface ValidateOptions {
   withBooking?: boolean;
@@ -27,15 +27,15 @@ const useValidate = ({ withBooking, updateId, loggingIn }: ValidateOptions = {})
 
   return () => {
     const editedData = updateId ? Object.fromEntries(Object.entries(data).filter((entry) => entry[1])) : {};
-    const updateErrors = updateId ? validateUser(editedData, users) : {};
-    const userErrors = !user && !loggingIn ? validateUser({ name, surname, email, phone }, users) : {};
-    const bookingErrors = withBooking ? validateBooking({ from, till, pickup, dropoff }, users, shipId!) : {};
-    const loginErrs = loggingIn ? validateLogin(login, users) : {};
+    const updateErr = updateId ? validateUser(editedData, users) : {};
+    const userErr = !user && !loggingIn ? validateUser({ name, surname, email, phone }, users) : {};
+    const bookingErr = withBooking ? validateBooking({ from, till, pickup, dropoff }, users, shipId!) : {};
+    const loginErr = loggingIn ? validateLogin(login, users) : {};
 
-    const newErrors = { ...userErrors, ...bookingErrors, ...updateErrors, ...loginErrs };
-    dispatch(setErrors(newErrors));
+    const errors = { ...userErr, ...bookingErr, ...updateErr, ...loginErr };
+    dispatch(setErrors(errors));
 
-    if (Object.keys(newErrors).length === 0) {
+    if (Object.keys(errors).length === 0) {
       let currentUser;
 
       if (user) {
@@ -57,7 +57,7 @@ const useValidate = ({ withBooking, updateId, loggingIn }: ValidateOptions = {})
         !loggingIn && navigate('/user');
       }
     }
-    captainsLog({newErrors}, {user}, {users})
+    clearAndLog({errors}, {user}, {users})
   };
 };
 
