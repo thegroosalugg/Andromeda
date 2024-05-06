@@ -11,26 +11,29 @@ interface StateSlices {
 }
 
 interface SearchParams<T extends keyof StateSlices> {
-  slugId: string;
+  search: { id: string; withParams: boolean };
   reducer: T;
   sliceKey?: T;
 }
 
 export default function useSearch<T extends keyof StateSlices>({
-  slugId,
+  search,
   reducer,
-  sliceKey
+  sliceKey,
 }: SearchParams<T>): {
   item: StateSlices[T][number] | null;
-  slugId: string | undefined;
+  foundId: string | undefined;
   stateSlice: RootState[T];
 } {
   const params = useParams();
   const stateSlice = useSelector((state: RootState) => state[reducer]);
+  const foundId = search.withParams ? params[search.id] : search.id
   let item = null;
   if (sliceKey) {
-    item = (stateSlice as StateSlices)[sliceKey].find((item: Model) => item.id === params[slugId]) || null;
+    item =
+      (stateSlice as StateSlices)[sliceKey].find((item: Model) => item.id === foundId) ||
+      null;
   }
 
-  return { item, slugId: params[slugId], stateSlice };
+  return { item, foundId, stateSlice };
 }

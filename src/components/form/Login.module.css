@@ -1,0 +1,28 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  margin: 1rem auto;
+}
+
+.login p {
+  text-align: center;
+  margin: 0.3rem;
+  color: #FFFFFF;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+}
+
+.row button {
+  padding: 0.3rem 1rem;
+  color: rgb(235, 222, 222);
+  background-color: rgba(51, 53, 54, 0.552);
+  text-shadow: 1px 2px 2px rgb(23, 23, 23);
+  border-radius: 0 10px 10px 0;
+  font-family: 'Orbitron', sans-serif;
+  border: none;
+}

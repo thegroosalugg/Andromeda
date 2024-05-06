@@ -9,8 +9,24 @@
   outline: none;
 }
 
+.login {
+  border-radius: 10px 0 0 10px;
+  font-family: 'Orbitron', sans-serif;
+}
+
 .datepicker {
   border-radius: 10px;
+}
+
+.select {
+  width: 165px;
+  font-weight: 100;
+  font-size: 0.7rem;
+}
+
+.select option {
+  color: black;
+  font-size: 1rem;
 }
 
 .input::placeholder {

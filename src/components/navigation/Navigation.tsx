@@ -2,29 +2,23 @@ import css from './Navigation.module.css';
 import NavButton from './NavButton';
 import { motion } from 'framer-motion';
 import useUIConfig from '@/hooks/useUIConfig';
-import useSearch from '@/hooks/useSearch';
 
 export default function Navigation() {
   const { background } = useUIConfig();
-  const { stateSlice: { user } } = useSearch({ slugId: 'userId', reducer: 'users' });
 
   return (
-    <>
-      <motion.nav
-        className={css.nav}
-        animate={{
-          background,
-          transition: { duration: 0.8, ease: 'easeInOut' },
-        }}
-      >
-        <ul>
-          <NavButton path='/' name='H0M3' />
-          <NavButton path='/store' name='ST0RE' />
-          <NavButton path='/ships' name='SH1P5' />
-          <NavButton path='/explore' name='EXPL0R3' />
-          <NavButton path={`/user/${user?.id}`} name='P0RTAL' />
-        </ul>
-      </motion.nav>
-    </>
+    <motion.ul
+      className={css.nav}
+      animate={{
+        background,
+        transition: { duration: 0.8, ease: 'easeInOut' },
+      }}
+    >
+      <NavButton path='/' name='H0M3' />
+      <NavButton path='/store' name='ST0RE' />
+      <NavButton path='/ships' name='SH1P5' />
+      <NavButton path='/explore' name='EXPL0R3' />
+      <NavButton path='/user' name='P0RTAL' />
+    </motion.ul>
   );
 }

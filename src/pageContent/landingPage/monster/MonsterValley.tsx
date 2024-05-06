@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { modalActions } from '@/store/modalSlice';
+import { toggle } from '@/store/modalSlice';
 import Modal from '@/components/modal/Modal';
 import Monster from './Monster';
 import css from './MonsterValley.module.css';
@@ -10,7 +10,7 @@ export default function MonsterValley() {
   const dispatch = useDispatch();
 
   function openModal() {
-    dispatch(modalActions.toggle());
+    dispatch(toggle());
   }
 
   return (

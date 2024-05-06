@@ -4,16 +4,20 @@ import ErrorPage from '@/components/error/Error';
 import useSearch from '@/hooks/useSearch';
 
 export default function ShipIDPage() {
-  const { item: spaceship }  = useSearch({ slugId: 'shipId', reducer: 'ships', sliceKey: 'ships' });
+  const { item: spaceship } = useSearch({
+    search: { id: 'shipId', withParams: true },
+    reducer: 'ships',
+    sliceKey: 'ships',
+  });
 
   if (!spaceship) {
-    return <ErrorPage />
+    return <ErrorPage />;
   }
 
   return (
     <>
       <ShipDetails {...spaceship} />
-      <Form />
+      <Form withBooking />
     </>
   );
 }

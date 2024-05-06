@@ -1,7 +1,7 @@
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useDispatch } from 'react-redux';
-import { modalActions } from '@/store/modalSlice';
+import { toggle } from '@/store/modalSlice';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/types';
 import css from './Modal.module.css';
@@ -11,7 +11,7 @@ const Modal = ({ children }: { children: React.ReactNode }) => {
   const { isOpen } = useSelector((state: RootState) => state.modal);
 
   function closeModal() {
-    dispatch(modalActions.toggle());
+    dispatch(toggle());
   }
 
   return createPortal(

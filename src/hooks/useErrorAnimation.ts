@@ -1,34 +1,25 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateData } from '@/store/formSlice';
+import { FormData } from '@/models/FormData';
+import { RootState } from '@/store/types';
 
-interface Errors {
-  [key: string]: string;
-}
-
-export default function useErrorAnimation(
-  id: string,
-  errors: Errors,
-  onUpdate: (id: string, value: string ) => void,
-) {
-  const [value, setValue] = useState('');
+export default function useErrorAnimation(id: keyof FormData) {
   const [x, setX] = useState([0]);
+  const dispatch = useDispatch();
+  const { errors } = useSelector((state: RootState) => state.form)
 
   const delay = 0.1 * (Object.keys(errors).indexOf(id) + 1);
   const backgroundColor = errors[id] ? '#e137195d' : '#f0f8ff21';
 
   useEffect(() => {
     if (errors[id]) {
-      setValue('');
-      onUpdate(id, '');
+      dispatch(updateData({id, value: ''}))
       setX([0 + Math.random() / 1000, 10, 0, 10, 0]);
     } else {
       setX([0]);
     }
-  }, [errors, id, onUpdate]);
+  }, [errors, id, dispatch]);
 
-  const updateFormData = (input: string) => {
-    setValue(input);
-    onUpdate(id, input);
-  };
-
-  return { value, updateFormData, x, delay, backgroundColor };
+  return { x, delay, backgroundColor };
 }

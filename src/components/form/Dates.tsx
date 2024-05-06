@@ -5,26 +5,22 @@ import 'react-datepicker/dist/react-datepicker.css';
 import css from './Input.module.css';
 import useErrorAnimation from '@/hooks/useErrorAnimation';
 import useBookedDates from '@/hooks/useBookedDates';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateData } from '@/store/formSlice';
+import { FormData } from '@/models/FormData';
+import { RootState } from '@/store/types';
 
-interface Errors {
-  [key: string]: string;
-}
-
-interface DateProps {
-  id: string;
-  errors: Errors;
-  onUpdate: (id: string, value: string) => void;
-}
-
-const DateInput: React.FC<DateProps> = ({ id, errors, onUpdate }) => {
-  const { value, updateFormData, x, delay, backgroundColor } = useErrorAnimation(id, errors, onUpdate);
+const Dates = ({ id }: {id: keyof FormData }) => {
+  const { x, delay, backgroundColor } = useErrorAnimation(id);
   const bookedDates = useBookedDates();
+  const dispatch = useDispatch();
+  const { data, errors } = useSelector((state: RootState) => state.form)
 
   const today = new Date();
   const maxDate = new Date(today.setDate(today.getDate() + 30));
 
   function changeHandler(date: Date) {
-    updateFormData(date.toISOString());
+    dispatch(updateData({id, value: date.toISOString()}))
   }
 
   return (
@@ -41,7 +37,7 @@ const DateInput: React.FC<DateProps> = ({ id, errors, onUpdate }) => {
     >
       <DatePicker
         className={css.input}
-        selected={value ? new Date(value) : null}
+        selected={data[id] ? new Date(data[id] as string) : null}
         onChange={changeHandler}
         placeholderText={errors[id] ? errors[id] : id.toUpperCase()}
         dateFormat='dd MMMM yyyy'
@@ -53,5 +49,5 @@ const DateInput: React.FC<DateProps> = ({ id, errors, onUpdate }) => {
   );
 };
 
-const MemoizedDateInput = memo(DateInput);
-export default MemoizedDateInput;
+const MemoizedDates = memo(Dates);
+export default MemoizedDates;
