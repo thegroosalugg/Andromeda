@@ -2,8 +2,10 @@ import useSearch from '@/hooks/useSearch';
 import Booking from '@/models/Booking';
 import css from './BookedItem.module.css';
 import formatDate from '@/util/formatDate';
+import { useNavigate } from 'react-router-dom';
 
 const BookedItem = (booking: Booking) => {
+  const navigate = useNavigate();
   const { shipId, from, till, pickup, dropoff } = booking;
   const { item: ship } = useSearch({
     search: { id: shipId, withParams: false },
@@ -20,13 +22,13 @@ const BookedItem = (booking: Booking) => {
     );
   };
 
-  const Row = ({children}: {children: React.ReactNode}) => {
+  const Row = ({ children }: { children: React.ReactNode }) => {
     return <div className={css.row}>{children}</div>;
   };
 
   return (
     <article className={css.booking}>
-      <img src={ship!.image} alt='ship' />
+      <img src={ship!.image} alt='ship' onClick={() => navigate('/ships/' + shipId)} />
       <div className={css.details}>
         <h6>{ship!.maker}</h6>
         <h5>{ship!.model}</h5>
