@@ -29,16 +29,14 @@ export default function Form({ withBooking }: { withBooking?: boolean }) {
         whileInView='visible'
         viewport={{ once: true }}
       >
-        <AnimatePresence>
-          {!user && (
-            <>
-              <Input id='name' />
-              <Input id='surname' />
-              <Input id='email' />
-              <Input id='phone' />
-            </>
-          )}
-        </AnimatePresence>
+        {!user && (
+          <>
+            <Input id='name' />
+            <Input id='surname' />
+            <Input id='email' />
+            <Input id='phone' />
+          </>
+        )}
         {withBooking && (
           <>
             <Dates id='from' />

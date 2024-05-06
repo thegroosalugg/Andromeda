@@ -41,7 +41,6 @@ const Input = ({
         x,
         transition: { type: 'easeIn', delay },
       }}
-      exit={{ y: -100, opacity: 0, scale: 1.2, transition: { duration: 0.5, type: 'tween' } }}
       whileFocus={{ scale }}
       whileHover={{ scale }}
       transition={{ type: 'easeIn', duration: 0.5 }}
