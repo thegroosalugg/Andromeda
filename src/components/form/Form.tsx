@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import Input from './Input';
 import Select from './Select';
 import Dates from './Dates';
@@ -29,14 +29,16 @@ export default function Form({ withBooking }: { withBooking?: boolean }) {
         whileInView='visible'
         viewport={{ once: true }}
       >
-        {!user && (
-          <>
-            <Input id='name' />
-            <Input id='surname' />
-            <Input id='email' />
-            <Input id='phone' />
-          </>
-        )}
+        <AnimatePresence>
+          {!user && (
+            <>
+              <Input id='name' />
+              <Input id='surname' />
+              <Input id='email' />
+              <Input id='phone' />
+            </>
+          )}
+        </AnimatePresence>
         {withBooking && (
           <>
             <Dates id='from' />
@@ -49,7 +51,7 @@ export default function Form({ withBooking }: { withBooking?: boolean }) {
           PROCEED
         </motion.button>
       </motion.form>
-      {!user && <Login />}
+      <AnimatePresence>{!user && <Login />}</AnimatePresence>
     </div>
   );
 }

@@ -11,6 +11,7 @@ export default function Login() {
       className={css.login}
       initial={{ y: -50 }}
       animate={{ y: 0 }}
+      exit={{ y: -100, opacity: 0, scale: 1.2, transition: { duration: 0.5, type: 'tween' } }}
       whileHover={{ scale: 1.2 }}
     >
       <p>Already have an account?</p>
