@@ -5,6 +5,8 @@ import formatDate from '@/util/formatDate';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { toggle } from '@/store/modalSlice';
+import Modal from '@/components/modal/Modal';
+import EditBooking from './EditBooking';
 
 const Col = ({ color, label, text }: { color: string; label: string; text: string }) => {
   return (
@@ -44,6 +46,9 @@ const BookedItem = (booking: Booking) => {
           <Col label='DropOff' color='#bb11a1bf' text={dropoff} />
         </Row>
       </div>
+      <Modal>
+        <EditBooking spaceship={ship!} booking={booking} />
+      </Modal>
     </article>
   );
 };

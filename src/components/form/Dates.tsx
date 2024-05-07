@@ -10,7 +10,7 @@ import { updateData } from '@/store/formSlice';
 import { FormData } from '@/models/FormData';
 import { RootState } from '@/store/types';
 
-const Dates = ({ id }: { id: keyof FormData }) => {
+const Dates = ({ id, savedData }: { id: keyof FormData, savedData?: string }) => {
   const { x, delay, backgroundColor } = useErrorAnimation(id);
   const bookedDates = useBookedDates();
   const dispatch = useDispatch();
@@ -39,7 +39,7 @@ const Dates = ({ id }: { id: keyof FormData }) => {
         className={css.input}
         selected={data[id] ? new Date(data[id] as string) : null}
         onChange={changeHandler}
-        placeholderText={errors[id] ? errors[id] : id.toUpperCase()}
+        placeholderText={errors[id] ? errors[id] : (savedData ? savedData : id.toUpperCase())}
         dateFormat='dd MMMM yyyy'
         minDate={new Date()}
         maxDate={maxDate}

@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { toggle } from '@/store/modalSlice';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/types';
+import { clearForm } from '@/store/formSlice';
 import css from './Modal.module.css';
 
 const Modal = ({ children }: { children: React.ReactNode }) => {
@@ -12,6 +13,7 @@ const Modal = ({ children }: { children: React.ReactNode }) => {
 
   function closeModal() {
     dispatch(toggle());
+    dispatch(clearForm());
   }
 
   return createPortal(
@@ -30,6 +32,7 @@ const Modal = ({ children }: { children: React.ReactNode }) => {
             initial={{ y: '-100vh' }}
             animate={{ y: 0 }}
             exit={{ y: '-100vh' }}
+            whileInView='visible' // this is needed for the Input FCs inside Modal to be animated or they will vanish
             transition={{ type: 'tween', duration: 0.3 }}
           >
             {children}
