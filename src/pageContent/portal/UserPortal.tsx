@@ -1,6 +1,6 @@
 import User from '@/models/User';
 import { logout } from '@/store/userSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import css from './UserPortal.module.css';
 import List from '@/components/list/List';
 import Input from '@/components/form/Input';
@@ -11,9 +11,11 @@ import { motion } from 'framer-motion';
 import { clearForm } from '@/store/formSlice';
 import EditBooking from './EditBooking';
 import Modal from '@/components/modal/Modal';
+import { RootState } from '@/store/types';
 
 export default function UserPortal(user: User) {
   const { id, bookings, ...userDetails } = user;
+  const { item } = useSelector((state: RootState) => state.modal);
   const validate = useValidate({ update: { userId: id } });
   const dispatch = useDispatch();
 
@@ -47,9 +49,11 @@ export default function UserPortal(user: User) {
             <List className={css.bookings} items={bookings} keyFn={({ id }) => id}>
               {(booking) => <BookedItem {...booking} />}
             </List>
-            <Modal>
-              <EditBooking id={id} />
-            </Modal>
+            {item && (
+              <Modal>
+                <EditBooking id={id} />
+              </Modal>
+            )}
           </>
         )}
       </section>

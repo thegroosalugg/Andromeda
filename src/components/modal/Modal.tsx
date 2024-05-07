@@ -1,7 +1,7 @@
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useDispatch } from 'react-redux';
-import { toggle } from '@/store/modalSlice';
+import { saveItem, toggle } from '@/store/modalSlice';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/types';
 import { clearForm } from '@/store/formSlice';
@@ -9,12 +9,15 @@ import css from './Modal.module.css';
 
 const Modal = ({ children }: { children: React.ReactNode }) => {
   const dispatch = useDispatch();
-  const { isOpen } = useSelector((state: RootState) => state.modal);
+  const { isOpen, item } = useSelector((state: RootState) => state.modal);
 
   function closeModal() {
     dispatch(toggle());
     dispatch(clearForm());
+    dispatch(saveItem(null));
   }
+
+  console.log('MODAL ITEM', item)
 
   return createPortal(
     <AnimatePresence>
