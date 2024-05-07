@@ -12,7 +12,7 @@ import { clearForm } from '@/store/formSlice';
 
 export default function UserPortal(user: User) {
   const { id, bookings, ...userDetails } = user;
-  const validate = useValidate({ updateId: id });
+  const validate = useValidate({ update: { userId: id } });
   const dispatch = useDispatch();
 
   function handleLogout() {

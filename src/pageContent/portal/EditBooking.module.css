@@ -1,0 +1,19 @@
+.booking {
+  background: #3587ad;
+  border-radius: 10px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  align-items: center;
+  align-content: center;
+  place-items: center;
+  place-content: center;
+  justify-items: center;
+  justify-content: center;
+}
+
+.booking h5, .booking h6 {
+  margin: 0;
+  color: aliceblue;
+}
