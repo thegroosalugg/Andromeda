@@ -9,6 +9,8 @@ import useValidate from '@/hooks/useValidate';
 import BookedItem from './BookedItem';
 import { motion } from 'framer-motion';
 import { clearForm } from '@/store/formSlice';
+import EditBooking from './EditBooking';
+import Modal from '@/components/modal/Modal';
 
 export default function UserPortal(user: User) {
   const { id, bookings, ...userDetails } = user;
@@ -41,9 +43,14 @@ export default function UserPortal(user: User) {
           <button onClick={validate}>SAVE</button>
         </div>
         {bookings.length > 0 && (
-          <List className={css.bookings} items={bookings} keyFn={({ id }) => id}>
-            {(booking) => <BookedItem {...booking} />}
-          </List>
+          <>
+            <List className={css.bookings} items={bookings} keyFn={({ id }) => id}>
+              {(booking) => <BookedItem {...booking} />}
+            </List>
+            <Modal>
+              <EditBooking id={id} />
+            </Modal>
+          </>
         )}
       </section>
       <button className={css.logout} onClick={handleLogout}>

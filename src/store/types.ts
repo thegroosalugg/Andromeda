@@ -8,6 +8,7 @@ interface ShipsState {
 
 interface ModalState {
   isOpen: boolean;
+  item: object;
 }
 
 interface UserState {
