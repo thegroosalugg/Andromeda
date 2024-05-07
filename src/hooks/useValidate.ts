@@ -57,7 +57,7 @@ const useValidate = ({ withBooking, updateId, loggingIn }: ValidateOptions = {})
         !loggingIn && navigate('/user');
       }
     }
-    clearAndLog({errors}, {user}, {users})
+    clearAndLog({errors}, {data}, {user}, {users})
   };
 };
 

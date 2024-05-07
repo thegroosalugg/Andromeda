@@ -16,9 +16,9 @@ export default function UserPortal(user: User) {
   const dispatch = useDispatch();
 
   function handleLogout() {
-    window.scrollTo(0, 125)
-    dispatch(logout())
-    dispatch(clearForm())
+    window.scrollTo(0, 125);
+    dispatch(logout());
+    dispatch(clearForm());
   }
 
   return (
@@ -40,9 +40,11 @@ export default function UserPortal(user: User) {
           </List>
           <button onClick={validate}>SAVE</button>
         </div>
-        <List className={css.bookings} items={bookings} keyFn={({ id }) => id}>
-          {(booking) => <BookedItem {...booking} />}
-        </List>
+        {bookings.length > 0 && (
+          <List className={css.bookings} items={bookings} keyFn={({ id }) => id}>
+            {(booking) => <BookedItem {...booking} />}
+          </List>
+        )}
       </section>
       <button className={css.logout} onClick={handleLogout}>
         LOGOUT

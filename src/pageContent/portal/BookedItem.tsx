@@ -3,8 +3,24 @@ import Booking from '@/models/Booking';
 import css from './BookedItem.module.css';
 import formatDate from '@/util/formatDate';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { toggle } from '@/store/modalSlice';
+
+const Col = ({ color, label, text }: { color: string; label: string; text: string }) => {
+  return (
+    <div className={css.col}>
+      <p style={{ color }}>{label}</p>
+      <p>{text}</p>
+    </div>
+  );
+};
+
+const Row = ({ children }: { children: React.ReactNode }) => {
+  return <div className={css.row}>{children}</div>;
+};
 
 const BookedItem = (booking: Booking) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { shipId, from, till, pickup, dropoff } = booking;
   const { item: ship } = useSearch({
@@ -13,23 +29,10 @@ const BookedItem = (booking: Booking) => {
     sliceKey: 'ships',
   });
 
-  const Col = ({ color, label, text }: { color: string; label: string; text: string }) => {
-    return (
-      <div className={css.col}>
-        <p style={{ color }}>{label}</p>
-        <p>{text}</p>
-      </div>
-    );
-  };
-
-  const Row = ({ children }: { children: React.ReactNode }) => {
-    return <div className={css.row}>{children}</div>;
-  };
-
   return (
     <article className={css.booking}>
       <img src={ship!.image} alt='ship' onClick={() => navigate('/ships/' + shipId)} />
-      <div className={css.details}>
+      <div className={css.details} onClick={() => dispatch(toggle())}>
         <h6>{ship!.maker}</h6>
         <h5>{ship!.model}</h5>
         <Row>

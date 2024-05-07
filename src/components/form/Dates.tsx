@@ -10,17 +10,17 @@ import { updateData } from '@/store/formSlice';
 import { FormData } from '@/models/FormData';
 import { RootState } from '@/store/types';
 
-const Dates = ({ id }: {id: keyof FormData }) => {
+const Dates = ({ id }: { id: keyof FormData }) => {
   const { x, delay, backgroundColor } = useErrorAnimation(id);
   const bookedDates = useBookedDates();
   const dispatch = useDispatch();
-  const { data, errors } = useSelector((state: RootState) => state.form)
+  const { data, errors } = useSelector((state: RootState) => state.form);
 
   const today = new Date();
   const maxDate = new Date(today.setDate(today.getDate() + 30));
 
   function changeHandler(date: Date) {
-    dispatch(updateData({id, value: date.toISOString()}))
+    dispatch(updateData({ id, value: date.toISOString() }));
   }
 
   return (
