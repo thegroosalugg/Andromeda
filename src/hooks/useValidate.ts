@@ -11,7 +11,7 @@ import { clearAndLog } from '@/util/captainsLog';
 
 interface ValidateOptions {
   withBooking?: boolean;
-  update?: { userId: number; booking?: Booking };
+  update?: { userId: string; booking?: Booking };
   loggingIn?: boolean;
 }
 
@@ -26,13 +26,14 @@ const useValidate = ({ withBooking, update, loggingIn }: ValidateOptions = {}) =
   const navigate = useNavigate();
 
   return () => {
-    const editedData = update
+    let editedData = update
       ? Object.fromEntries(Object.entries(data).filter((entry) => entry[1]))
       : {};
 
     let updateErr = {};
     if (update) {
       if (update.booking) {
+        editedData = {...update.booking!, ...editedData}
         updateErr = validateBooking(editedData, users, update.booking.shipId);
       } else {
         updateErr = validateUser(editedData, users);

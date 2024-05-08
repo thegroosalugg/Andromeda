@@ -8,7 +8,7 @@ import { RootState } from '@/store/types';
 import SpaceShip from '@/models/SpaceShip';
 import Booking from '@/models/Booking';
 
-const EditBooking = ({ id }: { id: number }) => {
+const EditBooking = ({ id }: { id: string }) => {
   const { ship, booking } = useSelector((state: RootState) => state.modal.item as { ship: SpaceShip; booking: Booking });
   const { from, till, pickup, dropoff } = booking;
   const { maker, model } = ship;

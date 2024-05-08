@@ -1,5 +1,5 @@
 export default class Booking {
-  id: number;
+  id: string;
   shipId: string;
   from: string;
   till:  string;
@@ -7,7 +7,7 @@ export default class Booking {
   dropoff: string;
 
   constructor(shipId: string, from: string, till: string, pickup: string, dropoff: string) {
-    this.id = Math.floor(Math.random() * 100000)
+    this.id = 'BK' + Math.floor(Math.random() * 100000)
     this.shipId = shipId;
     this.from = from;
     this.till = till;

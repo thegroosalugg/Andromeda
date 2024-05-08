@@ -34,7 +34,7 @@ const userSlice = createSlice({
         state.user = user;
       }
     },
-    updateBooking: (state, action: PayloadAction<{ userId: number; bookingId: number, data: Booking }>) => {
+    updateBooking: (state, action: PayloadAction<{ userId: string; bookingId: string, data: Booking }>) => {
       const user = state.users.find((user: User) => user.id === action.payload.userId);
       if (user) {
         const booking = user.bookings.find(
