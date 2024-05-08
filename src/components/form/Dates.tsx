@@ -10,9 +10,9 @@ import { updateData } from '@/store/formSlice';
 import { FormData } from '@/models/FormData';
 import { RootState } from '@/store/types';
 
-const Dates = ({ id, savedData }: { id: keyof FormData, savedData?: string }) => {
+const Dates = ({ id, savedData, bookedId }: { id: keyof FormData, savedData?: string, bookedId?: string }) => {
   const { x, delay, backgroundColor } = useErrorAnimation(id);
-  const bookedDates = useBookedDates();
+  const bookedDates = useBookedDates(bookedId);
   const dispatch = useDispatch();
   const { data, errors } = useSelector((state: RootState) => state.form);
 

@@ -10,7 +10,7 @@ import Booking from '@/models/Booking';
 
 const EditBooking = ({ id }: { id: string }) => {
   const { ship, booking } = useSelector((state: RootState) => state.modal.item as { ship: SpaceShip; booking: Booking });
-  const { from, till, pickup, dropoff } = booking;
+  const { shipId, from, till, pickup, dropoff } = booking;
   const { maker, model } = ship;
   const validate = useValidate({ update: { userId: id, booking } });
 
@@ -20,8 +20,8 @@ const EditBooking = ({ id }: { id: string }) => {
       <h5>{model}</h5>
       <div>
         <div>
-          <Dates id='from' savedData={formatDate(from, true)} />
-          <Dates id='till' savedData={formatDate(till, true)} />
+          <Dates id='from' savedData={formatDate(from, true)} bookedId={shipId} />
+          <Dates id='till' savedData={formatDate(till, true)} bookedId={shipId} />
         </div>
         <div>
           <Select id='pickup' savedData={pickup} />
