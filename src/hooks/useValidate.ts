@@ -33,7 +33,8 @@ const useValidate = ({ withBooking, update, loggingIn }: ValidateOptions = {}) =
     let updateErr = {};
     if (update) {
       if (update.booking) {
-        editedData = {...update.booking!, ...editedData}
+        editedData =
+          editedData.from || editedData.till ? { ...update.booking!, ...editedData } : editedData;
         updateErr = validateBooking(editedData, users, update.booking.shipId);
       } else {
         updateErr = validateUser(editedData, users);
