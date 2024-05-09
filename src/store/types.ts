@@ -8,7 +8,7 @@ interface ShipsState {
 
 interface ModalState {
   isOpen: boolean;
-  item: { [key: string]: unknown };
+  item: { [key: string]: unknown } | null;
 }
 
 interface UserState {

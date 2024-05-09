@@ -1,24 +1,27 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
+import { RootState } from './types';
+
+const initialState: RootState['modal'] = { isOpen: false, item: null };
 
 const modalSlice = createSlice({
-  name: "modal",
-  initialState: { isOpen: false, item: null },
+  name: 'modal',
+  initialState,
   reducers: {
     toggle(state) {
       state.isOpen = !state.isOpen;
     },
     saveItem(state, action) {
-      state.item = action.payload
+      state.item = action.payload;
     },
     updateItem(state, action) {
       if (typeof state.item === 'object' && state.item !== null) {
         const { key, data } = action.payload;
         state.item = {
-          ...state.item as object,
-          [key]: { ...state.item[key] as object, ...data }
+          ...state.item,
+          [key]: { ...(state.item[key] as object), ...data },
         };
       }
-    }
+    },
   },
 });
 
