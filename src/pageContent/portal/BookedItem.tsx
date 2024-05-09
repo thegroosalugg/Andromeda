@@ -41,8 +41,8 @@ const BookedItem = (booking: Booking) => {
         <h6>{ship!.maker}</h6>
         <h5>{ship!.model}</h5>
         <Row>
-          <Col label='start' color='#bb6412d0' text={formatDate(from)} />
-          <Col label='end' color='#bb11a1bf' text={formatDate(till)} />
+          <Col label='Start' color='#bb6412d0' text={formatDate(from)} />
+          <Col label='End' color='#bb11a1bf' text={formatDate(till)} />
         </Row>
         <Row>
           <Col label='PickUp' color='#bb6412d0' text={pickup} />
