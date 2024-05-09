@@ -1,17 +1,17 @@
-import User from '@/models/User';
-import { logout } from '@/store/userSlice';
+import { motion } from 'framer-motion';
 import { useDispatch, useSelector } from 'react-redux';
-import css from './UserPortal.module.css';
+import { logout } from '@/store/userSlice';
+import { clearForm } from '@/store/formSlice';
+import { RootState } from '@/store/types';
+import useValidate from '@/hooks/useValidate';
 import List from '@/components/list/List';
 import Input from '@/components/form/Input';
-import { FormData } from '@/models/FormData';
-import useValidate from '@/hooks/useValidate';
 import BookedItem from './BookedItem';
-import { motion } from 'framer-motion';
-import { clearForm } from '@/store/formSlice';
-import EditBooking from './EditBooking';
 import Modal from '@/components/modal/Modal';
-import { RootState } from '@/store/types';
+import EditBooking from './EditBooking';
+import User from '@/models/User';
+import { FormData } from '@/models/FormData';
+import css from './UserPortal.module.css';
 
 export default function UserPortal(user: User) {
   const { id, bookings, ...userDetails } = user;

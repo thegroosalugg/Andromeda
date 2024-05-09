@@ -11,19 +11,22 @@ import Booking from '@/models/Booking';
 const EditBooking = ({ id }: { id: string }) => {
   const { ship, booking } = useSelector((state: RootState) => state.modal.item as { ship: SpaceShip; booking: Booking });
   const { shipId, from, till, pickup, dropoff } = booking;
-  const { maker, model } = ship;
+  const { maker, model, image } = ship;
   const validate = useValidate({ update: { userId: id, booking } });
 
   return (
     <div className={css.booking}>
-      <h6>{maker}</h6>
-      <h5>{model}</h5>
-      <div>
-        <div>
+      <div className={css.ship}>
+        <h6>{maker}</h6>
+        <h5>{model}</h5>
+        <img src={image} alt='ship' />
+      </div>
+      <div className={css.row}>
+        <div className={css.col}>
           <Dates id='from' savedData={formatDate(from, true)} bookedId={shipId} />
           <Dates id='till' savedData={formatDate(till, true)} bookedId={shipId} />
         </div>
-        <div>
+        <div className={css.col}>
           <Select id='pickup' savedData={pickup} />
           <Select id='dropoff' savedData={dropoff} />
         </div>
