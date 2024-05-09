@@ -49,11 +49,9 @@ export default function UserPortal(user: User) {
             <List className={css.bookings} items={bookings} keyFn={({ id }) => id}>
               {(booking) => <BookedItem {...booking} />}
             </List>
-            {/* {item && ( */}
-              <Modal>
-                <EditBooking id={id} {...item} />
-              </Modal>
-            {/* )} */}
+            <Modal>
+              <EditBooking id={id} {...item} />
+            </Modal>
           </>
         )}
       </section>
