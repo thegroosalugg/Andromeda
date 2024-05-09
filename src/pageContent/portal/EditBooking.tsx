@@ -3,13 +3,13 @@ import Dates from '@/components/form/Dates';
 import Select from '@/components/form/Select';
 import css from './EditBooking.module.css';
 import useValidate from '@/hooks/useValidate';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/store/types';
+// import { useSelector } from 'react-redux';
+// import { RootState } from '@/store/types';
 import SpaceShip from '@/models/SpaceShip';
 import Booking from '@/models/Booking';
 
-const EditBooking = ({ id }: { id: string }) => {
-  const { ship, booking } = useSelector((state: RootState) => state.modal.item as { ship: SpaceShip; booking: Booking });
+const EditBooking = ({ id, ship, booking }: { id: string, ship: SpaceShip, booking: Booking }) => {
+  // const { ship, booking } = useSelector((state: RootState) => state.modal.item as { ship: SpaceShip; booking: Booking });
   const { shipId, from, till, pickup, dropoff } = booking;
   const { maker, model, image } = ship;
   const validate = useValidate({ update: { userId: id, booking } });
