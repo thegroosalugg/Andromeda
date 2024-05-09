@@ -33,13 +33,19 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.5rem;
-  margin: 1rem auto 0.5rem;
+  margin: 1rem auto;
 }
 
 .col {
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
+}
+
+.col p {
+  margin: 0 0 0 0.5rem;
+  font-size: smaller;
+  color: #f0f8ff;
 }
 
 .booking button {

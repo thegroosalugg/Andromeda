@@ -26,11 +26,15 @@ const EditBooking = ({ id, ship, booking }: { id: string, ship?: SpaceShip, book
       </div>
       <div className={css.row}>
         <div className={css.col}>
+          <p>Start</p>
           <Dates id='from' savedData={formatDate(from, true)} bookedId={shipId} />
-          <Dates id='till' savedData={formatDate(till, true)} bookedId={shipId} />
+          <p>PickUp</p>
+          <Select id='pickup' savedData={pickup} />
         </div>
         <div className={css.col}>
-          <Select id='pickup' savedData={pickup} />
+          <p>End</p>
+          <Dates id='till' savedData={formatDate(till, true)} bookedId={shipId} />
+          <p>DropOff</p>
           <Select id='dropoff' savedData={dropoff} />
         </div>
       </div>

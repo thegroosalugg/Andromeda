@@ -8,6 +8,7 @@ import User from '@/models/User';
 import Booking from '@/models/Booking';
 import { validateBooking, validateLogin, validateUser } from '@/util/validateForm';
 import { clearAndLog } from '@/util/captainsLog';
+import { updateItem } from '@/store/modalSlice';
 
 interface ValidateOptions {
   withBooking?: boolean;
@@ -72,6 +73,7 @@ const useValidate = ({ withBooking, update, loggingIn }: ValidateOptions = {}) =
               data: editedData as Booking,
             })
           );
+          dispatch(updateItem({ key: 'booking', data: editedData }));
         } else {
           dispatch(updateUser(editedData as User));
         }
