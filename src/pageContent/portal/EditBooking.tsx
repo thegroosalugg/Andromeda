@@ -7,6 +7,7 @@ import SpaceShip from '@/models/SpaceShip';
 import Booking from '@/models/Booking';
 import { useDispatch } from 'react-redux';
 import { deleteBooking } from '@/store/userSlice';
+import useCloseModal from '@/hooks/useCloseModal';
 
 // using ? & ! looks like a contradiction at first, but its not. This allows the Modal to properly animate out.
 // It doesn't matter during this period that booking/ship are temporarily null. The issue was occuring due to both,
@@ -19,6 +20,14 @@ const EditBooking = ({ id: userId, ship, booking }: { id: string, ship?: SpaceSh
   const { maker, model, image } = ship!;
   const validate = useValidate({ update: { userId, booking } });
   const dispatch = useDispatch();
+  const closeModal = useCloseModal();
+
+  function deleteHandler() {
+    closeModal();
+    setTimeout(() => {
+      dispatch(deleteBooking({ userId, bookingId }));
+    }, 600);
+  }
 
   return (
     <div className={css.booking}>
@@ -42,7 +51,7 @@ const EditBooking = ({ id: userId, ship, booking }: { id: string, ship?: SpaceSh
         </div>
       </div>
       <button onClick={validate}>UPDATE BOOKING</button>
-      <button onClick={() => dispatch(deleteBooking({ userId, bookingId }))}>DELETE BOOKING</button>
+      <button onClick={deleteHandler}>DELETE BOOKING</button>
     </div>
   );
 };
