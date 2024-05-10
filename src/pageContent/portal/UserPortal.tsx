@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '@/store/userSlice';
 import { clearForm } from '@/store/formSlice';
@@ -44,18 +44,14 @@ export default function UserPortal(user: User) {
           </List>
           <button onClick={validate}>SAVE</button>
         </div>
-        <AnimatePresence>
-          {bookings.length > 0 && (
-            <>
-              <List className={css.bookings} items={bookings} keyFn={({ id }) => id}>
-                {(booking) => <BookedItem {...booking} />}
-              </List>
-              <Modal>
-                <EditBooking id={id} {...item} />
-              </Modal>
-            </>
-          )}
-        </AnimatePresence>
+        <>
+          <List className={css.bookings} items={bookings} keyFn={({ id }) => id}>
+            {(booking) => <BookedItem {...booking} />}
+          </List>
+          <Modal>
+            <EditBooking id={id} {...item} />
+          </Modal>
+        </>
       </section>
       <button className={css.logout} onClick={handleLogout}>
         LOGOUT
