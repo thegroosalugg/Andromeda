@@ -24,7 +24,7 @@ export default function Form({ withBooking }: { withBooking?: boolean }) {
         layout
         onSubmit={submitHandler}
         className={css.form}
-        transition={{ staggerChildren: 0.1 }}
+        transition={{ staggerChildren: 0.1, duration: 0.8 }}
         initial='hidden'
         whileInView='visible'
         viewport={{ once: true }}

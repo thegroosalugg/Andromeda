@@ -27,6 +27,10 @@ const userSlice = createSlice({
     logout: (state) => {
       state.user = null;
     },
+    deleteUser(state, action) {
+      state.user = null;
+      state.users = state.users.filter((user: User) => user.id !== action.payload);
+    },
     addBooking: (state, action: PayloadAction<{ currentUser: User; booking: Booking }>) => {
       const user = state.users.find((user: User) => user.id === action.payload.currentUser.id);
       if (user) {
@@ -58,5 +62,5 @@ const userSlice = createSlice({
   },
 });
 
-export const { addUser, setUser, updateUser, logout, addBooking, updateBooking, deleteBooking } = userSlice.actions;
+export const { addUser, setUser, updateUser, logout, deleteUser, addBooking, updateBooking, deleteBooking } = userSlice.actions;
 export default userSlice.reducer;
