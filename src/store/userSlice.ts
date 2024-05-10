@@ -46,8 +46,17 @@ const userSlice = createSlice({
         }
       }
     },
+    deleteBooking: (state, action: PayloadAction<{ userId: string; bookingId: string }>) => {
+      const user = state.users.find((user: User) => user.id === action.payload.userId);
+      if (user) {
+        user.bookings = user.bookings.filter(
+          (booking: Booking) => booking.id !== action.payload.bookingId
+        );
+        state.user = user;
+      }
+    },
   },
 });
 
-export const { addUser, setUser, updateUser, logout, addBooking, updateBooking } = userSlice.actions;
+export const { addUser, setUser, updateUser, logout, addBooking, updateBooking, deleteBooking } = userSlice.actions;
 export default userSlice.reducer;
