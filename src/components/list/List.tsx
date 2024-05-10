@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface ListProps<T> {
   items: T[]; // expect an array of TYPES (all of them must match)
@@ -14,19 +14,25 @@ export default function List<T>({ items, keyFn, className, children }: ListProps
       initial='hidden'
       whileInView='visible'
       viewport={{ once: true }}
+      exit={{ opacity: 0, scale: 0.8 }}
     >
-      {items.map((item, index) => (
-        <motion.li
-          key={keyFn(item)}
-          variants={{
-            visible: { opacity: 1, scale: 1 },
-            hidden: { opacity: 0, scale: 1.2 },
-          }} // delay * index adds stagger, other transitions can be configured by parent
-          transition={{ type: 'tween', duration: 0.5, delay: index * 0.1 }}
-        >
-          {children(item)}
-        </motion.li>
-      ))}
+      <AnimatePresence>
+        {items.map((item, index) => (
+          <motion.li
+            layout
+            key={keyFn(item)}
+            variants={{
+              visible: { opacity: 1, scale: 1 },
+              hidden: { opacity: 0, scale: 1.2 },
+            }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            // delay * index adds stagger, other transitions can be configured by parent
+            transition={{ type: 'tween', duration: 0.5, delay: index * 0.1 }}
+          >
+            {children(item)}
+          </motion.li>
+        ))}
+      </AnimatePresence>
     </motion.ul>
   );
 }
