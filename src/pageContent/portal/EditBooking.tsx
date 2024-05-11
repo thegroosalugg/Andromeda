@@ -1,13 +1,15 @@
-import formatDate from '@/util/formatDate';
-import Dates from '@/components/form/Dates';
-import Select from '@/components/form/Select';
-import css from './EditBooking.module.css';
-import useValidate from '@/hooks/useValidate';
-import SpaceShip from '@/models/SpaceShip';
-import Booking from '@/models/Booking';
+import { useState } from 'react';
+import { motion } from 'framer-motion';
 import { useDispatch } from 'react-redux';
 import { deleteBooking } from '@/store/userSlice';
+import useValidate from '@/hooks/useValidate';
 import useCloseModal from '@/hooks/useCloseModal';
+import Dates from '@/components/form/Dates';
+import Select from '@/components/form/Select';
+import Booking from '@/models/Booking';
+import SpaceShip from '@/models/SpaceShip';
+import formatDate from '@/util/formatDate';
+import css from './EditBooking.module.css';
 
 // using ? & ! looks like a contradiction at first, but its not. This allows the Modal to properly animate out.
 // It doesn't matter during this period that booking/ship are temporarily null. The issue was occuring due to both,
@@ -21,6 +23,11 @@ const EditBooking = ({ id: userId, ship, booking }: { id: string, ship?: SpaceSh
   const validate = useValidate({ update: { userId, booking } });
   const dispatch = useDispatch();
   const closeModal = useCloseModal();
+  const [confirmDialog, setConfirmDialog] = useState(false);
+
+  function confirmHandler() {
+    setConfirmDialog((prev) => !prev);
+  }
 
   function deleteHandler() {
     closeModal();
@@ -50,10 +57,14 @@ const EditBooking = ({ id: userId, ship, booking }: { id: string, ship?: SpaceSh
           <Select id='dropoff' savedData={dropoff} />
         </div>
       </div>
-      <div className={css.actions}>
-        <button className={css.update} onClick={validate}>UPDATE BOOKING</button>
-        <button className={css.delete} onClick={deleteHandler}>DELETE BOOKING</button>
-      </div>
+      <motion.div layout className={css.actions}>
+        <button className={confirmDialog ? css.delete : css.update} onClick={confirmDialog ? deleteHandler : validate}>
+          {confirmDialog ? 'CONFIRM' : 'UPDATE BOOKING'}
+        </button>
+        <button className={confirmDialog ? css.update : css.delete} onClick={confirmHandler}>
+          {confirmDialog ? 'CANCEL' : 'DELETE BOOKING'}
+        </button>
+      </motion.div>
     </div>
   );
 };
