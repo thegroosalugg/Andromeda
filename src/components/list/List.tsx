@@ -9,14 +9,14 @@ interface ListProps<T> {
 
 export default function List<T>({ items, keyFn, className, children }: ListProps<T>) {
   return (
-    <AnimatePresence>
+    <AnimatePresence mode='popLayout'>
       {items.length > 0 && (
         <motion.ul
           className={className}
           initial='hidden'
           whileInView='visible'
           viewport={{ once: true }}
-          exit={{ opacity: 0, scale: 0.8 }}
+          exit={{ opacity: 0, scale: 0.8, y: -50, transition: { duration: 0.5 } }}
         >
           <AnimatePresence>
             {items.map((item, index) => (
