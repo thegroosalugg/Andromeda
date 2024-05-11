@@ -9,37 +9,15 @@
   max-width: 100vw;
 }
 
-.col {
+.user {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.col h2 {
+.user h2 {
   margin: 0;
-}
-
-.col button,
-.actions button,
-.col h2 {
   font-family: 'Orbitron', sans-serif;
-  color: #ffffff;
-}
-
-.col button,
-.actions button {
-  font-size: larger;
-  background: none;
-  border: none;
-  cursor: pointer;
-  transition: 0.5s ease;
-}
-
-.col button:hover,
-.actions button:hover {
-  color: #59d067;
-  transform: scale(1.1);
-  text-shadow: 1px 1px 2px #111111;
 }
 
 .portal ul {
@@ -47,12 +25,12 @@
   overflow: auto;
 }
 
-.user {
+.user-inputs {
   margin: auto;
   padding: 0;
 }
 
-.user p {
+.user-inputs p {
   display: flex;
   justify-content: end;
   gap: 2rem;
@@ -67,28 +45,4 @@
   padding: 1rem;
   border-top: 1px solid hsla(0, 0%, 80%, 0.36);
   border-bottom: 1px solid hsla(0, 0%, 80%, 0.36);
-}
-
-.actions {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 2rem auto;
-  gap: 1rem;
-}
-
-.actions button {
-  margin: auto; /* prevents button from taking up screen width */
-}
-
-.actions button:hover {
-  color: #bf3921cd;
-}
-
-.dialog {
-  display: flex;
-}
-
-.cancel:hover {
-  color: #2160bfcd !important;
 }
