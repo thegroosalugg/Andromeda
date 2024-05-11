@@ -9,7 +9,7 @@ import { RootState } from '@/store/types';
 
 const planets = ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune'];
 
-function Select({ id }: { id: keyof FormData }) {
+function Select({ id, savedData }: { id: keyof FormData, savedData?: string }) {
   const { x, delay, backgroundColor } = useErrorAnimation(id);
   const dispatch = useDispatch();
   const { data, errors } = useSelector((state: RootState) => state.form)
@@ -34,7 +34,7 @@ function Select({ id }: { id: keyof FormData }) {
       transition={{ type: 'easeIn', duration: 0.5 }}
     >
       <option value='' disabled hidden>
-        {errors[id] ? errors[id] : id.toUpperCase()}
+        {errors[id] ? errors[id] : (savedData ? savedData : id.toUpperCase())}
       </option>
       {planets.map((planet) => (
         <option key={planet} value={planet}>

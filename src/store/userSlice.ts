@@ -22,10 +22,14 @@ const userSlice = createSlice({
     updateUser(state, action: PayloadAction<User>) {
       const updatedUser = { ...state.user, ...action.payload };
       state.user = updatedUser;
-      state.users = state.users.map(user => user.id === updatedUser.id ? updatedUser : user);
+      state.users = state.users.map((user) => (user.id === updatedUser.id ? updatedUser : user));
     },
     logout: (state) => {
       state.user = null;
+    },
+    deleteUser(state, action) {
+      state.user = null;
+      state.users = state.users.filter((user: User) => user.id !== action.payload);
     },
     addBooking: (state, action: PayloadAction<{ currentUser: User; booking: Booking }>) => {
       const user = state.users.find((user: User) => user.id === action.payload.currentUser.id);
@@ -34,8 +38,29 @@ const userSlice = createSlice({
         state.user = user;
       }
     },
+    updateBooking: (state, action: PayloadAction<{ userId: string; bookingId: string, data: Booking }>) => {
+      const user = state.users.find((user: User) => user.id === action.payload.userId);
+      if (user) {
+        const booking = user.bookings.find(
+          (booking: Booking) => booking.id === action.payload.bookingId
+        );
+        if (booking) {
+          Object.assign(booking, action.payload.data);
+          state.user = user;
+        }
+      }
+    },
+    deleteBooking: (state, action: PayloadAction<{ userId: string; bookingId: string }>) => {
+      const user = state.users.find((user: User) => user.id === action.payload.userId);
+      if (user) {
+        user.bookings = user.bookings.filter(
+          (booking: Booking) => booking.id !== action.payload.bookingId
+        );
+        state.user = user;
+      }
+    },
   },
 });
 
-export const { addUser, setUser, updateUser, logout, addBooking } = userSlice.actions;
+export const { addUser, setUser, updateUser, logout, deleteUser, addBooking, updateBooking, deleteBooking } = userSlice.actions;
 export default userSlice.reducer;

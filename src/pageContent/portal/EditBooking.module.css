@@ -1,0 +1,91 @@
+.booking {
+  background: linear-gradient(to right, #2c3e50, #3498db);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+}
+
+.ship {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 400px;
+  max-width: 100%;
+}
+
+.ship h5 {
+  margin: 0 0 0.3rem;
+  color: #f0f8ff;
+}
+
+.ship h6 {
+  margin: 0.4rem 0;
+  color: #c6a872;
+}
+
+.ship img {
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1rem auto;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.col p {
+  margin: 0 0 0 0.5rem;
+  font-size: smaller;
+  color: #f0f8ff;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.actions button {
+  font-family: 'Orbitron', sans-serif;
+  font-size: smaller;
+  color: #f0f8ff;
+  border: 1px solid #f0f8ff;
+  text-shadow: 1px 1px 2px #000000;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+
+.actions button:hover {
+  transform: scale(1.1);
+}
+
+.update {
+  background: none;
+}
+
+.delete {
+  background: #f64f5a7f;
+}
+
+.update:hover {
+  color: #8360c3;
+  border: 1px solid #8360c3;
+  background: #2d4c6a90;
+}
+
+.delete:hover {
+  color: #fad1a4;
+  background: #c314327f;
+}

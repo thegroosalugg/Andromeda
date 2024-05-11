@@ -1,18 +1,15 @@
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useDispatch } from 'react-redux';
-import { toggle } from '@/store/modalSlice';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/types';
 import css from './Modal.module.css';
+import useCloseModal from '@/hooks/useCloseModal';
 
 const Modal = ({ children }: { children: React.ReactNode }) => {
-  const dispatch = useDispatch();
-  const { isOpen } = useSelector((state: RootState) => state.modal);
+  const { isOpen, item } = useSelector((state: RootState) => state.modal);
+  const closeModal = useCloseModal();
 
-  function closeModal() {
-    dispatch(toggle());
-  }
+  console.log('MODAL ITEM', item)
 
   return createPortal(
     <AnimatePresence>
@@ -30,6 +27,7 @@ const Modal = ({ children }: { children: React.ReactNode }) => {
             initial={{ y: '-100vh' }}
             animate={{ y: 0 }}
             exit={{ y: '-100vh' }}
+            whileInView='visible' // this is needed for the Input FCs inside Modal to be animated or they will vanish
             transition={{ type: 'tween', duration: 0.3 }}
           >
             {children}
