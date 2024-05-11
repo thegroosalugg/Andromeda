@@ -9,36 +9,11 @@ import Input from '@/components/form/Input';
 import BookedItem from './BookedItem';
 import Modal from '@/components/modal/Modal';
 import EditBooking from './EditBooking';
+import Booking from '@/models/Booking';
 import User from '@/models/User';
 import { FormData } from '@/models/FormData';
 import css from './UserPortal.module.css';
-import Booking from '@/models/Booking';
-
-function NoBookins() {
-  const styles = {
-    width: '25rem',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    margin: '1rem 0',
-  };
-
-  return (
-    <motion.div
-      style={styles}
-      className={css.bookings}
-      initial={{ opacity: 0, scale: 0 }}
-      animate={{ opacity: 1, scale: 1, transition: { delay: 1 } }}
-    >
-      <motion.p
-        initial={{ opacity: 0, scaleX: 0 }}
-        animate={{ opacity: 1, scaleX: 1, transition: { delay: 1.5 } }}
-      >
-        You have no bookings
-      </motion.p>
-    </motion.div>
-  );
-}
+import NoBookings from './NoBookings'; // I am also not needed post testing
 
 export default function UserPortal(user: User) {
   const { id, bookings, ...userDetails } = user;
@@ -58,6 +33,7 @@ export default function UserPortal(user: User) {
       animate={{ y: 0 }}
       transition={{ duration: 0.6, type: 'easeInOut' }}
     >
+
       <Modal>
         <EditBooking id={id} {...item} />
       </Modal>
@@ -76,10 +52,10 @@ export default function UserPortal(user: User) {
           <button onClick={validate}>SAVE</button>
         </div>
 
-        {bookings.length === 0 && <NoBookins />}
+        {bookings.length === 0 && <NoBookings />}
 
         <List className={css.bookings} items={bookings} keyFn={({ id }) => id}>
-          {(booking) => (booking ? <BookedItem {...booking} /> : <p>NO BOOKINGS</p>)}
+          {(booking) => <BookedItem {...booking} />}
         </List>
 
       </motion.section>
@@ -110,7 +86,7 @@ export default function UserPortal(user: User) {
       >
         ADD BOOKING
       </button>
-      
+
     </motion.section>
   );
 }
