@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import DatePicker from 'react-datepicker';
 import { motion } from 'framer-motion';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -49,5 +48,4 @@ const Dates = ({ id, savedData, bookedId }: { id: keyof FormData, savedData?: st
   );
 };
 
-const MemoizedDates = memo(Dates);
-export default MemoizedDates;
+export default Dates;

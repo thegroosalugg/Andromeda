@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import css from './Input.module.css';
-import { memo } from 'react';
 import useErrorAnimation from '@/hooks/useErrorAnimation';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateData } from '@/store/formSlice';
@@ -48,5 +47,4 @@ const Input = ({
   );
 };
 
-const MemoizedInput = memo(Input);
-export default MemoizedInput;
+export default Input;

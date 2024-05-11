@@ -1,6 +1,5 @@
 import useErrorAnimation from '@/hooks/useErrorAnimation';
 import { motion } from 'framer-motion';
-import { memo } from 'react';
 import css from './Input.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateData } from '@/store/formSlice';
@@ -45,5 +44,4 @@ function Select({ id, savedData }: { id: keyof FormData, savedData?: string }) {
   );
 }
 
-const MemoizedSelect = memo(Select);
-export default MemoizedSelect;
+export default Select;
