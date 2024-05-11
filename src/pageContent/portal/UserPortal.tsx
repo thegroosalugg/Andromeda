@@ -33,7 +33,6 @@ export default function UserPortal(user: User) {
       animate={{ y: 0 }}
       transition={{ duration: 0.6, type: 'easeInOut' }}
     >
-
       <Modal>
         <EditBooking id={id} {...item} />
       </Modal>
@@ -57,15 +56,16 @@ export default function UserPortal(user: User) {
         <List className={css.bookings} items={bookings} keyFn={({ id }) => id}>
           {(booking) => <BookedItem {...booking} />}
         </List>
-
       </motion.section>
 
-      <button className={css.logout} onClick={handleLogout}>
-        LOGOUT
-      </button>
-      <button className={css.logout} onClick={() => dispatch(deleteUser(user.id))}>
-        DELETE ACCOUNT
-      </button>
+      <div className={css.actions}>
+        <button onClick={handleLogout}>
+          LOGOUT
+        </button>
+        <button onClick={() => dispatch(deleteUser(user.id))}>
+          DELETE ACCOUNT
+        </button>
+      </div>
 
       {/* DELETE ME AFTER TESTING */}
       <button
@@ -86,7 +86,6 @@ export default function UserPortal(user: User) {
       >
         ADD BOOKING
       </button>
-
     </motion.section>
   );
 }

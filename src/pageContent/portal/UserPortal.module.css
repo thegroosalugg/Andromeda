@@ -20,14 +20,14 @@
 }
 
 .col button,
-.logout,
+.actions button,
 .col h2 {
   font-family: 'Orbitron', sans-serif;
   color: #ffffff;
 }
 
 .col button,
-.logout {
+.actions button {
   font-size: larger;
   background: none;
   border: none;
@@ -36,7 +36,7 @@
 }
 
 .col button:hover,
-.logout:hover {
+.actions button:hover {
   color: #59d067;
   transform: scale(1.1);
   text-shadow: 1px 1px 2px #111111;
@@ -69,12 +69,17 @@
   border-bottom: 1px solid hsla(0, 0%, 80%, 0.36);
 }
 
-.logout {
-  margin: 5rem auto;
-  font-size: 3rem;
-  display: block;
+.actions {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem auto;
+  gap: 1rem;
 }
 
-.logout:hover {
-  color: #8a362890;
+.actions button {
+  margin: auto; /* prevents button from taking up screen width */
+}
+
+.actions button:hover {
+  color: #bf3921cd;
 }
