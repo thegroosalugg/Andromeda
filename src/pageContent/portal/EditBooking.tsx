@@ -50,8 +50,10 @@ const EditBooking = ({ id: userId, ship, booking }: { id: string, ship?: SpaceSh
           <Select id='dropoff' savedData={dropoff} />
         </div>
       </div>
-      <button onClick={validate}>UPDATE BOOKING</button>
-      <button onClick={deleteHandler}>DELETE BOOKING</button>
+      <div className={css.actions}>
+        <button className={css.update} onClick={validate}>UPDATE BOOKING</button>
+        <button className={css.delete} onClick={deleteHandler}>DELETE BOOKING</button>
+      </div>
     </div>
   );
 };

@@ -48,19 +48,44 @@
   color: #f0f8ff;
 }
 
-.booking button {
-  background: none;
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.actions button {
+  font-family: 'Orbitron', sans-serif;
+  font-size: smaller;
+  color: #f0f8ff;
   border: 1px solid #f0f8ff;
+  text-shadow: 1px 1px 2px #000000;
   border-radius: 5px;
   cursor: pointer;
-  margin-bottom: 0.5rem;
-  color: #f0f8ff;
   transition: 0.5s ease;
 }
 
-.booking button:hover {
-  color: #59d067;
-  border: 1px solid #59d067;
+.actions button:hover {
   transform: scale(1.1);
-  text-shadow: 1px 1px 2px #111111;
+}
+
+.update {
+  background: none;
+}
+
+.delete {
+  background: #f64f5a7f;
+}
+
+.update:hover {
+  color: #8360c3;
+  border: 1px solid #8360c3;
+  background: #2d4c6a90;
+}
+
+.delete:hover {
+  color: #fad1a4;
+  background: #c314327f;
 }
