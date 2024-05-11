@@ -72,6 +72,7 @@
 .actions {
   display: flex;
   flex-direction: column;
+  align-items: center;
   margin: 2rem auto;
   gap: 1rem;
 }
@@ -82,4 +83,12 @@
 
 .actions button:hover {
   color: #bf3921cd;
+}
+
+.dialog {
+  display: flex;
+}
+
+.cancel:hover {
+  color: #2160bfcd !important;
 }
