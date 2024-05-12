@@ -22,7 +22,7 @@ const useValidate = ({ withBooking, update, loggingIn }: ValidateOptions = {}) =
     stateSlice: { users, user },
   } = useSearch({ search: { id: 'shipId', withParams: true }, reducer: 'users' });
   const { data } = useSelector((state: RootState) => state.form);
-  const { name, surname, email, phone, from, till, pickup, dropoff, login } = data;
+  const { name, surname, email, phone, from, till, pickup, dropoff, price, login } = data;
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -59,7 +59,7 @@ const useValidate = ({ withBooking, update, loggingIn }: ValidateOptions = {}) =
         dispatch(addUser(currentUser));
       }
 
-      const booking = withBooking && new Booking(shipId!, from!, till!, pickup!, dropoff!).toObject!();
+      const booking = withBooking && new Booking(shipId!, from!, till!, pickup!, dropoff!, price!).toObject!();
 
       booking && currentUser && dispatch(addBooking({ currentUser, booking }));
       loggingIn && dispatch(setUser({ email: login! }));
