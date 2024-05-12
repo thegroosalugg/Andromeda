@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Input from './Input';
 import Select from './Select';
 import Dates from './Dates';
+import Price from './Price';
 import Login from './Login';
 import { RootState } from '@/store/types';
 import css from './Form.module.css';
@@ -49,6 +50,7 @@ export default function Form({ withBooking }: { withBooking?: boolean }) {
           PROCEED
         </motion.button>
       </motion.form>
+      {withBooking && <Price />}
       <AnimatePresence>{!user && <Login />}</AnimatePresence>
     </div>
   );
