@@ -7,5 +7,6 @@ export interface FormData {
      till?: string;
    pickup?: string;
   dropoff?: string;
+    price?: string;
     login?: string;
 }

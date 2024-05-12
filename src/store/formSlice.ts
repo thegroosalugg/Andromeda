@@ -12,6 +12,7 @@ const initialState: RootState['form'] = {
     till: '',
   pickup: '',
  dropoff: '',
+   price: '',
    login: '',
 },
   errors: {},
