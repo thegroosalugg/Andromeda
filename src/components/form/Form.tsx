@@ -50,7 +50,7 @@ export default function Form({ withBooking }: { withBooking?: boolean }) {
           PROCEED
         </motion.button>
       </motion.form>
-      <Price />
+      {withBooking && <Price />}
       <AnimatePresence>{!user && <Login />}</AnimatePresence>
     </div>
   );

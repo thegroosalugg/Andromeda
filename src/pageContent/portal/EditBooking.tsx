@@ -10,6 +10,7 @@ import Booking from '@/models/Booking';
 import SpaceShip from '@/models/SpaceShip';
 import formatDate from '@/util/formatDate';
 import css from './EditBooking.module.css';
+import Price from '@/components/form/Price';
 
 // using ? & ! looks like a contradiction at first, but its not. This allows the Modal to properly animate out.
 // It doesn't matter during this period that booking/ship are temporarily null. The issue was occuring due to both,
@@ -18,7 +19,7 @@ import css from './EditBooking.module.css';
 // the Modal isOpen becomes false and EditBooking leaves the DOM. It will enter the DOM again when the Modal receives a valid item
 
 const EditBooking = ({ id: userId, ship, booking }: { id: string, ship?: SpaceShip, booking?: Booking }) => {
-  const { id: bookingId, shipId, from, till, pickup, dropoff } = booking!;
+  const { id: bookingId, shipId, from, till, pickup, dropoff, price } = booking!;
   const { maker, model, image } = ship!;
   const validate = useValidate({ update: { userId, booking } });
   const dispatch = useDispatch();
@@ -57,6 +58,7 @@ const EditBooking = ({ id: userId, ship, booking }: { id: string, ship?: SpaceSh
           <Select id='dropoff' savedData={dropoff} />
         </div>
       </div>
+      <Price bookedId={shipId} bookedPrice={price} />
       <motion.div layout className={css.actions}>
         <button className={confirmDialog ? css.delete : css.update} onClick={confirmDialog ? deleteHandler : validate}>
           {confirmDialog ? 'CONFIRM' : 'UPDATE BOOKING'}
