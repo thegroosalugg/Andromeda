@@ -9,10 +9,10 @@ const SlidesInfoCard: React.FC<SpaceShip> = (spaceship) => {
   return (
     <motion.article
       className={css.article}
-      initial={{ opacity: 0, x: 80 }}
-      animate={{ opacity: [0, 0, 0.6, 0.8, 1], x: 0 }}
-      exit={{ opacity: 0, y: 100 }}
-      transition={{ type: 'easeInOut', duration: 1 }}
+      initial={{ x: 100, opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      exit={{ y: 100, opacity: 0 }}
+      transition={{ type: 'linear', duration: 0.5 }}
     >
       <h2>{model}</h2>
 

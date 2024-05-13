@@ -7,7 +7,7 @@ import SlidesInfoCard from './SlidesInfoCard';
 import useRepeatAnimation from '@/hooks/useRepeatAnimation';
 
 const SlideShow = () => {
-  const { ships } = useSelector((state: RootState) => state.ships)
+  const { ships } = useSelector((state: RootState) => state.ships);
   const navigate = useNavigate();
   const index = useRepeatAnimation({
     initialState: 0,
@@ -28,15 +28,14 @@ const SlideShow = () => {
             key={index}
             src={ships[index].image}
             alt={ships[index].model}
-            initial={{ rotate: 0, opacity: 0, x: -200, scaleY: 0 }}
-            animate={{ rotate: 0, opacity: 1, x: 0, scaleY: 1 }}
-            exit={{ scaleY: 0, y: -50, rotate: -45 }}
-            transition={{ duration: 1, ease: [0.43, 0.13, 0.23, 0.96] }}
+            initial={{ rotate: -45, opacity: 0, x: -200 }}
+            animate={{ rotate: 0, opacity: 1, x: 0 }}
+            exit={{ rotate: 45, opacity: 0, x: 200 }}
+            transition={{ type: 'linear', duration: 0.6 }}
             onClick={handleClick}
           />
         </AnimatePresence>
       </div>
-
       <AnimatePresence mode='wait'>
         <SlidesInfoCard key={index} {...ships[index]} />
       </AnimatePresence>
