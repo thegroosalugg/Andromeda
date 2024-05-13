@@ -18,8 +18,7 @@ const config: Config = {
 
 const useUIConfig = () => {
   const { pathname } = useLocation();
-  const key = pathname.startsWith('/user') ? '/user' : pathname
-  const configuredPath = { ...config.default, ...config[key] }; // add all default values then overwrite any uniques
+  const configuredPath = { ...config.default, ...config[pathname] }; // add all default values then overwrite any uniques
 
   const dispatch = useDispatch(); // this block is unrelated to this hook. It needs to be placed in a high level component...
   useEffect(() => { // ...so that it executes before any path components. Redux form data state requires programmatic resetting
