@@ -5,7 +5,7 @@ import css from './StaticInfoCard.module.css';
 import IconRow from '@/components/fontawesome/IconRow';
 
 const StaticInfoCard: React.FC<SpaceShip> = (spaceship) => {
-  const { maker, model, info, fuel, speed, year, price } = spaceship;
+  const { maker, model, desc, fuel, speed, year, price } = spaceship;
 
   return (
     <motion.div
@@ -23,7 +23,7 @@ const StaticInfoCard: React.FC<SpaceShip> = (spaceship) => {
         animate={{ scaleY: 1, opacity: 1 }}
         transition={{ duration: 0.5, ease: 'linear', delay: 0.3 }}
       >
-        {info}
+        {desc}
       </motion.article>
       <IconRow
         className={css.icons}

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import css from './SlidesInfoCard.module.css';
 
 const SlidesInfoCard: React.FC<SpaceShip> = (spaceship) => {
-  const { model, rating, info, performance } = spaceship
+  const { model, rating, desc, performance } = spaceship
 
   const variants = {
     hidden: { scale: 1.2, rotateY: 90, x: 15 },
@@ -43,8 +43,8 @@ const SlidesInfoCard: React.FC<SpaceShip> = (spaceship) => {
         <FontAwesomeBar icon='star' size={5} amount={rating} />
       </div>
 
-      <p className={css.info}>
-        <strong>{info}</strong>
+      <p className={css.desc}>
+        <strong>{desc}</strong>
       </p>
 
       <div className={css.progress}>

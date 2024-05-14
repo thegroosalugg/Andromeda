@@ -9,7 +9,7 @@
   min-width: 12rem;
 }
 
-.ship-rows .desc {
+.ship-rows .slogan {
   color: #99ad35;
 }
 
@@ -35,7 +35,7 @@
   margin: 1rem;
 }
 
-.desc {
+.slogan {
   padding: 0 1rem;
   height: 2em;
   font-size: x-small;
