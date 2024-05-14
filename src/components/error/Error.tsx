@@ -16,14 +16,20 @@ export default function ErrorPage() {
       <motion.img
         src='spaceman.png'
         alt='spaceman'
-        onClick={() => navigate('/')}
         initial={{ rotate: -200, opacity: 0 }}
         animate={{ rotate: 0, opacity: 1, transition: { delay: 1.5, duration: 1 } }}
-        whileHover={{ scale: 1.1 }}
+        drag
+        dragConstraints={{ top: 0, left: 0 }}
+        dragSnapToOrigin
+        dragTransition={{ bounceStiffness: 600, bounceDamping: 10 }}
+        whileDrag={{ rotate: 360, transition: { type: 'tween', ease: "linear", duration: 2.5, repeat: Infinity } }}
+        whileHover={{ scale: 1.1, rotateZ: 25 }}
       />
       <motion.p
+        onClick={() => navigate('/')}
         initial={{ x: '100%', opacity: 0 }}
         animate={{ x: 0, opacity: 1, transition: { delay: 1, duration: 0.5 } }}
+        whileHover={{ color: '#ffffff', scale: 1.2 }}
       >
         It's time to come back home
       </motion.p>
