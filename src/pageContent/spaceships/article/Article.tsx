@@ -1,8 +1,6 @@
 import { motion } from 'framer-motion';
 import css from './Article.module.css';
 
-const string = 'No TV and no beer make Homer something something. ';
-
 export default function Article() {
   return (
     <motion.article
@@ -25,7 +23,7 @@ export default function Article() {
         animate={{ opacity: 1 }}
         transition={{ type: 'linear', duration: 1 }}
       >
-        {string.repeat(100)}
+        {'I am waiting for a bus. '.repeat(25)}
       </motion.p>
     </motion.article>
   );

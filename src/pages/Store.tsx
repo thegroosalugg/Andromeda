@@ -1,3 +1,5 @@
+import { FallBack } from "./Explore";
+
 export default function StorePage() {
-  return <h1>Store</h1>
+  return <FallBack />
 }
