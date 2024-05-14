@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useDispatch } from 'react-redux';
 import { deleteBooking } from '@/store/userSlice';
 import useValidate from '@/hooks/useValidate';
@@ -59,14 +59,33 @@ const EditBooking = ({ id: userId, ship, booking }: { id: string, ship?: SpaceSh
         </div>
       </div>
       <Price bookedId={shipId} bookedPrice={price} />
-      <motion.div layout className={css.actions}>
-        <button className={confirmDialog ? css.delete : css.update} onClick={confirmDialog ? deleteHandler : validate}>
-          {confirmDialog ? 'CONFIRM' : 'UPDATE BOOKING'}
-        </button>
-        <button className={confirmDialog ? css.update : css.delete} onClick={confirmHandler}>
-          {confirmDialog ? 'CANCEL' : 'DELETE BOOKING'}
-        </button>
-      </motion.div>
+      <AnimatePresence mode='wait'>
+        <motion.div
+          className={css.actions}
+          key={'a' + confirmDialog}
+          initial={{ y: '100%', opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: '100%', opacity: 0 }}
+          transition={{
+            type: 'spring',
+            stiffness: 400,
+            damping: 10,
+            mass: 0.2,
+            velocity: 2,
+            restSpeed: 0.5
+          }}
+        >
+          <button
+            className={confirmDialog ? css.delete : css.update}
+            onClick={confirmDialog ? deleteHandler : validate}
+          >
+            {confirmDialog ? 'CONFIRM' : 'UPDATE BOOKING'}
+          </button>
+          <button className={confirmDialog ? css.update : css.delete} onClick={confirmHandler}>
+            {confirmDialog ? 'CANCEL' : 'DELETE BOOKING'}
+          </button>
+        </motion.div>
+      </AnimatePresence>
     </div>
   );
 };

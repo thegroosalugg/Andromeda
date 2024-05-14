@@ -26,7 +26,7 @@ export default function UserActions({id}: { id: string }) {
         <motion.div
           key={'a' + confirmDialog}
           initial={{ opacity: 0, x: -100 }}
-          animate={{ opacity: 1, x: 1 }}
+          animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: 100 }}
           className={css.dialog}
         >
