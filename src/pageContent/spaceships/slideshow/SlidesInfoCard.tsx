@@ -6,14 +6,37 @@ import css from './SlidesInfoCard.module.css';
 const SlidesInfoCard: React.FC<SpaceShip> = (spaceship) => {
   const { model, rating, info, performance } = spaceship
 
+  const variants = {
+    hidden: { scale: 1.2, rotateY: 90, x: 15 },
+    visible: {
+      x: 0,
+      scale: 1,
+      rotateY: 0,
+      transition: {
+        type: 'spring',
+        delay: 0.2,
+        stiffness: 100,
+        damping: 10,
+        mass: 1,
+      }
+    },
+    exit: {
+      x: 15,
+      scale: 1.2,
+      rotateY: -90,
+      transition: {
+        type: 'spring',
+        stiffness: 300,
+        damping: 30,
+        mass: 1,
+        velocity: 5,
+        restSpeed: 10
+      }
+    }
+  };
+
   return (
-    <motion.article
-      className={css.article}
-      initial={{ x: 100, opacity: 0 }}
-      animate={{ x: 0, opacity: 1 }}
-      exit={{ y: 100, opacity: 0 }}
-      transition={{ type: 'linear', duration: 0.5 }}
-    >
+    <motion.article className={css.article} initial="hidden" animate="visible" exit="exit" variants={variants}>
       <h2>{model}</h2>
 
       <div>
