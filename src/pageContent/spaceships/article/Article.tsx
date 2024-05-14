@@ -1,4 +1,6 @@
 import { motion } from 'framer-motion';
+import { Fragment } from 'react/jsx-runtime';
+import { CONTENT } from '../Text';
 import css from './Article.module.css';
 
 export default function Article() {
@@ -23,7 +25,13 @@ export default function Article() {
         animate={{ opacity: 1 }}
         transition={{ type: 'linear', duration: 1 }}
       >
-        {'I am waiting for a bus. '.repeat(25)}
+        {CONTENT[0].map((p, i) => (
+          <Fragment key={i}>
+            {p}
+            <br />
+            <br />
+          </Fragment>
+        ))}
       </motion.p>
     </motion.article>
   );

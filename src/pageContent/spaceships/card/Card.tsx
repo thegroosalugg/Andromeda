@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
 import css from './Card.module.css';
 
-export default function Card({ reverse, image }: { reverse?: boolean; image: string }) {
+export default function Card({ reverse, image, text }: { reverse?: boolean; image: string, text: string }) {
   const x = reverse ? '-100%' : '100%';
-  const text = <p>{"I'm waiting for a bus. ".repeat(20)}</p>;
+  const content = <p>{text}</p>;
   const classes = `${css.card} ${css[reverse ? 'right' : 'left']}`;
 
   return (
@@ -12,9 +12,9 @@ export default function Card({ reverse, image }: { reverse?: boolean; image: str
       variants={{ hidden: { x, opacity: 0 }, visible: { x: 0, opacity: 1 } }}
       transition={{ duration: 1, type: 'tween' }}
     >
-      {reverse && text}
+      {reverse && content}
       <img src={image} alt='rocket' />
-      {!reverse && text}
+      {!reverse && content}
     </motion.div>
   );
 }
