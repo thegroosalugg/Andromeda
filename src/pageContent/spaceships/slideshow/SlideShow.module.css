@@ -1,7 +1,8 @@
 .slides-container {
   margin: 1rem auto;
-  max-width: 960px;
+  width: 960px;
   display: flex;
+  align-items: stretch;
   overflow: auto;
   border-radius: 5px;
   background: linear-gradient(
@@ -13,14 +14,16 @@
 }
 
 .slideshow {
-  max-width: 640px;
-  padding: 4%;
+  width: 640px;
   display: flex;
   place-items: center;
+  margin: 0;
+  padding: 3rem;
 }
 
 .slideshow img {
-  max-width: inherit;
+  width: 576px;
+  height: 324px;
   cursor: pointer;
   border-radius: 10px;
   box-shadow: 20px 40px 80px hwb(0 0% 100%);

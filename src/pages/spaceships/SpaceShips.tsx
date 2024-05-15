@@ -8,13 +8,14 @@ import Cards from '@/pageContent/spaceships/card/Cards';
 export default function SpaceShipsPage() {
   return (
     <>
+      <Banner reverse>Welcome</Banner>
       <Section>
         <Article />
         <SlideShow />
       </Section>
       <Banner>Check Out The Fleet</Banner>
       <SpaceShipsList className='ship-grid' />
-      <Banner reverse>Going Somewhere?</Banner>
+      <Banner reverse>OuterSpace?</Banner>
       <Cards />
     </>
   );

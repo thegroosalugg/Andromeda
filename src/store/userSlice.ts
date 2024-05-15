@@ -35,6 +35,7 @@ const userSlice = createSlice({
       const user = state.users.find((user: User) => user.id === action.payload.currentUser.id);
       if (user) {
         user.bookings.push(action.payload.booking);
+        user.bookings.sort((a: Booking, b: Booking) => new Date(a.from).getTime() - new Date(b.from).getTime());
         state.user = user;
       }
     },
@@ -46,6 +47,7 @@ const userSlice = createSlice({
         );
         if (booking) {
           Object.assign(booking, action.payload.data);
+          user.bookings.sort((a: Booking, b: Booking) => new Date(a.from).getTime() - new Date(b.from).getTime());
           state.user = user;
         }
       }

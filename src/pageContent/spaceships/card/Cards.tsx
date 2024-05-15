@@ -8,6 +8,7 @@ import rocket6 from '@/assets/rockets/rocket6.jpg';
 import rocket7 from '@/assets/rockets/rocket7.jpg';
 import rocket8 from '@/assets/rockets/rocket8.jpg';
 import rocket9 from '@/assets/rockets/rocket9.jpg';
+import { CONTENT } from '../Text';
 import { motion } from 'framer-motion';
 import Card from './Card';
 import css from './Cards.module.css';
@@ -16,7 +17,7 @@ const rockets = [rocket0, rocket1, rocket2, rocket3, rocket4, rocket5, rocket6, 
 const images = [...rockets].sort(() => Math.random() - 0.5).slice(0, 4); // select 4 random images
 
 export default function Cards() {
-  const CardPair = ({images}: { images: string[] }) => (
+  const CardPair = ({images, text}: { images: string[], text: string[] }) => (
     <motion.div
       className={css.pair}
       initial='hidden'
@@ -24,8 +25,8 @@ export default function Cards() {
       transition={{ staggerChildren: 0.3 }}
       viewport={{ once: true }}
     >
-      <Card image={images[0]} />
-      <Card image={images[1]} reverse />
+      <Card image={images[0]} text={text[0]} />
+      <Card image={images[1]} text={text[1]} reverse />
     </motion.div>
   );
 
@@ -36,8 +37,8 @@ export default function Cards() {
       whileInView={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
-      <CardPair images={[images[0], images[1]]} />
-      <CardPair  images={[images[2], images[3]]}/>
+      <CardPair images={[images[0], images[1]]} text={CONTENT[1]} />
+      <CardPair images={[images[2], images[3]]} text={CONTENT[2]} />
     </motion.div>
   );
 }

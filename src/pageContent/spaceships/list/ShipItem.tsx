@@ -9,7 +9,7 @@ interface ShipItemProps extends SpaceShip {
 }
 
 const ShipItem: React.FC<ShipItemProps> = (spaceship) => {
-  const { id, model, image, desc, price, className } = spaceship;
+  const { id, model, image, slogan, price, className } = spaceship;
   // could also navigate with Link, but this wraps the component a 3rd time and needs additional styling
   const navigate = useNavigate();
 
@@ -27,7 +27,7 @@ const ShipItem: React.FC<ShipItemProps> = (spaceship) => {
     >
       <h6>{model}</h6>
       <img src={image} alt={model} />
-      <p className={css.desc}>{desc}</p>
+      <p className={css.slogan}>{slogan}</p>
       <div className={css.price}>
         <IconRow
           className={css.icons}

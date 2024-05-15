@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
+import { Fragment } from 'react/jsx-runtime';
+import { CONTENT } from '../Text';
 import css from './Article.module.css';
-
-const string = 'No TV and no beer make Homer something something. ';
 
 export default function Article() {
   return (
@@ -25,7 +25,13 @@ export default function Article() {
         animate={{ opacity: 1 }}
         transition={{ type: 'linear', duration: 1 }}
       >
-        {string.repeat(100)}
+        {CONTENT[0].map((p, i) => (
+          <Fragment key={i}>
+            {p}
+            <br />
+            <br />
+          </Fragment>
+        ))}
       </motion.p>
     </motion.article>
   );

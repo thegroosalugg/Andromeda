@@ -1,10 +1,12 @@
 .article {
+  min-width: 240px;
   padding: 2rem 1rem;
   display: flex;
   flex-direction: column;
+  font-family: 'Orbitron', sans-serif;
   font-size: 0.8rem;
   text-align: center;
-  color: #343030;
+  color: #343030eb;
   text-shadow: 1px 1px 2px #908888;
   background: linear-gradient(
     to bottom right,
@@ -14,7 +16,12 @@
   );
 }
 
-.article .info {
+.article h2 {
+  text-transform: uppercase;
+  font-weight: 100;
+}
+
+.article .desc {
   margin: 2rem 0;
   flex-grow: 1;
 }
