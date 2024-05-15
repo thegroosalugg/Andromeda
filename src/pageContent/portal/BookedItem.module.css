@@ -64,7 +64,7 @@
   flex-direction: column;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 440px) {
   .booking img {
     border-radius: 10px 10px 0 0;
   }
