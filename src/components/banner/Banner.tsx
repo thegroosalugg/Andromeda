@@ -7,7 +7,7 @@ interface BannerProps {
 }
 
 const Banner: React.FC<BannerProps> = ({ reverse, children }: BannerProps) => {
-  const [scaleX, xInitial, xInView] = reverse ? [-1, '99vw', '35%'] : [1, '-99%', 0];
+  const [scaleX, xInitial, xInView] = reverse ? [-1, '95vw', '35%'] : [1, '-95%', 0];
 
   return (
     <motion.div
@@ -15,7 +15,7 @@ const Banner: React.FC<BannerProps> = ({ reverse, children }: BannerProps) => {
       initial={{ x: xInitial, scaleX, opacity: 0 }}
       whileInView={{ x: xInView, opacity: 1 }}
       transition={{ type: 'easeIn', duration: 1 }}
-      viewport={{ once: true, amount: 0.01 }} // *NOTES* set amount to 1% in view in conjuction with RootLayout to stop 1st banner being in view during page transition
+      viewport={{ once: true, amount: 0.05 }} // *NOTES* set amount to 1% in view in conjuction with RootLayout to stop 1st banner being in view during page transition
     >
       <motion.span
         initial={{ scaleX, y: '-100%', opacity: 0 }}
