@@ -9,8 +9,8 @@ interface Config {
 // prettier-ignore
 const config: Config = {
      default: { background: '#00000000', borderBottom: '2px solid white', text: '' },
-         '/': { borderBottom: '', text: 'Welcome to Andromeda' },
-    '/store': { background: '#252324F3', borderBottom: '', text: 'Out of this World Fashion' },
+         '/': { borderBottom: 'none', text: 'Welcome to Andromeda' },
+    '/store': { background: '#252324F3', borderBottom: 'none', text: 'Out of this World Fashion' },
     '/ships': { background: '#232728F9', text: 'Omega Collection' },
   '/explore': { background: '#56632fCC', text: 'Exploring the Galaxy' },
      '/user': { background: '#274046F9', text: 'Space Portal' }
