@@ -1,5 +1,5 @@
-import { FallBack } from "./Explore";
+import StoreBanner from "@/pageContent/store/StoreBanner";
 
 export default function StorePage() {
-  return <FallBack />
+  return <StoreBanner />
 }

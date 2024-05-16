@@ -1,0 +1,25 @@
+.banner {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0;
+  overflow: auto;
+  background: #1110108f;
+}
+
+.banner img {
+  margin: 2rem auto;
+  width: 300px;
+  border-radius: 100px 15px 100px 15px;
+  box-shadow: 5px 5px 10px #0f0e0e8f;
+}
+
+.banner button {
+  background: transparent;
+  border: none;
+  padding: 0 1rem;
+}
+
+.banner svg {
+  font-size: 4rem;
+  color: #fffdfd;
+}
