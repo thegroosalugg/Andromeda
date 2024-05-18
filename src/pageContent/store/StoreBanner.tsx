@@ -42,7 +42,7 @@ const StoreBanner = () => {
 
   return (
     <div className={css.banner}>
-      <button onClick={() => clickHandler(-1)}>
+      <button onClick={() => clickHandler(-1)} className={direction === -1 ? css.selected : ''}>
         <FontAwesomeIcon icon={['fas', 'chevron-left']} />
       </button>
       <AnimatePresence custom={direction} initial={false} mode='wait'>
@@ -61,7 +61,7 @@ const StoreBanner = () => {
           <p>{rightText[index]}</p>
         </motion.div>
       </AnimatePresence>
-      <button onClick={() => clickHandler(1)}>
+      <button onClick={() => clickHandler(1)} className={direction === 1 ? css.selected : ''}>
         <FontAwesomeIcon icon={['fas', 'chevron-right']} />
       </button>
     </div>
