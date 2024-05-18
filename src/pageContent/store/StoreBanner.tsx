@@ -18,7 +18,7 @@ const leftText = ['Break the rules', 'Everybody be cool', 'The early bird'];
 const rightText = ['Ignore the machine', 'You be cool', 'captures the world'];
 const variants = {
   enter: (direction: number) => ({
-    x: direction > 0 ? 300 : -300,
+    x: direction > 0 ? '100%' :  '-100%',
     opacity: 0,
   }),
   center: {
@@ -26,7 +26,7 @@ const variants = {
     opacity: 1,
   },
   exit: (direction: number) => ({
-    x: direction < 0 ? 300 : -300,
+    x: direction < 0 ? '100%' :  '-100%',
     opacity: 0,
   }),
 };
@@ -45,7 +45,7 @@ const StoreBanner = () => {
       <button onClick={() => clickHandler(-1)} className={direction === -1 ? css.selected : ''}>
         <FontAwesomeIcon icon={['fas', 'chevron-left']} />
       </button>
-      <AnimatePresence custom={direction} initial={false} mode='wait'>
+      <AnimatePresence custom={direction} initial={false} mode='popLayout'>
         <motion.div
           key={index}
           className={`${css.card} ${css[classes[index as keyof Classes]]}`}
