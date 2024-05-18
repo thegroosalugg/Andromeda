@@ -1,5 +1,5 @@
 import { configureStore, Middleware, combineReducers  } from '@reduxjs/toolkit';
-import shipsSlice from './shipsSlice';
+import itemsSlice from './itemsSlice';
 import modalSlice from './modalSlice';
 import userSlice from './userSlice';
 import formSlice from './formSlice'
@@ -11,7 +11,7 @@ const localStorageMiddleware: Middleware = (store) => (next) => (action) => {
 };
 
 const rootReducer = combineReducers({
-  ships: shipsSlice,
+  items: itemsSlice,
   modal: modalSlice,
   users: userSlice,
   form: formSlice,

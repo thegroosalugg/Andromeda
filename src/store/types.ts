@@ -1,9 +1,11 @@
 import SpaceShip from '@/models/SpaceShip';
 import User from '@/models/User';
 import { FormData } from '@/models/FormData'
+import Clothes from '@/models/Clothes';
 
-interface ShipsState {
+interface ItemsState {
   ships: SpaceShip[];
+  clothes: Clothes[];
 }
 
 interface ModalState {
@@ -22,7 +24,7 @@ interface FormState {
 }
 
 export interface RootState {
-  ships: ShipsState;
+  items: ItemsState;
   modal: ModalState;
   users: UserState;
   form: FormState;

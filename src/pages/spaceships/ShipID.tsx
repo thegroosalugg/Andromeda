@@ -6,7 +6,7 @@ import useSearch from '@/hooks/useSearch';
 export default function ShipIDPage() {
   const { item: spaceship } = useSearch({
     search: { id: 'shipId', withParams: true },
-    reducer: 'ships',
+    reducer: 'items',
     sliceKey: 'ships',
   });
 

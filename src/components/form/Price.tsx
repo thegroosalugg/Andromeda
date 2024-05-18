@@ -11,7 +11,7 @@ const Price = ({ bookedId, bookedPrice }: { bookedId?: string, bookedPrice?: str
   const search = bookedId ? { id: bookedId, withParams: false } : { id: 'shipId', withParams: true };
   const { item: spaceship } = useSearch({
     search,
-    reducer: 'ships',
+    reducer: 'items',
     sliceKey: 'ships',
   });
 

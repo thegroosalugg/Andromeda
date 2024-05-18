@@ -25,7 +25,7 @@ const BookedItem = (booking: Booking) => {
   const { shipId, from, till, pickup, dropoff } = booking;
   const { item: ship } = useSearch({
     search: { id: shipId, withParams: false },
-    reducer: 'ships',
+    reducer: 'items',
     sliceKey: 'ships',
   });
 
