@@ -57,6 +57,7 @@ import varsity05 from '@/assets/clothes/varsity05.jpg';
 import varsity06 from '@/assets/clothes/varsity06.jpg';
 import varsity07 from '@/assets/clothes/varsity07.jpg';
 import Clothes from '@/models/Clothes';
+import rand from '../util/rand';
 
 // prettier-ignore
 const images = [ jacket01, jacket02, jacket03, jacket04, jacket05, jacket06, jacket07, jacket08, jacket09,
@@ -65,10 +66,20 @@ const images = [ jacket01, jacket02, jacket03, jacket04, jacket05, jacket06, jac
    jumpsuit01, jumpsuit02, tracksuit01, tracksuit02, tracksuit03, tracksuit04, tracksuit05, tracksuit06, tracksuit07,
    tracksuit08, tracksuit09, tracksuit10, tracksuit11, tracksuit12, tracksuit13, tracksuit14,
    turtleneck01, turtleneck02, varsity01, varsity02, varsity03, varsity04, varsity05, varsity06, varsity07,
- ]
+ ];
+
+ const brands = ['BlackBerry', 'SUAVE', 'Galaxy', 'React', 'Infinity', 'TypeScript', 'LaVa', '5thElement', 'CREW', 'Pulse'];
+ const descriptors = [
+   'classic', 'old school', 'essentials', 'prestige', 'space', 'moon', 'earth', 'mars', 'future', 'time', 'anthem', 'middlewear',
+   'original', 'gravity', 'premium', 'vintage', 'elite', 'odyssey', 'trailblazer', 'mystic', 'quest', 'explorer', 'vanguard',
+  ];
 
  function generateItem(image: string) {
-  return new Clothes(image, 'NAME', 'MAKER', 'DESC', 'TYPE', 10)
+  const brand = brands[rand(0, brands.length - 1)]
+  const price = rand(50, 200) + '.99'
+  const type = image.slice(20, -6);
+  const name = descriptors[rand(0, descriptors.length - 1)] + ' ' + type
+  return new Clothes(image, name, brand, 'desc', type, price)
  }
 
- export const catalogue = images.map((image) => generateItem(image))
+ export const catalogue = images.map((image) => generateItem(image));
