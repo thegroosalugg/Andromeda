@@ -58,6 +58,7 @@ import varsity06 from '@/assets/clothes/varsity06.jpg';
 import varsity07 from '@/assets/clothes/varsity07.jpg';
 import Clothes from '@/models/Clothes';
 import rand from '../util/rand';
+import { shuffle } from '@/util/shuffle';
 
 // prettier-ignore
 const images = [ jacket01, jacket02, jacket03, jacket04, jacket05, jacket06, jacket07, jacket08, jacket09,
@@ -82,4 +83,4 @@ const images = [ jacket01, jacket02, jacket03, jacket04, jacket05, jacket06, jac
   return new Clothes(image, name, brand, 'desc', type, price)
  }
 
- export const catalogue = images.map((image) => generateItem(image));
+ export const catalogue = shuffle(images.map((image) => generateItem(image)));
