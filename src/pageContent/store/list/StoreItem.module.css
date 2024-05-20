@@ -10,7 +10,7 @@
   width: 100%;
 }
 
-.item h3, .item h4, .item h5 {
+.details * {
   margin: 0 0 0 0.5rem;
   font-weight: 100;
 }

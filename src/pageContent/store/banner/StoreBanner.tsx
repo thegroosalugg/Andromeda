@@ -6,12 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
-interface Classes {
-  0: string;
-  1: string;
-  2: string;
-}
-
+     interface Classes { 0: string; 1: string; 2: string; }
 const classes: Classes = { 0: 'left', 1: 'centre', 2: 'right' };
 const images = [banner1, banner2, banner3];
 const leftText = ['Break the rules', 'Everybody be cool', 'The early bird'];
