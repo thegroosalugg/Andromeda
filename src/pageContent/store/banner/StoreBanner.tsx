@@ -1,6 +1,6 @@
-import banner1 from '@/assets/clothes/banner1.jpg';
-import banner2 from '@/assets/clothes/banner2.jpg';
-import banner3 from '@/assets/clothes/banner3.jpg';
+import banner1 from '@/assets/aliens/alien01.jpg';
+import banner2 from '@/assets/aliens/alien02.jpg';
+import banner3 from '@/assets/aliens/alien03.jpg';
 import css from './StoreBanner.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
