@@ -3,11 +3,21 @@
   background: #1110108f;
   font-family: 'Orbitron', sans-serif;
   padding-bottom: 0.4rem;
+  display: flex;
+}
+
+.expanded {
+  grid-column: 1 / -1;
+}
+
+.expanded img {
+  border-radius: 0 0 15px 0;
 }
 
 .item img {
   height: auto;
   width: 100%;
+  max-width: 500px;
 }
 
 .details * {
@@ -17,4 +27,10 @@
 
 .item:hover {
   border: 1px solid #fffdfd;
+}
+
+@media (max-width: 440px) {
+  .item img {
+    max-width: 200px;
+  }
 }
