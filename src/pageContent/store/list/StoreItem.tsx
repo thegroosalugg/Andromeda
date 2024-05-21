@@ -1,6 +1,7 @@
 import Clothes from '@/models/Clothes';
 import css from './StoreItem.module.css';
 import { motion } from 'framer-motion';
+import { useRef, useEffect } from 'react';
 
 interface StoreProps {
   item: Clothes;
@@ -11,10 +12,18 @@ interface StoreProps {
 export default function StoreItem({ item, clickHandler, activeId }: StoreProps) {
   const { id, name, brand, image, price } = item;
   const isActive = activeId === id;
+  const scrollRef = useRef<HTMLLIElement | null>(null);
   console.log('RENDERING ID', id);
+
+  useEffect(() => {
+    if (isActive && scrollRef.current) {
+      scrollRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [isActive]);
 
   return (
     <motion.li
+      ref={scrollRef}
       className={`${css.item} ${isActive ? css.expanded : ''}`}
       layout
       variants={{
