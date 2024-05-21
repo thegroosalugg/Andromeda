@@ -1,6 +1,6 @@
 import Clothes from '@/models/Clothes';
 import css from './StoreItem.module.css';
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 interface StoreProps {
   item: Clothes;
@@ -16,11 +16,10 @@ export default function StoreItem({ item, clickHandler, activeId }: StoreProps) 
   return (
     <motion.li
       className={`${css.item} ${isActive ? css.expanded : ''}`}
-      // className={css.item}
-      // style={isActive ? { gridColumn: '1 / -1' } : {}}
+      layout
       variants={{
         hidden: { scale: 0.5, opacity: 0, width: 0 },
-        visible: { scale: 1, opacity: 1, width: 'auto' },
+        visible: { scale: 1, opacity: 1, width: 'auto', transition: { duration: 1 } },
       }}
     >
       <section>
@@ -30,31 +29,20 @@ export default function StoreItem({ item, clickHandler, activeId }: StoreProps) 
           <h5>{name}</h5>
           <h3>${price}</h3>
         </div>
-        <AnimatePresence mode='popLayout'>
-          {isActive && (
-            <motion.div
-              // layoutId='store-item'
-              initial={{ height: 0 }}
-              animate={{ height: '100px' }}
-              exit={{ height: 0, transition: { delay: 0.5 } }}
-              transition={{ duration: 0.5, type: 'easeInOut' }}
-            />
-          )}
-        </AnimatePresence>
-      </section>
-      <AnimatePresence mode='popLayout'>
         {isActive && (
           <motion.div
-            // layoutId='store-item'
-            initial={{ width: 0, opacity: 0 }}
-            animate={{ width: 'auto', opacity: 1 }}
-            exit={{ width: 0, opacity: 0, transition: { delay: 0.5 } }}
-            transition={{ duration: 1, type: 'easeInOut' }}
-          >
-            <p>HELLO</p>
-          </motion.div>
+            initial={{ height: 0 }}
+            animate={{ height: '100px' }}
+            exit={{ height: 0, transition: { delay: 0.5 } }}
+            transition={{ duration: 0.5, type: 'easeInOut' }}
+          />
         )}
-      </AnimatePresence>
+      </section>
+      {isActive && (
+        <div>
+          <p>HELLO</p>
+        </div>
+      )}
     </motion.li>
   );
 }
