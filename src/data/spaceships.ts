@@ -29,6 +29,7 @@ import SpaceShip from '../models/SpaceShip';
 import faker from 'faker';
 import rand from '../util/rand';
 import generateDescription from './spaceshipDescriptions';
+import { shuffle } from '@/util/shuffle';
 
 // prettier-ignore
 const images = [
@@ -68,4 +69,4 @@ const generateSpaceShip = (image: string, index: number) => {
   );
 };
 
-export const spaceships = images.map((image, index) => generateSpaceShip(image, index));
+export const spaceships = shuffle(images.map((image, index) => generateSpaceShip(image, index)));

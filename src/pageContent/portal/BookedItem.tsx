@@ -5,6 +5,7 @@ import formatDate from '@/util/formatDate';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { saveItem, toggle } from '@/store/modalSlice';
+import SpaceShip from '@/models/SpaceShip';
 
 const Col = ({ color, label, text }: { color: string; label: string; text: string }) => {
   return (
@@ -25,9 +26,10 @@ const BookedItem = (booking: Booking) => {
   const { shipId, from, till, pickup, dropoff } = booking;
   const { item: ship } = useSearch({
     search: { id: shipId, withParams: false },
-    reducer: 'ships',
+    reducer: 'items',
     sliceKey: 'ships',
   });
+  const { image, maker, model } = ship as SpaceShip;
 
   function modalHandler() {
     dispatch(saveItem({ ship, booking }))
@@ -36,10 +38,10 @@ const BookedItem = (booking: Booking) => {
 
   return (
     <article className={css.booking}>
-      <img src={ship!.image} alt='ship' onClick={() => navigate('/ships/' + shipId)} />
+      <img src={image} alt='ship' onClick={() => navigate('/ships/' + shipId)} />
       <div className={css.details} onClick={modalHandler}>
-        <h6>{ship!.maker}</h6>
-        <h5>{ship!.model}</h5>
+        <h6>{maker}</h6>
+        <h5>{model}</h5>
         <Row>
           <Col label='Start' color='#bb6412d0' text={formatDate(from)} />
           <Col label='End' color='#bb11a1bf' text={formatDate(till)} />

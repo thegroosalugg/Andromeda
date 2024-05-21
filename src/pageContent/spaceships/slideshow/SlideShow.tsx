@@ -7,7 +7,7 @@ import SlidesInfoCard from './SlidesInfoCard';
 import useRepeatAnimation from '@/hooks/useRepeatAnimation';
 
 const SlideShow = () => {
-  const { ships } = useSelector((state: RootState) => state.ships);
+  const { ships } = useSelector((state: RootState) => state.items);
   const navigate = useNavigate();
   const index = useRepeatAnimation({
     initialState: 0,

@@ -9,7 +9,7 @@ interface ListProps {
 }
 
 export default function SpaceShipsList({ className }: ListProps) {
-  const { ships } = useSelector((state: RootState) => state.ships)
+  const { ships } = useSelector((state: RootState) => state.items)
 
   return (
     <List

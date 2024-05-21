@@ -4,13 +4,13 @@ import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
 interface Config {
-  [pathname: string]: { background?: string; text: string };
+  [pathname: string]: { background?: string; borderBottom?: string; text: string };
 }
 // prettier-ignore
 const config: Config = {
-     default: { background: '#00000000', text: '' },
-         '/': { text: 'Welcome to Andromeda' },
-    '/store': { background: '#2c3e50E1', text: 'Out of this World Fashion' },
+     default: { background: '#00000000', borderBottom: '2px solid white', text: '' },
+         '/': { borderBottom: 'none', text: 'Welcome to Andromeda' },
+    '/store': { background: '#252324F3', borderBottom: 'none', text: 'Out of this World Fashion' },
     '/ships': { background: '#232728F9', text: 'Omega Collection' },
   '/explore': { background: '#56632fCC', text: 'Exploring the Galaxy' },
      '/user': { background: '#274046F9', text: 'Space Portal' }

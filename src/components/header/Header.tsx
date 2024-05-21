@@ -3,7 +3,7 @@ import css from './Header.module.css';
 import useUIConfig from '@/hooks/useUIConfig';
 
 export default function Header() {
-  const { pathname, background, text } = useUIConfig();
+  const { pathname, background, borderBottom, text } = useUIConfig();
 
   return (
     <motion.header
@@ -14,7 +14,7 @@ export default function Header() {
         scaleY: text ? [0, 0, 0, 0.5, 1] : 0,
         height: text ? 'auto' : 0,
         background,
-        borderBottom: '2px solid white',
+        borderBottom,
       }}
       transition={{ ease: 'easeInOut', duration: 0.8 }}
     >

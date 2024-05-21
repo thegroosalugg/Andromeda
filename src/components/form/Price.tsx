@@ -4,33 +4,35 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateData } from '@/store/formSlice';
 import useSearch from '@/hooks/useSearch';
 import { RootState } from '@/store/types';
+import SpaceShip from '@/models/SpaceShip';
 
-const Price = ({ bookedId, bookedPrice }: { bookedId?: string, bookedPrice?: string }) => {
+const Price = ({ bookedId, bookedPrice }: { bookedId?: string; bookedPrice?: string }) => {
   const dispatch = useDispatch();
   const { from, till } = useSelector((state: RootState) => state.form.data);
   const search = bookedId ? { id: bookedId, withParams: false } : { id: 'shipId', withParams: true };
   const { item: spaceship } = useSearch({
     search,
-    reducer: 'ships',
+    reducer: 'items',
     sliceKey: 'ships',
   });
+  const { price } = spaceship as SpaceShip;
 
   const fromDate = new Date(from!);
   const tillDate = new Date(till!);
 
-  let message = bookedPrice ? 'Current Booking: $' + bookedPrice : 'Daily Rate: $' + spaceship!.price;
-  let price = bookedPrice ?  +bookedPrice : 0;
+  let message = bookedPrice ? 'Current Booking: $' + bookedPrice : 'Daily Rate: $' + price;
+  let total = bookedPrice ? +bookedPrice : 0;
 
   if (fromDate <= tillDate) {
     const diffInMs = tillDate.getTime() - fromDate.getTime();
     const diffInDays = Math.ceil(diffInMs / (1000 * 60 * 60 * 24)) + 1;
-    price = diffInDays * spaceship!.price;
-    message = 'Total Price: $' + price;
+    total = diffInDays * price;
+    message = 'Total Price: $' + total;
   }
 
   useEffect(() => {
-    dispatch(updateData({ id: 'price', value: price.toString() }));
-  }, [price, dispatch]);
+    dispatch(updateData({ id: 'price', value: total.toString() }));
+  }, [total, dispatch]);
 
   return (
     <AnimatePresence mode='wait'>
