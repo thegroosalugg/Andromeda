@@ -2,6 +2,7 @@ import Clothes from '@/models/Clothes';
 import css from './StoreItem.module.css';
 import { motion } from 'framer-motion';
 import { useRef, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 interface StoreProps {
   item: Clothes;
@@ -32,11 +33,25 @@ export default function StoreItem({ item, clickHandler, activeId }: StoreProps) 
       }}
     >
       <img src={image} alt='clothes' onClick={clickHandler} />
-      <div className={css.details}>
+      <motion.div className={`${css.details} ${isActive ? css['details-expanded'] : ''}`}>
         <h4>{brand}</h4>
         <h5>{name}</h5>
         <h3>${price}</h3>
-      </div>
+        {isActive && (
+          <div className={css['cart-actions']}>
+            <button>
+              <FontAwesomeIcon icon={['fas', 'minus']} />
+            </button>
+            <p>
+              Add to Cart{' '}
+              <FontAwesomeIcon icon={['fas', 'cart-shopping']} />
+            </p>
+            <button>
+              <FontAwesomeIcon icon={['fas', 'plus']} />
+            </button>
+          </div>
+        )}
+      </motion.div>
     </motion.li>
   );
 }

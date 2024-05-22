@@ -4,20 +4,34 @@
   font-family: 'Orbitron', sans-serif;
 }
 
+.item:hover {
+  border: 1px solid #fffdfd;
+}
+
 .expanded {
   grid-column: 1 / -1; /* GRID: this column starts at 1st column and fills remaining space to the -1 last column */
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  font-size: 1.2rem;
 }
 
 .item img {
   height: auto;
   width: 100%;
   max-width: 400px;
+  cursor: pointer;
 }
 
 .details {
-  padding: 0.5rem;
+  padding: 0 0.5rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.details-expanded {
+  align-items: center;
+  margin: auto;
 }
 
 .details * {
@@ -25,8 +39,9 @@
   font-weight: 100;
 }
 
-.item:hover {
-  border: 1px solid #fffdfd;
+.cart-actions {
+  display: flex;
+  gap: 0.5rem;
 }
 
 @media (max-width: 440px) {
