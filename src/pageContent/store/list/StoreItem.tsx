@@ -43,8 +43,7 @@ export default function StoreItem({ item, clickHandler, activeId }: StoreProps) 
               <FontAwesomeIcon icon={['fas', 'minus']} />
             </button>
             <p>
-              Add to Cart{' '}
-              <FontAwesomeIcon icon={['fas', 'cart-shopping']} />
+              Add to Cart <FontAwesomeIcon icon={['fas', 'cart-shopping']} />
             </p>
             <button>
               <FontAwesomeIcon icon={['fas', 'plus']} />

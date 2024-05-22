@@ -9,10 +9,9 @@
 }
 
 .expanded {
-  grid-column: 1 / -1; /* GRID: this column starts at 1st column and fills remaining space to the -1 last column */
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  grid-column: 1 / -1; /* GRID: this column starts at 1st column and fills remaining space to the last -1 column */
+  display: grid; /* unrelated to above. This is for the item content to wrap properly on zoom levels when expanded */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   font-size: 1.2rem;
 }
 
@@ -42,10 +41,4 @@
 .cart-actions {
   display: flex;
   gap: 0.5rem;
-}
-
-@media (max-width: 440px) {
-  /* .item img {
-    max-width: 300px;
-  } */
 }
