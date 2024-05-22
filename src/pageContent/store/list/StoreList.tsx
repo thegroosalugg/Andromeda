@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 
 export default function StoreList() {
   const { clothes } = useSelector((state: RootState) => state.items);
-  const [activeId, setActiveId] = useState<string | undefined>();
+  const [activeId, setActiveId] = useState('');
 
   return (
     <motion.ul
@@ -19,8 +19,8 @@ export default function StoreList() {
       {clothes.map((item) => (
         <StoreItem
           key={item.id}
-          item={item}
-          clickHandler={() => setActiveId(item.id)}
+          item={item}        // set either new LI as active, or resets if its the same ID twice
+          clickHandler={() => setActiveId(prevId => prevId === item.id ? '' : item.id)}
           activeId={activeId}
         />
       ))}
