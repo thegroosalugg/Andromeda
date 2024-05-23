@@ -33,7 +33,14 @@ export default function StoreItem({ item, clickHandler, activeId }: StoreProps) 
       }}
     >
       <img src={image} alt='clothes' onClick={clickHandler} />
-      <motion.div className={`${css.details} ${isActive ? css['details-expanded'] : ''}`}>
+      {isActive && (
+        <div className={css['expanded-content']}>
+          <h3 style={{ marginBottom: '0.2rem' }}>header</h3>
+          <p>{"I'm waiting for a bus ".repeat(18)}</p>
+          <h3 style={{ marginTop: '0.2rem' }}>footer</h3>
+        </div>
+      )}
+      <div className={`${css.details} ${isActive ? css['details-expanded'] : ''}`}>
         <h4>{brand}</h4>
         <h5>{name}</h5>
         <h3>${price}</h3>
@@ -50,7 +57,8 @@ export default function StoreItem({ item, clickHandler, activeId }: StoreProps) 
             </button>
           </div>
         )}
-      </motion.div>
+      </div>
+      {isActive && <div className={css.triangle} />}
     </motion.li>
   );
 }
