@@ -3,6 +3,17 @@ import css from './StoreItem.module.css';
 import { motion } from 'framer-motion';
 import { useRef, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import svgJacket from '@/assets/svg/jacket.svg';
+import svgCoat from '@/assets/svg/coat.svg';
+import svgVarsity from '@/assets/svg/varsity.svg';
+import svgTracksuit from '@/assets/svg/tracksuit.svg';
+
+const icons = {
+  coat: svgCoat,
+  varsity: svgVarsity,
+  jacket: svgJacket,
+  tracksuit: svgTracksuit,
+};
 
 interface StoreProps {
   item: Clothes;
@@ -11,7 +22,7 @@ interface StoreProps {
 }
 
 export default function StoreItem({ item, clickHandler, activeId }: StoreProps) {
-  const { id, name, brand, image, price } = item;
+  const { id, name, brand, image, price, type } = item;
   const isActive = activeId === id;
   const scrollRef = useRef<HTMLLIElement | null>(null);
   console.log('RENDERING ID', id); // Log & Clear
@@ -32,7 +43,7 @@ export default function StoreItem({ item, clickHandler, activeId }: StoreProps) 
         visible: { scale: 1, opacity: 1, transition: { duration: 1 } },
       }}
     >
-      <img src={image} alt='clothes' onClick={clickHandler} />
+      <img src={image} className={css['item-img']} alt='clothes item' onClick={clickHandler} />
       {isActive && (
         <div className={css['expanded-content']}>
           <h3 style={{ marginBottom: '0.2rem' }}>header</h3>
@@ -43,6 +54,7 @@ export default function StoreItem({ item, clickHandler, activeId }: StoreProps) 
       <div className={`${css.details} ${isActive ? css['details-expanded'] : ''}`}>
         <h4>{brand}</h4>
         <h5>{name}</h5>
+        {isActive && <img src={icons[type as keyof typeof icons]} alt='clothes' />}
         <h3>${price}</h3>
         {isActive && (
           <div className={css['cart-actions']}>

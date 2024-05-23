@@ -15,7 +15,7 @@
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
-.item img {
+.item-img {
   height: auto;
   width: 100%;
   max-width: 400px;
@@ -42,6 +42,11 @@
   flex-direction: column;
 }
 
+.details img {
+  width: 4rem;
+  margin: 0.5rem auto;
+}
+
 .details-expanded {
   align-items: center;
   justify-content: center;
@@ -56,7 +61,7 @@
 .cart-actions {
   display: flex;
   gap: 0.5rem;
-  margin: 1rem auto;
+  margin: 0.2rem auto 1rem;
 }
 
 .cart-actions button {
