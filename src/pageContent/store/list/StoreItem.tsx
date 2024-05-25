@@ -1,8 +1,8 @@
-import Clothes from '@/models/Clothes';
-import css from './StoreItem.module.css';
 import { motion } from 'framer-motion';
 import { useRef, useEffect } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import CartButtons from './CartButtons';
+import Clothes from '@/models/Clothes';
+import css from './StoreItem.module.css';
 import svgJacket from '@/assets/svg/jacket.svg';
 import svgCoat from '@/assets/svg/coat.svg';
 import svgVarsity from '@/assets/svg/varsity.svg';
@@ -57,19 +57,7 @@ export default function StoreItem({ item, clickHandler, activeId }: StoreProps) 
         <h5>{name}</h5>
         {isActive && <img src={icons[type as keyof typeof icons]} alt='clothes' />}
         <h3>${price}</h3>
-        {isActive && (
-          <div className={css['cart-actions']}>
-            <button>
-              <FontAwesomeIcon icon={['fas', 'minus']} />
-            </button>
-            <p>
-              Add to Cart <FontAwesomeIcon icon={['fas', 'cart-shopping']} />
-            </p>
-            <button>
-              <FontAwesomeIcon icon={['fas', 'plus']} />
-            </button>
-          </div>
-        )}
+        {isActive && <CartButtons />}
       </div>
       {isActive && <div className={css.triangle} />}
     </motion.li>
