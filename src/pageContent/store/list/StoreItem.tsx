@@ -25,13 +25,14 @@ export default function StoreItem({ item, clickHandler, activeId }: StoreProps) 
   const { id, name, brand, image, price, type } = item;
   const isActive = activeId === id;
   const scrollRef = useRef<HTMLLIElement | null>(null);
-  console.log('RENDERING ID', id); // Log & Clear
 
   useEffect(() => {
     if (isActive && scrollRef.current) {
       scrollRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   }, [isActive]);
+
+  console.log('RENDERING ID', id); // Log & Clear
 
   return (
     <motion.li
