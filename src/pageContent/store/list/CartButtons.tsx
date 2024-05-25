@@ -3,7 +3,7 @@ import css from './CartButtons.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/store/types';
 import Clothes from '@/models/Clothes';
-import { addItem } from '@/store/cartSlice';
+import { addItem, removeItem } from '@/store/cartSlice';
 
 export default function CartButtons({ item }: { item: Clothes }) {
   const { items } = useSelector((state: RootState) => state.cart);
@@ -11,7 +11,7 @@ export default function CartButtons({ item }: { item: Clothes }) {
 
   const CartButton = ({ action }: { action: 'plus' | 'minus' }) => {
     return (
-      <button onClick={() => dispatch(addItem(item))}>
+      <button onClick={() => dispatch(action === 'plus' ? addItem(item) : removeItem(item))}>
         <FontAwesomeIcon icon={['fas', action]} />
       </button>
     );
