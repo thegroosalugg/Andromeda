@@ -32,8 +32,6 @@ export default function StoreItem({ item, clickHandler, activeId }: StoreProps) 
     }
   }, [isActive]);
 
-  console.log('RENDERING ID', id); // Log & Clear
-
   return (
     <motion.li
       ref={scrollRef}
@@ -57,7 +55,7 @@ export default function StoreItem({ item, clickHandler, activeId }: StoreProps) 
         <h5>{name}</h5>
         {isActive && <img src={icons[type as keyof typeof icons]} alt='clothes' />}
         <h3>${price}</h3>
-        {isActive && <CartButtons />}
+        {isActive && <CartButtons item={item} />}
       </div>
       {isActive && <div className={css.triangle} />}
     </motion.li>

@@ -1,15 +1,24 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import css from './CartButtons.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@/store/types';
+import Clothes from '@/models/Clothes';
+import { addItem } from '@/store/cartSlice';
 
-const CartButton = ({ action }: { action: 'plus' | 'minus' }) => {
-  return (
-    <button>
-      <FontAwesomeIcon icon={['fas', action]} />
-    </button>
-  );
-};
+export default function CartButtons({ item }: { item: Clothes }) {
+  const { items } = useSelector((state: RootState) => state.cart);
+  const dispatch = useDispatch();
 
-export default function CartButtons() {
+  const CartButton = ({ action }: { action: 'plus' | 'minus' }) => {
+    return (
+      <button onClick={() => dispatch(addItem(item))}>
+        <FontAwesomeIcon icon={['fas', action]} />
+      </button>
+    );
+  };
+
+  console.log('CART', items); // Log & Clear
+
   return (
     <div className={css['cart-actions']}>
       <CartButton action='minus' />
