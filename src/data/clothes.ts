@@ -50,7 +50,7 @@ const images = [
  function generateItem(image: string) {
   const brand = brands[rand(0, brands.length - 1)]
   const price = rand(50, 200) + '.99'
-  const type = image.slice(22, -6);
+  const type = image.match(/(coat|jacket|tracksuit|varsity)/)![0];
   const name = descriptors[rand(0, descriptors.length - 1)] + ' ' + type
   return new Clothes(image, name, brand, 'desc', type, price)
  }
