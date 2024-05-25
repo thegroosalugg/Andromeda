@@ -1,9 +1,10 @@
+import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import css from './CartButtons.module.css';
 import { useDispatch, useSelector } from 'react-redux';
+import { updateCart } from '@/store/cartSlice';
 import { RootState } from '@/store/types';
 import Clothes from '@/models/Clothes';
-import { updateCart } from '@/store/cartSlice';
+import css from './CartButtons.module.css';
 
 export default function CartButtons({ item }: { item: Clothes }) {
   const { items } = useSelector((state: RootState) => state.cart);
@@ -13,9 +14,14 @@ export default function CartButtons({ item }: { item: Clothes }) {
     const quantity = action === 'plus' ? 1 : -1;
 
     return (
-      <button onClick={() => dispatch(updateCart({ item, quantity }))}>
+      <motion.button
+        onClick={() => dispatch(updateCart({ item, quantity }))}
+        whileHover={{ scale: 1.2, borderColor: '#fffdfd' }}
+        whileTap={{ scale: 0.9 }}
+        transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+      >
         <FontAwesomeIcon icon={['fas', action]} />
-      </button>
+      </motion.button>
     );
   };
 

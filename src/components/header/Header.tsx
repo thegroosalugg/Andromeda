@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import css from './Header.module.css';
 import useUIConfig from '@/hooks/useUIConfig';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function Header() {
   const { pathname, background, borderBottom, text } = useUIConfig();
@@ -18,9 +19,18 @@ export default function Header() {
       }}
       transition={{ ease: 'easeInOut', duration: 0.8 }}
     >
-      <motion.h1 key={pathname} initial={{ scaleY: 0 }} animate={{ scaleY: [0, 0, 0, 0.5, 1] }}>
+      <motion.h1
+        key={pathname}
+        initial={{ scaleY: 0 }}
+        animate={{ scaleY: [0, 0, 0, 0.5, 1], x: pathname === '/store' ? 50 : 0 }}
+      >
         {text && text}
       </motion.h1>
+      {pathname === '/store' && (
+        <button>
+          <FontAwesomeIcon icon={['fas', 'cart-shopping']} size='2x' />
+        </button>
+      )}
     </motion.header>
   );
 }
