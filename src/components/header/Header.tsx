@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import css from './Header.module.css';
 import useUIConfig from '@/hooks/useUIConfig';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Cart from './Cart';
+import css from './Header.module.css';
 
 export default function Header() {
   const { pathname, background, borderBottom, text } = useUIConfig();
@@ -28,18 +28,9 @@ export default function Header() {
         >
           {text && text}
         </motion.h1>
-        {pathname === '/store' && (
-          <motion.button
-            initial={{ y: -100, x: -20, rotate: 540 }}
-            animate={{ y: [25, 0], x: 0, rotate: 0 }}
-            exit={{ y: 100, rotate: 540, opacity: 0 }}
-            whileHover={{ scale: 1.2 }}
-            whileTap={{ scale: 0.9, rotate: -400 }}
-            transition={{ type: 'spring', stiffness: 50, damping: 5 }}
-          >
-            <FontAwesomeIcon icon={['fas', 'cart-shopping']} size='2x' />
-          </motion.button>
-        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {pathname === '/store' && <Cart />}
       </AnimatePresence>
     </motion.header>
   );
