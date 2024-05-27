@@ -1,10 +1,17 @@
-.cart {
-  background: rgb(86, 80, 80);
+.cart-modal {
+  list-style: none;
+  padding: 0;
+  background: #565050ef;
   color: #fffdfd;
+  font-family: 'Orbitron', sans-serif;
 }
 
-.cart-button {
-  margin-right: 1rem;
+.cart-header {
+  display: flex;
+  margin: 0 1rem;
+}
+
+.cart-header button {
   color: #fffdfd;
   background: none;
   border: 1px solid transparent;
@@ -12,4 +19,10 @@
   cursor: pointer;
   position: relative;
   z-index: 1;
+}
+
+.cart-header p {
+  font-family: 'Orbitron', sans-serif;
+  font-size: larger;
+  margin: 0;
 }

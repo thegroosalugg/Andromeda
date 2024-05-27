@@ -23,15 +23,13 @@ export default function Header() {
         <motion.h1
           key={pathname}
           initial={{ scaleY: 0 }}
-          animate={{ scaleY: [0, 0, 0, 0.5, 1], x: pathname === '/store' ? 50 : 0 }}
+          animate={{ scaleY: [0, 0, 0, 0.5, 1], x: pathname === '/store' ? 50 : 0, transition: { delay: 0.5} }}
           exit={{ scaleY: 0, opacity: 0 }}
         >
           {text && text}
         </motion.h1>
       </AnimatePresence>
-      <AnimatePresence>
-        {pathname === '/store' && <Cart />}
-      </AnimatePresence>
+      <AnimatePresence>{pathname === '/store' && <Cart />}</AnimatePresence>
     </motion.header>
   );
 }
