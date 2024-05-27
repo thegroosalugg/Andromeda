@@ -8,16 +8,16 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    updateCart: (state, action: PayloadAction<{ item: Clothes; quantity: 1 | -1 }>) => {
+    updateCart: (state, action: PayloadAction<{ item: Clothes; amount: 1 | -1 }>) => {
       const index = state.items.findIndex((item) => item.id === action.payload.item.id);
 
       if (index !== -1) {
-        state.items[index].quantity += action.payload.quantity;
+        state.items[index].quantity += action.payload.amount;
 
         if (state.items[index].quantity === 0) {
           state.items.splice(index, 1);
         }
-      } else if (action.payload.quantity === 1) {
+      } else if (action.payload.amount === 1) {
         state.items.push({ ...action.payload.item, quantity: 1 });
       }
     },

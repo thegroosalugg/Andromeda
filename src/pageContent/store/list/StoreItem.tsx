@@ -45,9 +45,9 @@ export default function StoreItem({ item, clickHandler, activeId }: StoreProps) 
       <img src={image} className={css['item-img']} alt='clothes item' onClick={clickHandler} />
       {isActive && (
         <div className={css['expanded-content']}>
-          <h3 style={{ marginBottom: '0.2rem' }}>header</h3>
+          <h3>header</h3>
           <p>{"I'm waiting for a bus ".repeat(18)}</p>
-          <h3 style={{ marginTop: '0.2rem' }}>footer</h3>
+          <h3>footer</h3>
         </div>
       )}
       <div className={`${css.details} ${isActive ? css['details-expanded'] : ''}`}>

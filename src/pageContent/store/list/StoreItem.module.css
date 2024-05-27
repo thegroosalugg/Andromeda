@@ -29,6 +29,10 @@
   padding: 0.5rem 2rem;
 }
 
+.expanded-content h3 {
+  margin: 0.2rem auto;
+}
+
 .expanded-content p {
   max-height: 130px;
   max-width: 200px;
@@ -50,7 +54,7 @@
 .details-expanded {
   align-items: center;
   justify-content: center;
-  margin-top: 1rem;
+  margin: 1rem auto;
 }
 
 .details * {

@@ -1,5 +1,6 @@
 import Clothes from '@/models/Clothes';
-import css from './CartItem.module.css'
+import css from './CartItem.module.css';
+import CartButtons from '@/pageContent/store/list/CartButtons';
 
 export default function CartItem(item: Clothes) {
   const { image, name, brand, price, quantity } = item;
@@ -8,10 +9,12 @@ export default function CartItem(item: Clothes) {
     <article className={css.item}>
       <img src={image} alt={name} />
       <section>
-        <p>{brand}</p>
-        <p>{name}</p>
-        <p>{price}</p>
-        <p>{quantity}</p>
+        <div className={css.details}>
+          <p>{brand}</p>
+          <p>{name}</p>
+          <p>${price}</p>
+        </div>
+        <CartButtons item={item} quantity={quantity} />
       </section>
     </article>
   );

@@ -7,6 +7,17 @@
   height: 5rem;
 }
 
-.item section p {
+.item section {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.details {
+  flex-grow: 1;
+  margin: 0 1rem;
+}
+
+.details p {
   margin: 0;
 }
