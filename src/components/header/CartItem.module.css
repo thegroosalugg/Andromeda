@@ -1,0 +1,12 @@
+.item {
+  display: flex;
+}
+
+.item img {
+  width: 5rem;
+  height: 5rem;
+}
+
+.item section p {
+  margin: 0;
+}

@@ -6,6 +6,7 @@ import { RootState } from '@/store/types';
 import Modal from '../modal/Modal';
 import List from '../list/List';
 import css from './Cart.module.css';
+import CartItem from './CartItem';
 
 export default function Cart() {
   const dispatch = useDispatch();
@@ -15,11 +16,7 @@ export default function Cart() {
     <>
       <Modal>
         <List items={items} keyFn={({ id }) => id} className={css['cart-modal']}>
-          {(item) => (
-            <p>
-              {item.name} x {item.quantity}
-            </p>
-          )}
+          {(item) => <CartItem {...item} />}
         </List>
       </Modal>
       <div className={css['cart-header']}>
