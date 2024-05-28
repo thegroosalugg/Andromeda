@@ -1,23 +1,34 @@
 .item {
   display: flex;
+  border-radius: 4px;
+  width: 400px;
 }
 
 .item img {
   width: 5rem;
   height: 5rem;
+  border-radius: 4px 0 0 4px;
 }
 
 .item section {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  padding-right: 0.5rem;
+  border-radius: 0 4px 4px 0;
+  background: #1110108f;
 }
 
 .details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  place-content: center;
   flex-grow: 1;
   margin: 0 1rem;
 }
 
-.details p {
+.details * {
+  font-weight: 100;
   margin: 0;
 }

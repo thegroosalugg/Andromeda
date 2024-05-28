@@ -1,6 +1,13 @@
 .cart-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow: auto;
   list-style: none;
-  padding: 0;
+  padding: 1rem;
+  max-height: 200px;
+  border-top: 1px solid hsla(0, 0%, 80%, 0.36);
+  border-bottom: 1px solid hsla(0, 0%, 80%, 0.36);
   background: #565050ef;
   color: #fffdfd;
   font-family: 'Orbitron', sans-serif;
@@ -25,4 +32,5 @@
   font-family: 'Orbitron', sans-serif;
   font-size: larger;
   margin: 0;
+  width: 2rem;
 }

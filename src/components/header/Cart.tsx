@@ -15,6 +15,7 @@ export default function Cart() {
   return (
     <>
       <Modal>
+        {items.length === 0 && <p>Your Basket is Empty</p>}
         <List items={items} keyFn={({ id }) => id} className={css['cart-modal']}>
           {(item) => <CartItem {...item} />}
         </List>
