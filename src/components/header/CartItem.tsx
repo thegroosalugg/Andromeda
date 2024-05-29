@@ -13,9 +13,9 @@ export default function CartItem(item: Clothes) {
         <div className={css.details}>
           <h4>{brand}</h4>
           <h5>{name}</h5>
-          <motion.h3 key={quantity} initial={{ scaleY: 0 }} animate={{ scaleY: 1 }}>
+          <motion.h4 key={quantity} initial={{ scaleY: 0 }} animate={{ scaleY: 1 }}>
             ${(+price * quantity).toFixed(2)}
-          </motion.h3>
+          </motion.h4>
         </div>
         <CartButtons item={item} quantity={quantity} />
       </section>

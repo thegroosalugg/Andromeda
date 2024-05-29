@@ -1,7 +1,6 @@
 .item {
   display: flex;
   border-radius: 4px;
-  width: 400px;
 }
 
 .item img {
@@ -22,13 +21,27 @@
 .details {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  place-content: center;
+  justify-content: center;
   flex-grow: 1;
-  margin: 0 1rem;
+  margin: 0 0.5rem;
+  width: 10rem;
 }
 
 .details * {
   font-weight: 100;
   margin: 0;
+}
+
+@media (max-width: 440px) {
+  .item img {
+    width: 4rem;
+    height: 4rem;
+  }
+  .details {
+    width: 5rem;
+  }
+  .details *,
+  .item section p {
+    font-size: x-small;
+  }
 }

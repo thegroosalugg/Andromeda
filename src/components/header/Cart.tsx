@@ -15,12 +15,25 @@ export default function Cart() {
   return (
     <>
       <Modal>
-        {items.length === 0 && <p>Your Basket is Empty</p>}
-        <List items={items} keyFn={({ id }) => id} className={css['cart-modal']}>
-          {(item) => <CartItem {...item} />}
-        </List>
+        <motion.div layout className={css.cart}>
+          <h2>Your Cart</h2>
+          {items.length === 0 && (
+            <motion.p
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1, transition: { delay: 0.5 } }}
+              className={css.list}
+              style={{ justifyContent: 'center', height: 'auto' }}
+            >
+              Your Cart is Empty
+            </motion.p>
+          )}
+          <List items={items} keyFn={({ id }) => id} className={css.list}>
+            {(item) => <CartItem {...item} />}
+          </List>
+          <button>Checkout</button>
+        </motion.div>
       </Modal>
-      <div className={css['cart-header']}>
+      <div className={css.header}>
         <motion.button
           onClick={() => dispatch(toggle())}
           initial={{ y: -100, x: -20, rotate: 540 }}
