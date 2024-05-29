@@ -5,8 +5,8 @@ import { toggle } from '@/store/modalSlice';
 import { RootState } from '@/store/types';
 import Modal from '@/components/modal/Modal';
 import List from '@/components/list/List';
-import css from './Cart.module.css';
 import CartItem from './CartItem';
+import css from './Cart.module.css';
 
 export default function Cart() {
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ export default function Cart() {
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1, transition: { delay: 0.5 } }}
               className={css.list}
-              style={{ justifyContent: 'center', height: 'auto' }}
+              style={{ height: 'auto' }}
             >
               Your Cart is Empty
             </motion.p>
@@ -30,7 +30,7 @@ export default function Cart() {
           <List items={items} keyFn={({ id }) => id} className={css.list}>
             {(item) => <CartItem {...item} />}
           </List>
-          <button>Checkout</button>
+          <button onClick={() => console.log('click')} disabled={items.length === 0}>CHECKOUT</button>
         </motion.div>
       </Modal>
       <div className={css.header}>
