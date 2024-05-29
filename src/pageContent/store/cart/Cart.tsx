@@ -3,8 +3,8 @@ import { motion } from 'framer-motion';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggle } from '@/store/modalSlice';
 import { RootState } from '@/store/types';
-import Modal from '../modal/Modal';
-import List from '../list/List';
+import Modal from '@/components/modal/Modal';
+import List from '@/components/list/List';
 import css from './Cart.module.css';
 import CartItem from './CartItem';
 

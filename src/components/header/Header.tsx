@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import useUIConfig from '@/hooks/useUIConfig';
-import Cart from './Cart';
+import Cart from '@/pageContent/store/cart/Cart';
 import css from './Header.module.css';
 
 export default function Header() {
