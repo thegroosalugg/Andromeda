@@ -14,6 +14,9 @@ export default function Checkout() {
   const { user } = useSelector((state: RootState) => state.users);
   const { isOpen } = useSelector((state: RootState) => state.modal);
   const [isReady, setIsReady] = useState(false);
+  const cartTotal = items
+    .reduce((total, item) => total + item.quantity * +item.price, 0)
+    .toFixed(2);
 
   useEffect(() => {
     if (!isOpen) {
@@ -41,6 +44,14 @@ export default function Checkout() {
               <List items={items} keyFn={({ id }) => id} className={css.list}>
                 {(item) => <CartItem {...item} />}
               </List>
+              <motion.p
+                className={css.total}
+                key={cartTotal}
+                initial={{ scaleY: 0 }}
+                animate={{ scaleY: 1 }}
+              >
+                Total ${cartTotal}
+              </motion.p>
               <button
                 className={css.checkout}
                 onClick={() => setIsReady(true)}

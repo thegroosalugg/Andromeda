@@ -13,6 +13,11 @@
   text-align: center;
 }
 
+.total {
+  margin: 0 0.5rem 0.5rem;
+  text-align: end;
+}
+
 .checkout {
   font-family: 'Orbitron', sans-serif;
   color: #fffdfd;
@@ -45,13 +50,14 @@
   overflow: auto;
   list-style: none;
   padding: 1rem;
+  margin: 0.5rem 0;
   height: 10rem;
   border-top: 1px solid hsla(0, 0%, 80%, 0.36);
   border-bottom: 1px solid hsla(0, 0%, 80%, 0.36);
 }
 
 @media (max-width: 440px) {
-  .cart h2 {
+  .cart h2, .total {
     font-size: small;
   }
 }
