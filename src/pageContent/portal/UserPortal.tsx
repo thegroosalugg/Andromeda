@@ -15,9 +15,11 @@ import css from './UserPortal.module.css';
 import styles from './UserActions.module.css'; // the one button here has same styles as UserActions which have their own module
 
 export default function UserPortal(user: User) {
-  const { id, bookings, ...userDetails } = user;
+  const { id, bookings, orders, ...userDetails } = user;
   const { item } = useSelector((state: RootState) => state.modal);
   const validate = useValidate({ update: { userId: id } });
+
+  console.log('ORDERS NEED TO REMOVED FROM DETAILS AND USED. WILL BE LATER', orders)
 
   return (
     <motion.section
