@@ -83,7 +83,7 @@ const useValidate = ({ withBooking, update, loggingIn }: ValidateOptions = {}) =
 
       if (!update) {
         window.scrollTo(0, 125);
-        !loggingIn && navigate('/user');
+        !loggingIn && withBooking && navigate('/user');
       }
     }
     clearAndLog({ errors }, { data }, { user }, { users });
