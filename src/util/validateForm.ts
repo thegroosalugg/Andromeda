@@ -1,7 +1,7 @@
 import User from '@/models/User';
 import { FormData } from '@/models/FormData';
 
-function validateEmptyFields(data: FormData) {
+export function validateEmptyFields(data: FormData) {
   const errors: Partial<FormData> = {};
 
   Object.keys(data).forEach((key) => {

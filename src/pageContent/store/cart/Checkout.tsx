@@ -11,7 +11,7 @@ import css from './Checkout.module.css';
 
 export default function Checkout() {
   const { items } = useSelector((state: RootState) => state.cart);
-  const { user } = useSelector((state: RootState) => state.users);
+  // const { user } = useSelector((state: RootState) => state.users);
   const { isOpen } = useSelector((state: RootState) => state.modal);
   const [isReady, setIsReady] = useState(false);
   const cartTotal = items
@@ -27,7 +27,11 @@ export default function Checkout() {
   return (
     <>
       <Modal>
-        <motion.div layout className={css.cart}>
+        <motion.div
+          layout
+          className={css.cart}
+          style={{ padding: isReady ? '0.8rem 0 0' : '1rem' }} // this is simpler than removing Form Overlay which works in all other components
+        >
           <h2>Your Cart</h2>
           {!isReady && (
             <>
@@ -36,7 +40,7 @@ export default function Checkout() {
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: 1, scale: 1, transition: { delay: 0.5 } }}
                   className={css.list}
-                  style={{ height: 'auto' }}
+                  style={{ height: 'auto' }} // overwrites CSS height when cart is empty. All other syles are shared between 2 components
                 >
                   Your Cart is Empty
                 </motion.p>
@@ -61,8 +65,8 @@ export default function Checkout() {
               </button>
             </>
           )}
-          {isReady && !user && <Form />}
-          {isReady && user && <p style={{ color: 'white' }}>Order Confirmed</p>}
+          {isReady && <Form withOrder />}
+          {/* {isReady && user && <p style={{ color: 'white' }}>Order Confirmed</p>} */}
         </motion.div>
       </Modal>
       <OpenCart items={items} />

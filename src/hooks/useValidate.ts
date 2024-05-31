@@ -6,23 +6,24 @@ import { RootState } from '@/store/types';
 import useSearch from './useSearch';
 import User from '@/models/User';
 import Booking from '@/models/Booking';
-import { validateBooking, validateLogin, validateUser } from '@/util/validateForm';
+import { validateBooking, validateEmptyFields, validateLogin, validateUser } from '@/util/validateForm';
 import { clearAndLog } from '@/util/captainsLog';
 import { updateItem } from '@/store/modalSlice';
 
 interface ValidateOptions {
+  withOrder?: boolean;
   withBooking?: boolean;
   update?: { userId: string; booking?: Booking };
   loggingIn?: boolean;
 }
 
-const useValidate = ({ withBooking, update, loggingIn }: ValidateOptions = {}) => {
+const useValidate = ({ withOrder, withBooking, update, loggingIn }: ValidateOptions = {}) => {
   const {
     foundId: shipId,
     stateSlice: { users, user },
   } = useSearch({ search: { id: 'shipId', withParams: true }, reducer: 'users' });
   const { data } = useSelector((state: RootState) => state.form);
-  const { name, surname, email, phone, from, till, pickup, dropoff, price, login } = data;
+  const { name, surname, email, phone, street, city, postcode, country, from, till, pickup, dropoff, price, login } = data;
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -43,10 +44,11 @@ const useValidate = ({ withBooking, update, loggingIn }: ValidateOptions = {}) =
     }
 
     const userErr = !user && !loggingIn ? validateUser({ name, surname, email, phone }, users) : {};
+    const orderErr = withOrder ? validateEmptyFields({ street, city, postcode, country }) : {};
     const bookingErr = withBooking ? validateBooking({ from, till, pickup, dropoff }, users, shipId!) : {};
     const loginErr = loggingIn ? validateLogin(login, users) : {};
 
-    const errors = { ...userErr, ...bookingErr, ...updateErr, ...loginErr };
+    const errors = { ...userErr, ...orderErr, ...bookingErr, ...updateErr, ...loginErr };
     dispatch(setErrors(errors));
 
     if (Object.keys(errors).length === 0) {
