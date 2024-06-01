@@ -1,10 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { addBooking, updateBooking, addUser, setUser, updateUser } from '@/store/userSlice';
+import { addBooking, updateBooking, addUser, setUser, updateUser, addOrder } from '@/store/userSlice';
 import { setErrors, clearForm } from '@/store/formSlice';
 import { RootState } from '@/store/types';
 import useSearch from './useSearch';
 import User from '@/models/User';
+import Order from '@/models/Order';
 import Booking from '@/models/Booking';
 import { validateBooking, validateEmptyFields, validateLogin, validateUser } from '@/util/validateForm';
 import { clearAndLog } from '@/util/captainsLog';
@@ -23,6 +24,7 @@ const useValidate = ({ withOrder, withBooking, update, loggingIn }: ValidateOpti
     stateSlice: { users, user },
   } = useSearch({ search: { id: 'shipId', withParams: true }, reducer: 'users' });
   const { data } = useSelector((state: RootState) => state.form);
+  const { items } = useSelector((state: RootState) => state.cart);
   const { name, surname, email, phone, street, city, postcode, country, from, till, pickup, dropoff, price, login } = data;
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -61,8 +63,11 @@ const useValidate = ({ withOrder, withBooking, update, loggingIn }: ValidateOpti
         dispatch(addUser(currentUser));
       }
 
+      const cartTotal = items.reduce((total, item) => total + item.quantity * +item.price, 0).toFixed(2);
+      const order = withOrder && new Order({ street, city, postcode, country } as Order['address'], cartTotal, items).toObject!();
       const booking = withBooking && new Booking(shipId!, from!, till!, pickup!, dropoff!, price!).toObject!();
 
+      order && currentUser && dispatch(addOrder({ currentUser, order}));
       booking && currentUser && dispatch(addBooking({ currentUser, booking }));
       loggingIn && dispatch(setUser({ email: login! }));
 

@@ -62,8 +62,8 @@ const userSlice = createSlice({
         state.user = user;
       }
     },
-    addOrder: (state, action: PayloadAction<{ userId: string, order: Order}>) => {
-      const user = state.users.find((user: User) => user.id === action.payload.userId);
+    addOrder: (state, action: PayloadAction<{ currentUser: User; order: Order}>) => {
+      const user = state.users.find((user: User) => user.id === action.payload.currentUser.id);
       if (user) {
         user.orders.push(action.payload.order);
         state.user = user;
