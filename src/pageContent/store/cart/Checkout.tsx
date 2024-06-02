@@ -7,12 +7,14 @@ import List from '@/components/list/List';
 import CartItem from './CartItem';
 import OpenCart from './OpenCart';
 import Form from '@/components/form/Form';
+import Confirmation from './Confirmation';
 import css from './Checkout.module.css';
 
 export default function Checkout() {
   const { items } = useSelector((state: RootState) => state.cart);
   const { isOpen, item: order } = useSelector((state: RootState) => state.modal);
   const [isReady, setIsReady] = useState(false);
+  // prettier-ignore
   const cartTotal = items.reduce((total, item) => total + item.quantity * +item.price, 0).toFixed(2);
 
   useEffect(() => {
@@ -63,7 +65,7 @@ export default function Checkout() {
             </>
           )}
           {isReady && !order && <Form withOrder />}
-          {order && <p>Order {order.id as string} confirmed! You can view the details in your user portal.</p>}
+          {order && <Confirmation id={order.id as string} />}
         </motion.div>
       </Modal>
       <OpenCart items={items} />
