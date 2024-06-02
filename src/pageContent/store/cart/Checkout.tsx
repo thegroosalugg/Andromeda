@@ -11,8 +11,7 @@ import css from './Checkout.module.css';
 
 export default function Checkout() {
   const { items } = useSelector((state: RootState) => state.cart);
-  // const { user } = useSelector((state: RootState) => state.users);
-  const { isOpen } = useSelector((state: RootState) => state.modal);
+  const { isOpen, item: order } = useSelector((state: RootState) => state.modal);
   const [isReady, setIsReady] = useState(false);
   const cartTotal = items.reduce((total, item) => total + item.quantity * +item.price, 0).toFixed(2);
 
@@ -28,7 +27,7 @@ export default function Checkout() {
         <motion.div
           layout
           className={css.cart}
-          style={{ padding: isReady ? '0.8rem 0 0' : '1rem' }} // this is simpler than removing Form Overlay which works in all other components
+          style={{ padding: isReady && !order ? '0.8rem 0 0' : '1rem' }} // this is simpler than removing Form Overlay which works in all other components
         >
           <h2>Your Cart</h2>
           {!isReady && (
@@ -63,8 +62,8 @@ export default function Checkout() {
               </button>
             </>
           )}
-          {isReady && <Form withOrder />}
-          {/* {isReady && user && <p style={{ color: 'white' }}>Order Confirmed</p>} */}
+          {isReady && !order && <Form withOrder />}
+          {order && <p>Order {order.id as string} confirmed! You can view the details in your user portal.</p>}
         </motion.div>
       </Modal>
       <OpenCart items={items} />
