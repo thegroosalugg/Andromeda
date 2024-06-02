@@ -10,6 +10,7 @@ import Booking from '@/models/Booking';
 import { validateBooking, validateEmptyFields, validateLogin, validateUser } from '@/util/validateForm';
 import { clearAndLog } from '@/util/captainsLog';
 import { updateItem } from '@/store/modalSlice';
+import { clearCart } from '@/store/cartSlice';
 
 interface ValidateOptions {
   withOrder?: boolean;
@@ -84,6 +85,10 @@ const useValidate = ({ withOrder, withBooking, update, loggingIn }: ValidateOpti
         } else {
           dispatch(updateUser(editedData as User));
         }
+      }
+
+      if (withOrder) {
+        dispatch(clearCart());
       }
 
       dispatch(clearForm());

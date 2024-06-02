@@ -14,9 +14,7 @@ export default function Checkout() {
   // const { user } = useSelector((state: RootState) => state.users);
   const { isOpen } = useSelector((state: RootState) => state.modal);
   const [isReady, setIsReady] = useState(false);
-  const cartTotal = items
-    .reduce((total, item) => total + item.quantity * +item.price, 0)
-    .toFixed(2);
+  const cartTotal = items.reduce((total, item) => total + item.quantity * +item.price, 0).toFixed(2);
 
   useEffect(() => {
     if (!isOpen) {
