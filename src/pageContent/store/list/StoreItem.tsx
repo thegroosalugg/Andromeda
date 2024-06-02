@@ -1,8 +1,8 @@
-import Clothes from '@/models/Clothes';
-import css from './StoreItem.module.css';
 import { motion } from 'framer-motion';
 import { useRef, useEffect } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import CartButtons from './CartButtons';
+import Clothes from '@/models/Clothes';
+import css from './StoreItem.module.css';
 import svgJacket from '@/assets/svg/jacket.svg';
 import svgCoat from '@/assets/svg/coat.svg';
 import svgVarsity from '@/assets/svg/varsity.svg';
@@ -25,7 +25,6 @@ export default function StoreItem({ item, clickHandler, activeId }: StoreProps) 
   const { id, name, brand, image, price, type } = item;
   const isActive = activeId === id;
   const scrollRef = useRef<HTMLLIElement | null>(null);
-  console.log('RENDERING ID', id); // Log & Clear
 
   useEffect(() => {
     if (isActive && scrollRef.current) {
@@ -46,9 +45,9 @@ export default function StoreItem({ item, clickHandler, activeId }: StoreProps) 
       <img src={image} className={css['item-img']} alt='clothes item' onClick={clickHandler} />
       {isActive && (
         <div className={css['expanded-content']}>
-          <h3 style={{ marginBottom: '0.2rem' }}>header</h3>
+          <h3>header</h3>
           <p>{"I'm waiting for a bus ".repeat(18)}</p>
-          <h3 style={{ marginTop: '0.2rem' }}>footer</h3>
+          <h3>footer</h3>
         </div>
       )}
       <div className={`${css.details} ${isActive ? css['details-expanded'] : ''}`}>
@@ -56,19 +55,7 @@ export default function StoreItem({ item, clickHandler, activeId }: StoreProps) 
         <h5>{name}</h5>
         {isActive && <img src={icons[type as keyof typeof icons]} alt='clothes' />}
         <h3>${price}</h3>
-        {isActive && (
-          <div className={css['cart-actions']}>
-            <button>
-              <FontAwesomeIcon icon={['fas', 'minus']} />
-            </button>
-            <p>
-              Add to Cart <FontAwesomeIcon icon={['fas', 'cart-shopping']} />
-            </p>
-            <button>
-              <FontAwesomeIcon icon={['fas', 'plus']} />
-            </button>
-          </div>
-        )}
+        {isActive && <CartButtons item={item} />}
       </div>
       {isActive && <div className={css.triangle} />}
     </motion.li>

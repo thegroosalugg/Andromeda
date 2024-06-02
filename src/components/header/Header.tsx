@@ -1,6 +1,7 @@
-import { motion } from 'framer-motion';
-import css from './Header.module.css';
+import { AnimatePresence, motion } from 'framer-motion';
 import useUIConfig from '@/hooks/useUIConfig';
+import Cart from '@/pageContent/store/cart/Checkout';
+import css from './Header.module.css';
 
 export default function Header() {
   const { pathname, background, borderBottom, text } = useUIConfig();
@@ -18,9 +19,17 @@ export default function Header() {
       }}
       transition={{ ease: 'easeInOut', duration: 0.8 }}
     >
-      <motion.h1 key={pathname} initial={{ scaleY: 0 }} animate={{ scaleY: [0, 0, 0, 0.5, 1] }}>
-        {text && text}
-      </motion.h1>
+      <AnimatePresence mode='popLayout'>
+        <motion.h1
+          key={pathname}
+          initial={{ scaleY: 0 }}
+          animate={{ scaleY: [0, 0, 0, 0.5, 1], x: pathname === '/store' ? 50 : 0, transition: { delay: 0.5} }}
+          exit={{ scaleY: 0, opacity: 0 }}
+        >
+          {text && text}
+        </motion.h1>
+      </AnimatePresence>
+      <AnimatePresence>{pathname === '/store' && <Cart />}</AnimatePresence>
     </motion.header>
   );
 }

@@ -3,6 +3,7 @@ import itemsSlice from './itemsSlice';
 import modalSlice from './modalSlice';
 import userSlice from './userSlice';
 import formSlice from './formSlice'
+import cartSlice from './cartSlice';
 
 const localStorageMiddleware: Middleware = (store) => (next) => (action) => {
   const result = next(action);
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   modal: modalSlice,
   users: userSlice,
   form: formSlice,
+  cart: cartSlice,
 });
 
 const store = configureStore({

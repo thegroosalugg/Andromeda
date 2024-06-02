@@ -1,0 +1,27 @@
+.tick {
+  width: 4rem;
+  height: 4rem;
+  margin: 1rem auto;
+  border-radius: 50%;
+  border: 3px solid #12d833;
+  background: #fffdfd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tick img {
+  width: 3rem;
+}
+
+.text {
+  margin: 0;
+  max-width: 20rem;
+  text-align: center;
+}
+
+@media (max-width: 440px) {
+  .text {
+    font-size: small;
+  }
+}

@@ -9,10 +9,16 @@ import { RootState } from '@/store/types';
 import css from './Form.module.css';
 import useValidate from '@/hooks/useValidate';
 
-export default function Form({ withBooking }: { withBooking?: boolean }) {
+export default function Form({
+    withOrder,
+  withBooking,
+}: {
+    withOrder?: boolean;
+  withBooking?: boolean;
+}) {
   const { user } = useSelector((state: RootState) => state.users);
   const variants = { hidden: { opacity: 0, scale: 0.5 }, visible: { opacity: 1, scale: 1 } };
-  const validate = useValidate({ withBooking });
+  const validate = useValidate({ withOrder, withBooking });
 
   function submitHandler(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -36,6 +42,14 @@ export default function Form({ withBooking }: { withBooking?: boolean }) {
             <Input id='surname' />
             <Input id='email' />
             <Input id='phone' />
+          </>
+        )}
+        {withOrder && (
+          <>
+            <Input id='street' />
+            <Input id='city' />
+            <Input id='postcode' />
+            <Input id='country' />
           </>
         )}
         {withBooking && (

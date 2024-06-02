@@ -1,0 +1,21 @@
+.open-cart {
+  display: flex;
+  margin: 0 1rem;
+}
+
+.open-cart button {
+  color: #fffdfd;
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+
+.open-cart p {
+  font-family: 'Orbitron', sans-serif;
+  font-size: larger;
+  margin: 0;
+  width: 2rem;
+}

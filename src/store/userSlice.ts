@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import User from '@/models/User';
 import Booking from '@/models/Booking';
 import { RootState } from './types';
+import Order from '@/models/Order';
 
 const initialState: RootState['users'] = { users: [], user: null };
 
@@ -61,8 +62,15 @@ const userSlice = createSlice({
         state.user = user;
       }
     },
+    addOrder: (state, action: PayloadAction<{ currentUser: User; order: Order}>) => {
+      const user = state.users.find((user: User) => user.id === action.payload.currentUser.id);
+      if (user) {
+        user.orders.push(action.payload.order);
+        state.user = user;
+      }
+    },
   },
 });
 
-export const { addUser, setUser, updateUser, logout, deleteUser, addBooking, updateBooking, deleteBooking } = userSlice.actions;
+export const { addUser, setUser, updateUser, logout, deleteUser, addBooking, updateBooking, deleteBooking, addOrder } = userSlice.actions;
 export default userSlice.reducer;

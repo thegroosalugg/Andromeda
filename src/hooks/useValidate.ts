@@ -1,28 +1,32 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { addBooking, updateBooking, addUser, setUser, updateUser } from '@/store/userSlice';
+import { addBooking, updateBooking, addUser, setUser, updateUser, addOrder } from '@/store/userSlice';
 import { setErrors, clearForm } from '@/store/formSlice';
 import { RootState } from '@/store/types';
 import useSearch from './useSearch';
 import User from '@/models/User';
+import Order from '@/models/Order';
 import Booking from '@/models/Booking';
-import { validateBooking, validateLogin, validateUser } from '@/util/validateForm';
+import { validateBooking, validateEmptyFields, validateLogin, validateUser } from '@/util/validateForm';
 import { clearAndLog } from '@/util/captainsLog';
-import { updateItem } from '@/store/modalSlice';
+import { saveItem, updateItem } from '@/store/modalSlice';
+import { clearCart } from '@/store/cartSlice';
 
 interface ValidateOptions {
+  withOrder?: boolean;
   withBooking?: boolean;
   update?: { userId: string; booking?: Booking };
   loggingIn?: boolean;
 }
 
-const useValidate = ({ withBooking, update, loggingIn }: ValidateOptions = {}) => {
+const useValidate = ({ withOrder, withBooking, update, loggingIn }: ValidateOptions = {}) => {
   const {
     foundId: shipId,
     stateSlice: { users, user },
   } = useSearch({ search: { id: 'shipId', withParams: true }, reducer: 'users' });
   const { data } = useSelector((state: RootState) => state.form);
-  const { name, surname, email, phone, from, till, pickup, dropoff, price, login } = data;
+  const { items } = useSelector((state: RootState) => state.cart);
+  const { name, surname, email, phone, street, city, postcode, country, from, till, pickup, dropoff, price, login } = data;
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -43,10 +47,11 @@ const useValidate = ({ withBooking, update, loggingIn }: ValidateOptions = {}) =
     }
 
     const userErr = !user && !loggingIn ? validateUser({ name, surname, email, phone }, users) : {};
+    const orderErr = withOrder ? validateEmptyFields({ street, city, postcode, country }) : {};
     const bookingErr = withBooking ? validateBooking({ from, till, pickup, dropoff }, users, shipId!) : {};
     const loginErr = loggingIn ? validateLogin(login, users) : {};
 
-    const errors = { ...userErr, ...bookingErr, ...updateErr, ...loginErr };
+    const errors = { ...userErr, ...orderErr, ...bookingErr, ...updateErr, ...loginErr };
     dispatch(setErrors(errors));
 
     if (Object.keys(errors).length === 0) {
@@ -59,8 +64,11 @@ const useValidate = ({ withBooking, update, loggingIn }: ValidateOptions = {}) =
         dispatch(addUser(currentUser));
       }
 
+      const cartTotal = items.reduce((total, item) => total + item.quantity * +item.price, 0).toFixed(2);
+      const order = withOrder && new Order({ street, city, postcode, country } as Order['address'], cartTotal, items).toObject!();
       const booking = withBooking && new Booking(shipId!, from!, till!, pickup!, dropoff!, price!).toObject!();
 
+      order && currentUser && dispatch(addOrder({ currentUser, order}));
       booking && currentUser && dispatch(addBooking({ currentUser, booking }));
       loggingIn && dispatch(setUser({ email: login! }));
 
@@ -79,11 +87,16 @@ const useValidate = ({ withBooking, update, loggingIn }: ValidateOptions = {}) =
         }
       }
 
+      if (withOrder) {
+        dispatch(clearCart());
+        dispatch(saveItem(order))
+      }
+
       dispatch(clearForm());
 
       if (!update) {
         window.scrollTo(0, 125);
-        !loggingIn && navigate('/user');
+        !loggingIn && withBooking && navigate('/user');
       }
     }
     clearAndLog({ errors }, { data }, { user }, { users });
