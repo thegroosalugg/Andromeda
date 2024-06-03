@@ -40,6 +40,7 @@
 
 .bookings,
 .orders {
+  height: 200px;
   display: flex;
   padding: 1rem;
   gap: 1rem;
@@ -47,12 +48,10 @@
 }
 
 .bookings {
-  height: 200px;
   flex-direction: column;
   border-top: 1px solid hsla(0, 0%, 80%, 0.36);
 }
 
 .orders {
-  height: 250px;
   margin: 1rem 3rem;
 }

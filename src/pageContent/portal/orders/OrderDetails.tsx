@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import List from '@/components/list/List';
 import Order from '@/models/Order';
 import formatDate from '@/util/formatDate';
@@ -9,36 +10,23 @@ export default function OrderDetails(order: Order) {
   const { street, city, postcode, country } = address;
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const Wrapper = ({ bottom, children }: { bottom?: boolean; children: React.ReactNode }) => {
-    return (
-      <div
-        className={css[bottom ? 'bottom' : 'top']}
-        onClick={() => setIsExpanded((prevState) => !prevState)}
-      >
-        {children}
-      </div>
-    );
-  };
-
   return (
-    <article className={css.order}>
-      <Wrapper>
+    <motion.article layout className={css.order} animate={{ width: 'auto' }}>
+      <div className={css.details} onClick={() => setIsExpanded((prevState) => !prevState)}>
         <h3>{id}</h3>
-        <h4 style={{ marginBottom: isExpanded ? '1rem' : ''}}>{formatDate(date, true)}</h4>
-      </Wrapper>
-      {isExpanded && (
-        <List className={css.items} items={items} keyFn={({ id }) => id}>
-          {(item) => <p>{item.name}</p>}
-        </List>
-      )}
-      <Wrapper bottom>
-        <p style={{ marginTop: isExpanded ? '1rem' : ''}}>{street}</p>
+        <h4>{formatDate(date, true)}</h4>
+        <p>{street}</p>
         <p>{city}</p>
         <p>
           {postcode}, {country}
         </p>
         <h4>${price}</h4>
-      </Wrapper>
-    </article>
+      </div>
+      {isExpanded && (
+        <List className={css.items} items={items} keyFn={({ id }) => id}>
+          {(item) => <p>{item.name}</p>}
+        </List>
+      )}
+    </motion.article>
   );
 }
