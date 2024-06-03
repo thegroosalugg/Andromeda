@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import css from './UserPortal.module.css';
+import css from '../main/UserPortal.module.css';
 
 export default function NoBookings() {
   // component is already stealing styles from another component, at this point its simpler to add remaining styles via inline

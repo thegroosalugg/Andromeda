@@ -1,6 +1,6 @@
 import Form from '@/components/form/Form';
-import SignUpLogo from '@/pageContent/portal/SignUpLogo';
-import UserPortal from '@/pageContent/portal/UserPortal';
+import SignUpLogo from '@/pageContent/portal/logo/SignUpLogo';
+import UserPortal from '@/pageContent/portal/main/UserPortal';
 import { RootState } from '@/store/types';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useSelector } from 'react-redux';
