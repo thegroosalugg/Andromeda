@@ -8,6 +8,7 @@ import BookedItem from '../bookings/BookedItem';
 import Modal from '@/components/modal/Modal';
 import EditBooking from '../bookings/EditBooking';
 import NoBookings from '../bookings/NoBookings';
+import OrderDetails from '../orders/OrderDetails';
 import UserActions from './UserActions';
 import User from '@/models/User';
 import { FormData } from '@/models/FormData';
@@ -18,8 +19,6 @@ export default function UserPortal(user: User) {
   const { id, bookings, orders, ...userDetails } = user;
   const { item } = useSelector((state: RootState) => state.modal);
   const validate = useValidate({ update: { userId: id } });
-
-  console.log('ORDERS NEED TO REMOVED FROM DETAILS AND USED. WILL BE LATER', orders)
 
   return (
     <motion.section
@@ -46,7 +45,9 @@ export default function UserPortal(user: User) {
               </p>
             )}
           </List>
-          <button className={styles.button} onClick={validate}>SAVE</button>
+          <button className={styles.button} onClick={validate}>
+            SAVE
+          </button>
         </div>
 
         {bookings.length === 0 && <NoBookings />}
@@ -55,6 +56,10 @@ export default function UserPortal(user: User) {
           {(booking) => <BookedItem {...booking} />}
         </List>
       </section>
+
+      <List className={css.orders} items={orders} keyFn={({ id }) => id}>
+        {(order) => <OrderDetails {...order} />}
+      </List>
 
       <UserActions id={id} />
     </motion.section>

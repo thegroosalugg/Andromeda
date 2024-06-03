@@ -20,7 +20,8 @@
   font-family: 'Orbitron', sans-serif;
 }
 
-.portal ul {
+.portal ul,
+.orders {
   list-style: none;
   overflow: auto;
 }
@@ -37,12 +38,20 @@
   margin: 0.5rem;
 }
 
-.bookings {
+.bookings,
+.orders {
   height: 200px;
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
   padding: 1rem;
-  border-top: 1px solid hsla(0, 0%, 80%, 0.36);
+  gap: 1rem;
   border-bottom: 1px solid hsla(0, 0%, 80%, 0.36);
+}
+
+.bookings {
+  flex-direction: column;
+  border-top: 1px solid hsla(0, 0%, 80%, 0.36);
+}
+
+.orders {
+  margin: 1rem 3rem;
 }
