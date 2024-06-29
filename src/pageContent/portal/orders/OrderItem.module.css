@@ -1,0 +1,33 @@
+.article {
+  display: flex;
+  border: 0.5px solid #ffffff;
+  border-radius: 3px;
+
+  img {
+    width: 50px;
+    height: 50px;
+    border-radius: 3px 0 0 3px;
+  }
+
+  section {
+    width: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    h6,
+    p {
+      margin: 0;
+    }
+
+    h6 {
+      font-weight: 600;
+    }
+
+    p {
+      font-size: 0.7rem;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}

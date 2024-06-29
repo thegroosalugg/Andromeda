@@ -16,8 +16,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           key={pathname}
           initial={{ opacity: 0, y: '-100px' }}
           animate={{ opacity: 1, y: 0, background }}
-          exit={{ opacity: 0, y: '100px' }}
-          transition={{ type: 'spring', ease: 'linear', stiffness: 100, damping: 15, duration: 0.5 }}
+             exit={{ opacity: 0, y: '100px' }}
+          transition={{ type: 'spring', ease: 'linear', duration: 0.5 }}
           >
           {children}
         </motion.main>

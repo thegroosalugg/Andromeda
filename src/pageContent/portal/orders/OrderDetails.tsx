@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import List from '@/components/list/List';
+import OrderItem from './OrderItem';
 import Order from '@/models/Order';
 import formatDate from '@/util/formatDate';
 import css from './OrderDetails.module.css';
@@ -11,7 +12,7 @@ export default function OrderDetails(order: Order) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <motion.article layout className={css.order} animate={{ width: 'auto' }}>
+    <motion.article className={css.order}>
       <div className={css.details} onClick={() => setIsExpanded((prevState) => !prevState)}>
         <h3>{id}</h3>
         <h4>{formatDate(date, true)}</h4>
@@ -22,11 +23,15 @@ export default function OrderDetails(order: Order) {
         </p>
         <h4>${price}</h4>
       </div>
-      {isExpanded && (
-        <List className={css.items} items={items} keyFn={({ id }) => id}>
-          {(item) => <p>{item.name}</p>}
-        </List>
-      )}
+      <AnimatePresence>
+        {isExpanded && (
+          <motion.div className={css.items} initial={{ width: 0 }} animate={{ width: 'auto' }} exit={{ width: 0 }}>
+            <List className={css.list} items={items} keyFn={({ id }) => id}>
+              {(item) => <OrderItem {...item} />}
+            </List>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.article>
   );
 }

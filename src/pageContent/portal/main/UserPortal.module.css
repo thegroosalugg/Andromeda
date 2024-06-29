@@ -43,15 +43,17 @@
   height: 200px;
   display: flex;
   padding: 1rem;
-  gap: 1rem;
   border-bottom: 1px solid hsla(0, 0%, 80%, 0.36);
 }
 
 .bookings {
+  gap: 1rem;
   flex-direction: column;
   border-top: 1px solid hsla(0, 0%, 80%, 0.36);
 }
 
 .orders {
-  margin: 1rem 3rem;
+  gap: 1.5rem;
+  margin: 1rem auto;
+  max-width: 40rem;
 }
