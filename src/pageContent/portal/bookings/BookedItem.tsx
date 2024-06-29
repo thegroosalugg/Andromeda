@@ -7,10 +7,12 @@ import { useDispatch } from 'react-redux';
 import { saveItem, toggle } from '@/store/modalSlice';
 import SpaceShip from '@/models/SpaceShip';
 
-const Col = ({ color, label, text }: { color: string; label: string; text: string }) => {
+const Col = ({ label, text }: { label: string; text: string }) => {
   return (
     <div className={css.col}>
-      <p style={{ color }}>{label}</p>
+      <p style={{ color: ['Start', 'PickUp'].includes(label) ? '#87CEFA' : '#FFB6C1' }}>
+        {label}
+      </p>
       <p>{text}</p>
     </div>
   );
@@ -32,8 +34,8 @@ const BookedItem = (booking: Booking) => {
   const { image, maker, model } = ship as SpaceShip;
 
   function modalHandler() {
-    dispatch(saveItem({ ship, booking }))
-    dispatch(toggle())
+    dispatch(saveItem({ ship, booking }));
+    dispatch(toggle());
   }
 
   return (
@@ -43,12 +45,12 @@ const BookedItem = (booking: Booking) => {
         <h6>{maker}</h6>
         <h5>{model}</h5>
         <Row>
-          <Col label='Start' color='#bb6412d0' text={formatDate(from)} />
-          <Col label='End' color='#bb11a1bf' text={formatDate(till)} />
+          <Col label='Start'   text={formatDate(from)} />
+          <Col label='End'     text={formatDate(till)} />
         </Row>
         <Row>
-          <Col label='PickUp' color='#bb6412d0' text={pickup} />
-          <Col label='DropOff' color='#bb11a1bf' text={dropoff} />
+          <Col label='PickUp'  text={pickup}  />
+          <Col label='DropOff' text={dropoff} />
         </Row>
       </div>
     </article>
