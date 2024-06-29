@@ -7,7 +7,7 @@ import Input from '@/components/form/Input';
 import BookedItem from '../bookings/BookedItem';
 import Modal from '@/components/modal/Modal';
 import EditBooking from '../bookings/EditBooking';
-import NoBookings from '../bookings/NoBookings';
+import EmptyList from './EmptyList';
 import OrderDetails from '../orders/OrderDetails';
 import UserActions from './UserActions';
 import User from '@/models/User';
@@ -22,6 +22,7 @@ export default function UserPortal(user: User) {
 
   return (
     <motion.section
+      className={css['portal']}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, type: 'easeInOut' }}
@@ -30,7 +31,7 @@ export default function UserPortal(user: User) {
         <EditBooking id={id} {...item} />
       </Modal>
 
-      <section className={css.portal}>
+      <section className={css['top-row']}>
         <div className={css.user}>
           <h2>Details</h2>
           <List
@@ -45,19 +46,21 @@ export default function UserPortal(user: User) {
               </p>
             )}
           </List>
-          <button className={styles.button} onClick={validate}>
+          <button className={styles['button']} onClick={validate}>
             SAVE
           </button>
         </div>
 
-        {bookings.length === 0 && <NoBookings />}
+        {bookings.length === 0 && <EmptyList type='bookings' />}
 
-        <List className={css.bookings} items={bookings} keyFn={({ id }) => id}>
+        <List className={css['bookings']} items={bookings} keyFn={({ id }) => id}>
           {(booking) => <BookedItem {...booking} />}
         </List>
       </section>
 
-      <List className={css.orders} items={orders} keyFn={({ id }) => id}>
+      {orders.length === 0 && <EmptyList type='orders' />}
+
+      <List className={css['orders']} items={orders} keyFn={({ id }) => id}>
         {(order) => <OrderDetails {...order} />}
       </List>
 
