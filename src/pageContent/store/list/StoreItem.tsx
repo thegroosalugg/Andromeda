@@ -35,29 +35,29 @@ export default function StoreItem({ item, clickHandler, activeId }: StoreProps) 
   return (
     <motion.li
       ref={scrollRef}
-      className={`${css.item} ${isActive ? css.expanded : ''}`}
+      className={`${css['item']} ${isActive ? css['expanded'] : ''}`}
       layout
       variants={{
         hidden: { scale: 0.5, opacity: 0 },
         visible: { scale: 1, opacity: 1, transition: { duration: 1 } },
       }}
     >
-      <img src={image} className={css['item-img']} alt='clothes item' onClick={clickHandler} />
+      <img src={image} alt='clothes item' onClick={clickHandler} />
       {isActive && (
-        <div className={css['expanded-content']}>
+        <div className={css['active-content']}>
           <h3>header</h3>
           <p>{"I'm waiting for a bus ".repeat(18)}</p>
           <h3>footer</h3>
         </div>
       )}
-      <div className={`${css.details} ${isActive ? css['details-expanded'] : ''}`}>
+      <div className={`${css['details']} ${isActive ? css['active-details'] : ''}`}>
         <h4>{brand}</h4>
         <h5>{name}</h5>
         {isActive && <img src={icons[type as keyof typeof icons]} alt='clothes' />}
         <h3>${price}</h3>
         {isActive && <CartButtons item={item} />}
       </div>
-      {isActive && <div className={css.triangle} />}
+      {isActive && <div className={css['triangle']} />}
     </motion.li>
   );
 }

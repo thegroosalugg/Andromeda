@@ -1,69 +1,67 @@
-.item {
-  color: #fffdfd;
-  background: #1110108f;
-  font-family: 'Orbitron', sans-serif;
-  border: 1px solid transparent;
-}
-
-.item:hover {
-  border-color: #fffdfd;
-}
-
 .expanded {
   grid-column: 1 / -1; /* GRID: this column starts at 1st column and fills remaining space to the last -1 column */
   display: grid; /* unrelated to above. This is for the item content to wrap properly on zoom levels when expanded */
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
-.item-img {
-  height: auto;
-  width: 100%;
-  max-width: 400px;
-  cursor: pointer;
-}
+.item {
+  color: #fffdfd;
+  background: #1110108f;
+  font-family: 'Orbitron', sans-serif;
+  border: 1px solid transparent;
 
-.expanded-content {
-  text-align: center;
-  font-size: 0.7rem;
-  margin: auto;
-  padding: 0.5rem 2rem;
-}
+  :hover {
+    border-color: #fffdfd;
+  }
 
-.expanded-content h3 {
-  margin: 0.2rem auto;
-}
+  > img {
+    height: auto;
+    width: 100%;
+    max-width: 400px;
+    cursor: pointer;
+  }
 
-.expanded-content p {
-  max-height: 130px;
-  max-width: 200px;
-  overflow: auto;
-  margin: 0;
-}
+  .active-content {
+    text-align: center;
+    font-size: 0.7rem;
+    margin: auto;
+    padding: 0.5rem 2rem;
 
-.details {
-  padding: 0 0.5rem 0.5rem;
-  display: flex;
-  flex-direction: column;
-}
+    h3 {
+      margin: 0.2rem auto;
+    }
+    p {
+      max-height: 130px;
+      max-width: 200px;
+      overflow: auto;
+      margin: 0;
+    }
+  }
 
-.details img {
-  width: 4rem;
-  margin: 0.5rem auto;
-}
+  .details {
+    padding: 0 0.5rem 0.5rem;
+    display: flex;
+    flex-direction: column;
 
-.details-expanded {
-  align-items: center;
-  justify-content: center;
-  margin: 1rem auto;
-}
+    img {
+      width: 4rem;
+      margin: 0.5rem auto;
+    }
+    * {
+      margin: 0;
+      font-weight: 100;
+    }
+  }
 
-.details * {
-  margin: 0;
-  font-weight: 100;
-}
+  .active-details {
+    align-items: center;
+    justify-content: center;
+    margin: 1rem auto;
+  }
 
-.triangle {
-  height: 100%;
-  clip-path: polygon(0% 100%, 100% 0%, 100% 100%);
-  background: #fffdfd;
+  .triangle {
+    height: 100%;
+    clip-path: polygon(0% 100%, 100% 0%, 100% 100%);
+    background: #fffdfd;
+  }
 }
