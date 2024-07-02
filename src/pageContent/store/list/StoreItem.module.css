@@ -43,11 +43,9 @@
     display: flex;
     flex-direction: column;
 
-    img {
-      width: 4rem;
-      margin: 0.5rem auto;
-    }
-    * {
+    h3,
+    h4,
+    h5 {
       margin: 0;
       font-weight: 100;
     }
@@ -57,11 +55,73 @@
     align-items: center;
     justify-content: center;
     margin: 1rem auto;
+
+    img {
+      width: 4rem;
+      margin: 0.5rem auto;
+    }
   }
 
   .triangle {
     height: 100%;
     clip-path: polygon(0% 100%, 100% 0%, 100% 100%);
     background: #fffdfd;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 440px) {
+  .expanded {
+    grid-template-columns: repeat(auto-fit, minmax(33%, 1fr));
+  }
+
+  .item {
+    .active-content {
+      padding: 0.5vw;
+
+      h3 {
+        font-size: 50%;
+      }
+      
+      p {
+        font-size: 50%;
+        height: 10vh;
+        margin: 0 5vw;
+      }
+    }
+
+    .details {
+      h3,
+      h4,
+      h5 {
+        font-size: 45%;
+      }
+    }
+
+    .active-details {
+      margin: 0.5rem 0;
+
+      img {
+        width: 15%;
+        margin: 0.1rem;
+      }
+
+      /* the below styles apply to nested elements in CartButtons. Styled here so the media queries do not apply to CartButtons in Modal */
+      p {
+        font-size: 20%;
+        text-wrap: nowrap;
+        svg {
+          font-size: 150%;
+        }
+      }
+
+      button {
+        border: 0;
+        padding: 0 1vw;
+      }
+
+      svg {
+        font-size: 50%;
+      }
+    }
   }
 }

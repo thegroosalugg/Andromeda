@@ -1,13 +1,11 @@
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { updateCart } from '@/store/cartSlice';
-import { RootState } from '@/store/types';
 import Clothes from '@/models/Clothes';
 import css from './CartButtons.module.css';
 
 export default function CartButtons({ item, quantity }: { item: Clothes; quantity?: number }) {
-  const { items } = useSelector((state: RootState) => state.cart);
   const dispatch = useDispatch();
 
   const CartButton = ({ action }: { action: 'plus' | 'minus' }) => {
@@ -24,8 +22,6 @@ export default function CartButtons({ item, quantity }: { item: Clothes; quantit
       </motion.button>
     );
   };
-
-  console.log('CART', items); // Log & Clear
 
   return (
     <div className={css['cart-actions']}>
