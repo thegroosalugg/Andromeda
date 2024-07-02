@@ -8,7 +8,7 @@ export default function NavButton({ path, name }: { path: string; name: string }
   const isActive = pathname === path || (pathname.startsWith(path) && path !== '/');
 
   const rotate = rand(1, 4) === 1 ? 720 : 0
-  const  scale = rand(1, 4) === 1 ? [1, 1.5, 2, 1.5, 1.2] : 1.2
+  const  scale = rand(1, 4) === 1 ? [1, 1.5, 2, 1.5, 1.2] : 1
 
   return (
     <li>
@@ -18,9 +18,9 @@ export default function NavButton({ path, name }: { path: string; name: string }
             key='tab-ufo'
             layoutId='tab-ufo'
             className={css.ufo}
-            initial={{ opacity: 0, scale: 0.8, rotate }}
-            animate={{ opacity: 1, scale, rotate }}
-            transition={{ type: 'backInOut', duration: 0.8 }}
+            initial={{ opacity: 0, scale: 1, rotate }}
+            animate={{ opacity: 1, scale,    rotate }}
+            transition={{ type: 'backInOut', duration: 0.5 }}
           />
         )}
         <motion.p
@@ -41,4 +41,3 @@ export default function NavButton({ path, name }: { path: string; name: string }
     </li>
   );
 }
-
