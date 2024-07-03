@@ -29,7 +29,7 @@ const FlyingShip = () => {
     exit =
       direction === 1
         ? ['-100vw', '50vw', '50vw', '50vw', '100vw']
-        : ['100vw', '50vw', '50vw', '50vw', '10vw', '-100vw'];
+        : [ '100vw', '50vw', '50vw', '50vw', '10vw', '-100vw'];
   }
 
   return (

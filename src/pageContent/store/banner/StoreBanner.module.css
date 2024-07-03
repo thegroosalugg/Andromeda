@@ -93,6 +93,7 @@
       img {
         width: 25%;
         margin: 1rem;
+        box-shadow: 2.5px 2.5px 5px #0f0e0e8f;
       }
     }
 

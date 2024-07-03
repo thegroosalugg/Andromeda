@@ -2,9 +2,9 @@ import { useDispatch } from 'react-redux';
 import { toggle } from '@/store/modalSlice';
 import Modal from '@/components/modal/Modal';
 import Monster from './Monster';
-import css from './MonsterValley.module.css';
-import MotionButton from './MotionButton';
 import Credits from './Credits';
+import MotionButton from './MotionButton';
+import css from './MonsterValley.module.css';
 
 export default function MonsterValley() {
   const dispatch = useDispatch();

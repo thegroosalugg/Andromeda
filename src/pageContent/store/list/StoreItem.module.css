@@ -10,7 +10,7 @@
   font-family: 'Orbitron', sans-serif;
   border: 1px solid transparent;
 
-  :hover {
+  &:hover {
     border-color: #fffdfd;
   }
 
@@ -81,7 +81,7 @@
       h3 {
         font-size: 50%;
       }
-      
+
       p {
         font-size: 50%;
         height: 10vh;
