@@ -1,48 +1,75 @@
 .ship-info {
+  width: 320px;
   color: #d4d8de;
   text-shadow: 1px 1px 2px #080808;
   font-size: 0.8rem;
   background-color: rgba(47, 49, 54, 0.7);
-  border-radius: 0 5% 5% 0;
+  border-radius: 0;
   display: flex;
   flex-direction: column;
   text-align: center;
+
+  h4 {
+    align-self: end;
+    padding: 0.3rem;
+    max-width: 66%;
+    color: rgb(184, 154, 79);
+    background: rgb(255, 255, 255, 0.1);
+    border-radius: 0.5rem 0 0 0.5rem;
+  }
+
+  > p {
+    margin: 0;
+    padding: 2rem;
+    background: rgb(255, 255, 255, 0.1);
+  }
+
+  .icons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;
+    padding: 2rem;
+    font-size: smaller;
+    color: rgb(184, 154, 79);
+
+    p {
+      margin: 0.5rem;
+      color: #d4d8de;
+    }
+  }
 }
 
-.ship-info h4 {
-  margin-left: auto;
-  color: rgb(184, 154, 79);
-  text-align: end;
-  background: rgb(255, 255, 255, 0.1);
-  border-radius: 0.5rem 0 0 0.5rem;
-  padding: 0.3rem;
-}
-
-.ship-info h2 {
-  margin: 0 0.5rem 2rem;
-}
-
-.ship-info article {
-  padding: 2rem;
-  background: rgb(255, 255, 255, 0.1);
-}
-
-.icons {
-  display: flex;
-  justify-content: space-between;
-  padding: 2rem;
-  margin-top: auto;
-  font-size: smaller;
-  color: rgb(184, 154, 79);
-}
-
-.icons p {
-  margin: 0.5rem;
-  color: #d4d8de;
-}
-
-@media screen and (max-width: 900px) {
+@media screen and (min-width: 320px) and (max-width: 440px) {
   .ship-info {
-    border-radius: 0;
+    width: 33%;
+    font-size: 2vw;
+
+    h4 {
+      padding: 1vw;
+      margin: 1vh 0;
+    }
+
+    h2 {
+      margin: 1vh 0;
+    }
+
+    > p {
+      padding: 2vw;
+    }
+
+    .icons {
+      padding: 2vw;
+      font-size: smaller;
+
+      p {
+        margin: 0.5vw;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 864px) {
+  .ship-info {
+    border-radius: 0 5% 5% 0;
   }
 }
