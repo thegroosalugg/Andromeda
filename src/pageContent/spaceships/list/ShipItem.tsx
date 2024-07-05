@@ -25,7 +25,9 @@ const ShipItem: React.FC<ShipItemProps> = (spaceship) => {
       transition={{ duration: 0.3 }}
       onClick={handleClick}
     >
-      <h6>{model}</h6>
+      <h6>
+        <span>{model}</span>
+      </h6>
       <img src={image} alt={model} />
       <p className={css.slogan}>{slogan}</p>
       <div className={css.price}>
