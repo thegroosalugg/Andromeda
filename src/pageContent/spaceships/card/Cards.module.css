@@ -4,6 +4,7 @@
   flex-direction: column;
   justify-content: center;
   margin: 2rem 0 0;
+  padding: 2rem 0;
   gap: 0;
   background: linear-gradient(
     to bottom,
@@ -17,11 +18,16 @@
     rgba(200, 200, 200, 0.9) 2px,
     rgba(200, 200, 200, 0.9) 4px
   );
-  padding: 2rem 0;
 }
 
 .pair {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+}
+
+@media screen and (min-width: 320px) and (max-width: 440px) {
+  .cards {
+    margin: 1rem 0 0;
+  }
 }
