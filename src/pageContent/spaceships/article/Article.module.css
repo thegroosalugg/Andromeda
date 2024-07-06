@@ -13,24 +13,24 @@
   border-radius: 5px;
   border-bottom: 2rem solid #424649dd;
   box-sizing: border-box;
-}
 
-.content h3 {
-  padding: 0.8rem;
-  margin: 0;
-  font-family: 'Orbitron', sans-serif;
-  font-weight: 100;
-  text-align: center;
-  border-radius: 5px 5px 0 0;
-  background: linear-gradient(to bottom, #5a5d60dd, #807d7dcc);
-}
+  h3 {
+    padding: 0.8rem;
+    margin: 0;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 100;
+    text-align: center;
+    border-radius: 5px 5px 0 0;
+    background: linear-gradient(to bottom, #5a5d60dd, #807d7dcc);
+  }
 
-.content p {
-  overflow: auto;
-  padding: 1rem 2rem;
-  margin: 0;
-  font-weight: 100;
-  text-align: justify;
+  p {
+    overflow: auto;
+    padding: 1rem 2rem;
+    margin: 0;
+    font-weight: 100;
+    text-align: justify;
+  }
 }
 
 @media screen and (max-width: 960px) {

@@ -6,7 +6,7 @@
 /* config when in rows */
 .ship-rows {
   background-color: rgba(0, 0, 0, 0.374);
-  min-width: 12rem;
+  width: 12rem;
 }
 
 .ship-rows .slogan {
@@ -66,7 +66,11 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 440px) {
- .ship-grid {
+  .ship-rows {
+    width: 8rem;
+  }
+
+ .ship-item {
     h6 {
       font-size: 50%;
       height: 2rem;
