@@ -1,6 +1,8 @@
 .slides-container {
+  /* flex-basis: 100%; */ /* testing layout changes when flex-wrap in parent section triggers */
   margin: 1rem auto;
   width: 100%;
+  min-width: 66%; /* testing layout changes when flex-wrap in parent section triggers */
   max-width: 960px;
   display: flex;
   overflow: auto;

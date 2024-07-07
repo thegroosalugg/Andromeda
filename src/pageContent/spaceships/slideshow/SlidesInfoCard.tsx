@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import css from './SlidesInfoCard.module.css';
 
 const SlidesInfoCard: React.FC<SpaceShip> = (spaceship) => {
-  const { model, rating, desc, performance } = spaceship
+  const { model, rating, desc, performance } = spaceship;
 
   const variants = {
     hidden: { scale: 1.2, rotateY: 90, x: 15 },
@@ -18,7 +18,7 @@ const SlidesInfoCard: React.FC<SpaceShip> = (spaceship) => {
         stiffness: 100,
         damping: 10,
         mass: 1,
-      }
+      },
     },
     exit: {
       x: 15,
@@ -30,20 +30,25 @@ const SlidesInfoCard: React.FC<SpaceShip> = (spaceship) => {
         damping: 30,
         mass: 1,
         velocity: 5,
-        restSpeed: 10
-      }
-    }
+        restSpeed: 10,
+      },
+    },
   };
 
   return (
-    <motion.article className={css.article} initial="hidden" animate="visible" exit="exit" variants={variants}>
-      <h2>{model}</h2>
-
-      <div>
+    <motion.article
+      className={css.article}
+        initial='hidden'
+        animate='visible'
+           exit='exit'
+       variants={variants}
+    >
+      <div className={css.info}>
+        <h2>{model}</h2>
         <FontAwesomeBar icon='star' size={5} amount={rating} />
       </div>
 
-      <p className={css.desc}>
+      <p>
         <strong>{desc}</strong>
       </p>
 
