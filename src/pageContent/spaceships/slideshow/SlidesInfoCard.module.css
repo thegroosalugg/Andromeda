@@ -17,9 +17,7 @@
   );
 
   .info {
-    flex-grow: 1;
-    height: 25%;
-    position: relative;
+    flex-basis: 33.33%;
 
     h2 {
       text-transform: uppercase;
@@ -29,11 +27,12 @@
   }
 
   > p {
-    height: 33%;
-    flex-grow: 1;
+    flex-basis: 33.33%;
+
   }
 
   .progress {
+    flex-basis: 33.33%;
     font-size: x-small;
     margin-bottom: 1rem;
 

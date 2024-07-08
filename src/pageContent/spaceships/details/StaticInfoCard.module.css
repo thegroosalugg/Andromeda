@@ -12,6 +12,7 @@
   h4 {
     align-self: end;
     padding: 0.3rem;
+    margin-bottom: 0;
     max-width: 66%;
     color: rgb(184, 154, 79);
     background: rgb(255, 255, 255, 0.1);
@@ -46,7 +47,7 @@
 
     h4 {
       padding: 1vw;
-      margin: 1vh 0;
+      margin: 1vh 0 0;
     }
 
     h2 {

@@ -7,41 +7,20 @@ const SlidesInfoCard: React.FC<SpaceShip> = (spaceship) => {
   const { model, rating, desc, performance } = spaceship;
 
   const variants = {
-    hidden: { scale: 1.2, rotateY: 90, x: 15 },
-    visible: {
-      x: 0,
-      scale: 1,
-      rotateY: 0,
-      transition: {
-        type: 'spring',
-        delay: 0.2,
-        stiffness: 100,
-        damping: 10,
-        mass: 1,
-      },
-    },
-    exit: {
-      x: 15,
-      scale: 1.2,
-      rotateY: -90,
-      transition: {
-        type: 'spring',
-        stiffness: 300,
-        damping: 30,
-        mass: 1,
-        velocity: 5,
-        restSpeed: 10,
-      },
-    },
+    initial: { x: '75%', opacity: 0 },
+    animate: { x:     0, opacity: 1 },
+       exit: { x: '75%', opacity: 0 },
   };
 
   return (
     <motion.article
       className={css.article}
-        initial='hidden'
-        animate='visible'
-           exit='exit'
-       variants={variants}
+      {...variants}
+      transition={{
+             type: 'spring',
+        stiffness: 500,
+          damping: 50,
+      }}
     >
       <div className={css.info}>
         <h2>{model}</h2>

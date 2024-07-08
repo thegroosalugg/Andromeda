@@ -29,9 +29,9 @@ const SlideShow = () => {
             src={ships[index].image}
             alt={ships[index].model}
             initial={{ rotate: -45, opacity: 0, x: -200 }}
-            animate={{ rotate: 0, opacity: 1, x: 0 }}
-            exit={{ rotate: 45, opacity: 0, x: 200 }}
-            transition={{ type: 'linear', duration: 0.6 }}
+            animate={{ rotate:   0, opacity: 1, x:    0 }}
+               exit={{ rotate:  45, opacity: 0, x:  200 }}
+         transition={{ type: 'tween', ease: 'linear', duration: 0.5 }}
             onClick={handleClick}
           />
         </AnimatePresence>
