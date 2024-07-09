@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Fragment } from 'react/jsx-runtime';
-import { CONTENT } from '../Text';
+import { CONTENT } from '../text';
 import css from './Article.module.css';
 
 export default function Article() {
