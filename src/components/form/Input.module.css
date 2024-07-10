@@ -48,15 +48,15 @@ input:-webkit-autofill:active {
 
 @media screen and (min-width: 320px) and (max-width: 440px) {
   .input,
-  .datepicker {
-    height: 1rem;
-    width: 125px;
-    font-size: 0.5rem;
-  }
+  .datepicker,
   .select {
     height: 1rem;
     width: 125px;
-    font-size: 0.4rem;
+    font-size: 0.7rem;
+    font-weight: 100;
+  }
+  .select {
+    font-size: 0.6rem;
   }
   .select option {
     font-size: 0.8rem;

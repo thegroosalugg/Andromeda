@@ -5,6 +5,7 @@ import { updateData } from '@/store/formSlice';
 import useSearch from '@/hooks/useSearch';
 import { RootState } from '@/store/types';
 import SpaceShip from '@/models/SpaceShip';
+import css from './Price.module.css'
 
 const Price = ({ bookedId, bookedPrice }: { bookedId?: string; bookedPrice?: string }) => {
   const dispatch = useDispatch();
@@ -38,7 +39,7 @@ const Price = ({ bookedId, bookedPrice }: { bookedId?: string; bookedPrice?: str
     <AnimatePresence mode='wait'>
       <motion.p
         key={message}
-        style={{ color: 'white', margin: '0.5rem auto' }}
+        className={css.price}
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 10 }}
