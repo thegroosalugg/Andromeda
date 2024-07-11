@@ -28,10 +28,10 @@
 
   .items {
     background: linear-gradient(to right, #2c5364);
-    padding: 1rem;
+    padding: 0 1rem 0 0;
     overflow: auto;
-    border-top: 1.5rem solid transparent;
-    border-bottom: 1.5rem solid transparent;
+    border-top: 1.1rem solid transparent;
+    border-bottom: 1.1rem solid transparent;
 
     .list {
       width: 150px;
@@ -40,6 +40,17 @@
       gap: 0.5rem;
       list-style: none;
       padding: 0;
+    }
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 440px) {
+  .order {
+    height: 8rem;
+    font-size: 0.8rem;
+
+    .details {
+      width: 125px;
     }
   }
 }
