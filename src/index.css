@@ -4,18 +4,19 @@ body {
   background: url('/wallpaper.jpeg') center/cover no-repeat;
   font-family: 'Montserrat', sans-serif;
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
 }
 
-main {
-  flex-grow: 1;
+#root {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  max-height: 100%; /* ensures main doesn't outgrow the body creating overflow */
   overflow: hidden;
+}
+
+#main {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
 }
 
 /* hidethescrollbar */

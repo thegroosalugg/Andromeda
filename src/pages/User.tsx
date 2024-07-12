@@ -26,7 +26,7 @@ export default function UserPage() {
       <motion.section
         key={user as null}
         exit={{ y: 100, opacity: 0, transition: { duration: 0.6 } }}
-        style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}
+        style={{ display: 'flex', flexDirection: 'column' }}
       >
         {page}
       </motion.section>
