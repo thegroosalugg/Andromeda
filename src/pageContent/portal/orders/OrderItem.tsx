@@ -11,8 +11,8 @@ export default function OrderItem(clothes: Clothes) {
         <h6>{brand}</h6>
         <h6>{name}</h6>
         <p>
-          <span>${+price * quantity}</span>
           <span>{' x ' + quantity}</span>
+          <span>${+price * quantity}</span>
         </p>
       </section>
     </article>

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import ufo from '../../../assets/ufo/UFO.png'
+import ufo from '../../../assets/ufo/UFO.png';
 import beam from '../../../assets/ufo/beam.png';
 import css from './UFO.module.css';
 
@@ -22,7 +22,7 @@ export default function UFO() {
       <motion.img
         src={ufo}
         alt='ufo'
-        initial={{ opacity: 0, y: -100 }}
+        initial={{ opacity: 0, y: '-70%' }}
         whileInView={{
           opacity: [0.2, 0.4, 0.6, 0.8, 1],
           y: 0,
@@ -34,13 +34,8 @@ export default function UFO() {
       <motion.img
         src={beam}
         alt='beam'
-        initial={{ opacity: 0, y: -105, scale: 0.8, scaleX: 0.7 }}
-        whileInView={{
-          opacity: [0, 1, 0, 1, 1, 1, 0, 1],
-          y: -105,
-          scale: 0.8,
-          scaleX: 0.7,
-        }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: [0, 1, 0, 1, 1, 1, 0, 1] }}
         transition={{
           type: 'easeIn',
           delay: 6,

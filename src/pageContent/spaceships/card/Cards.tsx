@@ -8,7 +8,7 @@ import rocket6 from '@/assets/rockets/rocket6.jpg';
 import rocket7 from '@/assets/rockets/rocket7.jpg';
 import rocket8 from '@/assets/rockets/rocket8.jpg';
 import rocket9 from '@/assets/rockets/rocket9.jpg';
-import { CONTENT } from '../Text';
+import { CONTENT } from '../text';
 import { motion } from 'framer-motion';
 import Card from './Card';
 import css from './Cards.module.css';

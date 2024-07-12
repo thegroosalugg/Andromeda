@@ -6,39 +6,44 @@
   list-style: none;
   padding: 2rem 1rem 0.5rem 1rem;
   margin: 0;
-}
 
-.nav a {
-  text-decoration: none;
-  font-size: 1rem;
-  font-family: 'Orbitron', sans-serif;
-  transition: 0.4s ease-in-out;
-}
+  a {
+    text-decoration: none;
+    font-size: 1rem;
+    font-family: 'Orbitron', sans-serif;
+    transition: 0.4s ease-in-out;
+  }
 
-.nav p {
-  margin: 0;
+  p {
+    margin: 0;
+    text-align: center;
+  }
 }
 
 .idle {
   text-shadow: 1px 1px 2px rgb(0, 0, 0);
 }
 
-.active, .idle:hover {
+.active,
+.idle:hover {
   color: #3587ad;
 }
 
-.idle, .active:hover {
-  color: #EFEFEF;
+.idle,
+.active:hover {
+  color: #efefef;
 }
 
-.active, .active:hover, .idle:hover {
+.active,
+.active:hover,
+.idle:hover {
   text-shadow: 1px 1px 2px rgb(45, 44, 44);
 }
 
 .ufo {
   margin: auto;
-  width: 3rem;
-  height: 3rem;
+  width: 5rem;
+  height: 5rem;
   background: url('/ufo-svgrepo-com.svg') center/cover no-repeat;
 }
 
@@ -47,4 +52,15 @@
   border: 0.1rem solid #3587ad;
   border-radius: 8px;
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+@media screen and (min-width: 320px) and (max-width: 440px) {
+  .nav a {
+    font-size: 70%;
+  }
+
+  .ufo {
+    height: 2.8rem;
+    width: 2.8rem;
+  }
 }

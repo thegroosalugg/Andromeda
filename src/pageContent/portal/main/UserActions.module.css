@@ -7,7 +7,8 @@
 }
 
 /* .button class refers to UserPortal button also importing most of these styles, .actions button is for UserActions */
-.actions button, .button {
+.actions button,
+.button {
   font-family: 'Orbitron', sans-serif;
   color: #ffffff;
   font-size: larger;
@@ -17,7 +18,8 @@
   transition: 0.5s ease;
 }
 
-.actions button:hover, .button:hover {
+.actions button:hover,
+.button:hover {
   transform: scale(1.1);
   text-shadow: 1px 1px 2px #111111;
   color: #bf3921cd;
@@ -33,4 +35,11 @@
 
 .button:hover {
   color: #59d067cd;
+}
+
+@media screen and (min-width: 320px) and (max-width: 440px) {
+  .actions button,
+  .button {
+    font-size: smaller;
+  }
 }

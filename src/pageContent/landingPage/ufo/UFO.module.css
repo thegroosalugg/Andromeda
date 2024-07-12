@@ -3,11 +3,32 @@
   flex-direction: column;
   place-items: center;
   margin-top: 2rem;
-  margin-bottom: -350px;
+  margin-bottom: -225px;
   position: relative;
   z-index: 2;
+
+  img:first-of-type {
+    width: 300px;
+  }
+
+  img:last-of-type {
+    width: 180px;
+    margin-top: -80px;
+  }
 }
 
-.ufo img {
-  width: 300px;
+@media screen and (min-width: 320px) and (max-width: 440px) {
+  .ufo {
+    margin-top: 0;
+    margin-bottom: -122px;
+
+    img:first-of-type {
+      width: 150px;
+    }
+
+    img:last-of-type {
+      width: 90px;
+      margin-top: -40px;
+    }
+  }
 }

@@ -1,52 +1,68 @@
 .card {
   display: flex;
-  gap: 3rem;
+  gap: 2rem;
   justify-content: center;
-  margin: 2rem auto;
+  margin: 1rem auto;
   background-color: transparent;
-}
 
-.card img {
-  width: 300px;
-  height: 300px;
-  box-shadow: 4px 4px 8px rgb(29, 26, 26);
-}
+  img {
+    width: 250px;
+    height: 250px;
+    box-shadow: 4px 4px 8px rgb(29, 26, 26);
+  }
 
-.card p {
-  width: 300px;
-  height: 300px;
-  box-sizing: border-box;
-  padding: 1rem 0;
-  margin: 0;
-  border-top: 1rem solid transparent;
-  border-bottom: 1rem solid transparent;
-  overflow: auto;
-  font-weight: 100;
-  line-height: 1.3;
-  color: rgb(245, 250, 255);
-  text-shadow: 2px 2px 4px rgb(29, 26, 26);
+  p {
+    width: 250px;
+    overflow: auto;
+    font-weight: 100;
+    line-height: 1.3;
+    color: rgb(245, 250, 255);
+    text-shadow: 2px 2px 4px rgb(29, 26, 26);
+  }
 }
 
 .left {
   flex-wrap: wrap;
+
+  img {
+    border-radius: 50px 5px 50px 5px;
+  }
+
+  p {
+    text-align: start;
+  }
 }
 
 .right {
   flex-wrap: wrap-reverse;
+
+  img {
+    border-radius: 5px 50px 5px 50px;
+  }
+
+  p {
+    text-align: end;
+  }
 }
 
-.left img {
-  border-radius: 50px 5px 50px 5px;
-}
+@media screen and (min-width: 320px) and (max-width: 440px) {
+  .card {
+    img {
+      width: 125px;
+      height: 125px;
+    }
 
-.left p {
-  text-align: start;
-}
+    p {
+      width: 125px;
+      font-size: 50%;
+    }
+  }
 
-.right img {
-  border-radius: 5px 50px 5px 50px;
-}
+  .left img {
+    border-radius: 25px 5px 25px 5px;
+  }
 
-.right p {
-  text-align: end;
+  .right img {
+    border-radius: 5px 25px 5px 25px;
+  }
 }

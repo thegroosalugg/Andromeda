@@ -14,10 +14,12 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding: 0 0.4rem;
 
     h6,
     p {
       margin: 0;
+      font-size: 0.6rem;
     }
 
     h6 {
@@ -25,7 +27,6 @@
     }
 
     p {
-      font-size: 0.7rem;
       display: flex;
       justify-content: space-between;
     }

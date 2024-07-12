@@ -11,7 +11,7 @@ import css from './Credits.module.css';
 export default function Credits() {
   // prettier-ignore
   const images = [
-    { img:    freepik, link: 'https://www.freepik.com/sign-up?client_id=freepik&lang=en' },
+    { img:    freepik, link: 'https://www.freepik.com/' },
     { img:    svgrepo, link: 'https://www.svgrepo.com/' },
     { img:    PNGwing, link: 'https://www.pngwing.com/' },
     { img:   cleanpng, link: 'https://www.cleanpng.com/' },

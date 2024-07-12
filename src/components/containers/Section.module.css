@@ -5,3 +5,10 @@
   margin: 2rem auto;
   gap: 1rem;
 }
+
+@media screen and (min-width: 320px) and (max-width: 720px) {
+  .section {
+    margin: 1vh auto;
+    gap: 1vh;
+  }
+}

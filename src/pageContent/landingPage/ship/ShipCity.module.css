@@ -1,12 +1,22 @@
 .city {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   flex-wrap: wrap;
   margin-top: 2rem;
+
+  img {
+    width: 120px;
+  }
 }
 
-.city img {
-  width: 120px;
+@media screen and (min-width: 320px) and (max-width: 440px) {
+  .city {
+    margin-top: 0;
+
+    img {
+      width: 70px;
+    }
+  }
 }
