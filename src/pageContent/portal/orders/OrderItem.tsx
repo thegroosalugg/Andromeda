@@ -12,7 +12,7 @@ export default function OrderItem(clothes: Clothes) {
         <h6>{name}</h6>
         <p>
           <span>{' x ' + quantity}</span>
-          <span>${+price * quantity}</span>
+          <span>${(+price * quantity).toFixed(2)}</span>
         </p>
       </section>
     </article>

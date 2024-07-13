@@ -24,6 +24,7 @@
       text-align: end;
       font-weight: 200;
       overflow: hidden;
+      text-wrap: nowrap;
       text-overflow: ellipsis;
     }
   }
