@@ -4,79 +4,79 @@
   display: flex;
   flex-direction: column;
   place-items: center;
-}
 
-.ship {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 400px;
-  max-width: 100%;
-}
+  .ship {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    max-width: 100%;
 
-.ship h5 {
-  margin: 0 0 0.3rem;
-  color: #f0f8ff;
-}
+    h5 {
+      margin: 0 0 0.3rem;
+      color: #f0f8ff;
+    }
 
-.ship h6 {
-  margin: 0.4rem 0;
-  color: #c6a872;
-}
+    h6 {
+      margin: 0.4rem 0;
+      color: #c6a872;
+    }
 
-.ship img {
-  width: 100%;
-}
+    img {
+      width: 100%;
+    }
+  }
 
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.5rem;
-  margin: 1rem auto 0.5rem;
-}
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 1rem auto 0.5rem;
 
-.col {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-}
+    .col {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
 
-.col p {
-  margin: 0 0 0 0.5rem;
-  font-size: smaller;
-  color: #f0f8ff;
-}
+      p {
+        margin: 0 0 0 0.5rem;
+        font-size: smaller;
+        color: #f0f8ff;
+      }
+    }
+  }
+  
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    justify-content: center;
+    margin: 0.5rem 0;
 
-.actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.8rem;
-  justify-content: center;
-  margin: 0.5rem 0;
-}
+    button {
+      font-family: 'Orbitron', sans-serif;
+      font-size: smaller;
+      color: #f0f8ff;
+      border: 1px solid #f0f8ff;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.5s ease;
 
-.actions button {
-  font-family: 'Orbitron', sans-serif;
-  font-size: smaller;
-  color: #f0f8ff;
-  border: 1px solid #f0f8ff;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: 0.5s ease;
-}
+      &:hover {
+        transform: scale(1.1);
+        background: #f0f8ffd9;
+        color: #8360c3;
+        border: 1px solid #8360c3;
+      }
+    }
 
-.actions button:hover {
-  transform: scale(1.1);
-  background: #f0f8ffd9;
-  color: #8360c3;
-  border: 1px solid #8360c3;
-}
+    .update {
+      background: none;
+    }
 
-.update {
-  background: none;
-}
-
-.delete {
-  background: #f64f5a7f;
+    .delete {
+      background: #f64f5a7f;
+    }
+  }
 }

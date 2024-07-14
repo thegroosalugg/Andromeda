@@ -24,11 +24,11 @@
   width: 165px;
   font-weight: 100;
   font-size: 0.7rem;
-}
 
-.select option {
-  color: black;
-  font-size: 1rem;
+  option {
+    color: black;
+    font-size: 1rem;
+  }
 }
 
 .input::placeholder {
@@ -55,10 +55,11 @@ input:-webkit-autofill:active {
     font-size: 0.7rem;
     font-weight: 100;
   }
+
   .select {
     font-size: 0.6rem;
-  }
-  .select option {
-    font-size: 0.8rem;
+    option {
+      font-size: 0.8rem;
+    }
   }
 }

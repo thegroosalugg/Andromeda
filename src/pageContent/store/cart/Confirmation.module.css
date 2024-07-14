@@ -8,10 +8,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
 
-.tick img {
-  width: 3rem;
+  img {
+    width: 3rem;
+  }
 }
 
 .text {
