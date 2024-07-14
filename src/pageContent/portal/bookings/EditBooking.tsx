@@ -6,11 +6,11 @@ import useValidate from '@/hooks/useValidate';
 import useCloseModal from '@/hooks/useCloseModal';
 import Dates from '@/components/form/Dates';
 import Select from '@/components/form/Select';
+import Price from '@/components/form/Price';
 import Booking from '@/models/Booking';
 import SpaceShip from '@/models/SpaceShip';
 import formatDate from '@/util/formatDate';
 import css from './EditBooking.module.css';
-import Price from '@/components/form/Price';
 
 // using ? & ! looks like a contradiction at first, but its not. This allows the Modal to properly animate out.
 // It doesn't matter during this period that booking/ship are temporarily null. The issue was occuring due to both,
