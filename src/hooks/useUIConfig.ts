@@ -12,7 +12,7 @@ const config: Config = {
          '/': { borderBottom: 'none', text: 'Welcome to Andromeda' },
     '/store': { background: '#252324F3', borderBottom: 'none', text: 'Out of this World Fashion' },
     '/ships': { background: '#232728F9', text: 'Omega Collection' },
-  '/explore': { background: '#56632fCC', text: 'Exploring the Galaxy' },
+  '/explore': { background: '#1b1f3be9', text: 'Exploring the Galaxy' },
      '/user': { background: '#274046F9', text: 'Space Portal' }
 };
 
