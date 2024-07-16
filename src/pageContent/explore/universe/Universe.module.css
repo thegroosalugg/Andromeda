@@ -3,7 +3,6 @@
   flex: 1;
   display: flex;
   align-items: center;
-  margin: auto;
   overflow: auto;
   width: 100%;
 }

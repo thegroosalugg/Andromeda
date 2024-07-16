@@ -1,72 +1,70 @@
-.system, .sun, .asteroids {
+.system,
+.sun,
+.asteroids {
   align-self: stretch;
   display: flex;
   align-items: center;
-  border: 1px solid transparent;
-  border-top: 0;
+  justify-content: space-evenly;
+  box-sizing: border-box;
+  border: 2px solid transparent;
   transition: 0.5s ease-in-out;
 
   &:hover {
-    border: 1px solid #FFFFFF;
-    border-top: 0;
+    border: 2px solid #ffffff;
+    border-top: 2px solid transparent;
   }
 }
 
 .sun {
+  flex-basis: 10%;
+
   img {
-    width: 400px;
+    width: 300px;
   }
 }
 
 .asteroids {
-  width: 150px;
+  flex-basis: 10%;
   flex-direction: column;
-  justify-content: center;
-  align-items: flex-end;
-  padding: 0 0.3em;
+  padding: 0 2rem 0 0.5rem;
 
   img {
-    width: 90px;
-    margin: -5px 0;
     filter: sepia(1) hue-rotate(5deg);
-
-  }
-
-  img:nth-child(2),
-  img:nth-child(4) {
-    width: 80px;
-    /* margin: -5px 20px -5px 1rem; */
-    margin-right: 15px;
-  }
-
-  img:nth-child(1),
-  img:nth-child(5) {
-    width: 60px;
-    margin-right: 40px;
-    /* margin: -5px 45px -5px 1rem; */
   }
 
   img:nth-child(1) {
-    transform: rotate(125deg);
+    width: 55px;
+    transform: translateX(-20px) translateY(21px);
   }
   img:nth-child(2) {
-    transform: rotate(65deg);
+    width: 65px;
+    transform: translateY(14px) rotate(220deg);
   }
   img:nth-child(3) {
-    transform: rotate(180deg);
+    width: 80px;
+    transform: translateX(10px) translateY(7px) rotate(360deg);
   }
   img:nth-child(4) {
-    transform: rotate(135deg);
+    width: 70px;
+    transform: translateX(5px) rotate(230deg);
   }
   img:nth-child(5) {
-    transform: rotate(-270deg);
+    width: 60px;
+    transform: translateY(-7px) rotate(330deg);
+  }
+  img:nth-child(6) {
+    width: 50px;
+    transform: translateX(-5px) translateY(-14px) rotate(-200deg);
+  }
+  img:nth-child(7) {
+    width: 40px;
+    transform: translateX(-10px) translateY(-21px) rotate(250deg);
   }
 }
 
 .system {
-  width: fit-content;
+  flex-basis: 40%;
   padding: 0 1rem;
-  box-sizing: border-box;
   gap: 2rem;
 
   img {
@@ -78,30 +76,31 @@
   }
   .venus {
     width: 35px;
-    margin-bottom: 5%;
+    transform: translateY(-15px);
   }
   .earth {
     width: 45px;
-    margin-bottom: 10%;
+    transform: translateY(-30px);
   }
   .mars {
     width: 27px;
-    margin-bottom: 20%;
+    transform: translateY(-40px);
   }
   .jupiter {
-    width: 225px;
-    margin-top: 2.5%;
+    width: 150px;
+    transform: translateY(-50px);
   }
   .saturn {
-    width: 300px;
-    margin: 2% -55px 0 -35px;
+    width: 200px;
+    margin: 0 -35px;
+    transform: translateY(-30px);
   }
   .uranus {
-    width: 112px;
-    margin-bottom: 5%;
+    width: 100px;
+    transform: translateY(20px);
   }
   .neptune {
-    width: 98px;
-    margin-bottom: 15%;
+    width: 80px;
+    transform: translateY(60px);
   }
 }

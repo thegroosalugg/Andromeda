@@ -20,8 +20,7 @@ export default function InnerSystem({ outer }: { outer?: boolean }) {
   return (
     <>
       <div className={css[findClass(sunOrAsteroids)]}>
-        {/* <img src={sunOrAsteroids} alt={sunOrAsteroids} /> */}
-        {Array.from({ length: outer ? 5 : 1 }).map((_, index) => (
+        {Array.from({ length: outer ? 7 : 1 }).map((_, index) => (
           <img key={index} src={sunOrAsteroids} alt={sunOrAsteroids} />
         ))}
       </div>
