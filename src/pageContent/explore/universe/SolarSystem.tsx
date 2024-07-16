@@ -19,11 +19,12 @@ export default function InnerSystem({ outer }: { outer?: boolean }) {
 
   return (
     <>
-      <img
-        src={sunOrAsteroids}
-        alt={sunOrAsteroids}
-        className={css[findClass(sunOrAsteroids)]}
-      />
+      <div className={css[findClass(sunOrAsteroids)]}>
+        {/* <img src={sunOrAsteroids} alt={sunOrAsteroids} /> */}
+        {Array.from({ length: outer ? 5 : 1 }).map((_, index) => (
+          <img key={index} src={sunOrAsteroids} alt={sunOrAsteroids} />
+        ))}
+      </div>
       <section className={css.system}>
         {planets.map((planet) => (
           <img src={planet} alt={planet} key={planet} className={css[findClass(planet)]} />
