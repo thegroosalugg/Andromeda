@@ -12,18 +12,20 @@ const config: Config = {
          '/': { borderBottom: 'none', text: 'Welcome to Andromeda' },
     '/store': { background: '#252324F3', borderBottom: 'none', text: 'Out of this World Fashion' },
     '/ships': { background: '#232728F9', text: 'Omega Collection' },
-  '/explore': { background: '#1b1f3be9', text: 'Exploring the Galaxy' },
+  '/explore': { background: '#1b1f3ba9', text: 'Exploring the Galaxy' },
      '/user': { background: '#274046F9', text: 'Space Portal' }
 };
 
 const useUIConfig = () => {
   const { pathname } = useLocation();
   const configuredPath = { ...config.default, ...config[pathname] }; // add all default values then overwrite any uniques
+  const backgroundUrl = pathname === '/explore' ? '/wallpaper2.jpg' : '/wallpaper.jpeg'
 
   const dispatch = useDispatch(); // this block is unrelated to this hook. It needs to be placed in a high level component...
   useEffect(() => { // ...so that it executes before any path components. Redux form data state requires programmatic resetting
+    document.body.style.background = `url(${backgroundUrl}) center/cover no-repeat`; // this changes background for explore page
     dispatch(clearForm());
-  }, [dispatch, pathname]);
+  }, [dispatch, pathname, backgroundUrl]);
 
   return { pathname, ...configuredPath };
 };

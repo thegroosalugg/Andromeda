@@ -15,7 +15,7 @@ export default function InnerSystem({ outer }: { outer?: boolean }) {
   return (
     <section className={css.system}>
       {planets.map((planet) => (
-        <img src={planet} alt={planet} key={planet} />
+        <img src={planet} alt={planet} key={planet} className='' />
       ))}
     </section>
   );

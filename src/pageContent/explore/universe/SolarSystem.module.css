@@ -1,5 +1,19 @@
 .system {
+  display: flex;
+  gap: 2rem;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  height: fit-content;
+  padding: 1rem;
+  transition: 0.5s ease-in-out;
+
+  &:hover {
+    /* border: 1px solid #FFFFFF; */
+    box-shadow: 5px 5px 10px #1c1b1b;
+  }
+
   img {
+    height: 50px;
     width: 50px;
   }
 }
