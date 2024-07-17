@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { motion } from 'framer-motion';
 import { useDispatch } from 'react-redux';
-import { toggle } from '@/store/modalSlice';
+import { openModal } from '@/store/modalSlice';
 import Clothes from '@/models/Clothes';
 import css from './OpenCart.module.css';
 
@@ -11,7 +11,7 @@ export default function OpenCart({ items }: { items: Clothes[] }) {
   return (
     <div className={css['open-cart']}>
       <motion.button
-        onClick={() => dispatch(toggle())}
+        onClick={() => dispatch(openModal())}
         initial={{ y: -100, x: -20, rotate: 540 }}
         animate={{ y: [25, 0], x: 0, rotate: 0 }}
         exit={{ y: 100, rotate: 540, opacity: 0, transition: { type: 'easeOut', duration: 0.4 } }}

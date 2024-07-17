@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useDispatch } from 'react-redux';
 import { deleteBooking } from '@/store/userSlice';
 import useValidate from '@/hooks/useValidate';
-import useCloseModal from '@/hooks/useCloseModal';
+import useClearModal from '@/hooks/useClearModal';
 import Dates from '@/components/form/Dates';
 import Select from '@/components/form/Select';
 import Price from '@/components/form/Price';
@@ -23,7 +23,7 @@ const EditBooking = ({ id: userId, ship, booking }: { id: string, ship?: SpaceSh
   const { maker, model, image } = ship!;
   const validate = useValidate({ update: { userId, booking } });
   const dispatch = useDispatch();
-  const closeModal = useCloseModal();
+  const closeModal = useClearModal();
   const [confirmDialog, setConfirmDialog] = useState(false);
 
   function confirmHandler() {

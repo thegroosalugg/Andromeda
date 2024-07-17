@@ -1,7 +1,6 @@
-import { clearForm } from '@/store/formSlice';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
+import useClearModal from './useClearModal';
 
 interface Config {
   [pathname: string]: { background?: string; borderBottom?: string; text: string };
@@ -21,11 +20,12 @@ const useUIConfig = () => {
   const configuredPath = { ...config.default, ...config[pathname] }; // add all default values then overwrite any uniques
   const backgroundUrl = pathname === '/explore' ? '/wallpaper2.jpg' : '/wallpaper.jpeg'
 
-  const dispatch = useDispatch(); // this block is unrelated to this hook. It needs to be placed in a high level component...
-  useEffect(() => { // ...so that it executes before any path components. Redux form data state requires programmatic resetting
+  const clearModal = useClearModal() // this block is unrelated to this hook. It needs to be placed in a high level component...
+  useEffect(() => { // ...so that it executes before any path components. Redux Modal & FormData states require programmatic cleaning
     document.body.style.background = `url(${backgroundUrl}) center/cover no-repeat`; // this changes background for explore page
-    dispatch(clearForm());
-  }, [dispatch, pathname, backgroundUrl]);
+
+    clearModal();
+  }, [clearModal, pathname, backgroundUrl]);
 
   return { pathname, ...configuredPath };
 };
