@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import useClearModal from './useClearModal';
 
@@ -18,16 +18,17 @@ const config: Config = {
 const useUIConfig = () => {
   const { pathname } = useLocation();
   const configuredPath = { ...config.default, ...config[pathname] }; // add all default values then overwrite any uniques
+  const [prevPath, setPrevPath] = useState(pathname);
   const backgroundUrl = pathname === '/explore' ? '/wallpaper2.jpg' : '/wallpaper.jpeg'
 
   const clearModal = useClearModal() // this block is unrelated to this hook. It needs to be placed in a high level component...
   useEffect(() => { // ...so that it executes before any path components. Redux Modal & FormData states require programmatic cleaning
     document.body.style.background = `url(${backgroundUrl}) center/cover no-repeat`; // this changes background for explore page
-
+    setPrevPath(pathname);
     clearModal();
   }, [clearModal, pathname, backgroundUrl]);
 
-  return { pathname, ...configuredPath };
+  return { pathname, prevPath, ...configuredPath };
 };
 
 export default useUIConfig;
