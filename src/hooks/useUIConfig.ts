@@ -19,13 +19,24 @@ const useUIConfig = () => {
   const { pathname } = useLocation();
   const configuredPath = { ...config.default, ...config[pathname] }; // add all default values then overwrite any uniques
   const [prevPath, setPrevPath] = useState(pathname);
+  const clearModal = useClearModal()
   const backgroundUrl = pathname === '/explore' ? '/wallpaper2.jpg' : '/wallpaper.jpeg'
 
-  const clearModal = useClearModal() // this block is unrelated to this hook. It needs to be placed in a high level component...
-  useEffect(() => { // ...so that it executes before any path components. Redux Modal & FormData states require programmatic cleaning
+  // useUIConfig always runs on every route and this useEffect block will clean up components / add additional conditions
+  useEffect(() => {
     document.body.style.background = `url(${backgroundUrl}) center/cover no-repeat`; // this changes background for explore page
-    setPrevPath(pathname);
-    clearModal();
+    setPrevPath(pathname); // record prev path
+    clearModal(); // ensure modal is cleaned on each route/refresh
+
+    document.body.style.overflow = 'hidden'; // disable page scroll temporarily
+    const timer = setTimeout(() => {
+      document.body.style.overflow = '';
+    }, 500);
+
+    return () => {
+      clearTimeout(timer); // enable page scroll after delay
+    };
+
   }, [clearModal, pathname, backgroundUrl]);
 
   return { pathname, prevPath, ...configuredPath };
