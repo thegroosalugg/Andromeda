@@ -28,14 +28,20 @@
   .icons {
     display: flex;
     justify-content: space-between;
+    gap: 0.5rem;
     margin-top: auto;
     padding: 2rem;
     font-size: smaller;
     color: rgb(184, 154, 79);
 
-    p {
-      margin: 0.5rem;
-      color: #d4d8de;
+    div {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+
+      span {
+        color: #d4d8de;
+      }
     }
   }
 }
@@ -62,7 +68,7 @@
       padding: 2vw;
       font-size: smaller;
 
-      p {
+      div {
         margin: 0.5vw;
       }
     }

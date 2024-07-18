@@ -11,7 +11,7 @@ const ShipDetails: React.FC<SpaceShip> = (spaceship) => {
       <motion.img
         src={image}
         alt={model}
-        initial={{ opacity: 0, scale: 0.95 }}
+        initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, delay: 0.5 }}
       />
