@@ -1,0 +1,14 @@
+.universe {
+  align-self: center;
+  flex: 1;
+  display: flex;
+  align-items: stretch;
+  overflow: auto;
+  width: 100%;
+}
+
+@media screen and (max-width: 440px) {
+  .universe {
+    flex-direction: column;
+  }
+}
