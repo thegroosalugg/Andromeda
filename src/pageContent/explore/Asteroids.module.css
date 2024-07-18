@@ -26,7 +26,7 @@
 @media screen and (max-width: 440px) {
   .asteroids {
     flex-direction: row;
-    padding: 1rem 0;
+    padding: 0.5rem 0;
 
     &:hover {
       border-top: 2px solid #ffffff;

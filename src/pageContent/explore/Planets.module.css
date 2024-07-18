@@ -2,7 +2,7 @@
   flex-basis: 40%;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
   gap: 2rem;
   padding: 0 1rem;
   box-sizing: border-box;
