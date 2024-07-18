@@ -1,5 +1,5 @@
 import TheSun from './Sun';
-import SolarSystem from './SolarSystem';
+import Planets from './Planets';
 import Asteroids from './Asteroids';
 import css from './Universe.module.css';
 
@@ -7,9 +7,9 @@ export default function Universe() {
   return (
     <section className={css.universe}>
       <TheSun />
-      <SolarSystem />
+      <Planets />
       <Asteroids />
-      <SolarSystem outer />
+      <Planets outer />
     </section>
   );
 }
