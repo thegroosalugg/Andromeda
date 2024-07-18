@@ -13,7 +13,7 @@
     width: 90px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     padding: 0 0.4rem;
 
     h6,
@@ -24,6 +24,8 @@
 
     h6 {
       font-weight: 600;
+      display: flex;
+      flex-direction: column;
     }
 
     p {
