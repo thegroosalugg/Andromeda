@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import mercury from '@/assets/planets/mercury.png';
 import venus from '@/assets/planets/venus.png';
 import earth from '@/assets/planets/earth.png';
@@ -15,10 +16,24 @@ export default function Planets({ outer }: { outer?: boolean }) {
     image.match(/(mercury|venus|earth|mars|jupiter|saturn|uranus|neptune)/)![0];
 
   return (
-    <section className={css.planets}>
+    <motion.section
+      className={css.planets}
+      initial='hidden'
+      animate='visible'
+      transition={{ staggerChildren: 0.2, delayChildren: outer ? 1 : 0.5 }}
+    >
       {planets.map((planet) => (
-        <img src={planet} alt={planet} key={planet} className={css[findClass(planet)]} />
+        <motion.div
+          key={planet}
+          variants={{
+            hidden: { opacity: 0, scale: 0 },
+            visible: { opacity: [0, 1], scale: 1 },
+          }}
+          transition={{ type: 'tween', ease: 'linear', duration: 0.5 }}
+        >
+          <img src={planet} alt={planet} className={css[findClass(planet)]} />
+        </motion.div>
       ))}
-    </section>
+    </motion.section>
   );
 }

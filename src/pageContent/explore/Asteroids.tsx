@@ -15,7 +15,7 @@ export default function Asteroids() {
     <motion.div
       initial='hidden'
       animate='visible'
-      transition={{ staggerChildren: 0.05 }}
+      transition={{ staggerChildren: 0.05, delayChildren: 0.5 }}
       className={css['asteroids']}
     >
       {Array.from({ length: numRows }).map((_, rowIndex) => (
