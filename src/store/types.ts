@@ -4,22 +4,22 @@ import User from '@/models/User';
 import { FormData } from '@/models/FormData'
 
 interface ItemsState {
-  ships: SpaceShip[];
-  clothes: Clothes[];
+    ships: SpaceShip[];
+  clothes:   Clothes[];
 }
 
 interface ModalState {
   isOpen: boolean;
-  item: { [key: string]: unknown } | null;
+    item: { [key: string]: unknown } | null;
 }
 
 interface UserState {
   users: User[];
-  user: User | null;
+   user: User | null;
 }
 
 interface FormState {
-  data: FormData;
+    data: FormData;
   errors: FormData;
 }
 
@@ -27,10 +27,15 @@ interface CartState {
   items: Clothes[];
 }
 
+interface ActiveState {
+  components: string[];
+}
+
 export interface RootState {
-  items: ItemsState;
-  modal: ModalState;
-  users: UserState;
-  form: FormState;
-  cart: CartState;
+   items:  ItemsState;
+   modal:  ModalState;
+   users:   UserState;
+    form:   FormState;
+    cart:   CartState;
+  active: ActiveState;
 }

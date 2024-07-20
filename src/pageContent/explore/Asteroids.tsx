@@ -7,7 +7,7 @@ import rand from '@/util/rand';
 export default function Asteroids() {
   const { width } = useScreen();
   const flexRow = width > 440;
-  const multiplier = flexRow ? 0.015 : 0.04;
+  const multiplier = flexRow ? 0.012 : 0.04;
 
   const numRows = Math.ceil(width * multiplier);
 

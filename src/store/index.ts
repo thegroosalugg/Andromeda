@@ -1,9 +1,10 @@
-import { configureStore, Middleware, combineReducers  } from '@reduxjs/toolkit';
-import itemsSlice from './itemsSlice';
-import modalSlice from './modalSlice';
-import userSlice from './userSlice';
-import formSlice from './formSlice'
-import cartSlice from './cartSlice';
+import { configureStore, Middleware, combineReducers } from '@reduxjs/toolkit';
+import  itemsSlice from './itemsSlice';
+import  modalSlice from './modalSlice';
+import   userSlice from './userSlice';
+import   formSlice from './formSlice';
+import   cartSlice from './cartSlice';
+import activeSlice from './activeSlice';
 
 const localStorageMiddleware: Middleware = (store) => (next) => (action) => {
   const result = next(action);
@@ -12,11 +13,12 @@ const localStorageMiddleware: Middleware = (store) => (next) => (action) => {
 };
 
 const rootReducer = combineReducers({
-  items: itemsSlice,
-  modal: modalSlice,
-  users: userSlice,
-  form: formSlice,
-  cart: cartSlice,
+   items: itemsSlice,
+   modal: modalSlice,
+   users: userSlice,
+    form: formSlice,
+    cart: cartSlice,
+  active: activeSlice,
 });
 
 const store = configureStore({
