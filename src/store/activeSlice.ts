@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  components: ['TheSun', 'InnerPlanets', 'Asteroids', 'OuterPlanets'],
+  components: ['sun', 'inner', 'asteroids', 'outer'],
 };
 
 const activeSlice = createSlice({

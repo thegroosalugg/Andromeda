@@ -6,15 +6,15 @@ import Asteroids from './Asteroids';
 import css from './Universe.module.css';
 
 export default function Universe() {
-  const components = useSelector((state: RootState) => state.active);
-  console.log(components)
+  const { components } = useSelector((state: RootState) => state.active);
+  console.log(components); // logData
 
   return (
     <section className={css.universe}>
-      <TheSun />
-      <Planets />
-      <Asteroids />
-      <Planets outer />
+      {components.includes('sun')       && <TheSun />}
+      {components.includes('inner')     && <Planets />}
+      {components.includes('asteroids') && <Asteroids />}
+      {components.includes('outer')     && <Planets outer />}
     </section>
   );
 }

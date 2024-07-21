@@ -99,7 +99,7 @@ const useValidate = ({ withOrder, withBooking, update, loggingIn }: ValidateOpti
         !loggingIn && withBooking && navigate('/user');
       }
     }
-    clearAndLog({ errors }, { data }, { user }, { users });
+    clearAndLog({ errors }, { data }, { user }, { users }); // logData
   };
 };
 

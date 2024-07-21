@@ -9,7 +9,7 @@ const Modal = ({ children }: { children: React.ReactNode }) => {
   const { isOpen, item } = useSelector((state: RootState) => state.modal);
   const closeModal = useClearModal();
 
-  console.log('MODAL ITEM', item)
+  console.log('MODAL ITEM', item, 'IS OPEN', isOpen); // logData
 
   return createPortal(
     <AnimatePresence>

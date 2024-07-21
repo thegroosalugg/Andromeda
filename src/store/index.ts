@@ -8,7 +8,10 @@ import activeSlice from './activeSlice';
 
 const localStorageMiddleware: Middleware = (store) => (next) => (action) => {
   const result = next(action);
-  localStorage.setItem('reduxState', JSON.stringify(store.getState()));
+  const state = store.getState();
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { active, modal, form, ...persistedState } = state; // remove unwanted states from local storage
+  localStorage.setItem('reduxState', JSON.stringify(persistedState));
   return result;
 };
 
