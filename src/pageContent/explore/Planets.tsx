@@ -1,4 +1,6 @@
 import { motion } from 'framer-motion';
+import { useDispatch } from 'react-redux';
+import { setActive } from '@/store/activeSlice';
 import mercury from '@/assets/planets/mercury.png';
 import venus from '@/assets/planets/venus.png';
 import earth from '@/assets/planets/earth.png';
@@ -11,6 +13,7 @@ import css from './Planets.module.css';
 
 export default function Planets({ outer }: { outer?: boolean }) {
   const planets = outer ? [jupiter, saturn, uranus, neptune] : [mercury, venus, earth, mars];
+  const dispatch = useDispatch();
 
   const findClass = (image: string) =>
     image.match(/(mercury|venus|earth|mars|jupiter|saturn|uranus|neptune)/)![0];
@@ -18,6 +21,7 @@ export default function Planets({ outer }: { outer?: boolean }) {
   return (
     <motion.section
       className={css.planets}
+      onClick={() => dispatch(setActive(outer ? 'outer' : 'inner'))}
       initial='hidden'
       animate='visible'
       transition={{ staggerChildren: 0.2, delayChildren: outer ? 1 : 0.5 }}

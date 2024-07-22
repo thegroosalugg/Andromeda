@@ -9,10 +9,13 @@ const activeSlice = createSlice({
   initialState,
   reducers: {
     setActive(state, action) {
-      state.components = [action.payload]
-    }
+      state.components = [action.payload];
+    },
+    resetActive(state) {
+      Object.assign(state, initialState);
+    },
   },
 });
 
-export const { setActive } = activeSlice.actions;
+export const { setActive, resetActive } = activeSlice.actions;
 export default activeSlice.reducer;

@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { clearForm } from '@/store/formSlice';
 import { useDispatch } from 'react-redux';
+import { clearForm } from '@/store/formSlice';
+import { resetActive } from '@/store/activeSlice';
 interface Config {
   [pathname: string]: { background?: string; borderBottom?: string; text: string };
 }
@@ -26,7 +27,8 @@ const useUIConfig = () => {
   useEffect(() => {
     document.body.style.background = `url(${backgroundUrl}) center/cover no-repeat`; // this changes background for explore page
     setPrevPath(pathname); // record prev path
-    dispatch(clearForm()); // clear form on routee swiitch
+    dispatch(clearForm()); // clear form on route swiitch
+    dispatch(resetActive()); // clear explore active components on route switch
 
     document.body.style.overflow = 'hidden'; // disable page scroll temporarily
     const timer = setTimeout(() => {

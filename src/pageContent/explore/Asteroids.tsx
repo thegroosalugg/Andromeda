@@ -1,10 +1,13 @@
 import { motion } from 'framer-motion';
+import { useDispatch } from 'react-redux';
+import { setActive } from '@/store/activeSlice';
 import useScreen from '@/hooks/useScreen';
 import asteroid from '@/assets/planets/asteroid.png';
-import css from './Asteroids.module.css';
 import rand from '@/util/rand';
+import css from './Asteroids.module.css';
 
 export default function Asteroids() {
+  const dispatch = useDispatch();
   const { width } = useScreen();
   const flexRow = width > 440;
   const multiplier = flexRow ? 0.012 : 0.04;
@@ -13,10 +16,11 @@ export default function Asteroids() {
 
   return (
     <motion.div
+      className={css['asteroids']}
+      onClick={() => dispatch(setActive('asteroids'))}
       initial='hidden'
       animate='visible'
       transition={{ staggerChildren: 0.05, delayChildren: 0.5 }}
-      className={css['asteroids']}
     >
       {Array.from({ length: numRows }).map((_, rowIndex) => (
         <motion.div
