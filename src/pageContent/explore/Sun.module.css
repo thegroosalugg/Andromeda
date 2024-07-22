@@ -16,3 +16,30 @@
     width: 300px;
   }
 }
+
+.active {
+  justify-self: center;
+  flex: 1;
+
+  &:hover {
+    border: none;
+  }
+  
+  img {
+    width: 350px;
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .sun {
+    img {
+      width: 200px;
+    }
+  }
+
+  .active {
+    img {
+      width: 250px;
+    }
+  }
+}

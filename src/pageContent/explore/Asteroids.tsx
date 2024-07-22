@@ -17,9 +17,10 @@ export default function Asteroids() {
   return (
     <motion.div
       className={css['asteroids']}
-      onClick={() => dispatch(setActive('asteroids'))}
+      onClick={() => dispatch(setActive('ast'))}
       initial='hidden'
       animate='visible'
+      exit={{ scale: 0, opacity: 0, transition: { duration: 0.8 } }}
       transition={{ staggerChildren: 0.05, delayChildren: 0.5 }}
     >
       {Array.from({ length: numRows }).map((_, rowIndex) => (

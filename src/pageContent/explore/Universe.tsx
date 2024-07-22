@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/types';
+import { AnimatePresence, motion } from 'framer-motion';
 import TheSun from './Sun';
 import Planets from './Planets';
 import Asteroids from './Asteroids';
@@ -10,11 +11,13 @@ export default function Universe() {
   console.log(components); // logData
 
   return (
-    <section className={css.universe}>
-      {components.includes('sun')       && <TheSun />}
-      {components.includes('inner')     && <Planets />}
-      {components.includes('asteroids') && <Asteroids />}
-      {components.includes('outer')     && <Planets outer />}
-    </section>
+    <motion.section layout className={css.universe}>
+      <AnimatePresence>
+        {components.includes('sun')   && <TheSun        key='sun' />}
+        {components.includes('inner') && <Planets       key='inner' />}
+        {components.includes('ast')   && <Asteroids     key='ast' />}
+        {components.includes('outer') && <Planets outer key='outer' />}
+      </AnimatePresence>
+    </motion.section>
   );
 }

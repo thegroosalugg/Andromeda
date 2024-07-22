@@ -24,6 +24,7 @@ export default function Planets({ outer }: { outer?: boolean }) {
       onClick={() => dispatch(setActive(outer ? 'outer' : 'inner'))}
       initial='hidden'
       animate='visible'
+      exit={{ x: outer ? 500 : -500, opacity: 0, transition: { duration: 0.8 } }}
       transition={{ staggerChildren: 0.2, delayChildren: outer ? 1 : 0.5 }}
     >
       {planets.map((planet) => (
