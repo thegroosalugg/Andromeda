@@ -15,7 +15,7 @@ export default function Asteroids({ isActive, setIsActive }: { isActive: string,
 
   return (
     <motion.div
-      className={css['asteroids']}
+      className={`${css['asteroids']} ${isActive === 'ast' ? css['active'] : ''}`}
       onClick={() => setIsActive('ast')}
       initial='hidden'
       animate='visible'
@@ -33,6 +33,8 @@ export default function Asteroids({ isActive, setIsActive }: { isActive: string,
               key={asteroidIndex}
               src={asteroid}
               alt='Asteroid'
+              layout
+              transition={{ duration: 1.2 }} // controls layout transition
               variants={{
                 hidden: { opacity: 0, scale: 0, rotate: 0, x: 0, y: 0 },
                 visible: {
@@ -42,6 +44,7 @@ export default function Asteroids({ isActive, setIsActive }: { isActive: string,
                   rotate: rand(-360, 360),
                   x: rand(-10, 10),
                   y: rand(-10, 10),
+                  transition: { duration: 0.5 }
                 },
               }}
             />

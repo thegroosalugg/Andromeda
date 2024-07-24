@@ -52,6 +52,41 @@
   }
 }
 
+.active {
+  justify-self: center;
+  flex: 1;
+  justify-content: space-evenly;
+
+  &:hover {
+    border: none;
+  }
+
+  .mercury {
+    width: 48px;
+  }
+  .venus {
+    width: 70px;
+  }
+  .earth {
+    width: 90px;
+  }
+  .mars {
+    width: 54px;
+  }
+  .jupiter {
+    width: 200px;
+  }
+  .saturn {
+    width: 266px;
+  }
+  .uranus {
+    width: 133px;
+  }
+  .neptune {
+    width: 106px;
+  }
+}
+
 @media screen and (max-width: 440px) {
   .planets {
     flex-direction: column;
@@ -93,6 +128,33 @@
     .neptune {
       width: 66px;
       transform: translateX(-40px) rotate(50deg);
+    }
+  }
+
+  .active {
+    .mercury {
+      width: 40px;
+    }
+    .venus {
+      width: 60px;
+    }
+    .earth {
+      width: 74px;
+    }
+    .mars {
+      width: 44px;
+    }
+    .jupiter {
+      width: 138px;
+    }
+    .saturn {
+      width: 185px;
+    }
+    .uranus {
+      width: 92px;
+    }
+    .neptune {
+      width: 73px;
     }
   }
 }

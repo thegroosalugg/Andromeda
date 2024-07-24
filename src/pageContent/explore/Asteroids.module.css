@@ -23,6 +23,18 @@
   }
 }
 
+.active {
+  justify-self: center;
+  flex: 1;
+
+  &:hover {
+    border: none;
+  }
+
+  img {
+  }
+}
+
 @media screen and (max-width: 440px) {
   .asteroids {
     flex-direction: row;

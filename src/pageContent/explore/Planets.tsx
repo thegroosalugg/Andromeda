@@ -19,6 +19,7 @@ export default function Planets({
   outer?: boolean;
 }) {
   const planets = outer ? [jupiter, saturn, uranus, neptune] : [mercury, venus, earth, mars];
+  const activeClass = (isActive === 'inner' && !outer) || (isActive === 'outer' && outer)
 
   const findClass = (image: string) =>
     image.match(/(mercury|venus|earth|mars|jupiter|saturn|uranus|neptune)/)![0];
@@ -27,8 +28,8 @@ export default function Planets({
 
   return (
     <motion.section
-      className={css.planets}
-      onClick={() => setIsActive(outer ? 'outer' : 'inner')}
+    className={`${css['planets']} ${activeClass ? css['active'] : ''}`}
+    onClick={() => setIsActive(outer ? 'outer' : 'inner')}
       initial='hidden'
       animate='visible'
       exit={{ x: outer ? 500 : -500, opacity: 0, transition: { duration: 0.8 } }}
@@ -37,11 +38,12 @@ export default function Planets({
       {planets.map((planet) => (
         <motion.div
           key={planet}
+          layout
+          transition={{ duration: 1.2 }} // controls layout transition
           variants={{
             hidden: { opacity: 0, scale: 0 },
-            visible: { opacity: [0, 1], scale: 1 },
+            visible: { opacity: [0, 1], scale: 1, transition: { type: 'tween', ease: 'linear', duration: 0.5 } },
           }}
-          transition={{ type: 'tween', ease: 'linear', duration: 0.5 }}
         >
           <img src={planet} alt={planet} className={css[findClass(planet)]} />
         </motion.div>
