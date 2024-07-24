@@ -26,16 +26,10 @@ interface FormState {
 interface CartState {
   items: Clothes[];
 }
-
-interface ActiveState {
-  components: string[];
-}
-
 export interface RootState {
    items:  ItemsState;
    modal:  ModalState;
    users:   UserState;
     form:   FormState;
     cart:   CartState;
-  active: ActiveState;
 }

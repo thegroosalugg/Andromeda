@@ -1,19 +1,12 @@
 import { motion } from 'framer-motion';
-import { useDispatch, useSelector } from 'react-redux';
-import { setActive } from '@/store/activeSlice';
-import { RootState } from '@/store/types';
 import sun from '@/assets/planets/sun.png';
 import css from './Sun.module.css';
 
-export default function TheSun() {
-  const { components } = useSelector((state: RootState) => state.active);
-  const isActive = components.length === 1 && components[0] === 'sun';
-  const dispatch = useDispatch();
-
+export default function TheSun({ isActive, setIsActive }: { isActive: string, setIsActive: (id: string) => void }) {
   return (
-    <div
-      className={`${css['sun']} ${isActive ? css['active'] : ''}`}
-      onClick={() => dispatch(setActive('sun'))}
+    <motion.div
+      className={`${css['sun']} ${isActive === 'sun' ? css['active'] : ''}`}
+      onClick={() => setIsActive('sun')}
     >
       <motion.img
         src={sun}
@@ -32,6 +25,6 @@ export default function TheSun() {
           transition: { duration: 0.8 },
         }}
       />
-    </div>
+    </motion.div>
   );
 }

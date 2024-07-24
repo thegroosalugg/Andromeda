@@ -1,23 +1,22 @@
 import { motion } from 'framer-motion';
-import { useDispatch } from 'react-redux';
-import { setActive } from '@/store/activeSlice';
 import useScreen from '@/hooks/useScreen';
 import asteroid from '@/assets/planets/asteroid.png';
 import rand from '@/util/rand';
 import css from './Asteroids.module.css';
 
-export default function Asteroids() {
-  const dispatch = useDispatch();
+export default function Asteroids({ isActive, setIsActive }: { isActive: string, setIsActive: (id: string) => void }) {
   const { width } = useScreen();
   const flexRow = width > 440;
   const multiplier = flexRow ? 0.012 : 0.04;
 
   const numRows = Math.ceil(width * multiplier);
 
+  console.log(isActive); // logData
+
   return (
     <motion.div
       className={css['asteroids']}
-      onClick={() => dispatch(setActive('ast'))}
+      onClick={() => setIsActive('ast')}
       initial='hidden'
       animate='visible'
       exit={{ scale: 0, opacity: 0, transition: { duration: 0.8 } }}

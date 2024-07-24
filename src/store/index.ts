@@ -4,13 +4,12 @@ import  modalSlice from './modalSlice';
 import   userSlice from './userSlice';
 import   formSlice from './formSlice';
 import   cartSlice from './cartSlice';
-import activeSlice from './activeSlice';
 
 const localStorageMiddleware: Middleware = (store) => (next) => (action) => {
   const result = next(action);
   const state = store.getState();
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { active, modal, form, ...persistedState } = state; // remove unwanted states from local storage
+  const { modal, form, ...persistedState } = state; // remove unwanted states from local storage
   localStorage.setItem('reduxState', JSON.stringify(persistedState));
   return result;
 };
@@ -21,7 +20,6 @@ const rootReducer = combineReducers({
    users: userSlice,
     form: formSlice,
     cart: cartSlice,
-  active: activeSlice,
 });
 
 const store = configureStore({
