@@ -1,17 +1,18 @@
 import { motion } from 'framer-motion';
+import { useContext } from 'react';
+import { ExploreContext } from '@/pages/explore/ExploreContext';
 import useScreen from '@/hooks/useScreen';
 import asteroid from '@/assets/planets/asteroid.png';
 import rand from '@/util/rand';
 import css from './Asteroids.module.css';
 
-export default function Asteroids({ isActive, setIsActive }: { isActive: string, setIsActive: (id: string) => void }) {
+export default function Asteroids() {
+  const { isActive, setIsActive } = useContext(ExploreContext);
   const { width } = useScreen();
-  const flexRow = width > 440;
-  const multiplier = flexRow ? 0.012 : 0.04;
+  const mobileDev = width > 440;
+  const multiplier = mobileDev ? 0.012 : 0.04;
 
   const numRows = Math.ceil(width * multiplier);
-
-  console.log(isActive); // logData
 
   return (
     <motion.div

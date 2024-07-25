@@ -3,7 +3,7 @@ import LandingPage from './pages/LandingPage';
 import StorePage from './pages/Store';
 import SpaceShipsPage from './pages/spaceships/SpaceShips';
 import ShipIDPage from './pages/spaceships/ShipID';
-import ExplorePage from './pages/Explore';
+import ExplorePage from './pages/explore/Explore';
 import UserPage from './pages/User';
 import ErrorPage from './components/error/Error';
 

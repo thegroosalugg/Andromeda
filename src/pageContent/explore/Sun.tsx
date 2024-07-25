@@ -1,8 +1,12 @@
 import { motion } from 'framer-motion';
+import { useContext } from 'react';
+import { ExploreContext } from '@/pages/explore/ExploreContext';
 import sun from '@/assets/planets/sun.png';
 import css from './Sun.module.css';
 
-export default function TheSun({ isActive, setIsActive }: { isActive: string, setIsActive: (id: string) => void }) {
+export default function TheSun() {
+  const { isActive, setIsActive } = useContext(ExploreContext);
+
   return (
     <motion.div
       className={`${css['sun']} ${isActive === 'sun' ? css['active'] : ''}`}
