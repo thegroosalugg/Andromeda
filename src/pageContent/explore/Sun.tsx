@@ -5,12 +5,12 @@ import sun from '@/assets/planets/sun.png';
 import css from './Sun.module.css';
 
 export default function TheSun() {
-  const { isActive, setIsActive } = useContext(ExploreContext);
+  const { isActive, activeHandler } = useContext(ExploreContext);
 
   return (
     <motion.div
       className={`${css['sun']} ${isActive === 'sun' ? css['active'] : ''}`}
-      onClick={() => setIsActive('sun')}
+      onClick={() => activeHandler('sun')}
     >
       <motion.img
         src={sun}

@@ -12,7 +12,7 @@ import neptune from '@/assets/planets/neptune.png';
 import css from './Planets.module.css';
 
 export default function Planets({ outer }: { outer?: boolean }) {
-  const { isActive, setIsActive } = useContext(ExploreContext);
+  const { isActive, activeHandler } = useContext(ExploreContext);
   const planets = outer ? [jupiter, saturn, uranus, neptune] : [mercury, venus, earth, mars];
   const activeClass = (isActive === 'inner' && !outer) || (isActive === 'outer' && outer);
 
@@ -22,7 +22,7 @@ export default function Planets({ outer }: { outer?: boolean }) {
   return (
     <motion.section
       className={`${css['planets']} ${activeClass ? css['active'] : ''}`}
-      onClick={() => setIsActive(outer ? 'outer' : 'inner')}
+      onClick={() => activeHandler(outer ? 'outer' : 'inner')}
       initial='hidden'
       animate='visible'
       exit={{ x: outer ? 500 : -500, opacity: 0, transition: { duration: 0.8 } }}

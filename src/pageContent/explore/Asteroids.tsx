@@ -7,17 +7,17 @@ import rand from '@/util/rand';
 import css from './Asteroids.module.css';
 
 export default function Asteroids() {
-  const { isActive, setIsActive } = useContext(ExploreContext);
+  const { isActive, activeHandler } = useContext(ExploreContext);
   const { width } = useScreen();
-  const mobileDev = width > 440;
-  const multiplier = mobileDev ? 0.012 : 0.04;
+  const dekstop = width > 440;
+  const multiplier = dekstop ? 0.012 : 0.04;
 
   const numRows = Math.ceil(width * multiplier);
 
   return (
     <motion.div
       className={`${css['asteroids']} ${isActive === 'ast' ? css['active'] : ''}`}
-      onClick={() => setIsActive('ast')}
+      onClick={() => activeHandler('ast')}
       initial='hidden'
       animate='visible'
       exit={{ scale: 0, opacity: 0, transition: { duration: 0.8 } }}
