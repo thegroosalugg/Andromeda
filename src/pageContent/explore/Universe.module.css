@@ -1,14 +1,21 @@
 .universe {
-  align-self: center;
   flex: 1;
   display: flex;
-  align-items: stretch;
-  overflow: auto;
+  flex-direction: column;
   width: 100%;
+  overflow: auto;
+
+  > section {
+    flex: 1;
+    display: flex;
+  }
+
 }
 
 @media screen and (max-width: 440px) {
   .universe {
-    flex-direction: column;
+    > section {
+      flex-direction: column;
+    }
   }
 }

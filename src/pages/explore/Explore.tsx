@@ -4,7 +4,7 @@ import ExploreContextProvider from './ExploreContext';
 export default function ExplorePage() {
   return (
     <ExploreContextProvider>
-      <Universe />;
+      <Universe />
     </ExploreContextProvider>
   );
 }

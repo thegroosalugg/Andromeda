@@ -1,0 +1,9 @@
+.button {
+  font-family: 'Orbitron', sans-serif;
+  font-size: larger;
+  text-shadow: 2px 2px 4px #000;
+  background: linear-gradient(to right, #ff105f, #ffad06);
+  color: #ffffff;
+  border-bottom: 2px solid #ffffff;
+  cursor: pointer;
+}
