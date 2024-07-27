@@ -24,7 +24,7 @@
   &:hover {
     border: none;
   }
-  
+
   img {
     width: 350px;
   }
@@ -32,8 +32,14 @@
 
 @media screen and (max-width: 440px) {
   .sun {
+    border: none;
+
+    &:hover {
+      border: none;
+    }
+
     img {
-      width: 200px;
+      width: 125px;
     }
   }
 

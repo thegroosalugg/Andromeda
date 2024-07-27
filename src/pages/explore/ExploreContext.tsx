@@ -20,7 +20,7 @@ export default function ExploreContextProvider({ children }: { children: React.R
     if (!isAnimating) {
       setIsAnimating(true);
       setIsActive(id);
-      setTimeout(() => setIsAnimating(false), 2000);
+      setTimeout(() => setIsAnimating(false), 1200);
     }
   }
 

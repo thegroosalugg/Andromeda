@@ -91,9 +91,12 @@
   .planets {
     flex-direction: column;
     padding: 1rem 0;
+    gap: 1rem;
+
+    border: none;
 
     &:hover {
-      border-top: 2px solid #ffffff;
+      border: none;
     }
 
     .mercury {

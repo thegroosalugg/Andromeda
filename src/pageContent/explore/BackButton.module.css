@@ -5,6 +5,7 @@
   color: #ffffff;
   border-bottom: 2px solid #ffffff;
   cursor: pointer;
+  padding-bottom: 0.3rem;
 }
 
 @media screen and (min-width: 320px) and (max-width: 440px) {

@@ -38,14 +38,19 @@
 @media screen and (max-width: 440px) {
   .asteroids {
     flex-direction: row;
-    padding: 0.5rem 0;
+    padding: 0;
+    border: none;
 
     &:hover {
-      border-top: 2px solid #ffffff;
+      border: none;
     }
 
     div {
       flex-direction: column;
+
+      img {
+        width: 6px;
+      }
     }
   }
 }
