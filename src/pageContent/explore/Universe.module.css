@@ -8,14 +8,6 @@
   > section {
     flex: 1;
     display: flex;
-  }
-
-}
-
-@media screen and (max-width: 440px) {
-  .universe {
-    > section {
-      flex-direction: column;
-    }
+    justify-content: space-evenly;
   }
 }

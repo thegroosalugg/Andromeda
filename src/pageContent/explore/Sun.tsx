@@ -9,8 +9,8 @@ export default function TheSun() {
   const { isActive, activeHandler } = useContext(ExploreContext);
   const { width, height } = useScreen();
 
-  const size = 250 * // 1: targets mobiles, 2: landscape mobiles via aspect ratio
-    ((width >= 320 && width <= 440) || (width / height > 1.8) ? 0.5 : 1) *
+  const size = 225 * // 1: targets mobiles, 2: landscape mobiles via aspect ratio
+    ((width >= 320 && width <= 440) || (width / height > 1.8  && width < 1024) ? 0.5 : 1) *
     (isActive === 'sun' ? 2 : 1);
 
   return (

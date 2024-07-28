@@ -21,7 +21,7 @@ const config = (planet: string, width: number, height: number, isActive: string)
     ((width >= 320 && width <= 440) || (width / height > 1.8 && width < 1024) ? 0.5 : 1) *
     (isActive === 'inner' ? 3 : isActive === 'outer' ? 2 : 1);
 
-  const margin = width <= 440 ? 'marginLeft' : 'marginBottom';
+  const margin = width > height ? 'marginBottom' : 'marginLeft';
 
   const props = {
     mercury: { width: adjust( 20), [margin]: 20, rotate: 0 },
@@ -53,6 +53,11 @@ export default function Planets({ outer }: { outer?: boolean }) {
       animate='visible'
       exit={{ x: outer ? 500 : -500, opacity: 0, transition: { duration: 0.8 } }}
       transition={{ staggerChildren: 0.2, delayChildren: outer ? 1 : 0.5 }}
+      style={{
+        flexDirection: width > height ?       'row' : 'column',
+              padding: width > height ? '2rem 1rem' : '1rem 0',
+                  gap: width > height ?    '0.5rem' : '1rem',
+      }}
     >
       {planets.map((planet) => (
         <motion.div
