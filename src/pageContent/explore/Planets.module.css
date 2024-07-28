@@ -18,7 +18,7 @@
     /* height: fit-content; */
   }
 
-  .mercury {
+  /* .mercury {
     width: 24px;
   }
   .venus {
@@ -34,22 +34,22 @@
     transform: translateY(-40px);
   }
   .jupiter {
-    width: 150px;
+    width: 125px;
     transform: translateY(-50px);
   }
   .saturn {
-    width: 200px;
+    width: 175px;
     margin: 0 -35px;
     transform: translateY(-30px);
   }
   .uranus {
-    width: 100px;
+    width: 75px;
     transform: translateY(20px);
   }
   .neptune {
-    width: 80px;
+    width: 60px;
     transform: translateY(60px);
-  }
+  } */
 }
 
 .active {
@@ -61,7 +61,7 @@
     border: none;
   }
 
-  .mercury {
+  /* .mercury {
     width: 48px;
   }
   .venus {
@@ -84,7 +84,7 @@
   }
   .neptune {
     width: 106px;
-  }
+  } */
 }
 
 @media screen and (max-width: 440px) {
@@ -100,7 +100,7 @@
       border: none;
     }
 
-    .mercury {
+    /* .mercury {
       width: 12px;
       transform: translateY(-20px) translateX(30px) rotate(85deg);
     }
@@ -132,13 +132,14 @@
     .neptune {
       width: 30px;
       transform: translateY(0px) translateX(-50px) rotate(50deg);
-    }
+    } */
   }
 
   .active {
     /* flex-direction: column; */
 
-    .mercury {
+
+    /* .mercury {
       width: 25px;
     }
     .venus {
@@ -161,6 +162,6 @@
     }
     .neptune {
       width: 50px;
-    }
+    } */
   }
 }

@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { ExploreContext } from '@/pages/explore/ExploreContext';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import BackButton from './BackButton';
 import TheSun from './Sun';
 import Planets from './Planets';
@@ -11,7 +11,7 @@ export default function Universe() {
   const { isActive } = useContext(ExploreContext);
 
   return (
-    <motion.section layout className={css.universe}>
+    <section className={css.universe}>
       <AnimatePresence>{isActive !== 'all' && <BackButton />}</AnimatePresence>
       <section>
         {/* prettier-ignore */}
@@ -22,6 +22,6 @@ export default function Universe() {
         {(isActive === 'all' || isActive === 'outer') && <Planets   key='outer' outer />}
       </AnimatePresence>
       </section>
-    </motion.section>
+    </section>
   );
 }
