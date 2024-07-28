@@ -18,18 +18,20 @@ const config = (planet: string, width: number, height: number, isActive: string)
 
   const adjust = (base: number) =>
     base * // 1: targets mobiles, 2: landscape mobiles via aspect ratio
-    ((width >= 320 && width <= 440) || (width / height > 1.8) ? 0.5 : 1) *
+    ((width >= 320 && width <= 440) || (width / height > 1.8 && width < 1024) ? 0.5 : 1) *
     (isActive === 'inner' ? 3 : isActive === 'outer' ? 2 : 1);
 
+  const margin = width <= 440 ? 'marginLeft' : 'marginBottom';
+
   const props = {
-    mercury: { width: adjust( 20), x: 0, marginBottom: 10, rotate: 0 },
-    venus:   { width: adjust( 30), x: 0, marginBottom: 20, rotate: 0 },
-    earth:   { width: adjust( 40), x: 0, marginBottom: 30, rotate: 0 },
-    mars:    { width: adjust( 25), x: 0, marginBottom: 35, rotate: 0 },
-    jupiter: { width: adjust(100), x: 0, marginBottom: 35, rotate: 0 },
-    saturn:  { width: adjust(120), x: 0, marginBottom: 25, rotate: 0 },
-    uranus:  { width: adjust( 80), x: 0, marginBottom: 20, rotate: 0 },
-    neptune: { width: adjust( 70), x: 0, marginBottom: 10, rotate: 0 },
+    mercury: { width: adjust( 20), [margin]: 20, rotate: 0 },
+    venus:   { width: adjust( 30), [margin]: 30, rotate: 0 },
+    earth:   { width: adjust( 40), [margin]: 40, rotate: 0 },
+    mars:    { width: adjust( 25), [margin]: 55, rotate: 0 },
+    jupiter: { width: adjust(100), [margin]: 55, rotate: 0 },
+    saturn:  { width: adjust(120), [margin]: 40, rotate: 0 },
+    uranus:  { width: adjust( 80), [margin]: 30, rotate: 0 },
+    neptune: { width: adjust( 70), [margin]: 20, rotate: 0 },
   };
 
   return { ...props[name] };
