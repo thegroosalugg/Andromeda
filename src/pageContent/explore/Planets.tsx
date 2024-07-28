@@ -12,19 +12,29 @@ import uranus from '@/assets/planets/uranus.png';
 import neptune from '@/assets/planets/neptune.png';
 import css from './Planets.module.css';
 
-const nameOf = (image: string) =>
-  image.match(/(mercury|venus|earth|mars|jupiter|saturn|uranus|neptune)/)![0];
-
 // prettier-ignore
-const config = {
-  mercury: { width:  20, x: 0, y: -10, rotate: 0 },
-  venus:   { width:  30, x: 0, y: -20, rotate: 0 },
-  earth:   { width:  40, x: 0, y: -30, rotate: 0 },
-  mars:    { width:  25, x: 0, y: -35, rotate: 0 },
-  jupiter: { width: 100, x: 0, y: -35, rotate: 0 },
-  saturn:  { width: 120, x: 0, y: -25, rotate: 0 },
-  uranus:  { width:  80, x: 0, y: -20, rotate: 0 },
-  neptune: { width:  70, x: 0, y: -10, rotate: 0 },
+const config = (planet: string, width: number, height: number, isActive: string) => {
+  const name = planet.match(/(mercury|venus|earth|mars|jupiter|saturn|uranus|neptune)/)![0] as keyof typeof props;
+
+  const isLandscapeMobile = width / height > 1.8;
+
+  const adjust = (base: number) =>
+    base *
+    ((width >= 320 && width <= 440) || isLandscapeMobile ? 0.5 : 1) *
+    (isActive === 'inner' ? 3 : isActive === 'outer' ? 2 : 1);
+
+  const props = {
+    mercury: { width: adjust( 20), x: 0, y: -10, rotate: 0 },
+    venus:   { width: adjust( 30), x: 0, y: -20, rotate: 0 },
+    earth:   { width: adjust( 40), x: 0, y: -30, rotate: 0 },
+    mars:    { width: adjust( 25), x: 0, y: -35, rotate: 0 },
+    jupiter: { width: adjust(100), x: 0, y: -35, rotate: 0 },
+    saturn:  { width: adjust(120), x: 0, y: -25, rotate: 0 },
+    uranus:  { width: adjust( 80), x: 0, y: -20, rotate: 0 },
+    neptune: { width: adjust( 70), x: 0, y: -10, rotate: 0 },
+  };
+
+  return { ...props[name] };
 };
 
 export default function Planets({ outer }: { outer?: boolean }) {
@@ -61,8 +71,9 @@ export default function Planets({ outer }: { outer?: boolean }) {
           <motion.img
             src={planet}
             alt={planet}
-            initial={{ ...config[nameOf(planet) as keyof typeof config] }}
-            animate={{ ...config[nameOf(planet) as keyof typeof config] }}
+            initial={config(planet, width, height, isActive)}
+            animate={config(planet, width, height, isActive)}
+            transition={{ duration: 0.5 }}
           />
         </motion.div>
       ))}
