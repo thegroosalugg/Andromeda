@@ -2,8 +2,8 @@
   flex-basis: 40%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  box-sizing: border-box;
+  justify-content: space-evenly;
+  gap: 2rem;
   border: 2px solid transparent;
   transition: 0.5s ease-in-out;
 
@@ -14,9 +14,7 @@
 }
 
 .active {
-  justify-self: center;
   flex: 1;
-  justify-content: space-evenly;
 
   &:hover {
     border: none;

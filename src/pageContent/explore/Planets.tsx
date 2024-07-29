@@ -51,7 +51,7 @@ export default function Planets({ outer }: { outer?: boolean }) {
       style={{
         flexDirection: width > height ?       'row' : 'column',
               padding: width > height ? '2rem 1rem' : '1rem 0',
-                  gap: width > height ?    '0.5rem' : '1rem',
+                  gap: width > height ?          '' : '0.5rem',
       }}
     >
       {planets.map((planet) => {

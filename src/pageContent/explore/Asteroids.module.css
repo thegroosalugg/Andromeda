@@ -24,7 +24,6 @@
 }
 
 .active {
-  justify-self: center;
   flex: 1;
 
   &:hover {
