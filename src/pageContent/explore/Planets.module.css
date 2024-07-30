@@ -1,20 +1,18 @@
 .planets {
-  flex-basis: 40%;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  gap: 1rem;
   border: 2px solid transparent;
-  transition: 0.5s ease-in-out;
 
   &:hover {
     border: 2px solid #ffffff;
     border-top: 2px solid transparent;
+    transition: border 0.5s ease-in-out;
   }
 }
 
 .active {
-  flex: 1;
-
   &:hover {
     border: none;
   }

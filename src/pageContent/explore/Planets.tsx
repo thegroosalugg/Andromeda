@@ -29,14 +29,14 @@ export default function Planets({ outer }: { outer?: boolean }) {
 
   // prettier-ignore
   const config = {
-    mercury: { width: adjust( 20), [margin]: 20, rotate: 0 },
-    venus:   { width: adjust( 30), [margin]: 30, rotate: 0 },
-    earth:   { width: adjust( 40), [margin]: 40, rotate: 0 },
-    mars:    { width: adjust( 25), [margin]: 55, rotate: 0 },
-    jupiter: { width: adjust(100), [margin]: 55, rotate: 0 },
-    saturn:  { width: adjust(120), [margin]: 40, rotate: 0 },
-    uranus:  { width: adjust( 80), [margin]: 30, rotate: 0 },
-    neptune: { width: adjust( 70), [margin]: 20, rotate: 0 },
+    mercury: { width: adjust( 20), [margin]: 30, rotate: 0 },
+    venus:   { width: adjust( 30), [margin]: 40, rotate: 0 },
+    earth:   { width: adjust( 40), [margin]: 50, rotate: 0 },
+    mars:    { width: adjust( 25), [margin]: 65, rotate: 0 },
+    jupiter: { width: adjust(100), [margin]: 65, rotate: 0 },
+    saturn:  { width: adjust(120), [margin]: 50, rotate: 0 },
+    uranus:  { width: adjust( 80), [margin]: 40, rotate: 0 },
+    neptune: { width: adjust( 70), [margin]: 30, rotate: 0 },
   };
 
   return (
@@ -49,9 +49,9 @@ export default function Planets({ outer }: { outer?: boolean }) {
       transition={{ staggerChildren: 0.2, delayChildren: outer ? 1 : 0.5 }}
       // prettier-ignore
       style={{
-        flexDirection: width > height ?       'row' : 'column',
-              padding: width > height ? '2rem 1rem' :  activeClass ? '2rem 0' : 0,
-                  gap: width > height ?      '2rem' : '0.5rem',
+            flexBasis:    activeClass ? '100%' : '40%',
+        flexDirection: width > height ? 'row' : 'column',
+              padding: width > height ? '2rem 1rem' : activeClass ? '2rem 0' : 0,
       }}
     >
       {planets.map((planet) => {
