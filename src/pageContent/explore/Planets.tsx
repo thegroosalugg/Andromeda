@@ -50,8 +50,8 @@ export default function Planets({ outer }: { outer?: boolean }) {
       // prettier-ignore
       style={{
         flexDirection: width > height ?       'row' : 'column',
-              padding: width > height ? '2rem 1rem' : '1rem 0',
-                  gap: width > height ?          '' : '0.5rem',
+              padding: width > height ? '2rem 1rem' :  activeClass ? '2rem 0' : 0,
+                  gap: width > height ?      '2rem' : '0.5rem',
       }}
     >
       {planets.map((planet) => {
