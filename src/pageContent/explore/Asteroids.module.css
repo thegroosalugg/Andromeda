@@ -1,5 +1,5 @@
 .asteroids {
-  flex-basis: 10%;
+  flex: 1 1 10%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -7,11 +7,11 @@
   padding: 0 0.5rem;
   box-sizing: border-box;
   border: 2px solid transparent;
-  transition: 0.5s ease-in-out;
 
   &:hover {
     border: 2px solid #ffffff;
     border-top: 2px solid transparent;
+    transition: border 0.5s ease-in-out;
   }
 
   div {
@@ -24,13 +24,8 @@
 }
 
 .active {
-  flex: 1;
-
   &:hover {
     border: none;
-  }
-
-  img {
   }
 }
 

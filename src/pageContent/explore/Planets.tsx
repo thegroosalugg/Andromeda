@@ -16,15 +16,15 @@ export default function Planets({ outer }: { outer?: boolean }) {
   const planets = outer ? [jupiter, saturn, uranus, neptune] : [mercury, venus, earth, mars];
   const { isActive, activeHandler } = useContext(ExploreContext);
   const { width, height } = useScreen();
-  const activeClass = (isActive === 'inner' && !outer) || (isActive === 'outer' && outer);
-  const mobileDev = (width >= 320 && width <= 440) || (width / height > 1.8 && width < 1024);
+  const activeSet = (isActive === 'inner' && !outer) || (isActive === 'outer' && outer);
+  const mobileDev =   (width >= 320 && width <= 440) || (width / height > 1.8 && width < 1024);
 
   const nameOf = (planet: string) =>
     planet.match(
       /(mercury|venus|earth|mars|jupiter|saturn|uranus|neptune)/
     )![0] as keyof typeof config;
 
-  const adjust = (base: number) => base * (mobileDev ? 0.5 : 1) * (activeClass ? 2 : 1);
+  const adjust = (base: number) => base * (mobileDev ? 0.5 : 1) * (activeSet ? (outer ? 2 : 4) : 1);
   const margin = width > height ? 'marginBottom' : 'marginLeft';
 
   // prettier-ignore
@@ -35,13 +35,13 @@ export default function Planets({ outer }: { outer?: boolean }) {
     mars:    { width: adjust( 25), [margin]: 65, rotate: 0 },
     jupiter: { width: adjust(100), [margin]: 65, rotate: 0 },
     saturn:  { width: adjust(120), [margin]: 50, rotate: 0 },
-    uranus:  { width: adjust( 80), [margin]: 40, rotate: 0 },
-    neptune: { width: adjust( 70), [margin]: 30, rotate: 0 },
+    uranus:  { width: adjust( 70), [margin]: 40, rotate: 0 },
+    neptune: { width: adjust( 60), [margin]: 30, rotate: 0 },
   };
 
   return (
     <motion.section
-      className={`${css['planets']} ${activeClass ? css['active'] : ''}`}
+      className={`${css['planets']} ${activeSet ? css['active'] : ''}`}
       onClick={() => activeHandler(outer ? 'outer' : 'inner')}
       initial='hidden'
       animate='visible'
@@ -49,7 +49,7 @@ export default function Planets({ outer }: { outer?: boolean }) {
       transition={{ staggerChildren: 0.2, delayChildren: outer ? 1 : 0.5 }}
       // prettier-ignore
       style={{
-            flexBasis:    activeClass ? '100%' : '40%',
+                 flex: `1 1 ${outer ? 50 : 30}%`,
         flexDirection: width > height ? 'row' : 'column',
               padding: width > height ? '2rem 1rem' : activeClass ? '2rem 0' : 0,
       }}
