@@ -19,25 +19,33 @@ export default function Planets({ outer }: { outer?: boolean }) {
   const activeSet = (isActive === 'inner' && !outer) || (isActive === 'outer' && outer);
   const mobileDev =   (width >= 320 && width <= 440) || (width / height > 1.8 && width < 1024);
   const landscape = width > height;
+  type Planet = keyof typeof props;
 
   const nameOf = (planet: string) =>
-    planet.match(
-      /(mercury|venus|earth|mars|jupiter|saturn|uranus|neptune)/
-    )![0] as keyof typeof config;
-
-  const adjust = (base: number) => base * (mobileDev ? 0.5 : 1) * (activeSet ? (outer ? 2 : 4) : 1);
-  const margin = landscape ? 'marginBottom' : 'marginLeft';
+    planet.match(/(mercury|venus|earth|mars|jupiter|saturn|uranus|neptune)/)![0] as Planet;
 
   // prettier-ignore
-  const config = {
-    mercury: { width: adjust( 20), [margin]: activeSet ? 0 : 30, rotate: landscape ? 0 : 65 },
-    venus:   { width: adjust( 30), [margin]: activeSet ? 0 : 40, rotate: landscape ? 0 : 45 },
-    earth:   { width: adjust( 40), [margin]: activeSet ? 0 : 50, rotate: landscape ? 0 : 45 },
-    mars:    { width: adjust( 25), [margin]: activeSet ? 0 : 65, rotate: landscape ? 0 : 45 },
-    jupiter: { width: adjust(100), [margin]: activeSet ? 0 : 65, rotate: landscape ? 0 : 55 },
-    saturn:  { width: adjust(120), [margin]: activeSet ? 0 : 50, rotate: landscape ? 0 : 55 },
-    uranus:  { width: adjust( 70), [margin]: activeSet ? 0 : 40, rotate: landscape ? 0 : 45 },
-    neptune: { width: adjust( 60), [margin]: activeSet ? 0 : 30, rotate: landscape ? 0 : 40 },
+  const props = {
+    mercury: { width:  20, align: 30, rotate: 65 },
+    venus:   { width:  30, align: 40, rotate: 45 },
+    earth:   { width:  40, align: 50, rotate: 45 },
+    mars:    { width:  25, align: 65, rotate: 45 },
+    jupiter: { width: 100, align: 65, rotate: 55 },
+    saturn:  { width: 120, align: 50, rotate: 55 },
+    uranus:  { width:  70, align: 40, rotate: 45 },
+    neptune: { width:  60, align: 30, rotate: 40 },
+  };
+
+  const config = (key: Planet) => {
+    const { width, align, rotate } = props[key];
+    const margin = landscape ? 'marginBottom' : 'marginLeft';
+    const   size = width * (mobileDev ? 0.5 : 1) * (activeSet ? (outer ? 2 : 4) : 1);
+
+    return {
+         width: size,
+      [margin]: activeSet ? 0 : align,
+        rotate: landscape ? 0 : rotate,
+    };
   };
 
   return (
@@ -52,11 +60,12 @@ export default function Planets({ outer }: { outer?: boolean }) {
       style={{
                  flex: `1 1 ${outer ? 50 : 30}%`,
         flexDirection: landscape ? 'row' : 'column',
-              padding: activeSet ? '2rem' : outer ? (landscape ? '0 1rem 0 0' : '0 0 1rem') : 0,
+              padding: activeSet ? '2rem' : outer ? (landscape ? '1rem 1rem 0 0' : '0 0 1rem') : 0,
       }}
     >
       {planets.map((planet) => {
-        const key = nameOf(planet);
+        const     key = nameOf(planet);
+        const animate = config(key);
 
         return (
           <motion.div
@@ -75,8 +84,8 @@ export default function Planets({ outer }: { outer?: boolean }) {
             <motion.img
               src={planet}
               alt={key}
-              initial={{ ...config[key] }}
-              animate={{ ...config[key] }}
+              initial={animate}
+              animate={animate}
               transition={{ duration: 1 }}
             />
           </motion.div>
