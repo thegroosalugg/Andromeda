@@ -18,6 +18,7 @@ export default function Planets({ outer }: { outer?: boolean }) {
   const { width, height } = useScreen();
   const activeSet = (isActive === 'inner' && !outer) || (isActive === 'outer' && outer);
   const mobileDev =   (width >= 320 && width <= 440) || (width / height > 1.8 && width < 1024);
+  const landscape = width > height;
 
   const nameOf = (planet: string) =>
     planet.match(
@@ -25,18 +26,18 @@ export default function Planets({ outer }: { outer?: boolean }) {
     )![0] as keyof typeof config;
 
   const adjust = (base: number) => base * (mobileDev ? 0.5 : 1) * (activeSet ? (outer ? 2 : 4) : 1);
-  const margin = width > height ? 'marginBottom' : 'marginLeft';
+  const margin = landscape ? 'marginBottom' : 'marginLeft';
 
   // prettier-ignore
   const config = {
-    mercury: { width: adjust( 20), [margin]: 30, rotate: 0 },
-    venus:   { width: adjust( 30), [margin]: 40, rotate: 0 },
-    earth:   { width: adjust( 40), [margin]: 50, rotate: 0 },
-    mars:    { width: adjust( 25), [margin]: 65, rotate: 0 },
-    jupiter: { width: adjust(100), [margin]: 65, rotate: 0 },
-    saturn:  { width: adjust(120), [margin]: 50, rotate: 0 },
-    uranus:  { width: adjust( 70), [margin]: 40, rotate: 0 },
-    neptune: { width: adjust( 60), [margin]: 30, rotate: 0 },
+    mercury: { width: adjust( 20), [margin]: activeSet ? 0 : 30, rotate: landscape ? 0 : 65 },
+    venus:   { width: adjust( 30), [margin]: activeSet ? 0 : 40, rotate: landscape ? 0 : 45 },
+    earth:   { width: adjust( 40), [margin]: activeSet ? 0 : 50, rotate: landscape ? 0 : 45 },
+    mars:    { width: adjust( 25), [margin]: activeSet ? 0 : 65, rotate: landscape ? 0 : 45 },
+    jupiter: { width: adjust(100), [margin]: activeSet ? 0 : 65, rotate: landscape ? 0 : 55 },
+    saturn:  { width: adjust(120), [margin]: activeSet ? 0 : 50, rotate: landscape ? 0 : 55 },
+    uranus:  { width: adjust( 70), [margin]: activeSet ? 0 : 40, rotate: landscape ? 0 : 45 },
+    neptune: { width: adjust( 60), [margin]: activeSet ? 0 : 30, rotate: landscape ? 0 : 40 },
   };
 
   return (
@@ -50,8 +51,8 @@ export default function Planets({ outer }: { outer?: boolean }) {
       // prettier-ignore
       style={{
                  flex: `1 1 ${outer ? 50 : 30}%`,
-        flexDirection: width > height ? 'row' : 'column',
-              padding: width > height ? '2rem 1rem' : activeClass ? '2rem 0' : 0,
+        flexDirection: landscape ? 'row' : 'column',
+              padding: activeSet ? '2rem' : outer ? (landscape ? '0 1rem 0 0' : '0 0 1rem') : 0,
       }}
     >
       {planets.map((planet) => {
