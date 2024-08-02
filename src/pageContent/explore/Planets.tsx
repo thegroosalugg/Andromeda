@@ -50,12 +50,18 @@ export default function Planets({ outer }: { outer?: boolean }) {
 
   return (
     <motion.section
-      className={`${css['planets']} ${activeSet ? css['active'] : ''}`}
+      className={css['planets']}
       onClick={() => activeHandler(outer ? 'outer' : 'inner')}
       initial='hidden'
       animate='visible'
       exit={{ scale: 0, opacity: 0, transition: { duration: 0.8 } }}
       transition={{ staggerChildren: 0.2, delayChildren: outer ? 1 : 0.5 }}
+      // prettier-ignore
+      whileHover={{
+           borderColor: mobileDev || activeSet ? '#00000000' : '#FFFFFF',
+        borderTopColor: '#00000000',
+            transition: { duration: 0.5, ease: 'easeInOut' },
+      }}
       // prettier-ignore
       style={{
                  flex: `1 1 ${outer ? 50 : 30}%`,
@@ -64,7 +70,7 @@ export default function Planets({ outer }: { outer?: boolean }) {
       }}
     >
       {planets.map((planet) => {
-        const     key = nameOf(planet);
+        const key = nameOf(planet);
         const animate = config(key);
 
         return (
@@ -75,7 +81,7 @@ export default function Planets({ outer }: { outer?: boolean }) {
             variants={{
               hidden: { opacity: 0, scale: 0 },
               visible: {
-                opacity: [0, 1],
+                opacity: 1,
                 scale: 1,
                 transition: { type: 'tween', ease: 'linear', duration: 0.5 },
               },
