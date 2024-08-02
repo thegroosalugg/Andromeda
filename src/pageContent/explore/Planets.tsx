@@ -15,6 +15,7 @@ export default function Planets({ outer }: { outer?: boolean }) {
   const planets = outer ? [jupiter, saturn, uranus, neptune] : [mercury, venus, earth, mars];
   const { isActive, activeHandler, landscape, isMobile } = useContext(ExploreContext);
   const activeSet = (isActive === 'inner' && !outer) || (isActive === 'outer' && outer);
+
   type Planet = keyof typeof props;
 
   const nameOf = (planet: string) =>
@@ -35,13 +36,13 @@ export default function Planets({ outer }: { outer?: boolean }) {
   // prettier-ignore
   const config = (key: Planet) => {
     const { width, align, rotate } = props[key];
-    const margin = landscape ? 'marginBottom' : 'marginLeft';
     const   size = width * (isMobile ? 0.5 : 1) * (activeSet ? (outer ? 2 : 4) : 1);
 
     return {
-         width: size,
-      [margin]: activeSet ? 0 : align,
-        rotate: landscape ? 0 : rotate,
+              width: size,
+         marginLeft: activeSet ? 0 :  landscape ? 0 : align,
+       marginBottom: activeSet ? 0 : !landscape ? 0 : align,
+             rotate: landscape ? 0 : rotate,
     };
   };
 
@@ -67,7 +68,7 @@ export default function Planets({ outer }: { outer?: boolean }) {
       }}
     >
       {planets.map((planet) => {
-        const key = nameOf(planet);
+        const     key = nameOf(planet);
         const animate = config(key);
 
         return (
