@@ -1,7 +1,6 @@
 .asteroids {
   flex: 1 1 10%;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: space-around;
   padding: 0 0.5rem;
@@ -31,7 +30,6 @@
 
 @media screen and (max-width: 440px) {
   .asteroids {
-    flex-direction: row;
     padding: 0;
     border: none;
 
@@ -40,8 +38,6 @@
     }
 
     div {
-      flex-direction: column;
-
       img {
         width: 6px;
       }

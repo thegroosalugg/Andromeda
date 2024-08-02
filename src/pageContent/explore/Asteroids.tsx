@@ -8,10 +8,10 @@ import css from './Asteroids.module.css';
 
 export default function Asteroids() {
   const { isActive, activeHandler } = useContext(ExploreContext);
-  const { width } = useScreen();
+  const { width, height } = useScreen();
   const dekstop = width > 440;
+  const landscape = width > height;
   const multiplier = dekstop ? 0.012 : 0.04;
-
   const numRows = Math.ceil(width * multiplier);
 
   return (
@@ -22,12 +22,14 @@ export default function Asteroids() {
       animate='visible'
       exit={{ scale: 0, opacity: 0, transition: { duration: 0.8 } }}
       transition={{ staggerChildren: 0.05, delayChildren: 0.5 }}
+      style={{ flexDirection: landscape ? 'column' : 'row' }}
     >
       {Array.from({ length: numRows }).map((_, rowIndex) => (
         <motion.div
           key={rowIndex}
-          variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 }}}
+          variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
           transition={{ staggerChildren: 0.05 }}
+          style={{ flexDirection: landscape ? 'row' : 'column' }}
         >
           {Array.from({ length: rand(2, 7) }).map((_, asteroidIndex) => (
             <motion.img
@@ -45,7 +47,7 @@ export default function Asteroids() {
                   rotate: rand(-360, 360),
                   x: rand(-10, 10),
                   y: rand(-10, 10),
-                  transition: { duration: 0.5 }
+                  transition: { duration: 0.5 },
                 },
               }}
             />
