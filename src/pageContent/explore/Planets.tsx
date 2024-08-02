@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { useContext } from 'react';
 import { ExploreContext } from '@/pages/explore/ExploreContext';
-import { mediaQuery } from '@/util/mediaQuery';
 import mercury from '@/assets/planets/mercury.png';
 import venus from '@/assets/planets/venus.png';
 import earth from '@/assets/planets/earth.png';
@@ -14,8 +13,7 @@ import css from './Planets.module.css';
 
 export default function Planets({ outer }: { outer?: boolean }) {
   const planets = outer ? [jupiter, saturn, uranus, neptune] : [mercury, venus, earth, mars];
-  const { isActive, activeHandler } = useContext(ExploreContext);
-  const { landscape, isMobile } = mediaQuery();
+  const { isActive, activeHandler, landscape, isMobile } = useContext(ExploreContext);
   const activeSet = (isActive === 'inner' && !outer) || (isActive === 'outer' && outer);
   type Planet = keyof typeof props;
 

@@ -1,13 +1,11 @@
 import { motion } from 'framer-motion';
 import { useContext } from 'react';
 import { ExploreContext } from '@/pages/explore/ExploreContext';
-import { mediaQuery } from '@/util/mediaQuery';
 import sun from '@/assets/planets/sun.png';
 import css from './Sun.module.css';
 
 export default function TheSun() {
-  const { isActive, activeHandler } = useContext(ExploreContext);
-  const { isMobile } = mediaQuery();
+  const { isActive, activeHandler, isMobile } = useContext(ExploreContext);
   const size = 200 * (isMobile ? 0.5 : 1) * (isActive === 'sun' ? 2 : 1);
 
   return (

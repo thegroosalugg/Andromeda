@@ -1,7 +1,6 @@
 import { useContext } from 'react';
 import { ExploreContext } from '@/pages/explore/ExploreContext';
 import { AnimatePresence } from 'framer-motion';
-import useScreen from '@/hooks/useScreen';
 import BackButton from './BackButton';
 import TheSun from './Sun';
 import Planets from './Planets';
@@ -9,8 +8,7 @@ import Asteroids from './Asteroids';
 import css from './Universe.module.css';
 
 export default function Universe() {
-  const { isActive } = useContext(ExploreContext);
-  const { landscape } = useScreen();
+  const { isActive, landscape } = useContext(ExploreContext);
 
   return (
     <section className={css.universe}>

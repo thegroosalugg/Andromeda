@@ -1,13 +1,23 @@
+import useScreen from '@/hooks/useScreen';
+import { mediaQuery } from '@/util/mediaQuery';
 import { createContext, useState } from 'react';
 
 type ContextType = {
   isActive: string;
   activeHandler: (id: string) => void;
+  width: number;
+  height: number;
+  landscape: boolean;
+  isMobile: boolean;
 };
 
 export const ExploreContext = createContext<ContextType>({
   isActive: '',
   activeHandler: () => {},
+  width: 0,
+  height: 0,
+  landscape: false,
+  isMobile: false,
 });
 
 // redux causes unexpected behaviour if you switch active components mid animation on other routes, as well as requiring manual cleaning
@@ -15,6 +25,8 @@ export const ExploreContext = createContext<ContextType>({
 export default function ExploreContextProvider({ children }: { children: React.ReactNode }) {
   const [   isActive,    setIsActive] = useState('all');
   const [isAnimating, setIsAnimating] = useState(false);
+  const { width, height, landscape } = useScreen();
+  const isMobile = mediaQuery();
 
   function activeHandler(id: string) {
     if (!isAnimating) {
@@ -27,6 +39,10 @@ export default function ExploreContextProvider({ children }: { children: React.R
   const context: ContextType = {
     isActive,
     activeHandler,
+    width,
+    height,
+    landscape,
+    isMobile,
   };
 
   return <ExploreContext.Provider value={context}>{children}</ExploreContext.Provider>;

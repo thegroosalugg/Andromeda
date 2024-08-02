@@ -6,5 +6,5 @@ export const mediaQuery = () => {
     (width >= 320 && width <= 440 && !landscape) ||
     (width <= 960 && width >= 640 && height <= 440 && height >= 320 && landscape);
 
-  return { isMobile, landscape };
+  return isMobile;
 };
