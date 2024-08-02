@@ -7,12 +7,6 @@
   box-sizing: border-box;
   border: 2px solid transparent;
 
-  &:hover {
-    border: 2px solid #ffffff;
-    border-top: 2px solid transparent;
-    transition: border 0.5s ease-in-out;
-  }
-
   div {
     display: flex;
 
@@ -22,20 +16,9 @@
   }
 }
 
-.active {
-  &:hover {
-    border: none;
-  }
-}
-
 @media screen and (max-width: 440px) {
   .asteroids {
     padding: 0;
-    border: none;
-
-    &:hover {
-      border: none;
-    }
 
     div {
       img {

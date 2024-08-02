@@ -16,12 +16,17 @@ export default function Asteroids() {
 
   return (
     <motion.div
-      className={`${css['asteroids']} ${isActive === 'ast' ? css['active'] : ''}`}
+      className={css['asteroids']}
       onClick={() => activeHandler('ast')}
       initial='hidden'
       animate='visible'
       exit={{ scale: 0, opacity: 0, transition: { duration: 0.8 } }}
       transition={{ staggerChildren: 0.05, delayChildren: 0.5 }}
+      whileHover={{
+           borderColor: !dekstop || isActive === 'ast' ? '#00000000' : '#FFFFFF',
+        borderTopColor: '#00000000',
+           transition: { duration: 0.5, ease: 'easeInOut' },
+      }}
       style={{ flexDirection: landscape ? 'column' : 'row' }}
     >
       {Array.from({ length: numRows }).map((_, rowIndex) => (

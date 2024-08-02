@@ -8,15 +8,18 @@ import css from './Sun.module.css';
 export default function TheSun() {
   const { isActive, activeHandler } = useContext(ExploreContext);
   const { width, height } = useScreen();
-
-  const size = 225 * // 1: targets mobiles, 2: landscape mobiles via aspect ratio
-    ((width >= 320 && width <= 440) || (width / height > 1.8  && width < 1024) ? 0.5 : 1) *
-    (isActive === 'sun' ? 2 : 1);
+  const mobileDev = (width >= 320 && width <= 440) || (width / height > 1.8 && width < 1024);
+  const size = 200 * (mobileDev ? 0.5 : 1) * (isActive === 'sun' ? 2 : 1);
 
   return (
     <motion.div
-      className={`${css['sun']} ${isActive === 'sun' ? css['active'] : ''}`}
+      className={css['sun']}
       onClick={() => activeHandler('sun')}
+      whileHover={{
+           borderColor: mobileDev || isActive === 'sun' ? '#00000000' : '#FFFFFF',
+        borderTopColor: '#00000000',
+           transition: { duration: 0.5, ease: 'easeInOut' },
+      }}
     >
       <motion.img
         src={sun}
