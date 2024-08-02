@@ -4,11 +4,16 @@ const useScreen = () => {
   const [screen, setScreen] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
+    landscape: window.innerWidth > window.innerHeight,
   });
 
   useEffect(() => {
     const handleResize = () => {
-      setScreen({ width: window.innerWidth, height: window.innerHeight });
+      setScreen({
+        width: window.innerWidth,
+        height: window.innerHeight,
+        landscape: window.innerWidth > window.innerHeight,
+      });
     };
 
     window.addEventListener('resize', handleResize);

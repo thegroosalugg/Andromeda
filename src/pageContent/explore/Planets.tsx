@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useContext } from 'react';
 import { ExploreContext } from '@/pages/explore/ExploreContext';
-import useScreen from '@/hooks/useScreen';
+import { mediaQuery } from '@/util/mediaQuery';
 import mercury from '@/assets/planets/mercury.png';
 import venus from '@/assets/planets/venus.png';
 import earth from '@/assets/planets/earth.png';
@@ -15,10 +15,8 @@ import css from './Planets.module.css';
 export default function Planets({ outer }: { outer?: boolean }) {
   const planets = outer ? [jupiter, saturn, uranus, neptune] : [mercury, venus, earth, mars];
   const { isActive, activeHandler } = useContext(ExploreContext);
-  const { width, height } = useScreen();
+  const { landscape, isMobile } = mediaQuery();
   const activeSet = (isActive === 'inner' && !outer) || (isActive === 'outer' && outer);
-  const mobileDev =   (width >= 320 && width <= 440) || (width / height > 1.8 && width < 1024);
-  const landscape = width > height;
   type Planet = keyof typeof props;
 
   const nameOf = (planet: string) =>
@@ -36,10 +34,11 @@ export default function Planets({ outer }: { outer?: boolean }) {
     neptune: { width:  60, align: 30, rotate: 40 },
   };
 
+  // prettier-ignore
   const config = (key: Planet) => {
     const { width, align, rotate } = props[key];
     const margin = landscape ? 'marginBottom' : 'marginLeft';
-    const   size = width * (mobileDev ? 0.5 : 1) * (activeSet ? (outer ? 2 : 4) : 1);
+    const   size = width * (isMobile ? 0.5 : 1) * (activeSet ? (outer ? 2 : 4) : 1);
 
     return {
          width: size,
@@ -58,7 +57,7 @@ export default function Planets({ outer }: { outer?: boolean }) {
       transition={{ staggerChildren: 0.2, delayChildren: outer ? 1 : 0.5 }}
       // prettier-ignore
       whileHover={{
-           borderColor: mobileDev || activeSet ? '#00000000' : '#FFFFFF',
+           borderColor: isMobile || activeSet ? '#00000000' : '#FFFFFF',
         borderTopColor: '#00000000',
             transition: { duration: 0.5, ease: 'easeInOut' },
       }}

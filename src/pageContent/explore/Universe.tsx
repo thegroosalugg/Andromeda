@@ -10,12 +10,12 @@ import css from './Universe.module.css';
 
 export default function Universe() {
   const { isActive } = useContext(ExploreContext);
-  const { width, height } = useScreen();
+  const { landscape } = useScreen();
 
   return (
     <section className={css.universe}>
       <AnimatePresence>{isActive !== 'all' && <BackButton />}</AnimatePresence>
-      <section style={{ flexDirection: width > height ? 'row' : 'column' }}
+      <section style={{ flexDirection: landscape ? 'row' : 'column' }}
       >
         {/* prettier-ignore */}
         <AnimatePresence>

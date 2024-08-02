@@ -1,22 +1,21 @@
 import { motion } from 'framer-motion';
 import { useContext } from 'react';
 import { ExploreContext } from '@/pages/explore/ExploreContext';
-import useScreen from '@/hooks/useScreen';
+import { mediaQuery } from '@/util/mediaQuery';
 import sun from '@/assets/planets/sun.png';
 import css from './Sun.module.css';
 
 export default function TheSun() {
   const { isActive, activeHandler } = useContext(ExploreContext);
-  const { width, height } = useScreen();
-  const mobileDev = (width >= 320 && width <= 440) || (width / height > 1.8 && width < 1024);
-  const size = 200 * (mobileDev ? 0.5 : 1) * (isActive === 'sun' ? 2 : 1);
+  const { isMobile } = mediaQuery();
+  const size = 200 * (isMobile ? 0.5 : 1) * (isActive === 'sun' ? 2 : 1);
 
   return (
     <motion.div
       className={css['sun']}
       onClick={() => activeHandler('sun')}
       whileHover={{
-           borderColor: mobileDev || isActive === 'sun' ? '#00000000' : '#FFFFFF',
+           borderColor: isMobile || isActive === 'sun' ? '#00000000' : '#FFFFFF',
         borderTopColor: '#00000000',
            transition: { duration: 0.5, ease: 'easeInOut' },
       }}

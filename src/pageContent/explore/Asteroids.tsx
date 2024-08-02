@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useContext } from 'react';
 import { ExploreContext } from '@/pages/explore/ExploreContext';
+import { mediaQuery } from '@/util/mediaQuery';
 import useScreen from '@/hooks/useScreen';
 import asteroid from '@/assets/planets/asteroid.png';
 import rand from '@/util/rand';
@@ -8,10 +9,9 @@ import css from './Asteroids.module.css';
 
 export default function Asteroids() {
   const { isActive, activeHandler } = useContext(ExploreContext);
-  const { width, height } = useScreen();
-  const dekstop = width > 440;
-  const landscape = width > height;
-  const multiplier = dekstop ? 0.012 : 0.04;
+  const { width } = useScreen();
+  const { landscape, isMobile } = mediaQuery();
+  const multiplier = isMobile ? 0.04 : 0.012;
   const numRows = Math.ceil(width * multiplier);
 
   return (
@@ -23,7 +23,7 @@ export default function Asteroids() {
       exit={{ scale: 0, opacity: 0, transition: { duration: 0.8 } }}
       transition={{ staggerChildren: 0.05, delayChildren: 0.5 }}
       whileHover={{
-           borderColor: !dekstop || isActive === 'ast' ? '#00000000' : '#FFFFFF',
+           borderColor: isMobile || isActive === 'ast' ? '#00000000' : '#FFFFFF',
         borderTopColor: '#00000000',
            transition: { duration: 0.5, ease: 'easeInOut' },
       }}
