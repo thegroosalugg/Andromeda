@@ -7,7 +7,7 @@ import css from './Asteroids.module.css';
 
 export default function Asteroids() {
   const { isActive, activeHandler, width, landscape, isMobile } = useContext(ExploreContext);
-  const multiplier = isMobile ? 0.04 : 0.012;
+  const multiplier = isMobile ? 0.035 : 0.012;
   const numRows = Math.ceil(width * multiplier);
 
   return (
@@ -51,6 +51,7 @@ export default function Asteroids() {
                   transition: { duration: 0.5 },
                 },
               }}
+              style={{ width: isMobile ? 5 : 10 }}
             />
           ))}
         </motion.div>

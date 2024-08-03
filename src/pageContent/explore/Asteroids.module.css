@@ -3,27 +3,11 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  padding: 0 0.5rem;
+  padding: 0.5rem;
   box-sizing: border-box;
   border: 2px solid transparent;
 
   div {
     display: flex;
-
-    img {
-      width: 10px;
-    }
-  }
-}
-
-@media screen and (max-width: 440px) {
-  .asteroids {
-    padding: 0;
-
-    div {
-      img {
-        width: 6px;
-      }
-    }
   }
 }

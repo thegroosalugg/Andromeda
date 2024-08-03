@@ -64,7 +64,7 @@ export default function Planets({ outer }: { outer?: boolean }) {
       style={{
                  flex: `1 1 ${outer ? 50 : 30}%`,
         flexDirection: landscape ? 'row' : 'column',
-              padding: activeSet ? '2rem' : outer ? (landscape ? '1rem 1rem 0 0' : '0 0 1rem') : 0,
+              padding: activeSet && !isMobile ? '2rem' : outer ? (landscape ? '0 1rem 0 0' : '0 0 1rem') : 0,
       }}
     >
       {planets.map((planet) => {

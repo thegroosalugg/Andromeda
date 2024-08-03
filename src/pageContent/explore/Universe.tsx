@@ -8,13 +8,12 @@ import Asteroids from './Asteroids';
 import css from './Universe.module.css';
 
 export default function Universe() {
-  const { isActive, landscape } = useContext(ExploreContext);
+  const { isActive, landscape, isMobile } = useContext(ExploreContext);
 
   return (
-    <section className={css.universe}>
+    <section className={css.universe} style={{ minHeight: landscape && isMobile ? '100vh' : '' }}>
       <AnimatePresence>{isActive !== 'all' && <BackButton />}</AnimatePresence>
-      <section style={{ flexDirection: landscape ? 'row' : 'column' }}
-      >
+      <section style={{ flexDirection: landscape ? 'row' : 'column' }}>
         {/* prettier-ignore */}
         <AnimatePresence>
         {(isActive === 'all' || isActive === 'sun'  ) && <TheSun    key='sun' />}
