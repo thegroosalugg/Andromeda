@@ -3,7 +3,7 @@ import { mediaQuery } from '@/util/mediaQuery';
 import { createContext, useState } from 'react';
 
 type ContextType = {
-  isActive: string;
+  activeFC: string;
   activeHandler: (id: string) => void;
   width: number;
   height: number;
@@ -12,7 +12,7 @@ type ContextType = {
 };
 
 export const ExploreContext = createContext<ContextType>({
-  isActive: '',
+  activeFC: '',
   activeHandler: () => {},
   width: 0,
   height: 0,
@@ -23,7 +23,7 @@ export const ExploreContext = createContext<ContextType>({
 // redux causes unexpected behaviour if you switch active components mid animation on other routes, as well as requiring manual cleaning
 // context is used instead as it is only required on explore route and cleans itself on route switch
 export default function ExploreContextProvider({ children }: { children: React.ReactNode }) {
-  const [   isActive,    setIsActive] = useState('all');
+  const [   activeFC,    setactiveFC] = useState('all');
   const [isAnimating, setIsAnimating] = useState(false);
   const { width, height, landscape } = useScreen();
   const isMobile = mediaQuery();
@@ -31,13 +31,13 @@ export default function ExploreContextProvider({ children }: { children: React.R
   function activeHandler(id: string) {
     if (!isAnimating) {
       setIsAnimating(true);
-      setIsActive(id);
+      setactiveFC(id);
       setTimeout(() => setIsAnimating(false), 1200);
     }
   }
 
   const context: ContextType = {
-    isActive,
+    activeFC,
     activeHandler,
     width,
     height,

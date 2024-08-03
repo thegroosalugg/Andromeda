@@ -8,18 +8,18 @@ import Asteroids from './Asteroids';
 import css from './Universe.module.css';
 
 export default function Universe() {
-  const { isActive, landscape, isMobile } = useContext(ExploreContext);
+  const { activeFC, landscape, isMobile } = useContext(ExploreContext);
 
   return (
     <section className={css.universe} style={{ minHeight: landscape && isMobile ? '100vh' : '' }}>
-      <AnimatePresence>{isActive !== 'all' && <BackButton />}</AnimatePresence>
+      <AnimatePresence>{activeFC !== 'all' && <BackButton />}</AnimatePresence>
       <section style={{ flexDirection: landscape ? 'row' : 'column' }}>
         {/* prettier-ignore */}
         <AnimatePresence>
-        {(isActive === 'all' || isActive === 'sun'  ) && <TheSun    key='sun' />}
-        {(isActive === 'all' || isActive === 'inner') && <Planets   key='inner' />}
-        {(isActive === 'all' || isActive === 'ast'  ) && <Asteroids key='ast' />}
-        {(isActive === 'all' || isActive === 'outer') && <Planets   key='outer' outer />}
+        {(activeFC === 'all' || activeFC === 'sun'  ) && <TheSun    key='sun' />}
+        {(activeFC === 'all' || activeFC === 'inner') && <Planets   key='inner' />}
+        {(activeFC === 'all' || activeFC === 'ast'  ) && <Asteroids key='ast' />}
+        {(activeFC === 'all' || activeFC === 'outer') && <Planets   key='outer' outer />}
       </AnimatePresence>
       </section>
     </section>

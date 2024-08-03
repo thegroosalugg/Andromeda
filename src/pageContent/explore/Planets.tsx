@@ -13,8 +13,8 @@ import css from './Planets.module.css';
 
 export default function Planets({ outer }: { outer?: boolean }) {
   const planets = outer ? [jupiter, saturn, uranus, neptune] : [mercury, venus, earth, mars];
-  const { isActive, activeHandler, landscape, isMobile } = useContext(ExploreContext);
-  const activeSet = (isActive === 'inner' && !outer) || (isActive === 'outer' && outer);
+  const { activeFC, activeHandler, landscape, isMobile } = useContext(ExploreContext);
+  const activeSet = (activeFC === 'inner' && !outer) || (activeFC === 'outer' && outer);
 
   type Planet = keyof typeof props;
 

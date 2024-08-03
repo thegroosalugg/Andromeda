@@ -5,15 +5,16 @@ import sun from '@/assets/planets/sun.png';
 import css from './Sun.module.css';
 
 export default function TheSun() {
-  const { isActive, activeHandler, isMobile } = useContext(ExploreContext);
-  const size = 200 * (isMobile ? 0.5 : 1) * (isActive === 'sun' ? 2 : 1);
+  const { activeFC, activeHandler, isMobile } = useContext(ExploreContext);
+  const isActive = activeFC === 'sun';
+  const size = 200 * (isMobile ? 0.5 : 1) * (isActive ? 2 : 1);
 
   return (
     <motion.div
       className={css['sun']}
       onClick={() => activeHandler('sun')}
       whileHover={{
-           borderColor: isMobile || isActive === 'sun' ? '#00000000' : '#FFFFFF',
+           borderColor: isMobile || isActive ? '#00000000' : '#FFFFFF',
         borderTopColor: '#00000000',
            transition: { duration: 0.5, ease: 'easeInOut' },
       }}

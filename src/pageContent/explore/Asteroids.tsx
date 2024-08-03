@@ -6,7 +6,8 @@ import rand from '@/util/rand';
 import css from './Asteroids.module.css';
 
 export default function Asteroids() {
-  const { isActive, activeHandler, width, landscape, isMobile } = useContext(ExploreContext);
+  const { activeFC, activeHandler, width, landscape, isMobile } = useContext(ExploreContext);
+  const isActive = activeFC === 'ast';
   const multiplier = isMobile ? 0.035 : 0.012;
   const numRows = Math.ceil(width * multiplier);
 
@@ -19,13 +20,13 @@ export default function Asteroids() {
       exit={{ scale: 0, opacity: 0, transition: { duration: 0.8 } }}
       transition={{ staggerChildren: 0.05, delayChildren: 0.5 }}
       whileHover={{
-           borderColor: isMobile || isActive === 'ast' ? '#00000000' : '#FFFFFF',
+           borderColor: isMobile || isActive ? '#00000000' : '#FFFFFF',
         borderTopColor: '#00000000',
            transition: { duration: 0.5, ease: 'easeInOut' },
       }}
       style={{ flexDirection: landscape ? 'column' : 'row' }}
     >
-      {Array.from({ length: numRows }).map((_, rowIndex) => (
+      {Array.from({ length: numRows / (isActive ? 3 : 1) }).map((_, rowIndex) => (
         <motion.div
           key={rowIndex}
           variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
@@ -51,7 +52,7 @@ export default function Asteroids() {
                   transition: { duration: 0.5 },
                 },
               }}
-              style={{ width: isMobile ? 5 : 10 }}
+              style={{ width: isMobile ? 5 : 10 * (isActive ? 10 : 1) }}
             />
           ))}
         </motion.div>
