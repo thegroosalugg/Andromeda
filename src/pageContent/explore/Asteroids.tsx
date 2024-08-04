@@ -23,11 +23,14 @@ export default function Asteroids() {
       whileHover={{
            borderColor: isMobile || isActive ? '#00000000' : '#FFFFFF',
         borderTopColor: '#00000000',
-           transition: { duration: 0.5, ease: 'easeInOut' },
+            transition: { duration: 0.5, ease: 'easeInOut' },
       }}
-      style={{ flexDirection: isLandscape ? 'column' : 'row' }}
+      style={{
+         flexDirection: isLandscape ? 'column' : 'row',
+        justifyContent:    isActive ? 'center' : 'space-around',
+      }}
     >
-      {Array.from({ length: isActive ? 3 : 10 }).map((_, divIndex) => (
+      {Array.from({ length: isActive ? 4 : 10 }).map((_, divIndex) => (
         <motion.div
           key={divIndex}
           layout
@@ -54,10 +57,10 @@ export default function Asteroids() {
                   transition: {
                     duration: 0.5,
                     rotate: {
-                      duration: 5,
-                      type: 'tween',
-                      ease: 'linear',
-                      repeat: isActive ? Infinity : 0,
+                      duration: rand(5, 7),
+                          type: 'tween',
+                          ease: 'linear',
+                        repeat: isActive ? Infinity : 0,
                     },
                   },
                 },
