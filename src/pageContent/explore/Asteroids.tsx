@@ -25,11 +25,10 @@ export default function Asteroids() {
     <motion.div
       className={css['asteroids']}
       onClick={() => activeHandler('ast')}
-      layout
       initial='hidden'
       animate='visible'
-      exit={{ scale: 0, opacity: 0, transition: { duration: 0.8 } }}
-      transition={{ staggerChildren: 0.05, delayChildren: 0.5 }}
+      exit={{ scale: 0, opacity: 0, transition: { duration: 0.5 } }}
+      transition={{ staggerChildren: 0.1, delayChildren: 0.5 }}
       // prettier-ignore
       whileHover={{
            borderColor: isMobile || isActive ? '#00000000' : '#FFFFFF',
@@ -45,9 +44,7 @@ export default function Asteroids() {
       {Array.from({ length: isActive ? 5 : 10 }).map((_, colIndex) => (
         <motion.div
           key={colIndex}
-          layout
-          variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
-          transition={{ staggerChildren: 0.05 }}
+          variants={{ hidden: { opacity: 0, scale: 0 }, visible: { opacity: 1, scale: 1 } }}
           // prettier-ignore
           style={{
             flexDirection: isLandscape ?  'row' : 'column',
@@ -63,11 +60,9 @@ export default function Asteroids() {
                 src={asteroid}
                 alt='Asteroid'
                 layout
+                transition={{ duration: 1 }} // for layout transition
                 // prettier-ignore
-                variants={{
-                   hidden: { opacity: 0, scale: 0, rotate: 0, x: 0, y: 0 },
-                  visible: {
-                  opacity: 1,
+                animate={{
                    filter: animations[astIndex].filter,
                     scale: animations[astIndex].scale,
                         x: animations[astIndex].x * (isActive ? 10 : 1),
@@ -82,8 +77,7 @@ export default function Asteroids() {
                         repeat: Infinity,
                     },
                   },
-                },
-              }}
+                }}
                 style={{ width: (isMobile ? 5 : 10) * (isActive ? 5 : 1) }}
               />
             );
