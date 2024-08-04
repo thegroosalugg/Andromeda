@@ -13,7 +13,7 @@ import css from './Planets.module.css';
 
 export default function Planets({ outer }: { outer?: boolean }) {
   const planets = outer ? [jupiter, saturn, uranus, neptune] : [mercury, venus, earth, mars];
-  const { activeFC, activeHandler, landscape, isMobile } = useContext(ExploreContext);
+  const { activeFC, activeHandler, isLandscape, isMobile } = useContext(ExploreContext);
   const activeSet = (activeFC === 'inner' && !outer) || (activeFC === 'outer' && outer);
 
   type Planet = keyof typeof props;
@@ -40,9 +40,9 @@ export default function Planets({ outer }: { outer?: boolean }) {
 
     return {
               width: size,
-         marginLeft: activeSet ? 0 :  landscape ? 0 : align,
-       marginBottom: activeSet ? 0 : !landscape ? 0 : align,
-             rotate: landscape ? 0 : rotate,
+         marginLeft: activeSet   ? 0 :  isLandscape ? 0 : align,
+       marginBottom: activeSet   ? 0 : !isLandscape ? 0 : align,
+             rotate: isLandscape ? 0 :  rotate,
     };
   };
 
@@ -63,8 +63,8 @@ export default function Planets({ outer }: { outer?: boolean }) {
       // prettier-ignore
       style={{
                  flex: `1 1 ${outer ? 50 : 30}%`,
-        flexDirection: landscape ? 'row' : 'column',
-              padding: activeSet && !isMobile ? '2rem' : outer ? (landscape ? '0 1rem 0 0' : '0 0 1rem') : 0,
+        flexDirection: isLandscape ? 'row' : 'column',
+              padding: activeSet && !isMobile ? '2rem' : outer ? (isLandscape ? '0 1rem 0 0' : '0 0 1rem') : 0,
       }}
     >
       {planets.map((planet) => {

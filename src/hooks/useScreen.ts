@@ -4,7 +4,7 @@ const useScreen = () => {
   const [screen, setScreen] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
-    landscape: window.innerWidth > window.innerHeight,
+    isLandscape: window.innerWidth > window.innerHeight,
   });
 
   useEffect(() => {
@@ -12,7 +12,7 @@ const useScreen = () => {
       setScreen({
         width: window.innerWidth,
         height: window.innerHeight,
-        landscape: window.innerWidth > window.innerHeight,
+        isLandscape: window.innerWidth > window.innerHeight,
       });
     };
 

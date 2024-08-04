@@ -6,10 +6,9 @@ import rand from '@/util/rand';
 import css from './Asteroids.module.css';
 
 export default function Asteroids() {
-  const { activeFC, activeHandler, width, landscape, isMobile } = useContext(ExploreContext);
+  const { activeFC, activeHandler, width, isLandscape, isMobile } = useContext(ExploreContext);
   const isActive = activeFC === 'ast';
-  const multiplier = isMobile ? 0.035 : 0.012;
-  const numRows = Math.ceil(width * multiplier);
+  const numDivs = Math.floor(width * (isMobile ? 0.035 : 0.012));
 
   return (
     <motion.div
@@ -24,18 +23,18 @@ export default function Asteroids() {
         borderTopColor: '#00000000',
            transition: { duration: 0.5, ease: 'easeInOut' },
       }}
-      style={{ flexDirection: landscape ? 'column' : 'row' }}
+      style={{ flexDirection: isLandscape ? 'column' : 'row' }}
     >
-      {Array.from({ length: numRows / (isActive ? 3 : 1) }).map((_, rowIndex) => (
+      {Array.from({ length: isActive ? 5 : numDivs }).map((_, divIndex) => (
         <motion.div
-          key={rowIndex}
+          key={divIndex}
           variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
           transition={{ staggerChildren: 0.05 }}
-          style={{ flexDirection: landscape ? 'row' : 'column' }}
+          style={{ flexDirection: isLandscape ? 'row' : 'column' }}
         >
-          {Array.from({ length: rand(2, 7) }).map((_, asteroidIndex) => (
+          {Array.from({ length: rand(2, 5) * (isActive ? 2 : 1) }).map((_, astIndex) => (
             <motion.img
-              key={asteroidIndex}
+              key={astIndex}
               src={asteroid}
               alt='Asteroid'
               layout
@@ -47,12 +46,12 @@ export default function Asteroids() {
                   filter: `brightness(${rand(4, 8) * 0.1}) sepia(1) hue-rotate(5deg)`,
                   scale: rand(4, 10) * 0.1,
                   rotate: rand(-360, 360),
-                  x: rand(-10, 10),
-                  y: rand(-10, 10),
+                  x: rand(-10, 10) * (isActive ? 10 : 1),
+                  y: rand(-10, 10) * (isActive ? 10 : 1),
                   transition: { duration: 0.5 },
                 },
               }}
-              style={{ width: isMobile ? 5 : 10 * (isActive ? 10 : 1) }}
+              style={{ width: (isMobile ? 5 : 10) * (isActive ? 5 : 1) }}
             />
           ))}
         </motion.div>
