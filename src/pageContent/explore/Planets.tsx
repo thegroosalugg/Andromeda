@@ -11,27 +11,27 @@ import uranus from '@/assets/planets/uranus.png';
 import neptune from '@/assets/planets/neptune.png';
 import css from './Planets.module.css';
 
+type Planet = keyof typeof props;
+
+const nameOf = (planet: string) =>
+  planet.match(/(mercury|venus|earth|mars|jupiter|saturn|uranus|neptune)/)![0] as Planet;
+
+// prettier-ignore
+const props = {
+  mercury: { width:  20, align: 30, rotate: 65 },
+  venus:   { width:  30, align: 40, rotate: 45 },
+  earth:   { width:  40, align: 50, rotate: 45 },
+  mars:    { width:  25, align: 65, rotate: 45 },
+  jupiter: { width: 100, align: 65, rotate: 55 },
+  saturn:  { width: 120, align: 50, rotate: 55 },
+  uranus:  { width:  70, align: 40, rotate: 45 },
+  neptune: { width:  60, align: 30, rotate: 40 },
+};
+
 export default function Planets({ outer }: { outer?: boolean }) {
   const planets = outer ? [jupiter, saturn, uranus, neptune] : [mercury, venus, earth, mars];
   const { activeFC, activeHandler, isLandscape, isMobile } = useContext(ExploreContext);
   const activeSet = (activeFC === 'inner' && !outer) || (activeFC === 'outer' && outer);
-
-  type Planet = keyof typeof props;
-
-  const nameOf = (planet: string) =>
-    planet.match(/(mercury|venus|earth|mars|jupiter|saturn|uranus|neptune)/)![0] as Planet;
-
-  // prettier-ignore
-  const props = {
-    mercury: { width:  20, align: 30, rotate: 65 },
-    venus:   { width:  30, align: 40, rotate: 45 },
-    earth:   { width:  40, align: 50, rotate: 45 },
-    mars:    { width:  25, align: 65, rotate: 45 },
-    jupiter: { width: 100, align: 65, rotate: 55 },
-    saturn:  { width: 120, align: 50, rotate: 55 },
-    uranus:  { width:  70, align: 40, rotate: 45 },
-    neptune: { width:  60, align: 30, rotate: 40 },
-  };
 
   // prettier-ignore
   const config = (key: Planet) => {

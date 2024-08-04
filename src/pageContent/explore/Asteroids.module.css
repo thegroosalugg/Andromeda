@@ -8,5 +8,10 @@
 
   div {
     display: flex;
+
+    img {
+      cursor: pointer;
+      height: fit-content;
+    }
   }
 }

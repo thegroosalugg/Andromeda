@@ -9,7 +9,7 @@ import css from './Asteroids.module.css';
 const animations = Array.from({ length: 50 }, () => ({
        x: rand(-10, 10),
        y: rand(-10, 10),
-   scale: rand(4, 10) * 0.1,
+   width: rand(  4, 10),
   filter: `brightness(${rand(4, 8) * 0.1}) sepia(1) hue-rotate(5deg)`,
   rotate: 360 * (Math.random() < 0.5 ? 1 : -1),
     secs: rand(4, 7),
@@ -61,10 +61,10 @@ export default function Asteroids() {
                 alt='Asteroid'
                 layout
                 transition={{ duration: 1 }} // for layout transition
+                style={{ width: animations[astIndex].width * (isActive ?  5 : 1) * (isMobile ? 0.5 : 1) }}
                 // prettier-ignore
                 animate={{
                    filter: animations[astIndex].filter,
-                    scale: animations[astIndex].scale,
                         x: animations[astIndex].x * (isActive ? 10 : 1),
                         y: animations[astIndex].y * (isActive ? 10 : 1),
                    rotate: animations[astIndex].rotate,
@@ -78,7 +78,6 @@ export default function Asteroids() {
                     },
                   },
                 }}
-                style={{ width: (isMobile ? 5 : 10) * (isActive ? 5 : 1) }}
               />
             );
           })}
