@@ -5,8 +5,6 @@ import { createContext, useState } from 'react';
 type ContextType = {
   activeFC: string;
   activeHandler: (id: string) => void;
-  width: number;
-  height: number;
   isLandscape: boolean;
   isMobile: boolean;
 };
@@ -14,8 +12,6 @@ type ContextType = {
 export const ExploreContext = createContext<ContextType>({
   activeFC: '',
   activeHandler: () => {},
-  width: 0,
-  height: 0,
   isLandscape: false,
   isMobile: false,
 });
@@ -25,11 +21,11 @@ export const ExploreContext = createContext<ContextType>({
 export default function ExploreContextProvider({ children }: { children: React.ReactNode }) {
   const [   activeFC,    setActiveFC]  = useState('all');
   const [isAnimating, setIsAnimating]  = useState(false);
-  const { width, height, isLandscape } = useScreen();
+  const { isLandscape } = useScreen();
   const isMobile = mediaQuery();
 
   function activeHandler(id: string) {
-    if (!isAnimating) {
+    if (!isAnimating && id !== activeFC) {
       setIsAnimating(true);
       setActiveFC(id);
       setTimeout(() => setIsAnimating(false), 1200);
@@ -39,8 +35,6 @@ export default function ExploreContextProvider({ children }: { children: React.R
   const context: ContextType = {
     activeFC,
     activeHandler,
-    width,
-    height,
     isLandscape,
     isMobile,
   };

@@ -6,9 +6,8 @@ import rand from '@/util/rand';
 import css from './Asteroids.module.css';
 
 export default function Asteroids() {
-  const { activeFC, activeHandler, width, isLandscape, isMobile } = useContext(ExploreContext);
+  const { activeFC, activeHandler, isLandscape, isMobile } = useContext(ExploreContext);
   const isActive = activeFC === 'ast';
-  const numDivs = Math.floor(width * (isMobile ? 0.035 : 0.012));
 
   return (
     <motion.div
@@ -18,6 +17,7 @@ export default function Asteroids() {
       animate='visible'
       exit={{ scale: 0, opacity: 0, transition: { duration: 0.8 } }}
       transition={{ staggerChildren: 0.05, delayChildren: 0.5 }}
+      // prettier-ignore
       whileHover={{
            borderColor: isMobile || isActive ? '#00000000' : '#FFFFFF',
         borderTopColor: '#00000000',
@@ -25,7 +25,7 @@ export default function Asteroids() {
       }}
       style={{ flexDirection: isLandscape ? 'column' : 'row' }}
     >
-      {Array.from({ length: isActive ? 5 : numDivs }).map((_, divIndex) => (
+      {Array.from({ length: isActive ? 3 : 10 }).map((_, divIndex) => (
         <motion.div
           key={divIndex}
           variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
@@ -45,10 +45,18 @@ export default function Asteroids() {
                   opacity: 1,
                   filter: `brightness(${rand(4, 8) * 0.1}) sepia(1) hue-rotate(5deg)`,
                   scale: rand(4, 10) * 0.1,
-                  rotate: rand(-360, 360),
+                  rotate: isActive ? 360 * (Math.random() < 0.5 ? 1 : -1) : rand(-350, 350),
                   x: rand(-10, 10) * (isActive ? 10 : 1),
                   y: rand(-10, 10) * (isActive ? 10 : 1),
-                  transition: { duration: 0.5 },
+                  transition: {
+                    duration: 0.5,
+                    rotate: {
+                      duration: 5,
+                      type: 'tween',
+                      ease: 'linear',
+                      repeat: isActive ? Infinity : 0,
+                    },
+                  },
                 },
               }}
               style={{ width: (isMobile ? 5 : 10) * (isActive ? 5 : 1) }}
