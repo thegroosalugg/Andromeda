@@ -1,18 +1,16 @@
 import { useEffect, useState } from 'react';
 
-const useScreen = () => {
-  const [screen, setScreen] = useState({
+const useScreenSize = () => {
+  const [screenSize, setScreenSize] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
-    isLandscape: window.innerWidth > window.innerHeight,
   });
 
   useEffect(() => {
     const handleResize = () => {
-      setScreen({
+      setScreenSize({
         width: window.innerWidth,
         height: window.innerHeight,
-        isLandscape: window.innerWidth > window.innerHeight,
       });
     };
 
@@ -23,7 +21,7 @@ const useScreen = () => {
     };
   }, []);
 
-  return screen;
+  return screenSize;
 };
 
-export default useScreen;
+export default useScreenSize;

@@ -9,6 +9,8 @@ export default function Asteroids() {
   const { activeFC, activeHandler, isLandscape, isMobile } = useContext(ExploreContext);
   const isActive = activeFC === 'ast';
 
+  console.log('ASTEROIDS' + Math.random().toFixed(3));
+
   return (
     <motion.div
       className={css['asteroids']}
@@ -28,6 +30,7 @@ export default function Asteroids() {
       {Array.from({ length: isActive ? 3 : 10 }).map((_, divIndex) => (
         <motion.div
           key={divIndex}
+          layout
           variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
           transition={{ staggerChildren: 0.05 }}
           style={{ flexDirection: isLandscape ? 'row' : 'column' }}
