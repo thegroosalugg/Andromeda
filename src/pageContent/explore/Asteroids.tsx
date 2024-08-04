@@ -6,20 +6,20 @@ import rand from '@/util/rand';
 import css from './Asteroids.module.css';
 
 // prettier-ignore
-const animations = Array.from({ length: 100 }, () => ({
+const animations = Array.from({ length: 50 }, () => ({
        x: rand(-10, 10),
        y: rand(-10, 10),
-  rotate: rand(-350, 350),
    scale: rand(4, 10) * 0.1,
   filter: `brightness(${rand(4, 8) * 0.1}) sepia(1) hue-rotate(5deg)`,
+  rotate: 360 * (Math.random() < 0.5 ? 1 : -1),
+    secs: rand(4, 7),
 }));
-console.log(animations);
+
+const rows = Array.from({ length: 10 }, () => rand(2, 5));
 
 export default function Asteroids() {
   const { activeFC, activeHandler, isLandscape, isMobile } = useContext(ExploreContext);
   const isActive = activeFC === 'ast';
-
-  console.log('ASTEROIDS' + Math.random().toFixed(3));
 
   return (
     <motion.div
@@ -42,16 +42,20 @@ export default function Asteroids() {
         justifyContent:    isActive ? 'center' : 'space-around',
       }}
     >
-      {Array.from({ length: isActive ? 4 : 10 }).map((_, rowIndex) => (
+      {Array.from({ length: isActive ? 5 : 10 }).map((_, colIndex) => (
         <motion.div
-          key={rowIndex}
+          key={colIndex}
           layout
           variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
           transition={{ staggerChildren: 0.05 }}
-          style={{ flexDirection: isLandscape ? 'row' : 'column' }}
+          // prettier-ignore
+          style={{
+            flexDirection: isLandscape ?  'row' : 'column',
+                      gap:    isActive ? '1rem' : '',
+          }}
         >
-          {Array.from({ length: rand(2, 5) * (isActive ? 2 : 1) }).map((_, colIndex) => {
-            const astIndex = rowIndex * 10 + colIndex;
+          {Array.from({ length: rows[colIndex] }).map((_, rowIndex) => {
+            const astIndex = colIndex * 5 + rowIndex;
 
             return (
               <motion.img
@@ -61,23 +65,21 @@ export default function Asteroids() {
                 layout
                 // prettier-ignore
                 variants={{
-                 hidden: { opacity: 0, scale: 0, rotate: 0, x: 0, y: 0 },
-                visible: {
+                   hidden: { opacity: 0, scale: 0, rotate: 0, x: 0, y: 0 },
+                  visible: {
                   opacity: 1,
                    filter: animations[astIndex].filter,
                     scale: animations[astIndex].scale,
-                   rotate: isActive
-                         ? 360 * (Math.random() < 0.5 ? 1 : -1)
-                         : animations[astIndex].rotate,
                         x: animations[astIndex].x * (isActive ? 10 : 1),
                         y: animations[astIndex].y * (isActive ? 10 : 1),
+                   rotate: animations[astIndex].rotate,
                   transition: {
                     duration: 0.5,
                       rotate: {
-                      duration: rand(5, 7),
+                      duration: animations[astIndex].secs,
                           type: 'tween',
                           ease: 'linear',
-                        repeat: isActive ? Infinity : 0,
+                        repeat: Infinity,
                     },
                   },
                 },
