@@ -4,11 +4,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 interface IconProps {
       icons: IconProp[]; // 3D array specifies icon library 'fas/fab/far/etc' and icon name
-     texts?:   string[]; // provide text for icons if required
+    labels?:   string[]; // provide labels for icons if required
   className:   string;
 }
 
-const IconRow: React.FC<IconProps> = ({ icons, texts, className }) => {
+const IconRow: React.FC<IconProps> = ({ icons, labels, className }) => {
   return (
     <motion.div
       className={className}
@@ -26,7 +26,7 @@ const IconRow: React.FC<IconProps> = ({ icons, texts, className }) => {
           transition={{ type: 'spring' }}
         >
           <FontAwesomeIcon icon={icon} />
-          {texts && <span>{texts[index]}</span>}
+          {labels && <span>{labels[index]}</span>}
         </motion.div>
       ))}
     </motion.div>

@@ -1,5 +1,5 @@
 import SpaceShip from '@/models/SpaceShip';
-import { FontAwesomeBar } from '@/components/fontawesome/FontAwesomeBar';
+import { RatingBar } from '@/components/fontawesome/RatingBar';
 import { motion } from 'framer-motion';
 import css from './SlidesInfoCard.module.css';
 
@@ -24,7 +24,7 @@ const SlidesInfoCard: React.FC<SpaceShip> = (spaceship) => {
     >
       <div className={css.info}>
         <h2>{model}</h2>
-        <FontAwesomeBar icon='star' size={5} amount={rating} />
+        <RatingBar icon='star' length={5} rating={rating} />
       </div>
 
       <p>
@@ -35,7 +35,7 @@ const SlidesInfoCard: React.FC<SpaceShip> = (spaceship) => {
         {Object.entries(performance).map(([key, value]) => (
           <div key={key}>
             <p>{key}</p>
-            <FontAwesomeBar icon='circle' size={10} amount={value} />
+            <RatingBar icon='circle' length={10} rating={value} />
           </div>
         ))}
       </div>

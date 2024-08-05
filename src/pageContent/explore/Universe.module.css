@@ -10,10 +10,3 @@
     display: flex;
   }
 }
-
-/* layout mostly the same if browser doesn't support safe center */
-@supports (justify-content: safe center) {
-  .universe > section {
-    justify-content: safe center;
-  }
-}

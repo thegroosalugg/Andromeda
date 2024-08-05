@@ -33,7 +33,7 @@ const StaticInfoCard: React.FC<SpaceShip> = (spaceship) => {
           ['fas', 'clock'],
           ['fas', 'money-bill-1-wave'],
         ]}
-        texts={[fuel, speed + 'm Mph', year + ' (CE)', price + ' daily']}
+        labels={[fuel, speed + 'm Mph', year + ' (CE)', price + ' daily']}
       />
     </motion.div>
   );
