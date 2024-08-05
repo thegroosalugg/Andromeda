@@ -52,7 +52,7 @@ export default function Planets({ outer }: { outer?: boolean }) {
       onClick={() => activeHandler(outer ? 'outer' : 'inner')}
       initial='hidden'
       animate='visible'
-      exit={{ scale: 0, opacity: 0, transition: { duration: 0.8 } }}
+      exit={{ scale: 0, opacity: 0, transition: { duration: 0.5 } }}
       transition={{ staggerChildren: 0.2, delayChildren: outer ? 1 : 0.5 }}
       // prettier-ignore
       whileHover={{

@@ -32,9 +32,9 @@ export default function TheSun() {
           transition: { duration: 3 },
         }}
         exit={{
-          filter: ['brightness(1)', 'brightness(1)', 'brightness(0)', 'brightness(0)'],
-          scale: [1, 1, 0.5, 0],
-          transition: { duration: 0.8 },
+          filter: 'brightness(0)',
+          scale: 0,
+          transition: { duration: 0.5 },
         }}
       />
     </motion.div>
