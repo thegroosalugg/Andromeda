@@ -7,6 +7,7 @@ import css from './BackButton.module.css';
 
 // prettier-ignore
 const texts = {
+    all: 'Goodbye',
     sun: 'The Sun',
   inner: 'Inner Solar System',
   outer: 'Outer Solar System',
@@ -15,7 +16,7 @@ const texts = {
 
 // prettier-ignore
 const icons: { [key: string]: IconProp } = {
-    all: 'sun', // only used to remove console errors
+    all: 'bars-staggered',
     sun: 'sun',
   inner: 'satellite-dish',
   outer: 'user-astronaut',
@@ -35,6 +36,7 @@ export default function BackButton() {
       whileHover={{ background: '#ffad06', color: '#535151' }}
       onClick={() => activeHandler('all')}
     >
+      <span />
       <span>
         <FontAwesomeIcon
           icon={icons[activeFC]}
