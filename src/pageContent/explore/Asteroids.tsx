@@ -37,6 +37,7 @@ export default function Asteroids() {
       }}
       // prettier-ignore
       style={{
+                  flex: isMobile && !isLandscape && !isActive ? '0.5 1 10%' : '1 1 10%',
          flexDirection: isLandscape ? 'column' : 'row',
         justifyContent:    isActive ? 'center' : 'space-around',
       }}
