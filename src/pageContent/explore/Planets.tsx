@@ -62,9 +62,10 @@ export default function Planets({ outer }: { outer?: boolean }) {
       }}
       // prettier-ignore
       style={{
-                 flex: `1 1 ${outer ? 50 : 30}%`,
-        flexDirection: isLandscape ? 'row' : 'column',
-              padding: activeSet && !isMobile ? '2rem' : outer ? (isLandscape ? '0 1rem 0 0' : '0 0 1rem') : 0,
+                  flex: `1 1 ${outer ? 50 : 30}%`,
+         flexDirection:  isLandscape ? 'row' : 'column',
+        justifyContent:    activeSet ? 'space-evenly' : 'space-between',
+               padding: activeSet && !isMobile ? '2rem' : outer ? (isLandscape ? '0 1rem 0 0' : '0 0 1rem') : 0,
       }}
     >
       {planets.map((planet) => {
@@ -84,6 +85,7 @@ export default function Planets({ outer }: { outer?: boolean }) {
                 transition: { type: 'tween', ease: 'linear', duration: 0.5 },
               },
             }}
+            style={{ padding: !isMobile ? '1rem' : '' }} // will cause animation jitter if on mobile, same with Gap or Margin
           >
             <motion.img
               src={planet}
