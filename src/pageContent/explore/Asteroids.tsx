@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, useAnimate } from 'framer-motion';
 import { useContext } from 'react';
 import { ExploreContext } from '@/pages/explore/ExploreContext';
 import asteroid from '@/assets/planets/asteroid.png';
@@ -19,10 +19,15 @@ const rows = Array.from({ length: 10 }, () => rand(2, 5));
 
 export default function Asteroids() {
   const { activeFC, activeHandler, isLandscape, isMobile } = useContext(ExploreContext);
+  const [scope, animate] = useAnimate();
   const isActive = activeFC === 'ast';
 
   const dragY = isLandscape ? 100 : 200;
   const dragX = isLandscape ? 350 * (isMobile ? 1 : 1.8) : 100;
+
+  const handleDragEnd = (index: number) => {
+    animate(`#ast-${index}`, { scale: [0.8, 1.2, 0.8, 1.2] }, { type: 'tween', ease: 'linear', duration: 1, });
+  };
 
   return (
     <motion.div
@@ -30,6 +35,7 @@ export default function Asteroids() {
       onClick={() => activeHandler('ast')}
       initial='hidden'
       animate='visible'
+      ref={scope}
       exit={{ scale: 0, opacity: 0, transition: { duration: 0.5 } }}
       transition={{ staggerChildren: 0.1, delayChildren: 0.5 }}
       // prettier-ignore
@@ -60,6 +66,7 @@ export default function Asteroids() {
 
             return (
               <motion.img
+                id={`ast-${astIndex}`}
                 key={astIndex}
                 src={asteroid}
                 alt='Asteroid'
@@ -67,9 +74,9 @@ export default function Asteroids() {
                 transition={{ duration: 1 }} // for layout transition
                 drag={isActive}
                 dragConstraints={{
-                  left: dragX * -1,
-                  right: dragX,
-                  top: dragY * -1,
+                    left: dragX * -1,
+                   right: dragX,
+                     top: dragY * -1,
                   bottom: dragY,
                 }}
                 dragTransition={{
@@ -77,7 +84,7 @@ export default function Asteroids() {
                   bounceDamping: 80,
                   timeConstant: 1000,
                 }}
-                whileHover={{ scale: 1.5, transition: { type: 'spring', duration: 0.5 } }}
+                onDragEnd={() => handleDragEnd(astIndex)}
                 style={{
                   width: animations[astIndex].width * (isActive ? 5 : 1) * (isMobile ? 0.5 : 1),
                   cursor: isActive ? 'pointer' : '',
