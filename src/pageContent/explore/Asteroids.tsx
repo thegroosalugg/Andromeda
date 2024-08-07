@@ -21,6 +21,9 @@ export default function Asteroids() {
   const { activeFC, activeHandler, isLandscape, isMobile } = useContext(ExploreContext);
   const isActive = activeFC === 'ast';
 
+  const dragY = isLandscape ? 100 : 200;
+  const dragX = isLandscape ? 350 * (isMobile ? 1 : 1.8) : 100;
+
   return (
     <motion.div
       className={css['asteroids']}
@@ -62,7 +65,23 @@ export default function Asteroids() {
                 alt='Asteroid'
                 layout
                 transition={{ duration: 1 }} // for layout transition
-                style={{ width: animations[astIndex].width * (isActive ?  5 : 1) * (isMobile ? 0.5 : 1) }}
+                drag={isActive}
+                dragConstraints={{
+                  left: dragX * -1,
+                  right: dragX,
+                  top: dragY * -1,
+                  bottom: dragY,
+                }}
+                dragTransition={{
+                  bounceStiffness: 100,
+                  bounceDamping: 80,
+                  timeConstant: 1000,
+                }}
+                whileHover={{ scale: 1.5, transition: { type: 'spring', duration: 0.5 } }}
+                style={{
+                  width: animations[astIndex].width * (isActive ? 5 : 1) * (isMobile ? 0.5 : 1),
+                  cursor: isActive ? 'pointer' : '',
+                }}
                 // prettier-ignore
                 animate={{
                    filter: animations[astIndex].filter,
