@@ -5,7 +5,10 @@ import { AnimatePresence, motion } from 'framer-motion';
 import useUIConfig from '@/hooks/useUIConfig';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const { pathname, background } = useUIConfig();
+  const { pathname, prevPath, background } = useUIConfig();
+
+  const isShipRoute = pathname.startsWith('/ships/') && prevPath.startsWith('/ships/');
+  const key = isShipRoute ? 'ships' : pathname;
 
   return (
     <>
@@ -14,11 +17,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <AnimatePresence mode='popLayout'>
         <motion.main
           id='main'
-          key={pathname}
-          initial={{ opacity: 0, y: '-100px' }}
+          key={key}
+          initial={{ opacity: 0, y: '-150px' }}
           animate={{ opacity: 1, y: 0, background }}
-             exit={{ opacity: 0, y: '100px' }}
-          transition={{ type: 'spring', ease: 'linear', duration: 0.5 }}
+             exit={{ opacity: 0, y: '150px' }}
+          transition={{ type: 'tween', ease: 'linear', duration: 0.5 }}
           >
           {children}
         </motion.main>

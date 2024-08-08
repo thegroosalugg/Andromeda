@@ -1,11 +1,11 @@
 import { useScroll, useTransform, motion } from 'framer-motion';
 import css from './Section.module.css';
 import rangeArray from '@/util/rangeArray';
-import useScreen from '@/hooks/useScreen';
+import useScreenSize from '@/hooks/useScreenSize';
 
 export default function Section({ children }: { children: React.ReactNode }) {
   const { scrollY } = useScroll();
-  const { width, height } = useScreen();
+  const { width, height } = useScreenSize();
 
   const pixels = width > 1024 || width < 320 ? 550 : height;
   const range = rangeArray(4, pixels, 50);

@@ -1,15 +1,15 @@
 import { useDispatch } from 'react-redux';
-import { saveItem, toggle } from '@/store/modalSlice';
+import { closeModal, saveItem  } from '@/store/modalSlice';
 import { clearForm } from '@/store/formSlice';
 
-export default function useCloseModal() {
+export default function useClearModal() {
   const dispatch = useDispatch();
 
-  function closeModal() {
-    dispatch(toggle());
+  function clearModal() {
+    dispatch(closeModal());
     dispatch(clearForm());
     dispatch(saveItem(null));
   }
 
-  return closeModal;
+  return clearModal;
 }

@@ -8,7 +8,8 @@ export default function Footer() {
   let footer;
 
   if (pathname.startsWith('/ships')) {
-    footer = <SpaceShipsList className='ship-rows' />;
+    const key = (pathname !== '/ships').toString();
+    footer = <SpaceShipsList key={key} className='ship-rows' />;
   } else if (pathname === '/') {
     footer = <LandingFooter />;
   }

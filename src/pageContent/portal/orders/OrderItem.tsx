@@ -8,8 +8,10 @@ export default function OrderItem(clothes: Clothes) {
     <article className={css.article}>
       <img src={image} alt={name} />
       <section>
-        <h6>{brand}</h6>
-        <h6>{name}</h6>
+        <h6>
+          <span>{brand}</span>
+          <span>{name}</span>
+        </h6>
         <p>
           <span>{' x ' + quantity}</span>
           <span>${(+price * quantity).toFixed(2)}</span>

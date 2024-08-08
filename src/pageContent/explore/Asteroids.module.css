@@ -1,0 +1,15 @@
+.asteroids {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  box-sizing: border-box;
+  border: 2px solid transparent;
+
+  div {
+    display: flex;
+
+    img {
+      height: fit-content;
+    }
+  }
+}

@@ -47,20 +47,17 @@
 
   .price {
     display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 0.2rem;
+    padding: 0.5rem;
     font-size: x-small;
     font-weight: bold;
     color: #ca7d1f;
-    justify-content: end;
-    margin-right: 0.5rem;
 
     .icons {
       display: flex;
       gap: 0.2em;
-      padding: 0.5rem 0.2rem;
-    }
-
-    span {
-      margin: auto 0;
     }
   }
 }
@@ -84,6 +81,7 @@
 
     .price {
       font-size: 45%;
+      padding-bottom: 0.3rem;
     }
   }
 }

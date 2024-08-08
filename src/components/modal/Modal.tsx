@@ -2,14 +2,12 @@ import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/types';
+import useClearModal from '@/hooks/useClearModal';
 import css from './Modal.module.css';
-import useCloseModal from '@/hooks/useCloseModal';
 
 const Modal = ({ children }: { children: React.ReactNode }) => {
-  const { isOpen, item } = useSelector((state: RootState) => state.modal);
-  const closeModal = useCloseModal();
-
-  console.log('MODAL ITEM', item)
+  const { isOpen } = useSelector((state: RootState) => state.modal);
+  const closeModal = useClearModal();
 
   return createPortal(
     <AnimatePresence>

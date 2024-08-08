@@ -1,0 +1,26 @@
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Orbitron', sans-serif;
+  font-size: larger;
+  text-shadow: 2px 2px 4px #000;
+  color: #ffffff;
+  border: none;
+  border-bottom: 2px solid #ffffff;
+  cursor: pointer;
+
+  span:first-of-type {
+    flex-basis: 78px;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 440px) {
+  .button {
+    font-size: x-small;
+
+    span:first-of-type {
+      flex-basis: 41px;
+    }
+  }
+}

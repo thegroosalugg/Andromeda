@@ -6,7 +6,7 @@
   border-radius: 0;
   overflow: auto;
 
-  > img {
+ img {
     width: 640px;
     opacity: 0.8;
   }
@@ -17,7 +17,7 @@
     width: 100%;
     border-radius: 0;
 
-    > img {
+    img {
       width: 67%;
     }
   }

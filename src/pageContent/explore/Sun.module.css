@@ -1,0 +1,8 @@
+.sun {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  box-sizing: border-box;
+  border: 2px solid transparent;
+}

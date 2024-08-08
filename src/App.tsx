@@ -3,9 +3,15 @@ import LandingPage from './pages/LandingPage';
 import StorePage from './pages/Store';
 import SpaceShipsPage from './pages/spaceships/SpaceShips';
 import ShipIDPage from './pages/spaceships/ShipID';
-import ExplorePage from './pages/Explore';
+import ExplorePage from './pages/explore/Explore';
 import UserPage from './pages/User';
 import ErrorPage from './components/error/Error';
+
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fab } from '@fortawesome/free-brands-svg-icons'; // import brand icons
+import { fas } from '@fortawesome/free-solid-svg-icons'; // import solid icons
+import { far } from '@fortawesome/free-regular-svg-icons'; // import regular icons
+library.add(fab, fas, far);
 
 import { useRoutes } from 'react-router-dom';
 

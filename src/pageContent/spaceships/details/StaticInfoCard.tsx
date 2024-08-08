@@ -17,13 +17,13 @@ const StaticInfoCard: React.FC<SpaceShip> = (spaceship) => {
       <h4>
         <FontAwesomeIcon icon={['fas', 'globe']} /> {maker}
       </h4>
-      <h2>{model}</h2>
+      <h3>{model}</h3>
       <motion.p
-        initial={{ scaleY: 0, opacity: 0 }}
+        initial={{ scaleY: 0.2, opacity: 0 }}
         animate={{ scaleY: 1, opacity: 1 }}
-        transition={{ duration: 0.5, ease: 'linear', delay: 0.3 }}
+        transition={{ duration: 0.5, ease: 'linear', delay: 1 }}
       >
-        {desc}
+        <span>{desc}</span>
       </motion.p>
       <IconRow
         className={css.icons}
@@ -33,7 +33,7 @@ const StaticInfoCard: React.FC<SpaceShip> = (spaceship) => {
           ['fas', 'clock'],
           ['fas', 'money-bill-1-wave'],
         ]}
-        texts={[fuel, speed + 'm Mph', year + ' (CE)', price + ' daily']}
+        labels={[fuel, speed + 'm Mph', year + ' (CE)', price + ' daily']}
       />
     </motion.div>
   );

@@ -4,7 +4,7 @@ import css from './BookedItem.module.css';
 import formatDate from '@/util/formatDate';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { saveItem, toggle } from '@/store/modalSlice';
+import { openModal, saveItem } from '@/store/modalSlice';
 import SpaceShip from '@/models/SpaceShip';
 
 const Col = ({ label, text }: { label: string; text: string }) => {
@@ -35,7 +35,7 @@ const BookedItem = (booking: Booking) => {
 
   function modalHandler() {
     dispatch(saveItem({ ship, booking }));
-    dispatch(toggle());
+    dispatch(openModal());
   }
 
   return (
