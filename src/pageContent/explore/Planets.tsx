@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useContext } from 'react';
 import { ExploreContext } from '@/pages/explore/ExploreContext';
 import mercury from '@/assets/planets/mercury.png';
@@ -39,10 +39,10 @@ export default function Planets({ outer }: { outer?: boolean }) {
     const   size = width * (isMobile ? 0.5 : 1) * (activeSet ? (outer ? 2 : 4) : 1);
 
     return {
-              width: size,
-         marginLeft: activeSet   ? 0 :  isLandscape ? 0 : align,
-       marginBottom: activeSet   ? 0 : !isLandscape ? 0 : align,
-             rotate: isLandscape ? 0 :  rotate,
+             width: size,
+        marginLeft:  isLandscape ? 0 : activeSet ? 50 : align,
+      marginBottom: !isLandscape    || activeSet ?  0 : align,
+            rotate:  isLandscape ? 0 : rotate,
     };
   };
 
@@ -68,9 +68,10 @@ export default function Planets({ outer }: { outer?: boolean }) {
                padding: activeSet && !isMobile ? '2rem' : outer ? (isLandscape ? '0 1rem 0 0' : '0 0 1rem') : 0,
       }}
     >
-      {planets.map((planet) => {
-        const     key = nameOf(planet);
-        const animate = config(key);
+      {planets.map((planet, i) => {
+        // prettier-ignore
+        const    name = nameOf(planet);
+        const animate = config(name);
 
         return (
           <motion.div
@@ -85,15 +86,36 @@ export default function Planets({ outer }: { outer?: boolean }) {
                 transition: { type: 'tween', ease: 'linear', duration: 0.5 },
               },
             }}
-            style={{ padding: !isMobile ? '1rem' : '' }} // will cause animation jitter if on mobile, same with Gap or Margin
+            style={{
+                  padding: !isMobile ? '1rem' : '', // will cause animation jitter if on mobile, same with Gap or Margin
+              marginRight: activeSet ? 0 : isMobile ? '-45px' : '-81px',
+            }}
           >
             <motion.img
               src={planet}
-              alt={key}
+              alt={name}
               initial={animate}
               animate={animate}
               transition={{ duration: 1 }}
             />
+            <p style={{ width: isLandscape ? 'auto' : isMobile ? '45px' : '81px' }}>
+              <AnimatePresence>
+                {activeSet && (
+                  <motion.span
+                    style={{ fontSize: isMobile ? '0.5rem' : '1rem' }}
+                    initial={{ scaleX: 0, opacity: 0 }}
+                    animate={{
+                      scaleX: 1,
+                      opacity: 1,
+                      transition: { delay: 1 + i * 0.2, duration: 1, ease: 'easeInOut' },
+                    }}
+                    exit={{ scale: 0, opacity: 0 }}
+                  >
+                    {name}
+                  </motion.span>
+                )}
+              </AnimatePresence>
+            </p>
           </motion.div>
         );
       })}

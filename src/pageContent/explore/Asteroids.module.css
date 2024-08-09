@@ -4,6 +4,8 @@
   padding: 0.5rem;
   box-sizing: border-box;
   border: 2px solid transparent;
+  position: relative;
+  z-index: 1;
 
   div {
     display: flex;
