@@ -40,8 +40,8 @@ export default function Planets({ outer }: { outer?: boolean }) {
 
     return {
              width: size,
-        marginLeft:  isLandscape ? 0 : activeSet ? 50 : align,
-      marginBottom: !isLandscape    || activeSet ?  0 : align,
+        marginLeft:  isLandscape || activeSet ? 0 : align,
+      marginBottom: !isLandscape || activeSet ? 0 : align,
             rotate:  isLandscape ? 0 : rotate,
     };
   };
@@ -86,10 +86,7 @@ export default function Planets({ outer }: { outer?: boolean }) {
                 transition: { type: 'tween', ease: 'linear', duration: 0.5 },
               },
             }}
-            style={{
-                  padding: !isMobile ? '1rem' : '', // will cause animation jitter if on mobile, same with Gap or Margin
-              marginRight: activeSet ? 0 : isMobile ? '-45px' : '-81px',
-            }}
+            style={{ padding: !isMobile ? '1rem' : '' }} // will cause animation jitter if on mobile, same with Gap or Margin
           >
             <motion.img
               src={planet}
@@ -98,24 +95,22 @@ export default function Planets({ outer }: { outer?: boolean }) {
               animate={animate}
               transition={{ duration: 1 }}
             />
-            <p style={{ width: isLandscape ? 'auto' : isMobile ? '45px' : '81px' }}>
-              <AnimatePresence>
-                {activeSet && (
-                  <motion.span
-                    style={{ fontSize: isMobile ? '0.5rem' : '1rem' }}
-                    initial={{ scaleX: 0, opacity: 0 }}
-                    animate={{
-                      scaleX: 1,
-                      opacity: 1,
-                      transition: { delay: 1 + i * 0.2, duration: 1, ease: 'easeInOut' },
-                    }}
-                    exit={{ scale: 0, opacity: 0 }}
-                  >
-                    {name}
-                  </motion.span>
-                )}
-              </AnimatePresence>
-            </p>
+            <AnimatePresence>
+              {activeSet && (
+                <motion.p
+                  style={{ fontSize: isMobile ? '0.5rem' : '1rem' }}
+                  initial={{ opacity: 0, x: animate.width - 50 }}
+                  animate={{
+                    opacity: 1,
+                    x: animate.width + 5,
+                    transition: { delay: 1 + i * 0.2, duration: 1, ease: 'easeInOut' },
+                  }}
+                  exit={{ opacity: 0, scale: 0, transition: { duration: 0.5 } }}
+                >
+                  {name}
+                </motion.p>
+              )}
+            </AnimatePresence>
           </motion.div>
         );
       })}

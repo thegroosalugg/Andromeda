@@ -6,26 +6,22 @@
 
   > div {
     box-sizing: border-box;
-    display: flex;
-    gap: 0.5rem;
+    position: relative;
 
     img {
       height: fit-content;
     }
 
     p {
+      position: absolute;
+      z-index: 1;
+      top: 0;
       margin: 0;
-      align-self: start;
-      position: relative;
-      z-index: 0;
-
-      span {
-        padding: 0.1rem 0.3rem;
-        border-radius: 3px;
-        text-transform: capitalize;
-        color: #ffffff;
-        background: #80808044;
-      }
+      padding: 0.1rem 0.3rem;
+      border-radius: 3px;
+      text-transform: capitalize;
+      color: #ffffff;
+      background: #80808044;
     }
   }
 }
