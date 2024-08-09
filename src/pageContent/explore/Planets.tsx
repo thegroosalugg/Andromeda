@@ -42,7 +42,7 @@ export default function Planets({ outer }: { outer?: boolean }) {
              width: size,
         marginLeft:  isLandscape || activeSet ? 0 : align,
       marginBottom: !isLandscape || activeSet ? 0 : align,
-            rotate:  isLandscape ? 0 : rotate,
+            rotate:  isLandscape ? (key === 'saturn' ? 25 : 0) : rotate,
     };
   };
 
@@ -86,7 +86,7 @@ export default function Planets({ outer }: { outer?: boolean }) {
                 transition: { type: 'tween', ease: 'linear', duration: 0.5 },
               },
             }}
-            style={{ padding: !isMobile ? '1rem' : '' }} // will cause animation jitter if on mobile, same with Gap or Margin
+            style={{ padding: !isMobile ? '1rem 2rem' : '' }} // will cause animation jitter if on mobile, same with Gap or Margin
           >
             <motion.img
               src={planet}
@@ -98,11 +98,11 @@ export default function Planets({ outer }: { outer?: boolean }) {
             <AnimatePresence>
               {activeSet && (
                 <motion.p
-                  style={{ fontSize: isMobile ? '0.5rem' : '1rem' }}
+                  style={{ fontSize: isMobile ? '0.5rem' : '1rem', top: isMobile ? 0 : '10px' }}
                   initial={{ opacity: 0, x: animate.width - 50 }}
                   animate={{
                     opacity: 1,
-                    x: animate.width + 5,
+                    x: animate.width - (name === 'saturn' ? 30 : 0),
                     transition: { delay: 1 + i * 0.2, duration: 1, ease: 'easeInOut' },
                   }}
                   exit={{ opacity: 0, scale: 0, transition: { duration: 0.5 } }}
