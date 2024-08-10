@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { ExploreContext } from '@/pages/explore/ExploreContext';
 import mercury from '@/assets/planets/mercury.png';
 import venus from '@/assets/planets/venus.png';
@@ -31,20 +31,27 @@ const props = {
 export default function Planets({ outer }: { outer?: boolean }) {
   const planets = outer ? [jupiter, saturn, uranus, neptune] : [mercury, venus, earth, mars];
   const { activeFC, activeHandler, isLandscape, isMobile } = useContext(ExploreContext);
+  const [activePlanet, setActivePlanet] = useState('');
   const activeSet = (activeFC === 'inner' && !outer) || (activeFC === 'outer' && outer);
 
   // prettier-ignore
   const config = (key: Planet) => {
     const { width, align, rotate } = props[key];
-    const   size = width * (isMobile ? 0.5 : 1) * (activeSet ? (outer ? 2 : 4) : 1);
+    const size = width * (isMobile ? 0.5 : 1) * (activeSet ? (outer ? 2 : 4) : 1) * (activePlanet ? 2 : 1);
 
     return {
-             width: size,
+             width:  size,
         marginLeft:  isLandscape || activeSet ? 0 : align,
       marginBottom: !isLandscape || activeSet ? 0 : align,
             rotate:  isLandscape ? (key === 'saturn' ? 25 : 0) : rotate,
     };
   };
+
+  function activePlanetHandler(planet: string) {
+    if (activeSet) {
+      setActivePlanet(planet);
+    }
+  }
 
   return (
     <motion.section
@@ -69,15 +76,14 @@ export default function Planets({ outer }: { outer?: boolean }) {
       }}
     >
       {planets.map((planet, i) => {
-        // prettier-ignore
-        const    name = nameOf(planet);
+        const name = nameOf(planet);
         const animate = config(name);
 
         return (
           <motion.div
             key={planet}
             layout
-            transition={{ duration: 1.2 }} // controls layout transition
+            transition={{ duration: 1.2 }}
             variants={{
               hidden: { opacity: 0, scale: 0 },
               visible: {
@@ -86,17 +92,23 @@ export default function Planets({ outer }: { outer?: boolean }) {
                 transition: { type: 'tween', ease: 'linear', duration: 0.5 },
               },
             }}
-            style={{ padding: !isMobile ? '1rem 2rem' : '' }} // will cause animation jitter if on mobile, same with Gap or Margin
+            style={{ padding: !isMobile ? '1rem 2rem' : '' }}
           >
-            <motion.img
-              src={planet}
-              alt={name}
-              initial={animate}
-              animate={animate}
-              transition={{ duration: 1 }}
-            />
             <AnimatePresence>
-              {activeSet && (
+              {!activePlanet || activePlanet === planet ? (
+                <motion.img
+                  src={planet}
+                  alt={name}
+                  onClick={() => activePlanetHandler(planet)}
+                  initial={animate}
+                  animate={animate}
+                  exit={{ opacity: 0, rotate: 360, scale: 0 }}
+                  transition={{ duration: 1 }}
+                />
+              ) : null}
+            </AnimatePresence>
+            <AnimatePresence>
+              {activeSet && !activePlanet && (
                 <motion.p
                   style={{ fontSize: isMobile ? '0.5rem' : '1rem', top: isMobile ? 0 : '10px' }}
                   initial={{ opacity: 0, x: animate.width - 50 }}

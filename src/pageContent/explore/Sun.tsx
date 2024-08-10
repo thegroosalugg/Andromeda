@@ -32,7 +32,7 @@ export default function TheSun() {
         initial={{ width: size, scale: 0, filter: 'brightness(0)' }}
         animate={{
           width: size,
-          scale: [0.5, 0.5, 1, 1],
+          scale: [0, 0.5, 0.5, 1],
           filter: ['brightness(0)', 'brightness(0)', 'brightness(0)', 'brightness(1)'],
           transition: { duration: 3 },
         }}
