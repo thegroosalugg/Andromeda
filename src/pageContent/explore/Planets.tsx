@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { ExploreContext } from '@/pages/explore/ExploreContext';
 import mercury from '@/assets/planets/mercury.png';
 import venus from '@/assets/planets/venus.png';
@@ -30,8 +30,7 @@ const props = {
 
 export default function Planets({ outer }: { outer?: boolean }) {
   const planets = outer ? [jupiter, saturn, uranus, neptune] : [mercury, venus, earth, mars];
-  const { activeFC, activeHandler, isLandscape, isMobile } = useContext(ExploreContext);
-  const [activePlanet, setActivePlanet] = useState('');
+  const { activeFC, activeHandler, activePlanet, setActivePlanet, isLandscape, isMobile } = useContext(ExploreContext);
   const activeSet = (activeFC === 'inner' && !outer) || (activeFC === 'outer' && outer);
 
   // prettier-ignore
