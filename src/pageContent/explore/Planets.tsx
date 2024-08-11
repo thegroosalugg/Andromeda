@@ -1,6 +1,7 @@
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useContext } from 'react';
 import { ExploreContext } from '@/pages/explore/ExploreContext';
+import Planet from './Planet';
 import mercury from '@/assets/planets/mercury.png';
 import venus from '@/assets/planets/venus.png';
 import earth from '@/assets/planets/earth.png';
@@ -11,47 +12,11 @@ import uranus from '@/assets/planets/uranus.png';
 import neptune from '@/assets/planets/neptune.png';
 import css from './Planets.module.css';
 
-type Planet = keyof typeof props;
-
-const nameOf = (planet: string) =>
-  planet.match(/(mercury|venus|earth|mars|jupiter|saturn|uranus|neptune)/)![0] as Planet;
-
-// prettier-ignore
-const props = {
-  mercury: { width:  20, align: 30, rotate: 65 },
-  venus:   { width:  30, align: 40, rotate: 45 },
-  earth:   { width:  40, align: 50, rotate: 45 },
-  mars:    { width:  25, align: 65, rotate: 45 },
-  jupiter: { width: 100, align: 65, rotate: 55 },
-  saturn:  { width: 120, align: 50, rotate: 55 },
-  uranus:  { width:  70, align: 40, rotate: 45 },
-  neptune: { width:  60, align: 30, rotate: 40 },
-};
-
 export default function Planets({ outer }: { outer?: boolean }) {
   const planets = outer ? [jupiter, saturn, uranus, neptune] : [mercury, venus, earth, mars];
-  const { activeFC, activeHandler, activePlanet, setActivePlanet, isLandscape, isMobile } = useContext(ExploreContext);
+  const { activeFC, activeHandler, activePlanet, isLandscape, isMobile } =
+    useContext(ExploreContext);
   const activeSet = (activeFC === 'inner' && !outer) || (activeFC === 'outer' && outer);
-
-  // prettier-ignore
-  const config = (key: Planet) => {
-    const { width, align, rotate } = props[key];
-    const size = width * (isMobile ? 0.5 : 1) * (activeSet ? (outer ? 2 : 4) : 1);
-    const isActiveSize = (key === 'saturn' ? 350 : 300) * (isMobile ? 0.5 : 1);
-
-    return {
-             width:  activePlanet ? isActiveSize  : size,
-        marginLeft:  isLandscape || activeSet ? 0 : align,
-      marginBottom: !isLandscape || activeSet ? 0 : align,
-            rotate:  isLandscape ? (key === 'saturn' ? 25 : 0) : rotate,
-    };
-  };
-
-  function activePlanetHandler(planet: string) {
-    if (activeSet) {
-      setActivePlanet(planet);
-    }
-  }
 
   return (
     <motion.section
@@ -75,57 +40,9 @@ export default function Planets({ outer }: { outer?: boolean }) {
                padding: activeSet && !isMobile ? '2rem' : outer ? (isLandscape ? '0 1rem 0 0' : '0 0 1rem') : 0,
       }}
     >
-      {planets.map((planet, i) => {
-        const name = nameOf(planet);
-        const animate = config(name);
-
-        return (
-          <motion.div
-            key={planet}
-            layout
-            transition={{ duration: 1.2 }}
-            variants={{
-              hidden: { opacity: 0, scale: 0 },
-              visible: {
-                opacity: 1,
-                scale: 1,
-                transition: { type: 'tween', ease: 'linear', duration: 0.5 },
-              },
-            }}
-            style={{ padding: !isMobile && !activePlanet ? '1rem 2rem' : '' }}
-          >
-            <AnimatePresence>
-              {(!activePlanet || activePlanet === planet) && (
-                <motion.img
-                  src={planet}
-                  alt={name}
-                  onClick={() => activePlanetHandler(planet)}
-                  initial={animate}
-                  animate={animate}
-                  exit={{ opacity: 0, rotate: 360, width: 0 }}
-                  transition={{ duration: 1 }}
-                />
-              )}
-            </AnimatePresence>
-            <AnimatePresence>
-              {activeSet && !activePlanet && (
-                <motion.p
-                  style={{ fontSize: isMobile ? '0.5rem' : '1rem', top: isMobile ? 0 : '10px' }}
-                  initial={{ opacity: 0, x: animate.width - 50 }}
-                  animate={{
-                    opacity: 1,
-                    x: animate.width - (name === 'saturn' ? 30 : 0),
-                    transition: { delay: 1 + i * 0.2, duration: 1, ease: 'easeInOut' },
-                  }}
-                  exit={{ opacity: 0, scale: 0, transition: { duration: 0.5 } }}
-                >
-                  {name}
-                </motion.p>
-              )}
-            </AnimatePresence>
-          </motion.div>
-        );
-      })}
+      {planets.map((planet) => (
+        <Planet key={planet} planet={planet} isActive={activeSet} />
+      ))}
     </motion.section>
   );
 }
