@@ -36,10 +36,11 @@ export default function Planets({ outer }: { outer?: boolean }) {
   // prettier-ignore
   const config = (key: Planet) => {
     const { width, align, rotate } = props[key];
-    const size = width * (isMobile ? 0.5 : 1) * (activeSet ? (outer ? 2 : 4) : 1) * (activePlanet ? 2 : 1);
+    const size = width * (isMobile ? 0.5 : 1) * (activeSet ? (outer ? 2 : 4) : 1);
+    const isActiveSize = (key === 'saturn' ? 350 : 300) * (isMobile ? 0.5 : 1);
 
     return {
-             width:  size,
+             width:  activePlanet ? isActiveSize  : size,
         marginLeft:  isLandscape || activeSet ? 0 : align,
       marginBottom: !isLandscape || activeSet ? 0 : align,
             rotate:  isLandscape ? (key === 'saturn' ? 25 : 0) : rotate,
@@ -70,7 +71,7 @@ export default function Planets({ outer }: { outer?: boolean }) {
       style={{
                   flex: `1 1 ${outer ? 50 : 30}%`,
          flexDirection:  isLandscape ? 'row' : 'column',
-        justifyContent:    activeSet ? 'space-evenly' : 'space-between',
+        justifyContent:    activeSet ? (activePlanet ? 'center' : 'space-evenly') : 'space-between',
                padding: activeSet && !isMobile ? '2rem' : outer ? (isLandscape ? '0 1rem 0 0' : '0 0 1rem') : 0,
       }}
     >
@@ -91,20 +92,20 @@ export default function Planets({ outer }: { outer?: boolean }) {
                 transition: { type: 'tween', ease: 'linear', duration: 0.5 },
               },
             }}
-            style={{ padding: !isMobile ? '1rem 2rem' : '' }}
+            style={{ padding: !isMobile && !activePlanet ? '1rem 2rem' : '' }}
           >
             <AnimatePresence>
-              {!activePlanet || activePlanet === planet ? (
+              {(!activePlanet || activePlanet === planet) && (
                 <motion.img
                   src={planet}
                   alt={name}
                   onClick={() => activePlanetHandler(planet)}
                   initial={animate}
                   animate={animate}
-                  exit={{ opacity: 0, rotate: 360, scale: 0 }}
+                  exit={{ opacity: 0, rotate: 360, width: 0 }}
                   transition={{ duration: 1 }}
                 />
-              ) : null}
+              )}
             </AnimatePresence>
             <AnimatePresence>
               {activeSet && !activePlanet && (
