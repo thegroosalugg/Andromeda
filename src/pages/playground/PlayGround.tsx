@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
 import { useState } from 'react';
 import useDeviceOrientation from '@/hooks/useDeviceOrientation';
 import css from './PlayGround.module.css';
@@ -58,54 +58,56 @@ export default function PlayGround() {
         style={{ height: '20px', border: '1px solid black', background: 'black' }}
         onClick={reset}
       />
-      <section className={css.playground} style={{ flexDirection }}>
-        <AnimatePresence>
-          {(active === 0 || active === 1) && (
-            <Box key='1' onClick={() => setActive(1)} background='#b7b061'>
-              First
-            </Box>
-          )}
-          {(active === 0 || active === 2) && (
-            <motion.div
-              key='2'
-              className={css.two}
-              onClick={() => setActive(2)}
-              style={{ flexDirection }}
-              {...animate}
-            >
-              <AnimatePresence>
-                {chars.map((char) => (
-                  <motion.div key={char} {...animate} onClick={() => charHandler(char)}>
-                    <span>{char}</span>
+      <LayoutGroup>
+        <section className={css.playground} style={{ flexDirection }}>
+          <AnimatePresence>
+            {(active === 0 || active === 1) && (
+              <Box key='1' onClick={() => setActive(1)} background='#b7b061'>
+                First
+              </Box>
+            )}
+            {(active === 0 || active === 2) && (
+              <motion.div
+                key='2'
+                className={css.two}
+                onClick={() => setActive(2)}
+                style={{ flexDirection }}
+                {...animate}
+              >
+                <AnimatePresence>
+                  {chars.map((char) => (
+                    <motion.div key={char} {...animate} onClick={() => charHandler(char)}>
+                      <span>{char}</span>
+                    </motion.div>
+                  ))}
+                </AnimatePresence>
+              </motion.div>
+            )}
+            {(active === 0 || active === 3) && (
+              <Box key='3' onClick={() => setActive(3)} background='#a6b761'>
+                THIRD
+              </Box>
+            )}
+            {(active === 0 || active === 4) && (
+              <motion.div
+                key='4'
+                className={css.four}
+                onClick={() => setActive(4)}
+                style={{ flexDirection }}
+                {...animate}
+              >
+                <AnimatePresence>
+                {digits.map((digit) => (
+                  <motion.div key={digit} {...animate} onClick={() => digitHandler(digit)}>
+                    <span>{digit}</span>
                   </motion.div>
                 ))}
-              </AnimatePresence>
-            </motion.div>
-          )}
-          {(active === 0 || active === 3) && (
-            <Box key='3' onClick={() => setActive(3)} background='#a6b761'>
-              THIRD
-            </Box>
-          )}
-          {(active === 0 || active === 4) && (
-            <motion.div
-              key='4'
-              className={css.four}
-              onClick={() => setActive(4)}
-              style={{ flexDirection }}
-              {...animate}
-            >
-              {/* <AnimatePresence> */}
-              {digits.map((digit) => (
-                <motion.div key={digit} {...animate} onClick={() => digitHandler(digit)}>
-                  <span>{digit}</span>
-                </motion.div>
-              ))}
-              {/* </AnimatePresence> */}
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </section>
+                </AnimatePresence>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </section>
+      </LayoutGroup>
     </>
   );
 }

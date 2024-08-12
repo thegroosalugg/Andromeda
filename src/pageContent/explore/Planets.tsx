@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { LayoutGroup, motion } from 'framer-motion';
 import { useContext } from 'react';
 import { ExploreContext } from '@/pages/explore/ExploreContext';
 import Planet from './Planet';
@@ -40,9 +40,11 @@ export default function Planets({ outer }: { outer?: boolean }) {
                padding: activeSet && !isMobile ? '2rem' : outer ? (isLandscape ? '0 1rem 0 0' : '0 0 1rem') : 0,
       }}
     >
-      {planets.map((planet) => (
-        <Planet key={planet} planet={planet} isActive={activeSet} />
-      ))}
+      <LayoutGroup>
+        {planets.map((planet) => (
+          <Planet key={planet} planet={planet} isActive={activeSet} />
+        ))}
+      </LayoutGroup>
     </motion.section>
   );
 }
