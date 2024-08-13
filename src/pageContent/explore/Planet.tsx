@@ -23,9 +23,13 @@ const props = {
 export default function Planet({
   planet,
   isActive,
+  outer,
+  index,
 }: {
-  planet: string;
+    planet: string;
   isActive: boolean | undefined;
+     outer: boolean | undefined;
+     index: number;
 }) {
   const { activePlanet, setActivePlanet, isLandscape, isMobile } = useContext(ExploreContext);
 
@@ -34,8 +38,7 @@ export default function Planet({
   // prettier-ignore
   const config = (key: Planet) => {
       const { width, align, rotate } = props[key];
-      // const size = width * (isMobile ? 0.5 : 1) * (isActive ? (outer ? 2 : 4) : 1);
-      const size = width * (isMobile ? 0.5 : 1) * (isActive ? 2 : 1);
+      const size = width * (isMobile ? 0.5 : 1) * (isActive ? (outer ? 2 : 4) : 1);
       const isActiveSize = (key === 'saturn' ? 350 : 300) * (isMobile ? 0.5 : 1);
 
       return {
@@ -90,8 +93,7 @@ export default function Planet({
             animate={{
               opacity: 1,
               x: animate.width - (name === 'saturn' ? 30 : 0),
-              // transition: { delay: 1 + i * 0.2, duration: 1, ease: 'easeInOut' },
-              transition: { delay: 1, duration: 1, ease: 'easeInOut' },
+              transition: { delay: 1 + index * 0.2, duration: 1, ease: 'easeInOut' },
             }}
             exit={{ opacity: 0, scale: 0, transition: { duration: 0.5 } }}
           >

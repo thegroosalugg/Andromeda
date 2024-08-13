@@ -41,8 +41,8 @@ export default function Planets({ outer }: { outer?: boolean }) {
       }}
     >
       <LayoutGroup>
-        {planets.map((planet) => (
-          <Planet key={planet} planet={planet} isActive={activeSet} />
+        {planets.map((planet, index) => (
+          <Planet key={planet} planet={planet} isActive={activeSet} outer={outer} index={index} />
         ))}
       </LayoutGroup>
     </motion.section>
