@@ -1,7 +1,7 @@
 import { ExploreContext } from '@/pages/explore/ExploreContext';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, LayoutGroup } from 'framer-motion';
 import { useContext } from 'react';
-import css from './Planet.module.css'
+import css from './Planet.module.css';
 
 type Planet = keyof typeof props;
 
@@ -58,49 +58,72 @@ export default function Planet({
   }
 
   return (
-    <motion.div
-      className={css.planet}
-      layout
-      transition={{ duration: 1.2 }}
-      variants={{
-        hidden: { opacity: 0, scale: 0 },
-        visible: {
-          opacity: 1,
-          scale: 1,
-          transition: { type: 'tween', ease: 'linear', duration: 0.5 },
-        },
-      }}
-      style={{ padding: !isMobile && !activePlanet ? '1rem 2rem' : '' }}
-    >
-      <AnimatePresence>
-        {(!activePlanet || activePlanet === planet) && (
-          <motion.img
-            src={planet}
-            alt={name}
-            onClick={() => activePlanetHandler(planet)}
-            initial={animate}
-            animate={animate}
-            exit={{ opacity: 0, rotate: 360, width: 0 }}
-            transition={{ duration: 1 }}
-          />
-        )}
-      </AnimatePresence>
-      <AnimatePresence>
-        {isActive && !activePlanet && (
-          <motion.p
-            style={{ fontSize: isMobile ? '0.5rem' : '1rem', top: isMobile ? 0 : '10px' }}
-            initial={{ opacity: 0, x: animate.width - 50 }}
-            animate={{
-              opacity: 1,
-              x: animate.width - (name === 'saturn' ? 30 : 0),
-              transition: { delay: 1 + index * 0.2, duration: 1, ease: 'easeInOut' },
-            }}
-            exit={{ opacity: 0, scale: 0, transition: { duration: 0.5 } }}
-          >
-            {name}
-          </motion.p>
-        )}
-      </AnimatePresence>
-    </motion.div>
+    <LayoutGroup>
+      <motion.div
+        className={css.planet}
+        layout
+        transition={{ duration: 1.2 }}
+        variants={{
+          hidden: { opacity: 0, scale: 0 },
+          visible: {
+            opacity: 1,
+            scale: 1,
+            transition: { type: 'tween', ease: 'linear', duration: 0.5 },
+          },
+        }}
+        style={{
+                padding: !isMobile && !activePlanet ? '1rem 2rem' : '',
+          flexDirection: isLandscape ? 'row' : 'column',
+        }}
+      >
+        <AnimatePresence>
+          {activePlanet === planet && (
+            <motion.p
+              layout
+              initial={{ opacity: 0, scaleY: 0 }}
+              animate={{
+                opacity: 1,
+                scaleY: 1,
+                transition: { delay: 1, duration: 0.5, ease: 'easeIn' },
+              }}
+              exit={{ opacity: 0, scaleY: 0, transition: { duration: 0.5, ease: 'easeOut' } }}
+              style={{ width: animate.width }}
+            >
+              <motion.span>{'I am waiting for a bus'.repeat(5)}</motion.span>
+            </motion.p>
+          )}
+        </AnimatePresence>
+        <AnimatePresence>
+          {(!activePlanet || activePlanet === planet) && (
+            <motion.img
+              layout
+              src={planet}
+              alt={name}
+              onClick={() => activePlanetHandler(planet)}
+              initial={animate}
+              animate={animate}
+              exit={{ opacity: 0, rotate: 360, width: 0 }}
+              transition={{ duration: 1 }}
+            />
+          )}
+        </AnimatePresence>
+        <AnimatePresence>
+          {isActive && !activePlanet && (
+            <motion.h6
+              style={{ fontSize: isMobile ? '0.5rem' : '1rem', top: isMobile ? 0 : '10px' }}
+              initial={{ opacity: 0, x: animate.width - 50 }}
+              animate={{
+                opacity: 1,
+                x: animate.width - (name === 'saturn' ? 30 : 0),
+                transition: { delay: 1 + index * 0.2, duration: 1, ease: 'easeInOut' },
+              }}
+              exit={{ opacity: 0, scale: 0, transition: { duration: 0.5 } }}
+            >
+              {name}
+            </motion.h6>
+          )}
+        </AnimatePresence>
+      </motion.div>
+    </LayoutGroup>
   );
 }
