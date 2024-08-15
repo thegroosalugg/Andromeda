@@ -83,13 +83,22 @@ export default function Planet({
               initial={{ opacity: 0, scaleY: 0 }}
               animate={{
                 opacity: 1,
-                scaleY: 1,
+                 scaleY: 1,
                 transition: { delay: 1, duration: 0.5, ease: 'easeIn' },
               }}
-              exit={{ opacity: 0, scaleY: 0, transition: { duration: 0.5, ease: 'easeOut' } }}
-              style={{ width: animate.width }}
+              exit={{ opacity: 0, scale: 0, transition: { duration: 0.2, ease: 'easeOut' } }}
+              style={{
+                   width: animate.width - 50,
+                fontSize: isMobile ? '0.5rem' : '1rem',
+                 padding: isMobile ? '0.5rem' : '1rem',
+              }}
             >
-              <motion.span>{'I am waiting for a bus'.repeat(5)}</motion.span>
+              <motion.span
+                initial={{ opacity: 0, y: -30 }}
+                animate={{ opacity: 1, y: 0, transition: { delay: 2, duration: 1 } }}
+              >
+                {'I am waiting for a bus. '.repeat(5)}
+              </motion.span>
             </motion.p>
           )}
         </AnimatePresence>

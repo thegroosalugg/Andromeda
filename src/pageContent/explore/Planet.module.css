@@ -2,32 +2,35 @@
   box-sizing: border-box;
   position: relative;
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
   align-items: center;
 
   img {
     height: fit-content;
   }
 
-  p {
-    padding: 1rem;
+  p, h6 {
+    margin: 0;
     color: #ffffff;
     text-shadow: 1px 1px 2px #000;
     background: #80808044;
     box-shadow: 1px 1px 2px #00000084;
-    border-radius: 3px;
+  }
+
+  p {
+    text-align: center;
+    border-radius: 5px;
+
+    span {
+      display: block;
+    }
   }
 
   h6 {
     position: absolute;
     z-index: 1;
-    margin: 0;
     padding: 0.1rem 0.3rem;
     border-radius: 3px;
     text-transform: capitalize;
-    color: #ffffff;
-    text-shadow: 1px 1px 2px #000;
-    background: #80808044;
-    box-shadow: 1px 1px 2px #00000084;
   }
 }
