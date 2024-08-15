@@ -1,6 +1,7 @@
 import { ExploreContext } from '@/pages/explore/ExploreContext';
 import { AnimatePresence, motion, LayoutGroup } from 'framer-motion';
 import { useContext } from 'react';
+import { planets } from './planets';
 import css from './Planet.module.css';
 
 type Planet = keyof typeof props;
@@ -88,7 +89,8 @@ export default function Planet({
               }}
               exit={{ opacity: 0, scale: 0, transition: { duration: 0.2, ease: 'easeOut' } }}
               style={{
-                   width: animate.width - 50,
+                   width: animate.width - 40,
+                  height: animate.width / 2,
                 fontSize: isMobile ? '0.5rem' : '1rem',
                  padding: isMobile ? '0.5rem' : '1rem',
               }}
@@ -97,7 +99,7 @@ export default function Planet({
                 initial={{ opacity: 0, y: -30 }}
                 animate={{ opacity: 1, y: 0, transition: { delay: 2, duration: 1 } }}
               >
-                {'I am waiting for a bus. '.repeat(5)}
+                {planets[name]}
               </motion.span>
             </motion.p>
           )}
