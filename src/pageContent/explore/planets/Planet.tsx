@@ -1,10 +1,10 @@
 import { ExploreContext } from '@/pages/explore/ExploreContext';
 import { AnimatePresence, motion, LayoutGroup } from 'framer-motion';
 import { useContext } from 'react';
-import { planets } from './planets';
 import css from './Planet.module.css';
+import Description from './Description';
 
-type Planet = keyof typeof props;
+export type Planet = keyof typeof props;
 
 const nameOf = (planet: string) =>
   planet.match(/(mercury|venus|earth|mars|jupiter|saturn|uranus|neptune)/)![0] as Planet;
@@ -23,29 +23,29 @@ const props = {
 
 export default function Planet({
   planet,
-  isActive,
+  activeSet,
   outer,
   index,
 }: {
-    planet: string;
-  isActive: boolean | undefined;
-     outer: boolean | undefined;
-     index: number;
+     planet: string;
+  activeSet: boolean | undefined;
+      outer: boolean | undefined;
+      index: number;
 }) {
   const { activePlanet, setActivePlanet, isLandscape, isMobile } = useContext(ExploreContext);
-
   const name = nameOf(planet);
+  const centerViewport = name === 'mars' || name === 'jupiter' || name === 'saturn';
 
   // prettier-ignore
   const config = (key: Planet) => {
       const { width, align, rotate } = props[key];
-      const size = width * (isMobile ? 0.5 : 1) * (isActive ? (outer ? 2 : 4) : 1);
+      const size = width * (isMobile ? 0.5 : 1) * (activeSet ? (outer ? 2 : 4) : 1);
       const isActiveSize = (key === 'saturn' ? 350 : 300) * (isMobile ? 0.5 : 1);
 
       return {
                width:  activePlanet ? isActiveSize  : size,
-          marginLeft:  isLandscape || isActive ? 0 : align,
-        marginBottom: !isLandscape || isActive ? 0 : align,
+          marginLeft:  isLandscape || activeSet ? 0 : align,
+        marginBottom: !isLandscape || activeSet ? 0 : align,
               rotate:  isLandscape ? (key === 'saturn' ? 25 : 0) : rotate,
       };
     };
@@ -53,7 +53,7 @@ export default function Planet({
   const animate = config(name);
 
   function activePlanetHandler(planet: string) {
-    if (isActive) {
+    if (activeSet) {
       setActivePlanet(planet);
     }
   }
@@ -65,45 +65,22 @@ export default function Planet({
         layout
         transition={{ duration: 1.2 }}
         variants={{
-          hidden: { opacity: 0, scale: 0 },
+           hidden: { opacity: 0, scale: 0 },
           visible: {
             opacity: 1,
-            scale: 1,
+              scale: 1,
             transition: { type: 'tween', ease: 'linear', duration: 0.5 },
           },
         }}
         style={{
                 padding: !isMobile && !activePlanet ? '1rem 2rem' : '',
-          flexDirection: isLandscape ? 'row' : 'column',
+          flexDirection:                isLandscape ?       'row' : 'column',
         }}
       >
-        <AnimatePresence>
-          {activePlanet === planet && (
-            <motion.p
-              layout
-              initial={{ opacity: 0, scaleY: 0 }}
-              animate={{
-                opacity: 1,
-                 scaleY: 1,
-                transition: { delay: 1, duration: 0.5, ease: 'easeIn' },
-              }}
-              exit={{ opacity: 0, scale: 0, transition: { duration: 0.2, ease: 'easeOut' } }}
-              style={{
-                      width: animate.width - 40,
-                     height: animate.width / 2,
-                   fontSize: isMobile ? '0.5rem' : '1rem',
-                borderWidth: isMobile ? '0.5rem' : '1rem',
-              }}
-            >
-              <motion.span
-                initial={{ opacity: 0, y: -30 }}
-                animate={{ opacity: 1, y: 0, transition: { delay: 2, duration: 1 } }}
-              >
-                {planets[name]}
-              </motion.span>
-            </motion.p>
-          )}
-        </AnimatePresence>
+        {!centerViewport && (
+          <Description name={name} isActive={activePlanet === planet} width={animate.width} />
+        )}
+
         <AnimatePresence>
           {(!activePlanet || activePlanet === planet) && (
             <motion.img
@@ -113,13 +90,18 @@ export default function Planet({
               onClick={() => activePlanetHandler(planet)}
               initial={animate}
               animate={animate}
-              exit={{ opacity: 0, rotate: 360, width: 0 }}
+                 exit={{ opacity: 0, rotate: 360, width: 0 }}
               transition={{ duration: 1 }}
             />
           )}
         </AnimatePresence>
+
+        {centerViewport && (
+          <Description name={name} isActive={activePlanet === planet} width={animate.width} />
+        )}
+
         <AnimatePresence>
-          {isActive && !activePlanet && (
+          {activeSet && !activePlanet && (
             <motion.h6
               style={{ fontSize: isMobile ? '0.5rem' : '1rem', top: isMobile ? 0 : '10px' }}
               initial={{ opacity: 0, x: animate.width - 50 }}

@@ -3,7 +3,7 @@ import { ExploreContext } from '@/pages/explore/ExploreContext';
 import { AnimatePresence, LayoutGroup } from 'framer-motion';
 import BackButton from './BackButton';
 import TheSun from './Sun';
-import Planets from './Planets';
+import Planets from './planets/Planets';
 import Asteroids from './Asteroids';
 import css from './Universe.module.css';
 

@@ -5,7 +5,7 @@ import SpaceShipsPage from './pages/spaceships/SpaceShips';
 import ShipIDPage from './pages/spaceships/ShipID';
 import ExplorePage from './pages/explore/Explore';
 import UserPage from './pages/User';
-import PlayGround from './pages/playground/PlayGround';
+// import PlayGround from './pages/playground/PlayGround';
 import ErrorPage from './components/error/Error';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -24,7 +24,7 @@ export default function App() {
     { path: 'ships/:shipId', element: <ShipIDPage /> },
     { path: 'explore', element: <ExplorePage /> },
     { path: 'user', element: <UserPage /> },
-    { path: '/playground', element: <PlayGround /> },
+    // { path: '/playground', element: <PlayGround /> },
     { path: '*', element: <ErrorPage /> },
   ]);
 
