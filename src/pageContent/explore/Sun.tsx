@@ -17,7 +17,7 @@ export default function TheSun() {
       whileHover={{
            borderColor: isMobile || isActive ? '#00000000' : '#FFFFFF',
         borderTopColor: '#00000000',
-           transition: { duration: 0.5, ease: 'easeInOut' },
+            transition: { duration: 0.5, ease: 'easeInOut' },
       }}
       style={{
                  flex: isCondensedView ? '0.5 1 10%' : '1 1 10%',
@@ -28,17 +28,20 @@ export default function TheSun() {
         src={sun}
         alt='Sun'
         layout
-        transition={{ duration: 1.2 }} // controls layout transition
-        initial={{ width: size, scale: 0, filter: 'brightness(0)' }}
+        transition={{ layout: { duration: 1.2 } }}
+        style={{ width: size }}
+        initial={{ scale: 0, filter: 'brightness(0)' }}
         animate={{
-          width: size,
-          scale: [0, 0.5, 0.5, 1],
-          filter: ['brightness(0)', 'brightness(0)', 'brightness(0)', 'brightness(1)'],
-          transition: { duration: 3 },
+               scale: isActive ? [1, 1.2] : 1,
+              filter: ['brightness(0)', 'brightness(0)', 'brightness(1)'],
+          transition: isActive
+            ? { duration: 1.5, delay: 2, repeat: Infinity, repeatType: 'mirror' }
+            : { duration: 3, type: 'tween' },
         }}
+
         exit={{
-          filter: 'brightness(0)',
-          scale: 0,
+              filter: 'brightness(0)',
+               scale: 0,
           transition: { duration: 0.5 },
         }}
       />
