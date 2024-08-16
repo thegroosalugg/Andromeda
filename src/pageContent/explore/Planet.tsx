@@ -89,10 +89,10 @@ export default function Planet({
               }}
               exit={{ opacity: 0, scale: 0, transition: { duration: 0.2, ease: 'easeOut' } }}
               style={{
-                   width: animate.width - 40,
-                  height: animate.width / 2,
-                fontSize: isMobile ? '0.5rem' : '1rem',
-                 padding: isMobile ? '0.5rem' : '1rem',
+                      width: animate.width - 40,
+                     height: animate.width / 2,
+                   fontSize: isMobile ? '0.5rem' : '1rem',
+                borderWidth: isMobile ? '0.5rem' : '1rem',
               }}
             >
               <motion.span

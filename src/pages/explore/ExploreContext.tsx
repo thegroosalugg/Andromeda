@@ -31,10 +31,10 @@ export default function ExploreContextProvider({ children }: { children: React.R
 
   function activeHandler(id: string) {
     if (!isAnimating && id !== activeFC) {
-      setIsAnimating(true);
-      setActiveFC(id);
+       setIsAnimating(true);
+          setActiveFC(id);
       setActivePlanet('');
-      setTimeout(() => setIsAnimating(false), 1200);
+           setTimeout(() => setIsAnimating(false), 1200);
     }
   }
 
