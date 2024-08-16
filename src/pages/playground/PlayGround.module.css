@@ -1,0 +1,61 @@
+.playground {
+  display: flex;
+  flex-grow: 1;
+
+  > div {
+    border: 0.5px solid #000;
+  }
+
+  .solo {
+    flex: 1 1 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .two,
+  .four {
+    flex: 1 1 50%;
+    display: flex;
+    flex: 1;
+    width: 50px;
+    justify-content: space-evenly;
+    width: 100%;
+
+    > div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  .two {
+    div:nth-of-type(1) {
+      background: #b76161;
+    }
+    div:nth-of-type(2) {
+      background: #78b761;
+    }
+    div:nth-of-type(3) {
+      background: #b7a361;
+    }
+    div:nth-of-type(4) {
+      background: #6190b7;
+    }
+  }
+
+  .four {
+    div:nth-of-type(1) {
+      background: #61b79d;
+    }
+    div:nth-of-type(2) {
+      background: #78b761;
+    }
+    div:nth-of-type(3) {
+      background: #6196b7;
+    }
+    div:nth-of-type(4) {
+      background: #6d61b7;
+    }
+  }
+}

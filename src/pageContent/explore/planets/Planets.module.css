@@ -3,8 +3,4 @@
   align-items: center;
   box-sizing: border-box;
   border: 2px solid transparent;
-
-  > div {
-    box-sizing: border-box;
-  }
 }
