@@ -22,7 +22,7 @@ export default function UFO() {
       <motion.img
         src={ufo}
         alt='ufo'
-        initial={{ opacity: 0, y: '-70%' }}
+        initial={{ opacity: 0, y: '-50%' }}
         whileInView={{
           opacity: [0.2, 0.4, 0.6, 0.8, 1],
           y: 0,

@@ -33,14 +33,16 @@ const FlyingShip = () => {
   }
 
   return (
-    <motion.img
-      src={ship}
-      alt='spaceship'
-      key={duration}
-      initial={{ x: enter, scaleX: direction }}
-      animate={{ x: exit, rotateX, scale, y }}
-      transition={{ type: 'easeIn', duration, delay: 0.1 }}
-    />
+    <div>
+      <motion.img
+        src={ship}
+        alt='spaceship'
+        key={duration}
+        initial={{ x: enter, scaleX: direction }}
+        animate={{ x: exit, rotateX, scale, y }}
+        transition={{ type: 'easeIn', duration, delay: 0.1 }}
+      />
+    </div>
   );
 };
 
