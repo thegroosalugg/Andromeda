@@ -33,7 +33,7 @@
   }
 }
 
-@media screen and (min-width: 320px) and (max-width: 768px) {
+@media screen and (min-width: 320px) and (max-width: 768px) and (min-resolution: 2dppx) and (orientation: portrait) {
   .content {
     margin: 1vh auto 0;
     border-bottom: 2vw solid #424649dd;

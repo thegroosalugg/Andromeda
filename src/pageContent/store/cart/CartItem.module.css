@@ -32,7 +32,7 @@
   }
 }
 
-@media (max-width: 440px) {
+@media (max-width: 440px) and (min-resolution: 2dppx) and (orientation: portrait) {
   .item {
     img {
       width: 4rem;
