@@ -4,6 +4,8 @@ import Footer from '@/components/footer/Footer';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import useUIConfig from '@/hooks/useUIConfig';
+import useSearch from '@/hooks/useSearch';
+import SpaceShip from '@/models/SpaceShip';
 
 const metadata = {
          '/': { title:         'Home', description: 'Andromeda Landing Page' },
@@ -16,10 +18,24 @@ const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const { pathname, prevPath, background } = useUIConfig();
-  const { title, description } = metadata[pathname as keyof typeof metadata] || metadata['*'];
 
+  // takes care of page transitions for dynamic page
   const isShipRoute = pathname.startsWith('/ships/') && prevPath.startsWith('/ships/');
   const key = isShipRoute ? 'ships' : pathname;
+
+  // takes care of metadata for dynamic page
+  const shipId = pathname.startsWith('/ships/') ? pathname.slice(7) : '';
+  const { item } = useSearch({
+    search: { id: shipId, withParams: false },
+    reducer: 'items',
+    sliceKey: 'ships',
+  });
+  const ship = item as SpaceShip;
+
+  // set metadata either as dynamic ship data || static page data from object
+  const { title, description } = ship
+  ? { title: ship.model, description: ship.desc }
+  : metadata[pathname as keyof typeof metadata] || metadata['*'];
 
   return (
     <>
