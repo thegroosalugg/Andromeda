@@ -15,6 +15,7 @@ import { far } from '@fortawesome/free-regular-svg-icons'; // import regular ico
 library.add(fab, fas, far);
 
 import { useRoutes } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 
 export default function App() {
   const element = useRoutes([
@@ -30,5 +31,9 @@ export default function App() {
 
   if (!element) return null;
 
-  return <RootLayout>{element}</RootLayout>;
+  return (
+    <HelmetProvider>
+      <RootLayout>{element}</RootLayout>
+    </HelmetProvider>
+  );
 }
