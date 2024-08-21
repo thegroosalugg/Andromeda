@@ -1,20 +1,22 @@
+import { useRef } from 'react';
 import { useScroll, useTransform, motion } from 'framer-motion';
 import css from './Section.module.css';
-import rangeArray from '@/util/rangeArray';
-import useScreenSize from '@/hooks/useScreenSize';
 
 export default function Section({ children }: { children: React.ReactNode }) {
-  const { scrollY } = useScroll();
-  const { width, height } = useScreenSize();
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
 
-  const pixels = width > 1024 || width < 320 ? 550 : height;
-  const range = rangeArray(4, pixels, 50);
-
-  const opacity = useTransform(scrollY, [...range], [1, 0.8, 0.5, 0]);
-  const y = useTransform(scrollY, [...range], ['0%', '-25%', '-50%', '-100%']);
+  const y = useTransform(scrollYProgress, [0, 0.75, 1], ['0%', '0%', '-100%']);
 
   return (
-    <motion.section className={css.section} style={{ opacity, y }}>
+    <motion.section
+      className={css.section}
+      ref={ref}
+      style={{ y }}
+    >
       {children}
     </motion.section>
   );

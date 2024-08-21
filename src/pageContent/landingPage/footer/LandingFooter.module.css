@@ -6,7 +6,7 @@
   padding-top: 2rem;
 }
 
-@media screen and (min-width: 320px) and (max-width: 440px) {
+@media screen and (min-width: 320px) and (max-width: 440px) and (min-resolution: 2dppx) and (orientation: portrait) {
   .footer {
     padding-top: 1rem;
   }
